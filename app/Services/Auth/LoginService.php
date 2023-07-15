@@ -11,10 +11,10 @@ class LoginService
     public function login($request)
     {
 
-        $credentials = $request->only('name', 'password');
+        $credentials = $request->only('phone', 'password');
 
         if (Auth::attempt($credentials)){
-            $user = User::where("name",$request->name)->first();
+            $user = User::where("phone",$request->phone)->first();
 
             $user->token = $this->createToken($user);
             return $user;

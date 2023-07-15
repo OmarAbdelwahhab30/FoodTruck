@@ -14,7 +14,7 @@ class RegisterService
         $Role_ID = $this->GetRoleID($request->role);
         $user = User::create([
             'name'  => $request->name,
-            'email' => $request->email,
+            'phone' => $request->phone,
             'password'  => Hash::make($request->password),
             'role_id'   => $Role_ID,
         ]);

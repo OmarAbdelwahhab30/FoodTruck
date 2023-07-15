@@ -14,4 +14,10 @@ class Truck extends Model
     {
         return $this->belongsToMany(Product::class);
     }
+
+    //sellers in the truck
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }
