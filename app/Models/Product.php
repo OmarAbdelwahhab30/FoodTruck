@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
+
+    public function trucks()
+    {
+        return $this->belongsToMany(Truck::class);
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
 }
