@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\RegisterRequest;
-use App\Services\Auth\RegisterService;
+use App\Http\Requests\Auth\SellerRegisterRequest;
+use App\Services\Auth\SellerRegisterService;
 use Illuminate\Http\Request;
 
-class RegisterController extends Controller
+class SellerRegisterController extends Controller
 {
-    public function register(RegisterRequest $request,RegisterService $service)
+    public function register(SellerRegisterRequest $request, SellerRegisterService $service)
     {
         $user = $service->register($request);
         if($user) {

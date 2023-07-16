@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("truck_id")->references("id")->on("trucks");
             $table->enum("status",['picked-up,cancelled,delivered'])->nullable();
             $table->timestamps();
         });

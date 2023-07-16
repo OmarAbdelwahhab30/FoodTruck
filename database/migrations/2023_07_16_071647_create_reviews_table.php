@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->text("review")->nullable();
-            $table->foreignId("truck_id")->references("id")->on("trucks");
+
             $table->timestamps();
         });
     }
