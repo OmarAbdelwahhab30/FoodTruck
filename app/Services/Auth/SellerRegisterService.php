@@ -2,6 +2,7 @@
 
 namespace App\Services\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Interfaces\Auth\RegisterInterface;
 use App\Models\FoodType;
 use App\Models\Role;
@@ -10,13 +11,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class SellerRegisterService implements RegisterInterface
+class SellerRegisterService extends controller implements RegisterInterface
 {
 
     public function register($request)
     {
         $Role_ID = $this->GetRoleID($request->role);
-
         return $this->Transaction($request);
     }
 
@@ -36,10 +36,10 @@ class SellerRegisterService implements RegisterInterface
 
     private function addTruck($request,$userID){
         return Truck::create([
-            'name'	        => $request->name,
+            'name'	        => $request->truck_name,
             'plate_no'      => $request->plate_no,
-            'license'       => $request->license,
-            'image'         => $request->truck_image,
+            'license'       => $this->uploadLicenseImage($request->file('license')),
+            'image'         => $this->uploadTruckImage($request->file("truck_image")),
             'delivery'      => $request->delivery,
             'food_type_id'  => $this->GetFoodTypeID($request->food_type),
             'user_id'       => $userID,
@@ -72,5 +72,15 @@ class SellerRegisterService implements RegisterInterface
 
             return $user;
         });
+    }
+
+    private function uploadLicenseImage($Image)
+    {
+        return $this->UploadFile($Image,"/images/licenses");
+    }
+
+    private function uploadTruckImage($Image)
+    {
+        return $this->UploadFile($Image,"/images/trucks");
     }
 }

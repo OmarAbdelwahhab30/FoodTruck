@@ -14,7 +14,7 @@ trait FileUploaderTrait {
      *@param $ToWhichFolder you need to move the image or file
      * @return mixed
      */
-    function ValidateFile($File,$ToWhichFolder)
+    function UploadFile($File,$ToWhichFolder)
     {
         if (!empty($File)) {
             $FileName = time() ."_". str_replace('-', '_', $File->getClientOriginalName());
