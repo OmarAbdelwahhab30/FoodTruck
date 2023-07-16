@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('food_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("truck_id")->references("id")->on("trucks");
-            $table->enum("status",['picked-up,cancelled,delivered'])->nullable();
+            $table->string("type");
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('food_types');
     }
 };

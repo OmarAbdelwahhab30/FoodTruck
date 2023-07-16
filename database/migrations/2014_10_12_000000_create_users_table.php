@@ -17,10 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string("phone")->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->foreignId("role_id")->references("id")->on("roles");
-            $table->foreignId("truck_id")->nullable()->references("id")->on("trucks");
             $table->rememberToken();
             $table->timestamps();
         });

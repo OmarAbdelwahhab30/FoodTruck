@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_truck', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("product_id")->references("id")->on("products");
+            $table->text("review")->nullable();
             $table->foreignId("truck_id")->references("id")->on("trucks");
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_truck');
+        Schema::dropIfExists('reviews');
     }
 };
