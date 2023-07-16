@@ -10,14 +10,24 @@ class Truck extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function products()
+    public function products(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsToMany(Product::class);
+        return $this->hasMany(Product::class);
     }
 
     //sellers in the truck
-    public function users()
+    public function user(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasMany(User::class);
+        return $this->hasOne(User::class);
+    }
+
+    public function food_type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(FoodType::class);
+    }
+
+    public function review(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Review::class);
     }
 }

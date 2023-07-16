@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->unsignedInteger("price");
+            $table->string("image")->nullable();
+            $table->string("price");
+            $table->text("description");
+            $table->foreignId("truck_id")->references("id")->on("trucks");
             $table->timestamps();
         });
     }

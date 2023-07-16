@@ -35,13 +35,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function role(){
+    public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(Role::class);
     }
 
-    public function truck()
+    public function truck(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->belongsTo(Truck::class);
+        return $this->hasOne(Truck::class);
     }
 
 }

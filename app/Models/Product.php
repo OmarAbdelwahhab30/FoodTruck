@@ -11,13 +11,18 @@ class Product extends Model
     protected $guarded = [];
 
 
-    public function trucks()
+    public function truck(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsToMany(Truck::class);
+        return $this->belongsTo(Truck::class);
     }
 
-    public function orders()
+    public function orders(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Order::class);
+    }
+
+    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Image::class);
     }
 }
