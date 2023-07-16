@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\products\addFoodTypeRequest;
-use App\Services\Products\AddProductService;
+use App\Http\Requests\products\deleteProductRequest;
+use App\Http\Requests\products\updateProductRequest;
+use App\Services\Products\UpdateProductImagesService;
+use App\Services\Products\UpdateProductService;
 use Illuminate\Http\Request;
-use Symfony\Component\Console\Input\Input;
 
-class AddProductController extends Controller
+class UpdateProductController extends Controller
 {
-    public function addProduct(addFoodTypeRequest $request, AddProductService $service)
+    public function updateProduct(updateProductRequest $request, UpdateProductService $service): \Illuminate\Http\JsonResponse
     {
         $product = $service->exec($request);
         if($product){
@@ -18,4 +20,6 @@ class AddProductController extends Controller
         }
         return $this->returnError("some thing went wrong");
     }
+
+
 }

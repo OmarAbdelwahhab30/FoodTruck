@@ -19,6 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['middleware' => 'auth:sanctum'],function (){
+Route::group(['middleware' => 'auth:sanctum'],function ()
+{
     Route::post("addProduct",[\App\Http\Controllers\Products\AddProductController::class,'addProduct']);
+    Route::post("deleteProductImageByID",[\App\Http\Controllers\Products\UpdateProductImagesController::class,"deleteProductImageByID"]);
+    Route::post("updateProduct",[\App\Http\Controllers\Products\UpdateProductController::class,'updateProduct']);
+
+    Route::post("add_food_type",[\App\Http\Controllers\FoodTypes\AddFoodTypeController::class,"addFoodType"]);
+    Route::post("update_food_type",[\App\Http\Controllers\FoodTypes\UpdateFoodTypeController::class,"updateFoodType"]);
 });

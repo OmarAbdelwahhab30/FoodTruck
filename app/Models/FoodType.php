@@ -9,11 +9,12 @@ class FoodType extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     protected $table = 'food_types';
 
 
-    public function trucks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function trucks(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasMany(Truck::class);
+        return $this->belongsTo(Truck::class);
     }
 }

@@ -27,9 +27,9 @@ class Truck extends Model
         return $this->hasOne(User::class);
     }
 
-    public function food_type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function food_types(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsTo(FoodType::class);
+        return $this->hasMany(FoodType::class);
     }
 
     public function review(): \Illuminate\Database\Eloquent\Relations\HasOne

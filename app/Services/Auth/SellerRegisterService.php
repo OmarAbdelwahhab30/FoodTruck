@@ -30,11 +30,6 @@ class SellerRegisterService extends Service implements RegisterInterface
         return Role::where("name",$role_name)->first()->id;
     }
 
-    private function GetFoodTypeID($Type)
-    {
-        return FoodType::where("type",$Type)->first()->id;
-    }
-
     private function addTruck($request,$userID){
         return Truck::create([
             'name'	        => $request->truck_name,
@@ -42,7 +37,6 @@ class SellerRegisterService extends Service implements RegisterInterface
             'license'       => env("APP_URL").":8000/storage/images/licenses/".$this->uploadLicenseImage($request->file('license')),
             'image'         => env("APP_URL").":8000/storage/images/licenses/".$this->uploadTruckImage($request->file("truck_image")),
             'delivery'      => $request->delivery,
-            'food_type_id'  => $this->GetFoodTypeID($request->food_type),
             'user_id'       => $userID,
             'work_time'     => $request->work_time,
         ]);
