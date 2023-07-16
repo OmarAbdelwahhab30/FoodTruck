@@ -5,9 +5,10 @@ namespace App\Services\Auth;
 use App\Interfaces\Auth\RegisterInterface;
 use App\Models\Role;
 use App\Models\User;
+use App\Services\Service;
 use Illuminate\Support\Facades\Hash;
 
-class CustomerRegisterService implements RegisterInterface
+class CustomerRegisterService extends Service implements RegisterInterface
 {
 
     public function register($request)

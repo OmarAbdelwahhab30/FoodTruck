@@ -3,9 +3,10 @@
 namespace App\Services\Auth;
 
 use App\Models\User;
+use App\Services\Service;
 use Illuminate\Support\Facades\Auth;
 
-class LoginService
+class LoginService extends Service
 {
 
     public function login($request)

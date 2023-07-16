@@ -2,7 +2,9 @@
 
 namespace App\Services\Auth;
 
-class LogoutService
+use App\Services\Service;
+
+class LogoutService extends Service
 {
     public function logout($request){
         if ($request->user()->currentAccessToken()->delete()){

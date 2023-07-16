@@ -8,10 +8,11 @@ use App\Models\FoodType;
 use App\Models\Role;
 use App\Models\Truck;
 use App\Models\User;
+use App\Services\Service;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class SellerRegisterService extends controller implements RegisterInterface
+class SellerRegisterService extends Service implements RegisterInterface
 {
 
     public function register($request)
@@ -38,8 +39,8 @@ class SellerRegisterService extends controller implements RegisterInterface
         return Truck::create([
             'name'	        => $request->truck_name,
             'plate_no'      => $request->plate_no,
-            'license'       => $this->uploadLicenseImage($request->file('license')),
-            'image'         => $this->uploadTruckImage($request->file("truck_image")),
+            'license'       => env("APP_URL").":8000/storage/images/licenses/".$this->uploadLicenseImage($request->file('license')),
+            'image'         => env("APP_URL").":8000/storage/images/licenses/".$this->uploadTruckImage($request->file("truck_image")),
             'delivery'      => $request->delivery,
             'food_type_id'  => $this->GetFoodTypeID($request->food_type),
             'user_id'       => $userID,
