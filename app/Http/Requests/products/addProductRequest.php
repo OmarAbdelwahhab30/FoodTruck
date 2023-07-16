@@ -27,7 +27,6 @@ class addProductRequest extends FormRequest
             'name'          => ['required'],
             'price'         => ['required'],
             'calories'      => ['required'],
-            //'images'        => ['mimes:jpeg,jpg,png|required|max:10000'],
             'images' => 'required|array|max:3', // <----
             'images.*' => 'mimes:jpeg,jpg,png',
             'description'   => ['required'],

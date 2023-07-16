@@ -17,7 +17,7 @@ class AddProductService extends Service
         return DB::transaction(function () use ($request){
 
             $product = $this->addProduct($request);
-            $this->addProductImages($request->file("images"),$product->id);
+            $this->addProductImages($request->file('images'),$product->id);
             return $product;
         });
     }
@@ -35,8 +35,7 @@ class AddProductService extends Service
 
     public function addProductImages($images,$product_id)
     {
-        foreach($images as $image)
-        {
+        foreach ($images as $image) {
             Image::create([
                 'image'         => env("APP_URL").":8000/storage/images/products/".$this->UploadFile($image,"images/products"),
                 'product_id'    => $product_id,
