@@ -2,17 +2,18 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Interfaces\Auth\RegisterRequestInterface;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\NumbersOnly;
 
-class RegisterRequest extends FormRequest
+
+class CustomerRegisterRequest extends FormRequest implements RegisterRequestInterface
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -22,7 +23,7 @@ class RegisterRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name'      => 'required|string|unique:users|max:191',
@@ -32,4 +33,5 @@ class RegisterRequest extends FormRequest
             'role'              => 'required',
         ];
     }
+
 }

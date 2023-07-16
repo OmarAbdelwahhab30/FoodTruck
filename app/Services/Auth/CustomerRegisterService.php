@@ -2,11 +2,12 @@
 
 namespace App\Services\Auth;
 
+use App\Interfaces\Auth\RegisterInterface;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class RegisterService
+class CustomerRegisterService implements RegisterInterface
 {
 
     public function register($request)

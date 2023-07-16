@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Services\Auth;
+
+use App\Interfaces\Auth\RegisterInterface;
+use App\Models\FoodType;
+use App\Models\Role;
+use App\Models\Truck;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
+class SellerRegisterService implements RegisterInterface
+{
+
+    public function register($request)
+    {
+        $Role_ID = $this->GetRoleID($request->role);
+
+        return $this->Transaction($request);
+    }
+
+    private function createToken(User $user){
+        return $user->createToken("personal access token")->plainTextToken;
+    }
+
+    private function GetRoleID($role_name)
+    {
+        return Role::where("name",$role_name)->first()->id;
+    }
+
+    private function GetFoodTypeID($Type)
+    {
+        return FoodType::where("type",$Type)->first()->id;
+    }
+
+    private function addTruck($request,$userID){
+        return Truck::create([
+            'name'	        => $request->name,
+            'plate_no'      => $request->plate_no,
+            'license'       => $request->license,
+            'image'         => $request->truck_image,
+            'delivery'      => $request->delivery,
+            'food_type_id'  => $this->GetFoodTypeID($request->food_type),
+            'user_id'       => $userID,
+            'work_time'     => $request->work_time,
+        ]);
+    }
+
+    private function createUser($request){
+        return User::create([
+            'name'  => $request->name,
+            'phone' => $request->phone,
+            'password'  => Hash::make($request->password),
+            'role_id'   => $this->GetRoleID($request->role),
+        ]);
+    }
+
+
+    private function Transaction($request){
+        return DB::transaction(function () use ($request) {
+
+
+            $user = $this->createUser($request);
+
+            $truck = $this->addTruck($request,$user->id);
+
+            $user->TruckData = $truck;
+
+            // create token
+            $user->token = $this->createToken($user);
+
+            return $user;
+        });
+    }
+}
