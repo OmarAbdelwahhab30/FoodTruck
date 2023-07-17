@@ -35,7 +35,7 @@ class SellerRegisterService extends Service implements RegisterInterface
             'name'	        => $request->truck_name,
             'plate_no'      => $request->plate_no,
             'license'       => env("APP_URL").":8000/storage/images/licenses/".$this->uploadLicenseImage($request->file('license')),
-            'image'         => env("APP_URL").":8000/storage/images/licenses/".$this->uploadTruckImage($request->file("truck_image")),
+            'image'         => env("APP_URL").":8000/storage/images/trucks/".$this->uploadTruckImage($request->file("truck_image")),
             'delivery'      => $request->delivery,
             'user_id'       => $userID,
             'work_time'     => $request->work_time,
