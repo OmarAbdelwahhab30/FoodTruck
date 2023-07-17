@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\FoodTypes;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\food_types\ShowTruckSectionsRequest;
 use App\Services\FoodTypes\ShowAllSectionsService;
 use Illuminate\Http\Request;
 
 class ShowAllSectionsController extends Controller
 {
 
-    public function GetAllSectionInsideEachTruckByID(Request $request,ShowAllSectionsService $service)
+    public function GetAllSectionInsideEachTruckByID(ShowTruckSectionsRequest $request,ShowAllSectionsService $service): \Illuminate\Http\JsonResponse
     {
         $FoodTypes = $service->GetAllSectionInsideEachTruckByID($request);
         if (!empty($FoodTypes)){

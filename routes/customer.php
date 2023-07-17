@@ -23,9 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::get("GetAllTrucks",[ShowAllTrucksController::class,"GetAllTrucks"]);
-Route::get("GetTruckByID",[ShowDetailsOfEachTruckController::class,"GetDetailsOfEachTruckByID"]);
-Route::get("GetTruckReviewsByID",[ShowReviewsOfEachTruckController::class,"GetTruckReviewsByID"]);
-Route::get("GetAllSectionInsideEachTruckByID",[ShowAllSectionsController::class,"GetAllSectionInsideEachTruckByID"]);
-Route::get("GetAllProductsInsideEachSectionByID",[ShowAllProductsInsideEachSectionController::class,"GetAllProductsInsideEachSectionByID"]);
+Route::middleware("auth:sanctum")->group(function (){
+    Route::get("GetAllTrucks",[ShowAllTrucksController::class,"GetAllTrucks"]);
+    Route::get("GetTruckByID",[ShowDetailsOfEachTruckController::class,"GetDetailsOfEachTruckByID"]);
+    Route::get("GetTruckReviewsByID",[ShowReviewsOfEachTruckController::class,"GetTruckReviewsByID"]);
+    Route::get("GetAllSectionInsideEachTruckByID",[ShowAllSectionsController::class,"GetAllSectionInsideEachTruckByID"]);
+    Route::get("GetAllProductsInsideEachSectionByID",[ShowAllProductsInsideEachSectionController::class,"GetAllProductsInsideEachSectionByID"]);
+});
