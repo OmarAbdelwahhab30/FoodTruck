@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class ShowDetailsOfEachTruckController extends Controller
 {
-    public function GetDetailsOfEachTruckByID(Request $request,ShowDetailsOfEachTruckService $service)
+    public function GetDetailsOfEachTruckByID(GetTruckRequest $request,ShowDetailsOfEachTruckService $service): \Illuminate\Http\JsonResponse
     {
         $truck = $service->GetTruckDetailsByID($request->id);
         if (!empty($truck)){
