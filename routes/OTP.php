@@ -18,4 +18,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post("changepassword",[\App\Http\Controllers\Auth\ForgetPasswordController::class,"createNewPassword"]);
+
+Route::post("sms",[\App\Http\Controllers\Auth\SMSController::class,"send"]);
+Route::post("check",[\App\Http\Controllers\Auth\SMSController::class,"check"]);
