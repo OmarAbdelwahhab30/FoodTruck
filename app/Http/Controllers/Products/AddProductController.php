@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\products\addFoodTypeRequest;
+use App\Http\Requests\products\addProductRequest;
 use App\Services\Products\AddProductService;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Input\Input;
 
 class AddProductController extends Controller
 {
-    public function addProduct(addFoodTypeRequest $request, AddProductService $service)
+    public function addProduct(addProductRequest $request, AddProductService $service)
     {
         $product = $service->exec($request);
         if($product){

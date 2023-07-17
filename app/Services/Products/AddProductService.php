@@ -30,6 +30,7 @@ class AddProductService extends Service
             'calories'      => $request->calories,
             'description'   => $request->description,
             'truck_id'      => auth("sanctum")->user()->truck->id,
+            'food_type_id'  => $request->food_type_id,
         ]);
     }
 

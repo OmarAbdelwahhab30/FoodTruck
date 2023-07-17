@@ -13,8 +13,13 @@ class FoodType extends Model
     protected $table = 'food_types';
 
 
-    public function trucks(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function truck(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Truck::class);
+    }
+
+    public function products(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    {
+        return $this->hasManyThrough(Product::class,Truck::class);
     }
 }
