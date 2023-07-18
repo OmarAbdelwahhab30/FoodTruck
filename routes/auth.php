@@ -23,6 +23,7 @@ Route::post("login",[\App\Http\Controllers\Auth\LoginController::class,"login"])
 Route::post("seller_register",[\App\Http\Controllers\Auth\SellerRegisterController::class,"register"]);
 Route::post("customer_register",[\App\Http\Controllers\Auth\CustomerRegisterController::class,"register"]);
 Route::post("logout",[\App\Http\Controllers\Auth\LogoutController::class,"logout"])->middleware("auth:sanctum");;
+Route::post("changepassword",[\App\Http\Controllers\Auth\ForgetPasswordController::class,"createNewPassword"]);
 
 Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::post("UpdateAccountInformation", [UpdateAccountInformationController::class, 'UpdateAccountInformation']);

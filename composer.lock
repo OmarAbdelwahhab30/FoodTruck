@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "850f01d2765ea3b7e97bae18cb200177",
+    "content-hash": "6cd7ba8a76d4adbef9588461412ef3a9",
     "packages": [
         {
             "name": "brick/math",
@@ -431,74 +431,6 @@
                 }
             ],
             "time": "2023-01-14T14:17:03+00:00"
-        },
-        {
-            "name": "fouladgar/laravel-otp",
-            "version": "v4.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mohammad-fouladgar/laravel-otp.git",
-                "reference": "9611c039cdbc1bf444bc1741c08b34bc68044ca8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mohammad-fouladgar/laravel-otp/zipball/9611c039cdbc1bf444bc1741c08b34bc68044ca8",
-                "reference": "9611c039cdbc1bf444bc1741c08b34bc68044ca8",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "^9.0|^10.0",
-                "illuminate/notifications": "^9.0.2|^10.0",
-                "illuminate/support": "^9.0|^10.0",
-                "php": "^8.0 || ^8.1"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.4",
-                "orchestra/testbench": "^7.0|^8.0",
-                "php-coveralls/php-coveralls": "^2.1",
-                "phpunit/phpunit": "^9.3"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Fouladgar\\OTP\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
-                "psr-4": {
-                    "Fouladgar\\OTP\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mohammad Fouladgar",
-                    "email": "fouladgar.dev@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "keywords": [
-                "laravel",
-                "laravel-otp",
-                "lumen",
-                "one-time-password",
-                "otp",
-                "otp-authentication",
-                "otp-login"
-            ],
-            "support": {
-                "issues": "https://github.com/mohammad-fouladgar/laravel-otp/issues",
-                "source": "https://github.com/mohammad-fouladgar/laravel-otp"
-            },
-            "time": "2023-03-29T07:48:31+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -3181,16 +3113,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.11.18",
+            "version": "v0.11.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "4f00ee9e236fa6a48f4560d1300b9c961a70a7ec"
+                "reference": "1724ceff278daeeac5a006744633bacbb2dc4706"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/4f00ee9e236fa6a48f4560d1300b9c961a70a7ec",
-                "reference": "4f00ee9e236fa6a48f4560d1300b9c961a70a7ec",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/1724ceff278daeeac5a006744633bacbb2dc4706",
+                "reference": "1724ceff278daeeac5a006744633bacbb2dc4706",
                 "shasum": ""
             },
             "require": {
@@ -3251,9 +3183,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.11.18"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.11.19"
             },
-            "time": "2023-05-23T02:31:11+00:00"
+            "time": "2023-07-15T19:42:19+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -8803,7 +8735,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.0.2"
+        "php": "^8.0.2",
+        "ext-http": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
