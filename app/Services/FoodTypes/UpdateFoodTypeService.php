@@ -11,6 +11,6 @@ class UpdateFoodTypeService extends Controller
 
     public function updateFoodType($request)
     {
-        return FoodType::where("id",$request->id)->update($request->validated());
+        return FoodType::where("id",$request->id)->update(array_filter($request->all()));
     }
 }

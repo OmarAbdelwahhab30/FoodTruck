@@ -11,6 +11,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.8",
         "laravel/tinker": "^2.7",
+        "twilio/sdk": "^7.5",
         "vonage/client": "^4.0"
     },
     "require-dev": {

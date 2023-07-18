@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\UpdateAccountInformation\UpdateAccountInformationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,6 @@ Route::post("login",[\App\Http\Controllers\Auth\LoginController::class,"login"])
 Route::post("seller_register",[\App\Http\Controllers\Auth\SellerRegisterController::class,"register"]);
 Route::post("customer_register",[\App\Http\Controllers\Auth\CustomerRegisterController::class,"register"]);
 Route::post("logout",[\App\Http\Controllers\Auth\LogoutController::class,"logout"])->middleware("auth:sanctum");;
+
+
+Route::post("UpdateAccountInformation",[UpdateAccountInformationController::class,'UpdateAccountInformation']);

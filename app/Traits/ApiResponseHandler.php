@@ -13,8 +13,8 @@ trait ApiResponseHandler
     public function returnError($msg)
     {
         return response()->json([
-            'status' => false,
-            'msg' => $msg
+            'status' => 400,
+            'message' => $msg
         ]);
     }
 
@@ -22,16 +22,16 @@ trait ApiResponseHandler
     public function returnSuccessMessage($msg = "")
     {
         return response()->json([
-            'status' => true,
-            'msg' => $msg,
+            'status' => 200,
+            'message' => $msg,
         ]);
     }
 
     public function returnData($key, $value, $msg = "")
     {
         return response()->json([
-            'status' => true,
-            'msg' => $msg,
+            'status' => 200,
+            'message' => $msg,
             $key => $value
         ]);
     }
