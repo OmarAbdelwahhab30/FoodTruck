@@ -14,7 +14,7 @@ class SMSController extends Controller
     public function send(SendVonageCodeRequest $request,VonageService $service)
     {
         $request_id = $service->send($request);
-        return $this->returnSuccessMessage("Started verification, `request_id` is " . $request_id);
+        return $this->returnData("request_id", $request_id);
     }
 
     public function check(CheckVonageCodeRequest $request,VonageService $service)

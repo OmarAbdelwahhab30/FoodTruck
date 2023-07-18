@@ -24,5 +24,7 @@ Route::post("seller_register",[\App\Http\Controllers\Auth\SellerRegisterControll
 Route::post("customer_register",[\App\Http\Controllers\Auth\CustomerRegisterController::class,"register"]);
 Route::post("logout",[\App\Http\Controllers\Auth\LogoutController::class,"logout"])->middleware("auth:sanctum");;
 
-
-Route::post("UpdateAccountInformation",[UpdateAccountInformationController::class,'UpdateAccountInformation']);
+Route::group(['middleware' => 'auth:sanctum'],function () {
+    Route::post("UpdateAccountInformation", [UpdateAccountInformationController::class, 'UpdateAccountInformation']);
+    Route::post("changepassword", [UpdateAccountInformationController::class, 'ChangePassword']);
+});

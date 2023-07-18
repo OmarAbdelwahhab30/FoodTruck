@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Trucks\DeleteTruckImageController;
+use App\Http\Controllers\Trucks\UpdateTruckInformationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +31,7 @@ Route::group(['middleware' => 'auth:sanctum'],function ()
     Route::post("update_food_type",[\App\Http\Controllers\FoodTypes\UpdateFoodTypeController::class,"updateFoodType"]);
     Route::post("updateTruckInfo",[\App\Http\Controllers\Trucks\UpdateTruckInformationController::class,"UpdateTruckInformation"]);
     Route::post("deleteTruckImageByTruck_ID",[DeleteTruckImageController::class,'DeleteTruckImage']);
+
+    Route::post("ChangeDeliveryStatus",[UpdateTruckInformationController::class,"ChangeDeliveryStatus"]);
+
 });
