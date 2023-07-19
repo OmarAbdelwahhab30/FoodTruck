@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\Input;
 
 class AddProductController extends Controller
 {
-    public function addProduct(addProductRequest $request, AddProductService $service)
+    public function addProduct(addProductRequest $request, AddProductService $service): \Illuminate\Http\JsonResponse
     {
         $product = $service->exec($request);
         if($product){

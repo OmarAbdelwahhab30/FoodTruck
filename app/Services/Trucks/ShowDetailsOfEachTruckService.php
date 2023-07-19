@@ -11,6 +11,6 @@ class ShowDetailsOfEachTruckService extends Service
 {
     public function GetTruckDetailsByID($truck_id)
     {
-        return Truck::find($truck_id);
+        return Truck::where("id",$truck_id)->with("images")->get();
     }
 }

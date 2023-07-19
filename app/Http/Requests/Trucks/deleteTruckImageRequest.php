@@ -24,7 +24,7 @@ class deleteTruckImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'truck_id'   => ['required'],
+            'image_id'   => ['required'],
         ];
     }
 }

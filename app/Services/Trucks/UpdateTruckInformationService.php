@@ -11,16 +11,16 @@ class UpdateTruckInformationService
 {
     public function exec($request)
     {
-        $product = $this->updateTruck($request);
-        if ($request->file('image') !== null) {
-            (new UpdateTruckImageService())->updateTruckImage($request->file("image"), $request->id);
+        $truck = $this->updateTruck($request);
+        if ($request->file('truck_images') !== null) {
+            (new UpdateTruckImageService())->updateTruckImage($request->file("truck_images"), $request->id);
         }
-        return $product;
+        return $truck;
     }
 
     public function updateTruck($request)
     {
-        return Truck::where("id", $request->id)->update(Arr::except(array_filter($request->all()), 'image'));
+        return Truck::where("id", $request->id)->update(Arr::except(array_filter($request->all()), 'truck_images'));
     }
 
     public function ChangeDeliveryStatus($request)
