@@ -36,4 +36,9 @@ class Truck extends Model
     {
         return $this->hasOne(Review::class);
     }
+
+    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(TruckImage::class);
+    }
 }

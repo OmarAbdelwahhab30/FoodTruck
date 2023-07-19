@@ -26,7 +26,8 @@ class updateTruckInfoRequest extends FormRequest
         return [
             'id'  => ['required'],
             'name'      => ['sometimes'],
-            'image'     => 'mimes:jpeg,jpg,png|sometimes'
+            'truck_images'      => 'sometimes|array', // <----
+            'truck_images.*'    => 'mimes:jpeg,jpg,png',
         ];
     }
 }

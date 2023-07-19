@@ -11,6 +11,6 @@ class ShowAllTrucksService extends Service
 {
     public function GetAllTrucks(): \Illuminate\Database\Eloquent\Collection
     {
-        return Truck::all();
+        return Truck::with("images")->get();
     }
 }

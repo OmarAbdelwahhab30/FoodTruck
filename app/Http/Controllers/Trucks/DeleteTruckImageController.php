@@ -12,7 +12,7 @@ class DeleteTruckImageController extends Controller
 
     public function DeleteTruckImage(deleteTruckImageRequest $request,UpdateTruckImageService $service): \Illuminate\Http\JsonResponse
     {
-        $deleted  = $service->deleteImageByID($request->truck_id);
+        $deleted  = $service->deleteImageByID($request->image_id);
         if($deleted){
             return $this->returnSuccessMessage("Truck Image has been deleted successfully");
         }
