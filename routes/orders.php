@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Auth\SMSController;
+use App\Http\Controllers\ContactUs\ContactUsController;
+use App\Http\Controllers\orders\AddOrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::post("sms",  [SMSController::class,"send"]);
-
-Route::post("check",[SMSController::class,"check"]);
+Route::post("AddOrder",[AddOrderController::class,'AddOrder']);

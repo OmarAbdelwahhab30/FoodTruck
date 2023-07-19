@@ -16,12 +16,12 @@ class AddTruckReviewsService extends Service
     public function AddTruckReview($request): bool
     {
         $user = auth("sanctum")->user();
-        if ($this->CheckUserTruck($user,$request->truck_id) === true)
+        if ($this->CheckUserTruck($user,$request->to) === true)
         {
             $review = Review::create([
                 'review' => $request->review,
                 'rate' => $request->rate,
-                'truck_id' => $request->truck_id,
+                'to' => $request->to,
                 'user_id' => $user->id,
                 'role_id' => 1,
             ]);

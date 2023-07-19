@@ -16,8 +16,8 @@ class AddCustomerReviewsService extends Service
         $review = Review::create([
             'review'    => $request->review,
             'rate'      => $request->rate,
-            'truck_id'  => $user->truck->id,
-            'user_id'   => $request->customer_id,
+            'to'        => $request->customer_id,
+            'user_id'   => $user->truck->id,
             'role_id'   => 2,
         ]);
         if ($review){

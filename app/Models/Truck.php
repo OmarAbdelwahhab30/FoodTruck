@@ -32,9 +32,9 @@ class Truck extends Model
         return $this->hasMany(FoodType::class);
     }
 
-    public function review(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function reviews(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasOne(Review::class);
+        return $this->hasMany(Review::class);
     }
 
     public function images(): \Illuminate\Database\Eloquent\Relations\HasMany

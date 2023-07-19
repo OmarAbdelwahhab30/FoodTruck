@@ -40,6 +40,7 @@ class SellerRegisterService extends Service implements RegisterInterface
             'delivery'      => $request->delivery,
             'user_id'       => $userID,
             'work_time'     => $request->work_time,
+            'delivery_price' => $request->delivery_price
         ]);
     }
 
