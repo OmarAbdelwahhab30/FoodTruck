@@ -7,6 +7,7 @@ use App\Interfaces\Auth\RegisterInterface;
 use App\Models\FoodType;
 use App\Models\Role;
 use App\Models\Truck;
+use App\Models\TruckImage;
 use App\Models\User;
 use App\Services\Service;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +36,7 @@ class SellerRegisterService extends Service implements RegisterInterface
             'name'	        => $request->truck_name,
             'plate_no'      => $request->plate_no,
             'license'       => env("APP_URL").":8000/storage/images/licenses/".$this->uploadLicenseImage($request->file('license')),
-            'image'         => env("APP_URL").":8000/storage/images/trucks/".$this->uploadTruckImage($request->file("truck_image")),
+            //'image'         => env("APP_URL").":8000/storage/images/trucks/".$this->uploadTruckImage($request->file("truck_image")),
             'delivery'      => $request->delivery,
             'user_id'       => $userID,
             'work_time'     => $request->work_time,
@@ -52,6 +53,16 @@ class SellerRegisterService extends Service implements RegisterInterface
     }
 
 
+    private function addTruckImages($images,$truck_id)
+    {
+        foreach ($images as $image) {
+            TruckImage::create([
+                'image'         => env("APP_URL").":8000/storage/images/trucks/".$this->UploadFile($image,"images/trucks"),
+                'truck_id'    => $truck_id,
+            ]);
+        }
+    }
+
     private function Transaction($request){
         return DB::transaction(function () use ($request) {
 
@@ -59,6 +70,8 @@ class SellerRegisterService extends Service implements RegisterInterface
             $user = $this->createUser($request);
 
             $truck = $this->addTruck($request,$user->id);
+
+            $this->addTruckImages($request->file("truck_images"),$truck->id);
 
             $user->TruckData = $truck;
 
@@ -74,8 +87,4 @@ class SellerRegisterService extends Service implements RegisterInterface
         return $this->UploadFile($Image,"/images/licenses");
     }
 
-    private function uploadTruckImage($Image)
-    {
-        return $this->UploadFile($Image,"/images/trucks");
-    }
 }
