@@ -31,7 +31,7 @@ class SellerRegisterRequest extends FormRequest implements RegisterRequestInterf
             'password'      => 'required|string|min:6',
             'confirm_password'  => 'same:password',
             'truck_name'        => 'required',
-            'plate_no'          => 'required',
+            'plate_no'          => 'required|unique:trucks',
             'license'           => 'mimes:jpeg,jpg,png|required|max:10000',
             'truck_images'      => 'required|array|min:4', // <----
             'truck_images.*'    => 'mimes:jpeg,jpg,png',
