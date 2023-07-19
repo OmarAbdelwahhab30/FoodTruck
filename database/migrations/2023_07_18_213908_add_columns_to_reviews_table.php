@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //$table->dropColumn('mobile');
+        Schema::table('reviews', function (Blueprint $table) {
+            $table->foreignId("user_id")->references("id")->on("users");
+            $table->foreignid("role_id")->references("id")->on("roles"); // who wrote the review ? seller or customer
         });
     }
 
@@ -25,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('reviews', function (Blueprint $table) {
+            //
+        });
     }
 };
