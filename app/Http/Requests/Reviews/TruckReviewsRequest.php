@@ -26,7 +26,7 @@ class TruckReviewsRequest extends FormRequest
         return [
             'review'  => ['required','max:255'],
             'rate'    => ['required', 'numeric','between:0.00,5.00'],
-            'customer_id'   => ['required'],
+            'truck_id'   => ['required'],
         ];
     }
 }
