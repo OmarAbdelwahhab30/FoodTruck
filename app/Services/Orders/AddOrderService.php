@@ -12,14 +12,12 @@ class AddOrderService extends Service
 
         public function ExecTransaction($request)
         {
-            return DB::transaction(function () use ($request){
+            return DB::transaction(function () use ($request) {
 
                 $order = $this->addOrder($request);
-                $this->attachProduct($request->products,$order);
+                $this->attachProduct($request->products, $order);
 
-                return Order::where("id",$order->id)->with("products",function ($q) {
-
-                })->get();
+                return Order::where("id", $order->id)->with("products")->get();
             });
         }
 
@@ -31,6 +29,7 @@ class AddOrderService extends Service
             'arrival_time'  => $request->arrival_time,
             'delivery_type' => $request->delivery_type,
             'total_price'   => $request->total_price,
+            'user_id'       => auth("sanctum")->user()->id,
         ]);
     }
     public function attachProduct($products,$order)

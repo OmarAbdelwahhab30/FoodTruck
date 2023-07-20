@@ -11,6 +11,13 @@ class Image extends Model
 
     protected $guarded = [];
 
+    protected $hidden = [
+            'created_at',
+            'updated_at',
+            'product_id',
+            'id'
+        ];
+
     public function Product(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Product::class);

@@ -10,10 +10,9 @@ use Illuminate\Http\Request;
 class AddOrderController extends Controller
 {
 
-    public function addOrder(Request $request,AddOrderService $service)
+    public function addOrder(AddOrderRequest $request,AddOrderService $service): \Illuminate\Http\JsonResponse
     {
         $added = $service->ExecTransaction($request);
-        return $added;
         if ($added){
             return $this->returnData("Order",$added,"Here is the Order");
         }

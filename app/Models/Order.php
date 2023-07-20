@@ -22,6 +22,11 @@ class Order extends Model
             ->withPivot('optional');
     }
 
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected function serializeDate(DateTimeInterface $date) : string
     {
         return $date->format('h:i:s a m/d/Y');

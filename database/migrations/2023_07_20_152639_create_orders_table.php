@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string("arrival_time")->default(now());
             $table->enum("delivery_type",['delivery','pick_up']);
             $table->decimal("total_price")->default(0);
-            $table->enum("status",['pending','processing','picked-up,cancelled,delivered'])->default("pending");
+            $table->enum("status",['pending','processing','picked-up','cancelled','delivered'])->default("pending");
+            $table->foreignId("truck_id")->references("id")->on("trucks")->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
