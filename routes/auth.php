@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\CustomerRegisterController;
+use App\Http\Controllers\Auth\ForgetPasswordController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\SellerRegisterController;
 use App\Http\Controllers\Auth\UpdateAccountInformation\UpdateAccountInformationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,11 +24,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post("login",[\App\Http\Controllers\Auth\LoginController::class,"login"]);
-Route::post("seller_register",[\App\Http\Controllers\Auth\SellerRegisterController::class,"register"]);
-Route::post("customer_register",[\App\Http\Controllers\Auth\CustomerRegisterController::class,"register"]);
-Route::post("logout",[\App\Http\Controllers\Auth\LogoutController::class,"logout"])->middleware("auth:sanctum");;
-Route::post("changepassword",[\App\Http\Controllers\Auth\ForgetPasswordController::class,"createNewPassword"]);
+Route::post("login",[LoginController::class,"login"]);
+
+Route::post("seller_register",[SellerRegisterController::class,"register"]);
+
+Route::post("customer_register",[CustomerRegisterController::class,"register"]);
+
+Route::post("logout",[LogoutController::class,"logout"])->middleware("auth:sanctum");;
+
+Route::post("changepassword",[ForgetPasswordController::class,"createNewPassword"]);
 
 Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::post("UpdateAccountInformation", [UpdateAccountInformationController::class, 'UpdateAccountInformation']);

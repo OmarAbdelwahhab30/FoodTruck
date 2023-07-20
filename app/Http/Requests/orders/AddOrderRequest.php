@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Reviews;
+namespace App\Http\Requests\orders;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TruckReviewsRequest extends FormRequest
+class AddOrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,10 @@ class TruckReviewsRequest extends FormRequest
     public function rules()
     {
         return [
-            'review'  => ['required','max:255'],
-            'rate'    => ['required', 'numeric','between:0.00,5.00'],
-            'to'   => ['required'],
+            'truck_id'      => ['required'] ,
+            'arrival_time'  => ['required'],
+            'delivery_type' => ['required','in:delivery,pick_up'],
+            'total_price'   => ['required'],
         ];
     }
 }

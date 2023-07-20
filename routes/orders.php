@@ -1,11 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactUs\ContactUsController;
-use App\Http\Controllers\Reviews\AddCustomerReviewsController;
-use App\Http\Controllers\Reviews\AddTruckReviewsController;
-use App\Http\Controllers\Reviews\GetAllReviewsController;
-use App\Http\Controllers\Reviews\ShowReviewsOfEachTruckController;
-use App\Services\Reviews\GetProfileReviewsService;
+use App\Http\Controllers\orders\AddOrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,13 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:sanctum'],function () {
 
-
-    Route::post("AddTruckReview",    [AddTruckReviewsController::class, "AddTruckReview"]);
-
-    Route::post("AddCustomerReview", [AddCustomerReviewsController::class, "AddCustomerReview"]);
-
-    Route::get("AllProfileReviews",  [GetProfileReviewsService::class,"AllProfileReviews"]);
-
-    Route::get("GetTruckReviewsByID",[ShowReviewsOfEachTruckController::class,"GetTruckReviewsByID"]);
+    Route::post("AddOrder", [AddOrderController::class, 'AddOrder']);
 
 });

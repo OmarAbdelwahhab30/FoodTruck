@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Services\Trucks;
+namespace App\Services\Reviews;
 
-use App\Http\Controllers\Controller;
+use App\Models\Review;
 use App\Models\Truck;
 use App\Services\Service;
-use Illuminate\Http\Request;
 
 class ShowReviewsOfEachTruckService extends Service
 {
     public function GetTruckReviewsByID($truck_id)
     {
-        return Truck::find($truck_id)->review;
+        return Review::where("to",$truck_id)->get();
     }
 }

@@ -50,5 +50,9 @@ class User extends Authenticatable
     public function contact_us(){
         return $this->hasMany(ContactUs::class);
     }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 
 }

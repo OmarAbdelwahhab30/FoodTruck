@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\food_types\GetTruckRequest;
 use App\Services\Products\ShowDetailsOfEachProductService;
 use App\Services\Trucks\ShowDetailsOfEachTruckService;
-use App\Services\Trucks\ShowReviewsOfEachTruckService;
-use Illuminate\Http\Request;
 
 class ShowDetailsOfEachTruckController extends Controller
 {

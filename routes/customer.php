@@ -4,7 +4,6 @@ use App\Http\Controllers\FoodTypes\ShowAllProductsInsideEachSectionController;
 use App\Http\Controllers\FoodTypes\ShowAllSectionsController;
 use App\Http\Controllers\Trucks\ShowAllTrucksController;
 use App\Http\Controllers\Trucks\ShowDetailsOfEachTruckController;
-use App\Http\Controllers\Trucks\ShowReviewsOfEachTruckController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,9 +23,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware("auth:sanctum")->group(function (){
+
     Route::get("GetAllTrucks",[ShowAllTrucksController::class,"GetAllTrucks"]);
+
     Route::get("GetTruckByID",[ShowDetailsOfEachTruckController::class,"GetDetailsOfEachTruckByID"]);
-    Route::get("GetTruckReviewsByID",[ShowReviewsOfEachTruckController::class,"GetTruckReviewsByID"]);
+
+    //Route::get("GetTruckReviewsByID",[ShowReviewsOfEachTruckController::class,"GetTruckReviewsByID"]);
+
     Route::get("GetAllSectionInsideEachTruckByID",[ShowAllSectionsController::class,"GetAllSectionInsideEachTruckByID"]);
+
     Route::get("GetAllProductsInsideEachSectionByID",[ShowAllProductsInsideEachSectionController::class,"GetAllProductsInsideEachSectionByID"]);
 });

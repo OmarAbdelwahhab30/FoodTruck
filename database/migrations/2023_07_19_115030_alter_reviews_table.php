@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->enum("status",['picked-up,cancelled,delivered'])->nullable();
-            $table->timestamps();
+        Schema::table('reviews', function (Blueprint $table) {
+            $table->foreign("to")->references("id")->on("users");
         });
     }
 
@@ -27,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::table('reviews', function (Blueprint $table) {
+            //
+        });
     }
 };

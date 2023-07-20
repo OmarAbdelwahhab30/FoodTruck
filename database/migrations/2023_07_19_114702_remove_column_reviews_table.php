@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('order_product', function (Blueprint $table) {
-            $table->id();
-//
-            $table->timestamps();
+        Schema::table('reviews', function (Blueprint $table) {
+            $table->renameColumn('truck_id', 'to');
         });
     }
 
@@ -27,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_product');
+        Schema::table('reviews', function (Blueprint $table) {
+            //
+        });
     }
 };
