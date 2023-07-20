@@ -10,8 +10,13 @@ use Illuminate\Http\Request;
 class AddOrderController extends Controller
 {
 
-    public function addOrder(AddOrderRequest $request,AddOrderService $service)
+    public function addOrder(Request $request,AddOrderService $service)
     {
-        $service->addOrder($request);
+        $added = $service->ExecTransaction($request);
+        return $added;
+        if ($added){
+            return $this->returnData("Order",$added,"Here is the Order");
+        }
+        return $this->returnError("SomeThing Went Wrong ,try again later");
     }
 }

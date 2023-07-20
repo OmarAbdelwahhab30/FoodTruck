@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('order_product', function (Blueprint $table) {
-            $table->tinyInteger("count");
+        Schema::table('orders', function (Blueprint $table) {
+            $table->foreignId("truck_id")->references("id")->on("trucks")->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('order_product', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
             //
         });
     }

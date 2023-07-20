@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->enum("status",['picked-up,cancelled,delivered'])->nullable();
+            $table->string("arrival_time")->default(now());
+            $table->enum("delivery_type",['delivery','pick_up']);
+            $table->decimal("total_price")->default(0);
+            $table->enum("status",['pending','processing','picked-up,cancelled,delivered'])->default("pending");
             $table->timestamps();
         });
     }

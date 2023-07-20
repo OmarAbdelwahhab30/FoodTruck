@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('order_product', function (Blueprint $table) {
             $table->id();
-//
-            $table->timestamps();
+            $table->foreignId("order_id")->references("id")->on("orders")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId("product_id")->references("id")->on("products")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string("optional");
         });
     }
 

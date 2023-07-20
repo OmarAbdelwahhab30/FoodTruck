@@ -24,7 +24,10 @@ class AddOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'truck_id'      => ['required'] ,
+            'arrival_time'  => ['required'],
+            'delivery_type' => ['required','in:delivery,pick_up'],
+            'total_price'   => ['required'],
         ];
     }
 }
