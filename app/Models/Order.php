@@ -27,6 +27,11 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function truck(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Truck::class);
+    }
+
     protected function serializeDate(DateTimeInterface $date) : string
     {
         return $date->format('h:i:s a m/d/Y');

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FoodTypes\ShowAllProductsInsideEachSectionController;
 use App\Http\Controllers\FoodTypes\ShowAllSectionsController;
+use App\Http\Controllers\Trucks\GetAllProductsController;
 use App\Http\Controllers\Trucks\ShowAllTrucksController;
 use App\Http\Controllers\Trucks\ShowDetailsOfEachTruckController;
 use Illuminate\Http\Request;
@@ -33,4 +34,6 @@ Route::middleware("auth:sanctum")->group(function (){
     Route::get("GetAllSectionInsideEachTruckByID",[ShowAllSectionsController::class,"GetAllSectionInsideEachTruckByID"]);
 
     Route::get("GetAllProductsInsideEachSectionByID",[ShowAllProductsInsideEachSectionController::class,"GetAllProductsInsideEachSectionByID"]);
+
+    Route::get("GetAllProductsInEachTruckByTruckID",[GetAllProductsController::class,"GetAllProductsInEachTruckByTruckID"]);
 });

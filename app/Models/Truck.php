@@ -41,4 +41,9 @@ class Truck extends Model
     {
         return $this->hasMany(TruckImage::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

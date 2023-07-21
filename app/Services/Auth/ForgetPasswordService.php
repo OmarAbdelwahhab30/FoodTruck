@@ -23,4 +23,13 @@ class ForgetPasswordService extends Controller
         }
         return false;
     }
+
+    public function IsPhoneNumberExists($request): bool
+    {
+        $user = User::where("phone",$request->phone)->first();
+        if ($user == null){
+            return false;
+        }
+        return true;
+    }
 }

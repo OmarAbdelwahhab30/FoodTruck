@@ -32,9 +32,14 @@ Route::post("customer_register",[CustomerRegisterController::class,"register"]);
 
 Route::post("logout",[LogoutController::class,"logout"])->middleware("auth:sanctum");;
 
-Route::post("changepassword",[ForgetPasswordController::class,"createNewPassword"]);
+Route::post("ForgetPassword",[ForgetPasswordController::class,"createNewPassword"]);
+
+Route::post("IsPhoneNumberExists", [ForgetPasswordController::class, 'IsPhoneNumberExists']);
 
 Route::group(['middleware' => 'auth:sanctum'],function () {
+
     Route::post("UpdateAccountInformation", [UpdateAccountInformationController::class, 'UpdateAccountInformation']);
+
     Route::post("changepassword", [UpdateAccountInformationController::class, 'ChangePassword']);
+
 });

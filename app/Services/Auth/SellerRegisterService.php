@@ -35,7 +35,7 @@ class SellerRegisterService extends Service implements RegisterInterface
         return Truck::create([
             'name'	        => $request->truck_name,
             'plate_no'      => $request->plate_no,
-            'license'       => env("APP_URL").":8000/storage/images/licenses/".$this->uploadLicenseImage($request->file('license')),
+            'license'       => env("APP_URL")."/storage/images/licenses/".$this->uploadLicenseImage($request->file('license')),
             //'image'         => env("APP_URL").":8000/storage/images/trucks/".$this->uploadTruckImage($request->file("truck_image")),
             'delivery'      => $request->delivery,
             'user_id'       => $userID,
@@ -58,7 +58,7 @@ class SellerRegisterService extends Service implements RegisterInterface
     {
         foreach ($images as $image) {
             TruckImage::create([
-                'image'         => env("APP_URL").":8000/storage/images/trucks/".$this->UploadFile($image,"images/trucks"),
+                'image'         => env("APP_URL")."/storage/images/trucks/".$this->UploadFile($image,"images/trucks"),
                 'truck_id'    => $truck_id,
             ]);
         }
@@ -75,6 +75,7 @@ class SellerRegisterService extends Service implements RegisterInterface
             $this->addTruckImages($request->file("truck_images"),$truck->id);
 
             $user->TruckData = $truck;
+            $truck->images;
 
             // create token
             $user->token = $this->createToken($user);
@@ -88,4 +89,8 @@ class SellerRegisterService extends Service implements RegisterInterface
         return $this->UploadFile($Image,"/images/licenses");
     }
 
+    public function SendImage($imageName)
+    {
+        return response()->file(public_path("/storage/"));
+    }
 }

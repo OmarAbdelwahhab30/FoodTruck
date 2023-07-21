@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\ForgetPasswordRequest;
+use App\Http\Requests\Auth\IsPhoneNumberExistsRequest;
 use App\Services\Auth\ForgetPasswordService;
 use Illuminate\Http\Request;
 
@@ -17,5 +18,14 @@ class ForgetPasswordController extends Controller
             return $this->returnData("userData",$user,"Here is User Data");
         }
         return  $this->returnError("Something went wrong , try again later");
+    }
+
+    public function IsPhoneNumberExists(IsPhoneNumberExistsRequest $request,ForgetPasswordService $service): \Illuminate\Http\JsonResponse
+    {
+        $exist =  $service->IsPhoneNumberExists($request);
+        if ($exist){
+            return $this->returnSuccessMessage(True);
+        }
+        return $this->returnError(False);
     }
 }

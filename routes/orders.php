@@ -26,8 +26,6 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
 
     Route::post("AddOrder",   [AddOrderController::class, 'AddOrder']);
 
-
-
     Route::get("ReturnOrderInfoByOrderID",[ReturnOrderInformationController::class,"ReturnOrderInfoByOrderID"]);
 
     Route::post("RejectOrder",[UpdateOrderStatusController::class,"RejectOrder"]);
@@ -37,5 +35,11 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::post("OrderDelivered",[UpdateOrderStatusController::class,"OrderDelivered"]);
 
     Route::post("OrderPickedUp",[UpdateOrderStatusController::class,"OrderPickedUp"]);
+
+    Route::get("ReturnAllPreviousCustomerOrders",[ReturnOrderInformationController::class,"ReturnAllPreviousCustomerOrders"]);
+
+    Route::get("ReturnAllProcessingCustomerOrders",[ReturnOrderInformationController::class,"ReturnAllProcessingCustomerOrders"]);
+
+    Route::get("ReturnAllPendingCustomerOrders",[ReturnOrderInformationController::class,"ReturnAllPendingCustomerOrders"]);
 
 });
