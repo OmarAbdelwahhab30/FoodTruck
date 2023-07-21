@@ -47,17 +47,23 @@ class User extends Authenticatable
         return $this->hasOne(Truck::class);
     }
 
-    public function contact_us(){
+    public function contact_us(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
         return $this->hasMany(ContactUs::class);
     }
-    public function reviews()
+    public function reviews(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Review::class);
     }
 
-    public function orders()
+    public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function chat(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Chat::class);
     }
 
 }

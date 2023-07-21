@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('reviews', function (Blueprint $table) {
-            $table->foreign("to")->references("id")->on("users");
+        Schema::create('chat_files', function (Blueprint $table) {
+            $table->id();
+            $table->string("file");
+            $table->foreignId("chat_id")->references("id")->on("chats");
+            $table->foreignId("user_id")->references("id")->on("users");
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('reviews', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('chat_files');
     }
 };
