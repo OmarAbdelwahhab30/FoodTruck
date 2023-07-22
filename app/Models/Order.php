@@ -16,6 +16,11 @@ class Order extends Model
         'create_at',
         'updated_id',
         ];
+
+    protected function serializeDate(DateTimeInterface $date) : string
+    {
+        return $date->format('h:i:s a m/d/Y');
+    }
     public function products(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Product::class,"order_product",'order_id','product_id')
@@ -32,8 +37,5 @@ class Order extends Model
         return $this->belongsTo(Truck::class);
     }
 
-    protected function serializeDate(DateTimeInterface $date) : string
-    {
-        return $date->format('h:i:s a m/d/Y');
-    }
+
 }

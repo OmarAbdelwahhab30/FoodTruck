@@ -2,8 +2,10 @@
 
 namespace App\Services\Orders;
 
+use App\Events\Order\OrderHasAdded;
 use App\Models\Order;
 use App\Services\Service;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\DB;
 
 class AddOrderService extends Service
@@ -16,7 +18,7 @@ class AddOrderService extends Service
 
                 $order = $this->addOrder($request);
                 $this->attachProduct($request->products, $order);
-
+                broadcast(new OrderHasAdded($order,$order->user))->toOthers();
                 return Order::where("id", $order->id)->with("products")->get();
             });
         }
@@ -32,6 +34,7 @@ class AddOrderService extends Service
             'user_id'       => auth("sanctum")->user()->id,
         ]);
     }
+
     public function attachProduct($products,$order)
     {
         foreach ($products as $product)

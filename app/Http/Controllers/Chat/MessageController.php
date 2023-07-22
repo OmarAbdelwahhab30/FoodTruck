@@ -18,11 +18,7 @@ use Pusher\PusherException;
 class MessageController extends Controller
 {
 
-    /**
-     * @throws PusherException
-     * @throws ApiErrorException
-     * @throws GuzzleException
-     */
+
     public function sendMessage(SendMesaageRequest $request, MessageService $service)
    {
        $service->SendMessage($request);
