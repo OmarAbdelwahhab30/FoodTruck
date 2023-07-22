@@ -89,8 +89,5 @@ class SellerRegisterService extends Service implements RegisterInterface
         return $this->UploadFile($Image,"/images/licenses");
     }
 
-    public function SendImage($imageName)
-    {
-        return response()->file(public_path("/storage/"));
-    }
+
 }

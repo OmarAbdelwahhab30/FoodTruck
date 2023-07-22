@@ -17,4 +17,9 @@ class Review extends Model
     {
         return $this->hasOne(Truck::class);
     }
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

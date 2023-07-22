@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('messages', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId("user_id")->references("id")->on("users")->cascadeOnDelete()->cascadeOnUpdate();
-            $table->text("message");
-            $table->foreignId("chat_id")->references("id")->on("chats")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->id('id');
+            $table->foreignId('from_user')->references('id')->on('users');
+            $table->foreignId('to_user')->references('id')->on('users');
+            $table->text('content');
             $table->timestamps();
         });
     }

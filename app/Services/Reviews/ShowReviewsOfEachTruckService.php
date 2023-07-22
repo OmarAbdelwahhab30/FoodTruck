@@ -10,6 +10,9 @@ class ShowReviewsOfEachTruckService extends Service
 {
     public function GetTruckReviewsByID($truck_id)
     {
-        return Review::where("to",$truck_id)->get();
+        $vars = [];
+        return Review::where("to",$truck_id)->with("user" , function ($q){
+           $q->select("name","id","image");
+        })->select("review","rate","user_id","id")->get();
     }
 }
