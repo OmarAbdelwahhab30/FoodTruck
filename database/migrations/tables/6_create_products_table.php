@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chat_files', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string("file");
-            $table->foreignId("chat_id")->references("id")->on("chats");
-            $table->foreignId("user_id")->references("id")->on("users");
+            $table->string("name");
+            $table->double("price");
+            $table->string("calories");
+            $table->text("description");
+//            $table->bigInteger('truck_id')->unsigned()->index();
+//            $table->bigInteger('food_type_id')->unsigned()->index();
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chat_files');
+        Schema::dropIfExists('products');
     }
 };

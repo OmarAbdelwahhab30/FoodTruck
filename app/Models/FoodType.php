@@ -10,6 +10,9 @@ class FoodType extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $hidden = ['created_at','updated_at','truck_id'];
+
     protected $table = 'food_types';
 
 

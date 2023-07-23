@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('trucks', function (Blueprint $table) {
-            $table->decimal("delivery_price")->nullable();
+        Schema::table('food_types', function (Blueprint $table) {
+            $table->foreignId("truck_id")->references("id")->on("trucks")->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('trucks', function (Blueprint $table) {
+        Schema::table('food_types', function (Blueprint $table) {
             //
         });
     }

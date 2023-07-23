@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->string("arrival_time")->default(now());
+            $table->enum("delivery_type",['delivery','pick_up']);
+            $table->decimal("total_price")->default(0);
+            $table->enum("status",['pending','processing','picked-up','cancelled','delivered'])->default("pending");
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('orders');
     }
 };

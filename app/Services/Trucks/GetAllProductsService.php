@@ -10,6 +10,8 @@ class GetAllProductsService extends \App\Services\Service
     public function GetAllProductsInEachTruckByTruckID($request)
     {
 
-        return Truck::find($request->truck_id)->products;
+        return Truck::Where("id",$request->truck_id)->with("products",function ($q) {
+               $q->with("images");
+        })->get();
     }
 }

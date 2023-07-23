@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('reviews', function (Blueprint $table) {
-            $table->decimal("rate");
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId("role_id")->constrained("roles")->references("id")->on("roles")->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('reviews', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

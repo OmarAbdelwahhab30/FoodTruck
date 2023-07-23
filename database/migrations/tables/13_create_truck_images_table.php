@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //$table->dropColumn('mobile');
+        Schema::create('truck_images', function (Blueprint $table) {
+            $table->id();
+            $table->string("image");
+//            $table->unsignedBigInteger("truck_id")->index();
+            $table->timestamps();
         });
     }
 
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('truck_images');
     }
 };

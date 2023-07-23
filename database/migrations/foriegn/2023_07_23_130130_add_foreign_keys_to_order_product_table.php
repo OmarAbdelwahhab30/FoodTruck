@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('chats', function (Blueprint $table) {
-            $table->renameColumn('customer_id', 'first_user');
-            $table->renameColumn("seller_id","second_user");
+        Schema::table('order_product', function (Blueprint $table) {
+            $table->foreignId("order_id")->references("id")->on("orders")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId("product_id")->references("id")->on("products")->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -26,9 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('chats', function (Blueprint $table) {
-            $table->renameColumn('first_user', 'customer_id');
-            $table->renameColumn("second_user","seller_id");
+        Schema::table('order_product', function (Blueprint $table) {
+            //
         });
     }
 };
