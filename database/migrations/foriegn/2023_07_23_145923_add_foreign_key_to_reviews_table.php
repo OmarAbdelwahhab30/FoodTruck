@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('reviews', function (Blueprint $table) {
             $table->foreignId('user_id')->references("id")->on("users")->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('role_id')->references("id")->on("users")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('role_id')->references("id")->on("roles")->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('to')->references("id")->on("users")->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
