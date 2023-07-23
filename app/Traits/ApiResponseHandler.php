@@ -18,6 +18,14 @@ trait ApiResponseHandler
         ]);
     }
 
+    public function notAuthorized($msg): \Illuminate\Http\JsonResponse
+    {
+        return response()->json([
+            'status' => 403,
+            'message' => $msg
+        ]);
+    }
+
 
     public function returnSuccessMessage($msg = "")
     {
