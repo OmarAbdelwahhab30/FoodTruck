@@ -14,8 +14,7 @@ class Image extends Model
     protected $hidden = [
             'created_at',
             'updated_at',
-            'product_id',
-            'id'
+            'product_id'
         ];
 
     public function Product(): \Illuminate\Database\Eloquent\Relations\BelongsTo

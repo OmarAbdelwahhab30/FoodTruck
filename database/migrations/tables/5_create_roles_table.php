@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('food_types', function (Blueprint $table) {
-            $table->foreignId("truck_id")->references("id")->on("trucks");
+        //Schema::dropIfExists("roles");
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id();
+            $table->string("name");
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('food_types', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('roles');
     }
 };

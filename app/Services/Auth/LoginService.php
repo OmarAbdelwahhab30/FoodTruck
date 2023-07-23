@@ -14,10 +14,12 @@ class LoginService extends Service
 
         $credentials = $request->only('phone', 'password');
 
-        if (Auth::attempt($credentials)){
+        if (Auth::attempt($credentials))
+        {
             $user = User::where("phone",$request->phone)->first();
-
             $user->token = $this->createToken($user);
+            $user->truck;
+            if (isset($user->truck->images));
             return $user;
         }
         return  false;

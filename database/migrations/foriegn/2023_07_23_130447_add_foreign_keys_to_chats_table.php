@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->unsignedBigInteger("role_id");
-            $table->string("phone")->unique();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+        Schema::table('chats', function (Blueprint $table) {
+            $table->foreignId('first_user')->references("id")->on("users")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('second_user')->references("id")->on("users")->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -31,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::table('chats', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -13,6 +13,9 @@ class ShowAllProductsInsideEachSectionService extends Service
 
     public function GetAllProductsInsideEachSectionByID($request)
     {
-        return Product::where("food_type_id",$request->section_id)->where("truck_id",$request->truck_id)->get();
+        return Product::where("food_type_id",$request->section_id)->where("truck_id",$request->truck_id)
+            ->with("images",function ($q){
+                $q->select("id","image","product_id");
+            })->get();
     }
 }

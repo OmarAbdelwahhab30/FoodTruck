@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('trucks', function (Blueprint $table) {
-            //$table->foreignId("food_type_id")->references("id")->on("food_types");
-            $table->foreignId("user_id")->references("id")->on("users");
+        Schema::create('chat_files', function (Blueprint $table) {
+            $table->id();
+            $table->string("file");
+//            $table->unsignedBigInteger("chat_id")->index();
+//            $table->unsignedBigInteger("user_id")->index();
+            $table->timestamps();
         });
     }
 
@@ -26,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('trucks', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('chat_files');
     }
 };

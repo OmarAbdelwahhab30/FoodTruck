@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->foreignId("chat_id")->after("content")->references("id")->on("chats");
+            $table->foreignId('from_user')->references("id")->on("users")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('to_user')->references("id")->on("users")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId("chat_id")->references("id")->on("chats")->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

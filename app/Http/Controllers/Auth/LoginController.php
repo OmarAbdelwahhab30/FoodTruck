@@ -11,7 +11,8 @@ class LoginController extends Controller
 {
     public function login(LoginRequest $request, LoginService $service){
         $user = $service->login($request);
-        if($user) {
+        if($user)
+        {
             return $this->returnData("user", $user, "User logged successfully");
         }
         return  $this->returnError("These credentials do not match our records.");

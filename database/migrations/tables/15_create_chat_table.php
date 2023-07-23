@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('truck_images', function (Blueprint $table) {
+        Schema::create('chats', function (Blueprint $table) {
             $table->id();
-            $table->string("image");
-            $table->foreignId("truck_id")->references("id")->on("trucks")->cascadeOnDelete()->cascadeOnUpdate();
+//            $table->unsignedBigInteger("first_user")->index();
+//            $table->unsignedBigInteger("second_user")->index();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('truck_images');
+        Schema::dropIfExists('chats');
     }
 };

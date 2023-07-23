@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('reviews', function (Blueprint $table) {
-            $table->foreignId("truck_id")->references("id")->on("trucks");
+        Schema::table('chat_files', function (Blueprint $table) {
+            $table->foreignId("chat_id")->references("id")->on("chats")->cascadeOnDelete()->cascadeOnUpdate();;
+            $table->foreignId("user_id")->references("id")->on("users")->cascadeOnDelete()->cascadeOnUpdate();;
         });
     }
 
@@ -25,7 +26,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('reviews', function (Blueprint $table) {
+        Schema::table('chat_files', function (Blueprint $table) {
             //
         });
     }

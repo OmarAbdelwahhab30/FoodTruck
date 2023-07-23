@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('reviews', function (Blueprint $table) {
-            $table->renameColumn('truck_id', 'to');
+        Schema::create('messages', function (Blueprint $table) {
+            $table->id('id');
+//            $table->unsignedBigInteger('from_user')->index();
+//            $table->unsignedBigInteger('to_user')->index();
+//            $table->unsignedBigInteger("chat_id")->index();
+            $table->text('content');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('reviews', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('messages');
     }
 };
