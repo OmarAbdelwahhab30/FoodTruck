@@ -12,10 +12,15 @@ use Illuminate\Support\Facades\Gate;
 class AddOrderController extends Controller
 {
 
+//    /**
+//     * @throws AuthorizationException
+//     */
     public function addOrder(AddOrderRequest $request, AddOrderService $service): \Illuminate\Http\JsonResponse
     {
+
+        //$this->authorize("add-order");
 //        if (! Gate::allows('add-order')) {
-//            return $this->returnError("You don't have the authorization on this action");
+//            return $this->notAuthorized("You don't have the authorization on this action");
 //        }
         $added = $service->ExecTransaction($request);
         if ($added){
