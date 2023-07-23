@@ -65,7 +65,7 @@ class RoleAndPermissionSeeder extends Seeder
         foreach ($permissions as $key => $roles) {
             $permission = Permission::create(['name' => $key]);
             foreach ($roles as $role) {
-                $allRoles[$role]->givePermissionTo($permission);
+                $allRoles[$role]->permissions()->attach($permission->id);
             }
         }
     }
