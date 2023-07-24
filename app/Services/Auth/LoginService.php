@@ -18,14 +18,15 @@ class LoginService extends Service
         {
             $user = User::where("phone",$request->phone)->first();
             $user->token = $this->createToken($user);
-            $user->truck;
+            if (isset($user->truck));
             if (isset($user->truck->images));
             return $user;
         }
         return  false;
     }
 
-    private function createToken(User $user){
+    private function createToken(User $user)
+    {
         return $user->createToken("personal access token")->plainTextToken;
     }
 }

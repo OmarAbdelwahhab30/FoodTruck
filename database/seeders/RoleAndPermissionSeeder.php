@@ -57,8 +57,6 @@ class RoleAndPermissionSeeder extends Seeder
             'get-truck-sections'        => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'get-sections-products'     => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'get-truck-products'        => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
-
-
         ];
 
 

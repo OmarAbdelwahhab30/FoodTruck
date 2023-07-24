@@ -17,4 +17,12 @@ class LoginController extends Controller
         }
         return  $this->returnError("These credentials do not match our records.");
     }
+
+    /**
+     * Social Login
+     */
+    public function socialLogin(Request $request)
+    {
+
+    }
 }

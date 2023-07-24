@@ -18,18 +18,26 @@ class CustomerRegisterService extends Service implements RegisterInterface
             'name'  => $request->name,
             'phone' => $request->phone,
             'password'  => Hash::make($request->password),
+            'email'     => $request->email,
             'role_id'   => $Role_ID,
+            'image'     => env("APP_URL")."/storage/images/users/".$this->uploadUserImage($request->file("image")),
         ]);
         $user->token = $this->createToken($user);
         return $user;
     }
 
-    private function createToken(User $user){
+    private function createToken(User $user)
+    {
         return $user->createToken("personal access token")->plainTextToken;
     }
 
     private function GetRoleID($role_name)
     {
         return Role::where("name",$role_name)->first()->id;
+    }
+
+    private function uploadUserImage($Image)
+    {
+        return $this->UploadFile($Image,"/images/users");
     }
 }

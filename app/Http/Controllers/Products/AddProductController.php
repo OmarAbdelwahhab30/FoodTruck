@@ -6,12 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\products\addProductRequest;
 use App\Services\Products\AddProductService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Symfony\Component\Console\Input\Input;
 
 class AddProductController extends Controller
 {
     public function addProduct(addProductRequest $request, AddProductService $service): \Illuminate\Http\JsonResponse
     {
+        if (! Gate::allows('add-product')) {
+            return $this->notAuthorized("You don't have the authorization on this action.");
+        }
         $product = $service->exec($request);
         if($product){
             return $this->returnData("Product",$product,"Product has been added successfully");

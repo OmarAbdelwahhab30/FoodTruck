@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ContactUs;
 use App\Http\Controllers\Controller;
 use App\Services\ContactUs\ContactUsService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ContactUsController extends Controller
 {
@@ -12,6 +13,9 @@ class ContactUsController extends Controller
 
     public function AddContactUsContent(Request $request,ContactUsService $service): \Illuminate\Http\JsonResponse
     {
+        if (!Gate::allows("add-contactus")){
+            return $this->notAuthorized("You don't have the authorization on this action.");
+        }
         $done = $service->AddContactUsContent($request);
         if ($done){
             return $this->returnSuccessMessage("Your Message has been added successfully");
