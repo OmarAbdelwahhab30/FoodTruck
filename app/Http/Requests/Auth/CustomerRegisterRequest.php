@@ -30,7 +30,9 @@ class CustomerRegisterRequest extends FormRequest implements RegisterRequestInte
             'phone'         => 'required|max:20|unique:users',
             'password'      => 'required|string|min:6',
             'confirm_password'  => 'same:password',
+            'email'             => "email|nullable",
             'role'              => 'required',
+            'image'             => 'nullable|mimes:jpeg,jpg,png|required|max:10000'
         ];
     }
 

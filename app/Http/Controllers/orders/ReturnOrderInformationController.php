@@ -6,12 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\orders\UpdateOrderStatusRequest;
 use App\Services\Orders\ReturnOrderInformationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ReturnOrderInformationController extends Controller
 {
 
     public function ReturnOrderInfoByOrderID(UpdateOrderStatusRequest $request,ReturnOrderInformationService $service): \Illuminate\Http\JsonResponse
     {
+        if (! Gate::allows('get-order-by-id')) {
+            return $this->notAuthorized("You don't have the authorization on this action");
+        }
         $order_Info = $service->ReturnOrderInfoByOrderID($request);
         if ($order_Info)
         {
@@ -22,6 +26,9 @@ class ReturnOrderInformationController extends Controller
 
     public function ReturnAllPreviousCustomerOrders(ReturnOrderInformationService $service): \Illuminate\Http\JsonResponse
     {
+        if (! Gate::allows('return-customer-orders')) {
+            return $this->notAuthorized("You don't have the authorization on this action");
+        }
         $Previous_orders = $service->ReturnAllPreviousCustomerOrders();
         if ($Previous_orders)
         {
@@ -32,6 +39,9 @@ class ReturnOrderInformationController extends Controller
 
     public function ReturnAllProcessingCustomerOrders(ReturnOrderInformationService $service): \Illuminate\Http\JsonResponse
     {
+        if (! Gate::allows('return-customer-orders')) {
+            return $this->notAuthorized("You don't have the authorization on this action");
+        }
         $Processing_orders = $service->ReturnAllProcessingCustomerOrders();
         if ($Processing_orders)
         {
@@ -43,6 +53,9 @@ class ReturnOrderInformationController extends Controller
 
     public function ReturnAllPendingCustomerOrders(ReturnOrderInformationService $service): \Illuminate\Http\JsonResponse
     {
+        if (! Gate::allows('return-customer-orders')) {
+            return $this->notAuthorized("You don't have the authorization on this action");
+        }
         $Pending_orders = $service->ReturnAllPendingCustomerOrders();
         if ($Pending_orders)
         {
