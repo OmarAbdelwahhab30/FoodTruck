@@ -29,6 +29,7 @@ class RoleAndPermissionSeeder extends Seeder
             'get-truck-review-by-id'    => [Role::ROLE_CUSTOMER],
             'get-all-trucks'            => [Role::ROLE_CUSTOMER],
             'get-truck-by-id'           => [Role::ROLE_CUSTOMER],
+            'find-nearest-trucks'       => [Role::ROLE_CUSTOMER],
 
 
 
@@ -57,6 +58,7 @@ class RoleAndPermissionSeeder extends Seeder
             'get-truck-sections'        => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'get-sections-products'     => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'get-truck-products'        => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
+            'enter-location'            => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
         ];
 
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Maps;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GetNearestTruckRequest extends FormRequest
+class EnterLocationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class GetNearestTruckRequest extends FormRequest
     public function rules()
     {
         return [
-            'latitude'=> ['nullable'],
-            'longitude' => ['nullable'],
+            'location'  => 'string|required',
+            'longitude' => 'required',
+            'latitude'  => 'required',
         ];
     }
 }

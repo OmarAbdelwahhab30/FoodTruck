@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Http\Controllers\Maps;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Maps\EnterLocationRequest;
+use App\Services\Maps\SetUsersLocationService;
+use Illuminate\Support\Facades\Gate;
+
+class SetUsersLocationController extends Controller
+{
+
+    public function EnterLocation(EnterLocationRequest $request,SetUsersLocationService $service): \Illuminate\Http\JsonResponse
+    {
+        if (!Gate::allows("enter-location")){
+            return $this->notAuthorized("You don't have the authorization on this action.");
+        }
+        $entered = $service->EnterLocation($request);
+        if ($entered)
+        {
+            return $this->returnSuccessMessage("Location has been added successfully");
+        }
+        return $this->returnError("Something went wrong,try again later");
+    }
+}

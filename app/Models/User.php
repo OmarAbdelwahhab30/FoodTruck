@@ -67,4 +67,18 @@ class User extends Authenticatable
         return $this->hasMany(Chat::class);
     }
 
+    public function scopeWithinRadius($query, $latitude, $longitude, $radius)
+    {
+        return $query->select("id", "phone", "latitude", "longitude")
+            ->selectRaw("FORMAT(6371 * acos(
+                cos(radians(?))
+                * cos(radians(latitude))
+                * cos(radians(longitude) - radians(?))
+                + sin(radians(?))
+                * sin(radians(latitude))
+            ), 3) AS distance", [$latitude, $longitude, $latitude])
+            ->having("distance", "<", $radius)
+            ->where("role_id", 2);
+    }
+
 }
