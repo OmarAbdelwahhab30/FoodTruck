@@ -4,7 +4,7 @@ namespace App\Http\Requests\food_types;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class addFoodTypeRequest extends FormRequest
+class updateSectionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,7 @@ class addFoodTypeRequest extends FormRequest
     public function rules()
     {
         return [
+            'id'    => ['required'],
             'type'  => ['required','max:210'],
         ];
     }

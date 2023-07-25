@@ -14,7 +14,7 @@ class Product extends Model
         'created_at',
         'updated_at',
         'truck_id',
-        "food_type_id",
+        "section_id",
     ];
 
     public function truck(): \Illuminate\Database\Eloquent\Relations\BelongsTo

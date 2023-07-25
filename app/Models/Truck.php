@@ -27,9 +27,9 @@ class Truck extends Model
         return $this->hasOne(User::class);
     }
 
-    public function food_types(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function sections(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(FoodType::class);
+        return $this->hasMany(Section::class);
     }
 
     public function reviews(): \Illuminate\Database\Eloquent\Relations\HasMany
@@ -42,8 +42,13 @@ class Truck extends Model
         return $this->hasMany(TruckImage::class);
     }
 
-    public function orders()
+    public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function food_type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(FoodType::class);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\FoodTypes;
+namespace App\Services\Sections;
 
 use App\Http\Controllers\Controller;
 use App\Models\Truck;
@@ -11,6 +11,6 @@ class ShowAllSectionsService extends Controller
 
     public function GetAllSectionInsideEachTruckByID($request)
     {
-        return Truck::find($request->truck_id)->food_types;
+        return Truck::find($request->truck_id)->sections;
     }
 }

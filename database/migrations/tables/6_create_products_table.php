@@ -19,8 +19,6 @@ return new class extends Migration
             $table->double("price");
             $table->string("calories");
             $table->text("description");
-//            $table->bigInteger('truck_id')->unsigned()->index();
-//            $table->bigInteger('food_type_id')->unsigned()->index();
             $table->timestamps();
         });
     }

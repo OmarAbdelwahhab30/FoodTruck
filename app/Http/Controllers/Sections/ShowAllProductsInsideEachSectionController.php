@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\FoodTypes;
+namespace App\Http\Controllers\Sections;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\food_types\ShowSectionProductsRequest;
-use App\Services\FoodTypes\ShowAllProductsInsideEachSectionService;
+use App\Services\Sections\ShowAllProductsInsideEachSectionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
