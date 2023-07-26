@@ -21,12 +21,12 @@ class AddToCartService extends Service
                 'user_id'   => auth("sanctum")->user()->id,
             ]);
         }
-        if ($this->IsFoundInCart($request->product_id))
+
+        if (!$this->IsFoundInCart($request->product_id))
         {
-           $this->IncrementCount($request->product_id);
-        }else
-        {
-            $cart->products()->attach($request->product_id);
+            $cart->products()->attach($request->product_id,array('count' => $request->count));
+        }else{
+            $this->IncrementCount($request);
         }
         return $cart->products;
     }
@@ -40,12 +40,12 @@ class AddToCartService extends Service
         return false;
     }
 
-    private function IncrementCount($product_id):void
+    private function IncrementCount($request):void
     {
         DB::table('cart_product')
-            ->where('product_id', $product_id)
+            ->where('product_id', $request->product_id)
             ->update([
-                'count' => DB::raw('count + 1'),
+                'count' => $request->count,
             ]);
     }
 }

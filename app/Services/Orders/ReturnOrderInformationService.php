@@ -62,4 +62,26 @@ class ReturnOrderInformationService extends \App\Services\Service
         }
         )->select("id","name","phone")->get();
     }
+
+    public function ReturnAllCurrentSellerOrders(): \Illuminate\Database\Eloquent\Collection|array
+    {
+        $user = auth("sanctum")->user();
+        return Order::with(["truck" => function ($q) use ($user){
+            $q->where("id",$user->truck->id);
+            $q->with("images");
+            $q->with("images");
+            $q->select("delivery","delivery_price","id");
+        }])->whereIn('status',['pending','processing'])->select("status","created_at","delivery_type","truck_id")->get();
+    }
+
+    public function ReturnAllPreviousSellerOrders(): \Illuminate\Database\Eloquent\Collection|array
+    {
+        $user = auth("sanctum")->user();
+        return Order::with(["truck" => function ($q) use ($user){
+            $q->where("id",$user->truck->id);
+            $q->with("images");
+            $q->with("images");
+            $q->select("delivery","delivery_price","id");
+        }])->whereIn('status',['picked-up','cancelled','delivered'])->select("status","created_at","delivery_type","truck_id")->get();
+    }
 }

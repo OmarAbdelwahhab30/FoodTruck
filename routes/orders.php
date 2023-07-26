@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ContactUs\ContactUsController;
 use App\Http\Controllers\orders\AddOrderController;
 use App\Http\Controllers\orders\DeleteOrderController;
 use App\Http\Controllers\orders\ReturnOrderInformationController;
@@ -39,11 +38,14 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
 
     Route::post("OrderPickedUp",[UpdateOrderStatusController::class,"OrderPickedUp"]);
 
+    Route::get("ReturnAllCurrentSellerOrders",[ReturnOrderInformationController::class,"ReturnAllCurrentSellerOrders"]);
+
+    Route::get("ReturnAllPreviousSellerOrders",[ReturnOrderInformationController::class,"ReturnAllPreviousSellerOrders"]);
+
     Route::get("ReturnAllPreviousCustomerOrders",[ReturnOrderInformationController::class,"ReturnAllPreviousCustomerOrders"]);
 
     Route::get("ReturnAllProcessingCustomerOrders",[ReturnOrderInformationController::class,"ReturnAllProcessingCustomerOrders"]);
 
     Route::get("ReturnAllPendingCustomerOrders",[ReturnOrderInformationController::class,"ReturnAllPendingCustomerOrders"]);
 
-    Route::get("")
 });

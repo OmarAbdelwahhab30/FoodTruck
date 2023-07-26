@@ -25,6 +25,7 @@ class AddToCartRequest extends FormRequest
     {
         return [
             'product_id'    => 'required',
+            'count'         => 'required',
         ];
     }
 }

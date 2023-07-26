@@ -63,4 +63,25 @@ class ReturnOrderInformationController extends Controller
         }
         return $this->returnError("SomeThing Went Wrong,try again later");
     }
+
+    public function ReturnAllCurrentSellerOrders(ReturnOrderInformationService $service): \Illuminate\Http\JsonResponse
+    {
+        $current_orders = $service->ReturnAllCurrentSellerOrders();
+        if ($current_orders)
+        {
+            return $this->returnData("current_orders",$current_orders,"Here are Current Orders Info");
+        }
+        return $this->returnError("SomeThing Went Wrong,try again later");
+    }
+
+    public function ReturnAllPreviousSellerOrders(ReturnOrderInformationService $service): \Illuminate\Http\JsonResponse
+    {
+        $previous_orders = $service->ReturnAllPreviousSellerOrders();
+
+        if ($previous_orders)
+        {
+            return $this->returnData("Previous_order",$previous_orders,"Here are previous Orders Info");
+        }
+        return $this->returnError("SomeThing Went Wrong,try again later");
+    }
 }
