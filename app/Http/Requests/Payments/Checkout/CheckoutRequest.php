@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Payments;
+namespace App\Http\Requests\Payments\Checkout;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +13,7 @@ class CheckoutRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class CheckoutRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'token'     => 'required',
+            'amount'    => 'required',
+            'order_id'  => 'required',
         ];
     }
 }

@@ -37,5 +37,8 @@ class Order extends Model
         return $this->belongsTo(Truck::class);
     }
 
-
+    public function payments(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

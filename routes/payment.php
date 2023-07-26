@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\ContactUs\ContactUsController;
-use App\Http\Controllers\Payment\PaymentController;
+use App\Http\Controllers\Payment\Checkout\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'auth:sanctum'],function () {
 
     Route::post("ExecutePayment", [PaymentController::class, 'ExecutePayment']);
+    Route::get("ConfirmPayment", [PaymentController::class, 'ConfirmPayment']);
+
 });
