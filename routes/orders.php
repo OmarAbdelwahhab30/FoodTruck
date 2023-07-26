@@ -45,4 +45,5 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
 
     Route::get("ReturnAllPendingCustomerOrders",[ReturnOrderInformationController::class,"ReturnAllPendingCustomerOrders"]);
 
+    Route::get("")
 });
