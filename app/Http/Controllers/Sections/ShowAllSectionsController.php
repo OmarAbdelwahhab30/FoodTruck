@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\FoodTypes;
+namespace App\Http\Controllers\Sections;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\food_types\ShowTruckSectionsRequest;
-use App\Services\FoodTypes\ShowAllSectionsService;
+use App\Services\Sections\ShowAllSectionsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -15,10 +15,10 @@ class ShowAllSectionsController extends Controller
         if (!Gate::allows("get-truck-sections")){
             return $this->notAuthorized("You don't have the authorization on this action");
         }
-        $FoodTypes = $service->GetAllSectionInsideEachTruckByID($request);
-        if (!empty($FoodTypes)){
-            return $this->returnData("Sections",$FoodTypes,"Here are All Section inside this truck.");
+        $Sections = $service->GetAllSectionInsideEachTruckByID($request);
+        if (!empty($Sections)){
+            return $this->returnData("Sections",$Sections,"Here are All Section inside this truck.");
         }
-        return $this->returnError("There is no food types to show");
+        return $this->returnError("There is no sections to show");
     }
 }

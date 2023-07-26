@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\FoodTypes\AddFoodTypeController;
-use App\Http\Controllers\FoodTypes\UpdateFoodTypeController;
+use App\Http\Controllers\Sections\AddSectionController;
+use App\Http\Controllers\Sections\UpdateSectionController;
 use App\Http\Controllers\Products\AddProductController;
 use App\Http\Controllers\Products\UpdateProductController;
 use App\Http\Controllers\Products\UpdateProductImagesController;
@@ -35,9 +35,9 @@ Route::group(['middleware' => 'auth:sanctum'],function ()
 
     Route::post("updateProduct",[UpdateProductController::class,'updateProduct']);
 
-    Route::post("add_food_type",[AddFoodTypeController::class,"addFoodType"]);
+    Route::post("add_section",[AddSectionController::class,"addSection"]);
 
-    Route::post("update_food_type",[UpdateFoodTypeController::class,"updateFoodType"]);
+    Route::post("update_section",[UpdateSectionController::class,"updateSection"]);
 
     Route::post("updateTruckInfo",[UpdateTruckInformationController::class,"UpdateTruckInformation"]);
 

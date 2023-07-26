@@ -36,11 +36,11 @@ class SellerRegisterService extends Service implements RegisterInterface
             'name'	        => $request->truck_name,
             'plate_no'      => $request->plate_no,
             'license'       => env("APP_URL")."/storage/images/licenses/".$this->uploadLicenseImage($request->file('license')),
-            //'image'         => env("APP_URL").":8000/storage/images/trucks/".$this->uploadTruckImage($request->file("truck_image")),
             'delivery'      => $request->delivery,
             'user_id'       => $userID,
             'work_time'     => $request->work_time,
-            'delivery_price' => $request->delivery_price
+            'delivery_price' => $request->delivery_price,
+            'food_type_id'  => 1,
         ]);
     }
 
@@ -50,6 +50,9 @@ class SellerRegisterService extends Service implements RegisterInterface
             'phone' => $request->phone,
             'password'  => Hash::make($request->password),
             'role_id'   => $this->GetRoleID($request->role),
+            'image'     => $request->file("image") !== null ?
+                env("APP_URL")."/storage/images/users/".$this->uploadUserImage($request->file("image"))
+                :env("APP_URL")."/storage/images/default.png",
         ]);
     }
 

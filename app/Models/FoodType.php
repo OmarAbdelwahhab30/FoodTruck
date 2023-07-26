@@ -11,18 +11,10 @@ class FoodType extends Model
 
     protected $guarded = [];
 
-    protected $hidden = ['created_at','updated_at','truck_id'];
+    protected $hidden = ['created_at',"updated_at"];
 
-    protected $table = 'food_types';
-
-
-    public function truck(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function trucks(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsTo(Truck::class);
-    }
-
-    public function products(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
-    {
-        return $this->hasManyThrough(Product::class,Truck::class);
+        return $this->hasMany(Truck::class);
     }
 }

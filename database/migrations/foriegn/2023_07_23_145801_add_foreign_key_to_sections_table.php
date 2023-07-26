@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('food_types', function (Blueprint $table) {
+        Schema::table('sections', function (Blueprint $table) {
             $table->foreignId("truck_id")->references("id")->on("trucks")->cascadeOnUpdate()->cascadeOnDelete();
         });
     }

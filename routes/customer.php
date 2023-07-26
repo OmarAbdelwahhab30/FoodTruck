@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\FoodTypes\ShowAllProductsInsideEachSectionController;
-use App\Http\Controllers\FoodTypes\ShowAllSectionsController;
+use App\Http\Controllers\Sections\ShowAllProductsInsideEachSectionController;
+use App\Http\Controllers\Sections\ShowAllSectionsController;
 use App\Http\Controllers\Trucks\GetAllProductsController;
 use App\Http\Controllers\Trucks\ShowAllTrucksController;
 use App\Http\Controllers\Trucks\ShowDetailsOfEachTruckController;

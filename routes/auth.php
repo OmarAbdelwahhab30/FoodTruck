@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\SellerRegisterController;
 use App\Http\Controllers\Auth\UpdateAccountInformation\UpdateAccountInformationController;
+use App\Http\Controllers\FoodTypes\FoodTypesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,3 +44,6 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::post("changepassword", [UpdateAccountInformationController::class, 'ChangePassword']);
 
 });
+
+
+Route::get("GetAllFoodTypes",[FoodTypesController::class,"GetAllFoodTypes"]);

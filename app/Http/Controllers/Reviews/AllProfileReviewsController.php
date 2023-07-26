@@ -19,7 +19,7 @@ class AllProfileReviewsController extends Controller
         if ($reviews){
             return $this->returnData("reviews",$reviews,"Here are all reviews.");
         }
-        return $this->returnError("Something Went Wrong");
+        return $this->returnError("There is no reviews to show");
     }
 
 }

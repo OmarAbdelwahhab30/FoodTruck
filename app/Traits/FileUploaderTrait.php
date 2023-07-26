@@ -12,9 +12,9 @@ trait FileUploaderTrait {
      *
      * @param $File or image that is to be validated
      *@param $ToWhichFolder you need to move the image or file
-     * @return mixed
+     * @return string|bool
      */
-    function UploadFile($File,$ToWhichFolder)
+    function UploadFile($File,$ToWhichFolder): string|bool
     {
         if (!empty($File)) {
             $FileName = time() ."_". str_replace('-', '_', $File->getClientOriginalName());
@@ -38,5 +38,10 @@ trait FileUploaderTrait {
             return true;
         }
         return false;
+    }
+
+    public function uploadUserImage($Image): bool|string
+    {
+        return $this->UploadFile($Image,"/images/users");
     }
 }

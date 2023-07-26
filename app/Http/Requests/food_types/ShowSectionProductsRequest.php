@@ -24,7 +24,7 @@ class ShowSectionProductsRequest extends FormRequest
     public function rules()
     {
         return [
-            'section_id' => 'required|exists:food_types,id',
+            'section_id' => 'required|exists:sections,id',
             'truck_id'   => 'required|exists:trucks,id',
         ];
     }
