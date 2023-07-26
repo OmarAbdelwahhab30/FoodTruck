@@ -66,6 +66,9 @@ class ReturnOrderInformationController extends Controller
 
     public function ReturnAllCurrentSellerOrders(ReturnOrderInformationService $service): \Illuminate\Http\JsonResponse
     {
+        if (! Gate::allows('return-truck-orders')) {
+            return $this->notAuthorized("You don't have the authorization on this action");
+        }
         $current_orders = $service->ReturnAllCurrentSellerOrders();
         if ($current_orders)
         {
@@ -76,6 +79,9 @@ class ReturnOrderInformationController extends Controller
 
     public function ReturnAllPreviousSellerOrders(ReturnOrderInformationService $service): \Illuminate\Http\JsonResponse
     {
+        if (! Gate::allows('return-truck-orders')) {
+            return $this->notAuthorized("You don't have the authorization on this action");
+        }
         $previous_orders = $service->ReturnAllPreviousSellerOrders();
 
         if ($previous_orders)

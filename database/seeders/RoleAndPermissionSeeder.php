@@ -30,6 +30,9 @@ class RoleAndPermissionSeeder extends Seeder
             'get-all-trucks'            => [Role::ROLE_CUSTOMER],
             'get-truck-by-id'           => [Role::ROLE_CUSTOMER],
             'find-nearest-trucks'       => [Role::ROLE_CUSTOMER],
+            'add-to-cart'               => [Role::ROLE_CUSTOMER],
+            'cancel-order-by-id'        => [Role::ROLE_CUSTOMER],
+
 
 
 
@@ -37,8 +40,8 @@ class RoleAndPermissionSeeder extends Seeder
             'add-product'               => [Role::ROLE_SELLER],
             'delete-product'            => [Role::ROLE_SELLER],
             'update-product'            => [Role::ROLE_SELLER],
-            'add-section'              => [Role::ROLE_SELLER],
-            'update-section'           => [Role::ROLE_SELLER],
+            'add-section'               => [Role::ROLE_SELLER],
+            'update-section'            => [Role::ROLE_SELLER],
             'accept-order'              => [Role::ROLE_SELLER],
             'reject-order'              => [Role::ROLE_SELLER],
             'order-delivered'           => [Role::ROLE_SELLER],
@@ -48,7 +51,7 @@ class RoleAndPermissionSeeder extends Seeder
             'delete-truck-image'        => [Role::ROLE_SELLER],
             'update-truck-info'         => [Role::ROLE_SELLER],
             'get-order-by-id'           => [Role::ROLE_SELLER],
-
+            'return-truck-orders'       => [Role::ROLE_SELLER],
             // Seller and Customer Permissions
             'update-account-information'=> [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'change-password'           => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
