@@ -81,4 +81,9 @@ class User extends Authenticatable
             ->where("role_id", 2);
     }
 
+    public function cart(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Cart::class);
+    }
+
 }

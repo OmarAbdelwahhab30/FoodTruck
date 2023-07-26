@@ -31,4 +31,9 @@ class Product extends Model
     {
         return $this->hasMany(Image::class);
     }
+
+    public function Carts(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Cart::class,"cart_product","product_id","cart_id");
+    }
 }

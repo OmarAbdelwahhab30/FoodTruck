@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactUs\ContactUsController;
 use App\Http\Controllers\orders\AddOrderController;
+use App\Http\Controllers\orders\DeleteOrderController;
 use App\Http\Controllers\orders\ReturnOrderInformationController;
 use App\Http\Controllers\orders\UpdateOrderStatusController;
 use Illuminate\Http\Request;
@@ -25,6 +26,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'auth:sanctum'],function () {
 
     Route::post("AddOrder",   [AddOrderController::class, 'AddOrder']);
+
+    Route::post("cancelOrderByID",[DeleteOrderController::class,"cancelOrderByID"]);
 
     Route::get("ReturnOrderInfoByOrderID",[ReturnOrderInformationController::class,"ReturnOrderInfoByOrderID"]);
 
