@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Carts\AddToCartController;
+use App\Http\Controllers\Carts\GetCartController;
 use App\Http\Controllers\ContactUs\ContactUsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,4 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
 
     Route::post("AddToCart",[AddToCartController::class,'AddToCart']);
 });
+Route::get("GetCart",[GetCartController::class,'GetCart']);

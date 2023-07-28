@@ -17,7 +17,6 @@ use Checkout\Payments\Request\Source\RequestTokenSource;
 class PaymentService extends Service
 {
 
-
     private \Checkout\CheckoutApi $api;
 
     /**
@@ -45,7 +44,7 @@ class PaymentService extends Service
         $request->reference = "reference";
         $request->amount = $req->amount;
         $request->currency = Currency::$SAR;
-        $request->processing_channel_id = "pc_pdwjxir5y5ouvo7too7kglmvpa";
+        $request->processing_channel_id = getenv("CHECKOUT_PROCESSING_CHANNEL_ID");
 
         $requestTokenSource = new RequestTokenSource();   // may be not the desired class , Check on Live
         $requestTokenSource->token = $req->token;
