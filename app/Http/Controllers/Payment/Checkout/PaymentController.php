@@ -8,8 +8,31 @@ use App\Http\Requests\Payments\Checkout\ConfirmPaymentRequest;
 use App\Services\Payment\Checkout\PaymentService;
 use Checkout\CheckoutApiException;
 use Checkout\CheckoutArgumentException;
+use Checkout\CheckoutAuthorizationException;
 use Checkout\CheckoutSdk;
+use Checkout\Common\AccountHolder;
+use Checkout\Common\AccountHolderType;
+use Checkout\Common\Address;
+use Checkout\Common\Country;
+use Checkout\Common\Currency;
+use Checkout\Common\CustomerRequest;
+use Checkout\Common\Phone;
 use Checkout\Environment;
+use Checkout\Instruments\Create\CreateCustomerInstrumentRequest;
+use Checkout\Instruments\Create\CreateTokenInstrumentRequest;
+use Checkout\Instruments\Get\BankAccountFieldQuery;
+use Checkout\Instruments\Get\PaymentNetwork;
+use Checkout\OAuthScope;
+use Checkout\Payments\Destination\PaymentRequestDestination;
+use Checkout\Payments\Request\PayoutBillingDescriptor;
+use Checkout\Payments\Request\PayoutRequest;
+use Checkout\Payments\Request\Source\PayoutRequestSource;
+use Checkout\Payments\Sender\Identification;
+use Checkout\Payments\Sender\IdentificationType;
+use Checkout\Payments\Sender\PaymentIndividualSender;
+use Checkout\Tokens\CardTokenRequest;
+use PayPal\Api\Payout;
+use PayPal\Api\PayoutSenderBatchHeader;
 
 
 class PaymentController extends Controller
@@ -21,15 +44,6 @@ class PaymentController extends Controller
     /**
      * @throws CheckoutArgumentException
      */
-    public function __construct()
-    {
-        $this->api = CheckoutSdk::builder()
-            ->staticKeys()
-            ->environment(Environment::sandbox())   // Change It on Live
-            ->publicKey(getenv("CHECKOUT_APP_KEY"))
-            ->secretKey(getenv("CHECKOUT_APP_SECRET"))
-            ->build();
-    }
 
     // Master-Card * Visa * Credit Card * American Express.
 
@@ -58,5 +72,94 @@ class PaymentController extends Controller
         }
         return $this->returnError("Something went wrong ,try again later.");
     }
+
+    /**
+     * @throws CheckoutArgumentException
+     * @throws CheckoutApiException
+     */
+    public function payout()
+    {
+
+//        $api = CheckoutSdk::builder()
+//            ->staticKeys()
+//            ->environment(Environment::sandbox())   // Change It on Live
+//            ->publicKey(getenv("CHECKOUT_APP_KEY"))
+//            ->secretKey(getenv("CHECKOUT_APP_SECRET"))
+//            ->build();
+//
+////        $createCustomerInstrumentRequest = new CreateCustomerInstrumentRequest();
+////        $createCustomerInstrumentRequest->id = "cus_rbc772a3o3eurft6b76kbu7upi";
+////
+////        $req = new CreateTokenInstrumentRequest();
+////
+////        $request = new CardTokenRequest();
+////        $request->name = "Name";
+////        $request->number = "4242424242424242";
+////        $request->expiry_year = 2027;
+////        $request->expiry_month = 10;
+////        $request->cvv = "123";
+////        $response = $api->getTokensClient()->requestCardToken($request);
+////        $req->token = $response['token'];
+////        $req->customer = $createCustomerInstrumentRequest;
+////        return response()->json($req);
+////        return $api->getInstrumentsClient()->create($req);
+//
+//
+//
+//        $SOURCE = new PayoutRequestSource("currency_account");
+//        $SOURCE->amount = 120;
+//
+//        $billing = new PayoutBillingDescriptor();
+//        $billing->reference = "reference";
+//
+//        $dest = new PaymentRequestDestination("bank_account");
+//        $dest->type = 'bank_account';
+//
+//        $dest->account_number = "13654567"  ;
+//        $dest->account_type   =  "current";
+//        $dest->iban= "GB29NWBK60161331926819";
+//        $dest->country =Country::$GB ;
+//
+//        $request = new PayoutRequest();
+//        $request->source = $SOURCE;
+//        $request->destination = $dest;
+//        $request->reference = "reference";
+//
+//        $request->currency = Currency::$EUR;
+//        $request->amount = 120;
+//
+//
+//        $request->processing_channel_id = getenv("CHECKOUT_PROCESSING_CHANNEL_ID");
+//        $request->billing_descriptor = $billing;
+//        $sender = new PaymentIndividualSender();
+//        $sender->type = "individual";
+//        $sender->address = "galaa";
+//        $sender->fist_name = "omar";
+//        $sender->identification = ""
+//
+//        try {
+//            return $api->getPaymentsClient()->requestPayout($request);
+//        }catch (CheckoutApiException $e){
+//            // API error
+//            $error_details = $e->error_details;
+//            $http_status_code = isset($e->http_metadata) ? $e->http_metadata->getStatusCode() : null;
+//            return response()->json($e->getMessage());
+//        }
+
+    }
+
+
+//    public function payout()
+//    {
+//        $api = CheckoutSdk::builder()
+//            ->staticKeys()
+//            ->environment(Environment::sandbox())   // Change It on Live
+//            ->publicKey(getenv("CHECKOUT_APP_KEY"))
+//            ->secretKey(getenv("CHECKOUT_APP_SECRET"))
+//            ->build();
+//
+//
+//
+//    }
 
 }
