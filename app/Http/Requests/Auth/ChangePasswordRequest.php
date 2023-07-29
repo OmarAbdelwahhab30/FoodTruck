@@ -29,4 +29,6 @@ class ChangePasswordRequest extends FormRequest
             'new_password_confirmation'  => 'required|same:new_password',
         ];
     }
+
+
 }

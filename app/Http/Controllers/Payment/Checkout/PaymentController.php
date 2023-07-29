@@ -24,6 +24,7 @@ use Checkout\Instruments\Get\BankAccountFieldQuery;
 use Checkout\Instruments\Get\PaymentNetwork;
 use Checkout\OAuthScope;
 use Checkout\Payments\Destination\PaymentRequestDestination;
+use Checkout\Payments\Request\PaymentRequest;
 use Checkout\Payments\Request\PayoutBillingDescriptor;
 use Checkout\Payments\Request\PayoutRequest;
 use Checkout\Payments\Request\Source\PayoutRequestSource;
@@ -33,7 +34,14 @@ use Checkout\Payments\Sender\PaymentIndividualSender;
 use Checkout\Tokens\CardTokenRequest;
 use PayPal\Api\Payout;
 use PayPal\Api\PayoutSenderBatchHeader;
-
+use PayPal\Api\Amount;
+use PayPal\Api\Details;
+use PayPal\Api\Item;
+use PayPal\Api\ItemList;
+use PayPal\Api\Payer;
+use PayPal\Api\Payment;
+use PayPal\Api\RedirectUrls;
+use PayPal\Api\Transaction;
 
 class PaymentController extends Controller
 {
@@ -73,10 +81,57 @@ class PaymentController extends Controller
         return $this->returnError("Something went wrong ,try again later.");
     }
 
-    /**
-     * @throws CheckoutArgumentException
-     * @throws CheckoutApiException
-     */
+
+    public function paypal()
+    {
+        $payer = new Payer();
+        $payer->setPaymentMethod("paypal");
+        $item1 = new Item();
+        $item1->setName('Ground Coffee 40 oz')
+            ->setCurrency('SAR')
+            ->setQuantity(1)
+            ->setPrice(7.5);
+
+        $item2 = new Item();
+        $item2->setName('Granola bars')
+            ->setCurrency('USD')
+            ->setQuantity(5)
+            ->setSku("321321") // Similar to `item_number` in Classic API
+            ->setPrice(2);
+
+        $itemList = new ItemList();
+        $itemList->setItems(array($item1, $item2));
+        $details = new Details();
+        $details->setShipping(1.2)
+            ->setTax(1.3)
+            ->setSubtotal(17.50);
+        $amount = new Amount();
+        $amount->setCurrency("SAR")
+            ->setTotal(20)
+            ->setDetails($details);
+        $transaction = new Transaction();
+        $transaction->setAmount($amount)
+            ->setItemList($itemList)
+            ->setDescription("Payment description")
+            ->setInvoiceNumber(uniqid());
+        $baseUrl = getBaseUrl();
+        $redirectUrls = new RedirectUrls();
+        $redirectUrls->setReturnUrl("$baseUrl/ExecutePayment.php?success=true")
+            ->setCancelUrl("$baseUrl/ExecutePayment.php?success=false");
+        $payment = new Payment();
+        $payment->setIntent("sale")
+            ->setPayer($payer)
+            ->setRedirectUrls($redirectUrls)
+            ->setTransactions(array($transaction));
+        $request = clone $payment;
+        $payment->create($apiContext);
+
+        return $payment;
+
+
+
+    }
+
     public function payout()
     {
 
