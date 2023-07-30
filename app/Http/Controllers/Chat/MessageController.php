@@ -17,7 +17,7 @@ class MessageController extends Controller
        if (!Gate::allows("send-message")){
            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
        }
-       $service->SendMessage($request);
+       return $service->SendMessage($request);
    }
 
    public function LoadLatestMessages(loadMessagesRequest $request,MessageService $service): \Illuminate\Http\JsonResponse

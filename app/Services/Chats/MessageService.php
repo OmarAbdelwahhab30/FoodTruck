@@ -37,6 +37,7 @@ class MessageService extends Service
         $message = $this->createMessage($request,$collection);
 
         broadcast(new SendMessageEvent($message))->toOthers();
+        return $message;
     }
 
     public function createMessage($request,$collection)
@@ -45,9 +46,11 @@ class MessageService extends Service
 
             'from_user' => auth("sanctum")->user()->id,
 
-            'to_user' => $request->to_user,
+            'to_user'   => $request->to_user,
 
-            'content' => $request->message,
+            'content'   => $request->file("message") !== null ?
+                env("APP_URL")."/storage/chat/".$this->UploadFile($request->file("message"),"chat")
+            :$request->message,
 
             'chat_id'   => !$collection ? $this->chat->id:$collection[0]->chat_id,
         ]);

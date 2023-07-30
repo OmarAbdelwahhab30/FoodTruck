@@ -25,7 +25,15 @@ class SendMesaageRequest extends FormRequest
     {
         return [
             'to_user'   => ['required','exists:users,id'],
-            'message'   => ['required'],
+            'message' => $this->getValidationRule('message'),
         ];
+    }
+
+    public function getValidationRule(String $key): string
+    {
+        if (request()->hasFile($key)) {
+            return "required";
+        }
+        return "required|string";
     }
 }
