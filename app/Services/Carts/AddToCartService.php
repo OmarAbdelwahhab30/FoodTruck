@@ -15,7 +15,8 @@ class AddToCartService extends Service
 
     public function AddToCart($request)
     {
-        $cart = auth("sanctum")->user()->cart;
+        $cart = isset(auth("sanctum")->user()->cart)? auth("sanctum")->user()->cart:null;
+
         if (!isset($cart)){
             $cart = Cart::create([
                 'user_id'   => auth("sanctum")->user()->id,
@@ -48,4 +49,6 @@ class AddToCartService extends Service
                 'count' => $request->count,
             ]);
     }
+
+
 }

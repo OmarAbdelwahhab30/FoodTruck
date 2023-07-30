@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Carts\AddToCartController;
+use App\Http\Controllers\Carts\DeleteFromCartController;
 use App\Http\Controllers\Carts\GetCartController;
 use App\Http\Controllers\ContactUs\ContactUsController;
+use App\Services\Carts\DeleteFromCartService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +26,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'auth:sanctum'],function () {
 
     Route::post("AddToCart",[AddToCartController::class,'AddToCart']);
+    Route::post("deleteProductByProduct_id",[DeleteFromCartController::class,"RemoveProductFromCart"]);
+    Route::get("GetCart",[GetCartController::class,'GetCart']);
 });
-Route::get("GetCart",[GetCartController::class,'GetCart']);
