@@ -13,8 +13,10 @@ class ReturnOrderInformationService extends \App\Services\Service
         return Order::with([
             'user' => function ($query) {
                 $query->select('id', 'name',"phone");
-            }, 'products','products.images'
-        ])->where("id", $request->order_id)->get();
+            }, 'products'=> function($q){
+                $q->distinct();
+            },'products.images'
+        ])->select("id","status_en as status","user_id")->where("id", $request->order_id)->get();
     }
 
     public function ReturnAllPreviousCustomerOrders(): \Illuminate\Database\Eloquent\Collection|array
@@ -27,8 +29,8 @@ class ReturnOrderInformationService extends \App\Services\Service
                     $qq->with("images");
                     $qq->select("delivery","delivery_price","id");
                 });
-                $q->whereIn('status',['delivered','cancelled','picked-up'])
-                    ->select("status","truck_id","user_id","created_at");
+                $q->whereIn('status_en',['delivered','cancelled','picked-up'])
+                    ->select("status_en" ,"truck_id","user_id","created_at");
             },
         ])->select("id","name","phone")->get();
     }

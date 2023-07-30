@@ -37,7 +37,7 @@ class SellerRegisterRequest extends FormRequest implements RegisterRequestInterf
             'truck_images.*'    => 'mimes:jpeg,jpg,png',
             'delivery'          => 'required|boolean',
             'role'              => 'required',
-            'food_type'         => 'required|exists:food_types,name_ar'
+            'food_type_id'         => 'required|exists:food_types,id'
         ];
     }
 

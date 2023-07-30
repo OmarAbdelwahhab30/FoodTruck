@@ -14,12 +14,12 @@ class ContactUsController extends Controller
     public function AddContactUsContent(Request $request,ContactUsService $service): \Illuminate\Http\JsonResponse
     {
         if (!Gate::allows("add-contactus")){
-            return $this->notAuthorized("You don't have the authorization on this action.");
+            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
         $done = $service->AddContactUsContent($request);
         if ($done){
-            return $this->returnSuccessMessage("Your Message has been added successfully");
+            return $this->returnSuccessMessage(__("responses.Your Message has been added successfully"));
         }
-        return $this->returnError("Some thing went wrong ,try again later");
+        return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
 }

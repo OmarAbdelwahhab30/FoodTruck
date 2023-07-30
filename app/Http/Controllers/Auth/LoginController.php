@@ -9,13 +9,14 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    public function login(LoginRequest $request, LoginService $service){
+    public function login(LoginRequest $request, LoginService $service): \Illuminate\Http\JsonResponse
+    {
         $user = $service->login($request);
         if($user)
         {
-            return $this->returnData("user", $user, "User logged successfully");
+            return $this->returnData(__("user"), $user, __("responses.User logged successfully"));
         }
-        return  $this->returnError("These credentials do not match our records.");
+        return  $this->returnError(__("responses.These inputs are invalid , try again."));
     }
 
     /**

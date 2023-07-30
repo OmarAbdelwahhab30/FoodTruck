@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('order_product', function (Blueprint $table) {
             $table->id();
-            $table->string("optional_en");
-            $table->string("optional_ar");
+            $table->string("optional_en")->nullable();
+            $table->string("optional_ar")->nullable();
         });
     }
 

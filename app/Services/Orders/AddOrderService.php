@@ -29,7 +29,7 @@ class AddOrderService extends Service
         return Order::create([
             'truck_id'      => $request->truck_id ,
             'arrival_time'  => $request->arrival_time,
-            'delivery_type' => $request->delivery_type,
+            'delivery_type_'.app()->getLocale() => $request->delivery_type,
             'total_price'   => $request->total_price,
             'user_id'       => auth("sanctum")->user()->id,
         ]);
@@ -38,8 +38,7 @@ class AddOrderService extends Service
     public function attachProduct($products,$order)
     {
         foreach ($products as $product)
-        $order->products()->attach($product['id'], ['optional' => $product['optional']]);
-
+        $order->products()->attach($product['id'], ['optional_'.app()->getLocale() => $product['optional']]);
     }
 
 }
