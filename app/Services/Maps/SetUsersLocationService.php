@@ -21,4 +21,5 @@ class SetUsersLocationService extends Service
         }
         return false;
     }
+
 }

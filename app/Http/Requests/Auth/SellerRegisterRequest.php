@@ -33,10 +33,11 @@ class SellerRegisterRequest extends FormRequest implements RegisterRequestInterf
             'truck_name'        => 'required',
             'plate_no'          => 'required|unique:trucks',
             'license'           => 'mimes:jpeg,jpg,png|required|max:10000',
-            'truck_images'      => 'required|array|min:4', // <----
+            'truck_images'      => 'required|array|min:4|max:9', // <----
             'truck_images.*'    => 'mimes:jpeg,jpg,png',
             'delivery'          => 'required|boolean',
             'role'              => 'required',
+            'food_type_id'         => 'required|exists:food_types,id'
         ];
     }
 

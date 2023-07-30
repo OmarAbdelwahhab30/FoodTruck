@@ -15,9 +15,13 @@ class FoodTypeSeeder extends Seeder
      */
     public function run()
     {
-        $food_types = ['Fast Food','Sea Food',"Dessert","Others"];
-        foreach ($food_types as $food_type){
-            FoodType::create(['name' => $food_type]);
+        $food_types_en = ['Fast Food','Sea Food',"Dessert","Others"];
+        foreach ($food_types_en as $food_type){
+            FoodType::create(['name_en' => $food_type]);
+        }
+        $food_types_ar = ['أكلات سريعة','أكلات بحرية',"حلوى","آخر"];
+        foreach ($food_types_ar as $food_type){
+            FoodType::create(['name_ar' => $food_type]);
         }
     }
 }

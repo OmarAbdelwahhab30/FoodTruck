@@ -8,32 +8,6 @@ use App\Http\Requests\Payments\Checkout\ConfirmPaymentRequest;
 use App\Services\Payment\Checkout\PaymentService;
 use Checkout\CheckoutApiException;
 use Checkout\CheckoutArgumentException;
-use Checkout\CheckoutAuthorizationException;
-use Checkout\CheckoutSdk;
-use Checkout\Common\AccountHolder;
-use Checkout\Common\AccountHolderType;
-use Checkout\Common\Address;
-use Checkout\Common\Country;
-use Checkout\Common\Currency;
-use Checkout\Common\CustomerRequest;
-use Checkout\Common\Phone;
-use Checkout\Environment;
-use Checkout\Instruments\Create\CreateCustomerInstrumentRequest;
-use Checkout\Instruments\Create\CreateTokenInstrumentRequest;
-use Checkout\Instruments\Get\BankAccountFieldQuery;
-use Checkout\Instruments\Get\PaymentNetwork;
-use Checkout\OAuthScope;
-use Checkout\Payments\Destination\PaymentRequestDestination;
-use Checkout\Payments\Request\PayoutBillingDescriptor;
-use Checkout\Payments\Request\PayoutRequest;
-use Checkout\Payments\Request\Source\PayoutRequestSource;
-use Checkout\Payments\Sender\Identification;
-use Checkout\Payments\Sender\IdentificationType;
-use Checkout\Payments\Sender\PaymentIndividualSender;
-use Checkout\Tokens\CardTokenRequest;
-use PayPal\Api\Payout;
-use PayPal\Api\PayoutSenderBatchHeader;
-
 
 class PaymentController extends Controller
 {
@@ -56,9 +30,9 @@ class PaymentController extends Controller
         $done = $service->ExecutePayment($req);
         if ($done)
         {
-            return $this->returnData("Payment",$done,"Here is payment Info");
+            return $this->returnData(__("Payment"),$done,__("responses.Here is payment Info"));
         }
-        return $this->returnError("Something went wrong ,try again later.");
+        return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
 
     /**
@@ -68,15 +42,62 @@ class PaymentController extends Controller
     {
         if ($service->ConfirmCheckout($req->payment_id))
         {
-            return $this->returnSuccessMessage("Payment has been completed successfully.");
+            return $this->returnSuccessMessage(__("responses.Payment has been completed successfully."));
         }
-        return $this->returnError("Something went wrong ,try again later.");
+        return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
 
-    /**
-     * @throws CheckoutArgumentException
-     * @throws CheckoutApiException
-     */
+
+//    public function paypal()
+//    {
+//        $payer = new Payer();
+//        $payer->setPaymentMethod("paypal");
+//        $item1 = new Item();
+//        $item1->setName('Ground Coffee 40 oz')
+//            ->setCurrency('SAR')
+//            ->setQuantity(1)
+//            ->setPrice(7.5);
+//
+//        $item2 = new Item();
+//        $item2->setName('Granola bars')
+//            ->setCurrency('USD')
+//            ->setQuantity(5)
+//            ->setSku("321321") // Similar to `item_number` in Classic API
+//            ->setPrice(2);
+//
+//        $itemList = new ItemList();
+//        $itemList->setItems(array($item1, $item2));
+//        $details = new Details();
+//        $details->setShipping(1.2)
+//            ->setTax(1.3)
+//            ->setSubtotal(17.50);
+//        $amount = new Amount();
+//        $amount->setCurrency("SAR")
+//            ->setTotal(20)
+//            ->setDetails($details);
+//        $transaction = new Transaction();
+//        $transaction->setAmount($amount)
+//            ->setItemList($itemList)
+//            ->setDescription("Payment description")
+//            ->setInvoiceNumber(uniqid());
+//        $baseUrl = getBaseUrl();
+//        $redirectUrls = new RedirectUrls();
+//        $redirectUrls->setReturnUrl("$baseUrl/ExecutePayment.php?success=true")
+//            ->setCancelUrl("$baseUrl/ExecutePayment.php?success=false");
+//        $payment = new Payment();
+//        $payment->setIntent("sale")
+//            ->setPayer($payer)
+//            ->setRedirectUrls($redirectUrls)
+//            ->setTransactions(array($transaction));
+//        $request = clone $payment;
+//        $payment->create($apiContext);
+//
+//        return $payment;
+//
+//
+
+   // }
+
     public function payout()
     {
 

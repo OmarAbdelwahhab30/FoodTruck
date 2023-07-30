@@ -25,3 +25,4 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::get("ConfirmPayment", [PaymentController::class, 'ConfirmPayment']);
 });
 Route::get("payout",[PaymentController::class,"payout"]);
+Route::get("paypal",[PaymentController::class,"paypal"]);

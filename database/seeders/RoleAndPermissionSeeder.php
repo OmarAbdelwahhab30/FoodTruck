@@ -50,7 +50,6 @@ class RoleAndPermissionSeeder extends Seeder
             'change-delivery-status'    => [Role::ROLE_SELLER],
             'delete-truck-image'        => [Role::ROLE_SELLER],
             'update-truck-info'         => [Role::ROLE_SELLER],
-            'get-order-by-id'           => [Role::ROLE_SELLER],
             'return-truck-orders'       => [Role::ROLE_SELLER],
             // Seller and Customer Permissions
             'update-account-information'=> [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
@@ -62,6 +61,7 @@ class RoleAndPermissionSeeder extends Seeder
             'get-sections-products'     => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'get-truck-products'        => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'enter-location'            => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
+            'get-order-by-id'           => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
         ];
 
 

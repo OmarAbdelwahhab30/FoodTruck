@@ -12,12 +12,12 @@ class ShowReviewsOfEachTruckController extends Controller
     public function GetTruckReviewsByID(GetTruckReviewRequest $request,ShowReviewsOfEachTruckService $service): \Illuminate\Http\JsonResponse
     {
         if(!Gate::allows("get-truck-review-by-id")) {
-            return $this->notAuthorized("You don't have the authorization on this action.");
+            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
         $Truck_Reviews = $service->GetTruckReviewsByID($request->id);
         if ($Truck_Reviews) {
-            return $this->returnData("Truck Reviews", $Truck_Reviews, "Here is the truck Reviews.");
+            return $this->returnData(__("Truck Reviews"), $Truck_Reviews,__( "responses.Here is the truck Reviews."));
         }
-        return $this->returnError("There is no reviews");
+        return $this->returnError(__("responses.There is no reviews to show."));
     }
 }

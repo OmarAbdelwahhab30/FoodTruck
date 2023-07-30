@@ -13,13 +13,13 @@ class SetUsersLocationController extends Controller
     public function EnterLocation(EnterLocationRequest $request,SetUsersLocationService $service): \Illuminate\Http\JsonResponse
     {
         if (!Gate::allows("enter-location")){
-            return $this->notAuthorized("You don't have the authorization on this action.");
+            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
         $entered = $service->EnterLocation($request);
         if ($entered)
         {
-            return $this->returnSuccessMessage("Location has been added successfully");
+            return $this->returnSuccessMessage(__("responses.Location has been added successfully"));
         }
-        return $this->returnError("Something went wrong,try again later");
+        return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
 }

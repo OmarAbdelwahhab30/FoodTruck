@@ -6,18 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\ForgetPasswordRequest;
 use App\Http\Requests\Auth\IsPhoneNumberExistsRequest;
 use App\Services\Auth\ForgetPasswordService;
-use Illuminate\Http\Request;
 
 class ForgetPasswordController extends Controller
 {
 
-    public function createNewPassword(ForgetPasswordRequest $request,ForgetPasswordService $service)
+    public function createNewPassword(ForgetPasswordRequest $request,ForgetPasswordService $service): \Illuminate\Http\JsonResponse
     {
         $user = $service->createNewPassword($request);
         if ($user){
-            return $this->returnData("userData",$user,"Here is User Data");
+            return $this->returnData(__("userData"),$user,__("responses.Here is User Data"));
         }
-        return  $this->returnError("Something went wrong , try again later");
+        return  $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
 
     public function IsPhoneNumberExists(IsPhoneNumberExistsRequest $request,ForgetPasswordService $service): \Illuminate\Http\JsonResponse
