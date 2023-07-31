@@ -76,7 +76,7 @@ return [
     "There is no details"                              => "لا يوجد تفاصيل",
     "Truck information Has been updated successfully"  => "تم تحديث المعلومات بنجاح",
     "Truck delivery status has been updated successfully."   => "تم تحديث حالة التوصيل بنجاح ",
-
+    "Product has been removed successfully."            => "تم إزالة المنتج بنجاح"
 
 
 ];
