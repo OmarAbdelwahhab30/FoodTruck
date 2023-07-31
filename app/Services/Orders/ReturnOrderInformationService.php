@@ -45,7 +45,8 @@ class ReturnOrderInformationService extends \App\Services\Service
                     $qq->with("images");
                     $qq->select("delivery","delivery_price","id");
                 });
-                $q->where('status','processing')->select("status","truck_id","user_id","created_at");
+                $q->where('status_en','processing')
+                    ->select("status_en","truck_id","user_id","created_at");
             }
         )->select("id","name","phone")->get();
     }
@@ -60,7 +61,7 @@ class ReturnOrderInformationService extends \App\Services\Service
                 $qq->with("images");
                 $qq->select("delivery","delivery_price","id");
             });
-            $q->where('status','pending')->select("status","truck_id","user_id","created_at");
+            $q->where('status_en','pending')->select("status_en","truck_id","user_id","created_at");
         }
         )->select("id","name","phone")->get();
     }
