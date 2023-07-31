@@ -49,6 +49,7 @@ return [
     "Product has been added successfully"              => "Product has been added successfully" ,
     "Product has been updated successfully"            => "Product Image has been deleted successfully",
     "Product Image has been deleted successfully"      => "Product Image has been deleted successfully",
+    "Product has been removed successfully."            => "Product has been removed successfully.",
     "Review has been added successfully."              => "Review has been added successfully." ,
 
     "Here are all reviews."                            =>  "Here are all reviews.",
