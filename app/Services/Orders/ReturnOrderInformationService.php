@@ -30,7 +30,7 @@ class ReturnOrderInformationService extends \App\Services\Service
                     $qq->select("name","delivery","delivery_price","id");
                 });
                 $q->whereIn('status_en',['delivered','cancelled','picked-up'])
-                    ->select("status_en" ,"truck_id","user_id","created_at");
+                    ->select("id","status_en" ,"truck_id","user_id","created_at");
             },
         ])->select("id","name","phone")->get();
     }
@@ -46,7 +46,7 @@ class ReturnOrderInformationService extends \App\Services\Service
                     $qq->select("name","delivery","delivery_price","id");
                 });
                 $q->where('status_en','processing')
-                    ->select("status_en","truck_id","user_id","created_at");
+                    ->select("id","status_en","truck_id","user_id","created_at");
             }
         )->select("id","name","phone")->get();
     }
@@ -61,7 +61,7 @@ class ReturnOrderInformationService extends \App\Services\Service
                 $qq->with("images");
                 $qq->select("name","delivery","delivery_price","id");
             });
-            $q->where('status_en','pending')->select("status_en","truck_id","user_id","created_at");
+            $q->where('status_en','pending')->select("id","status_en","truck_id","user_id","created_at");
         }
         )->select("id","name","phone")->get();
     }
@@ -74,7 +74,7 @@ class ReturnOrderInformationService extends \App\Services\Service
             $q->with("images");
             $q->with("images");
             $q->select("name","delivery","delivery_price","id");
-        }])->whereIn('status',['pending','processing'])->select("status","created_at","delivery_type","truck_id")->get();
+        }])->whereIn('status',['pending','processing'])->select("id","status","created_at","delivery_type","truck_id")->get();
     }
 
     public function ReturnAllPreviousSellerOrders(): \Illuminate\Database\Eloquent\Collection|array
@@ -85,7 +85,7 @@ class ReturnOrderInformationService extends \App\Services\Service
             $q->with("images");
             $q->with("images");
             $q->select("name","delivery","delivery_price","id");
-        }])->whereIn('status',['picked-up','cancelled','delivered'])->select("status","created_at","delivery_type","truck_id")->get();
+        }])->whereIn('status',['picked-up','cancelled','delivered'])->select("id","status","created_at","delivery_type","truck_id")->get();
     }
 
     public function ReturnOrderStatusByOrderID($request)

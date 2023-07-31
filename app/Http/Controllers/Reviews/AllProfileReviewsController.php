@@ -16,7 +16,7 @@ class AllProfileReviewsController extends Controller
         }
         $reviews = $service->AllProfileReviews();
         if ($reviews){
-            return $this->returnData(__("reviews"),$reviews,__("responses.Here are all reviews."));
+            return $this->returnData("reviews",$reviews,__("responses.Here are all reviews."));
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));    }
 

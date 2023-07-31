@@ -35,7 +35,7 @@ trait ApiResponseHandler
         ]);
     }
 
-    public function returnData($key, $value, $msg = "")
+    public function returnData($key, $value, $msg = ""): \Illuminate\Http\JsonResponse
     {
         return response()->json([
             'status' => 200,
