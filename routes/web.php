@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\auth\LoginController;
+use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\Payment\PayPal\PaypalPaymentController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +33,16 @@ Route::post('pay-paypal',[PaypalPaymentController::class,"payWithpaypal"])->name
 Route::get('paypal-status',[PaypalPaymentController::class,"getPaymentStatus"])->name('paypal-status');
 Route::get('payment-success',[PaypalPaymentController::class,"success"])->name('payment-success');
 Route::get('payment-fail',[PaypalPaymentController::class,"fail"])->name('payment-fail');
+
+/*
+ *
+ * Admin Routes are here
+ *
+ */
+// ............authentication.........................
+Route::get("login",[LoginController::class,"index"])->name("admin.login");
+Route::post("post",[LoginController::class,"postLogin"])->name("admin.post.login");
+
+
+// .............Dashboard..............................
+Route::get("home",[HomeController::class,"index"])->name("admin.home");
