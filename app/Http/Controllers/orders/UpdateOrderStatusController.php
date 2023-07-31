@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\orders;
 
+use App\Events\Order\SendOrderStatusEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\orders\UpdateOrderStatusRequest;
 use App\Services\Orders\UpdateOrderStatusService;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Gate;
 
 class UpdateOrderStatusController extends Controller
 {
+
 
     public function AcceptOrder(UpdateOrderStatusRequest $request,UpdateOrderStatusService $service): \Illuminate\Http\JsonResponse
     {
@@ -18,7 +20,7 @@ class UpdateOrderStatusController extends Controller
         $accepted = $service->AcceptOrder($request);
         if ($accepted)
         {
-            return $this->returnSuccessMessage(__("responses.Order is accepted from seller and it is being prepared now "));
+            return $this->returnSuccessMessage(__("responses.Order is accepted from seller and it is being prepared now"));
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }

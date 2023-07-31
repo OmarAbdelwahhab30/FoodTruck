@@ -23,4 +23,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post("AddContactUsContent",[ContactUsController::class,'AddContactUsContent']);
 
 
-Route::get("handle-payment",[PaymentController::class,'handlePayment']);

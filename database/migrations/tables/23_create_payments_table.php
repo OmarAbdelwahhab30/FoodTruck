@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string("payment_status");
             $table->string("payment_method");
             $table->json("payment_response");
+            $table->string("payer_email")->nullable();
+            $table->string("currency")->nullable();
             $table->timestamps();
         });
     }

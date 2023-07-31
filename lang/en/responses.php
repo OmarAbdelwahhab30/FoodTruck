@@ -76,6 +76,16 @@ return [
     "Truck information Has been updated successfully"  => "Truck information Has been updated successfully",
     "Truck delivery status has been updated successfully."   => "Truck delivery status has been updated successfully.",
 
+    "Order is accepted from seller and it is being prepared now"
+    => "Order is accepted from seller and it is being prepared now",
 
+    "Order is rejected from seller."
+    => "Order is rejected from seller.",
+
+    "Order is Delivered Successfully."
+    => "Order is Delivered Successfully.",
+
+    "Order is Picked Up ."
+    => "Order is Picked Up .",
 
 ];

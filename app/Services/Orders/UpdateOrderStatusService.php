@@ -2,37 +2,49 @@
 
 namespace App\Services\Orders;
 
+use App\Events\Order\SendOrderStatusEvent;
 use App\Models\Order;
 use App\Services\Service;
 
 class UpdateOrderStatusService extends Service
 {
 
-
     public function AcceptOrder($request)
     {
-        return Order::where("id",$request->order_id)->update([
-           'status' => 'processing',
+        $order =  Order::where("id",$request->order_id)->update([
+           'status_en' => 'processing',
         ]);
+        $this->broadCastOrderStatus($request->order_id,auth("sanctum")->user());
+        return $order;
     }
 
     public function RejectOrder($request)
     {
-        return Order::where("id",$request->order_id)->update([
-            'status' => 'cancelled',
+        $order = Order::where("id",$request->order_id)->update([
+            'status_en' => 'cancelled',
         ]);
+        $this->broadCastOrderStatus($request->order_id,auth("sanctum")->user());
+        return $order;
     }
 
     public function OrderDelivered($request){
-        return Order::where("id",$request->order_id)->update([
-            'status' => 'delivered',
+        $order =  Order::where("id",$request->order_id)->update([
+            'status_en' => 'delivered',
         ]);
+        $this->broadCastOrderStatus($request->order_id,auth("sanctum")->user());
+        return $order;
     }
 
     public function OrderPickedUp($request){
-        return Order::where("id",$request->order_id)->update([
-            'status' => 'picked-up',
+        $order = Order::where("id",$request->order_id)->update([
+            'status_en' => 'picked-up',
         ]);
+        $this->broadCastOrderStatus($request->order_id,auth("sanctum")->user());
+        return $order;
     }
 
+    public function broadCastOrderStatus($order_id,$user)
+    {
+        broadcast(new SendOrderStatusEvent($order_id,$user))->toOthers();
+    }
 }
