@@ -27,7 +27,7 @@ class ReturnOrderInformationService extends \App\Services\Service
             {
                 $q->with("truck",function ($qq){
                     $qq->with("images");
-                    $qq->select("delivery","delivery_price","id");
+                    $qq->select("name","delivery","delivery_price","id");
                 });
                 $q->whereIn('status_en',['delivered','cancelled','picked-up'])
                     ->select("status_en" ,"truck_id","user_id","created_at");
@@ -43,7 +43,7 @@ class ReturnOrderInformationService extends \App\Services\Service
             {
                 $q->with("truck",function ($qq){
                     $qq->with("images");
-                    $qq->select("delivery","delivery_price","id");
+                    $qq->select("name","delivery","delivery_price","id");
                 });
                 $q->where('status_en','processing')
                     ->select("status_en","truck_id","user_id","created_at");
@@ -59,7 +59,7 @@ class ReturnOrderInformationService extends \App\Services\Service
         {
             $q->with("truck",function ($qq){
                 $qq->with("images");
-                $qq->select("delivery","delivery_price","id");
+                $qq->select("name","delivery","delivery_price","id");
             });
             $q->where('status_en','pending')->select("status_en","truck_id","user_id","created_at");
         }
@@ -73,7 +73,7 @@ class ReturnOrderInformationService extends \App\Services\Service
             $q->where("id",$user->truck->id);
             $q->with("images");
             $q->with("images");
-            $q->select("delivery","delivery_price","id");
+            $q->select("name","delivery","delivery_price","id");
         }])->whereIn('status',['pending','processing'])->select("status","created_at","delivery_type","truck_id")->get();
     }
 
@@ -84,7 +84,7 @@ class ReturnOrderInformationService extends \App\Services\Service
             $q->where("id",$user->truck->id);
             $q->with("images");
             $q->with("images");
-            $q->select("delivery","delivery_price","id");
+            $q->select("name","delivery","delivery_price","id");
         }])->whereIn('status',['picked-up','cancelled','delivered'])->select("status","created_at","delivery_type","truck_id")->get();
     }
 
