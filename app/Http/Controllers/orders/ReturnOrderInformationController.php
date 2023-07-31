@@ -40,7 +40,7 @@ class ReturnOrderInformationController extends Controller
 
     public function ReturnAllProcessingCustomerOrders(ReturnOrderInformationService $service): \Illuminate\Http\JsonResponse
     {
-        if (! Gate::allows('responses.return-customer-orders')) {
+        if (! Gate::allows('return-customer-orders')) {
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
         $Processing_orders = $service->ReturnAllProcessingCustomerOrders();
