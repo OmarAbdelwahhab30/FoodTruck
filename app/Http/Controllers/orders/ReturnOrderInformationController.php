@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\orders;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\orders\OrderStatusRequest;
 use App\Http\Requests\orders\UpdateOrderStatusRequest;
+use App\Models\Order;
 use App\Services\Orders\ReturnOrderInformationService;
 use Illuminate\Support\Facades\Gate;
 
@@ -89,4 +91,18 @@ class ReturnOrderInformationController extends Controller
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
+
+    public function ReturnOrderStatusByOrderID(OrderStatusRequest $request,ReturnOrderInformationService $service): \Illuminate\Http\JsonResponse
+    {
+        $status = $service->ReturnOrderStatusByOrderID($request);
+
+        if ($status)
+        {
+            return $this->returnData("order_status",$status);
+        }
+        return $this->returnError("Some thing went wrong ,try again later");
+
+    }
+
+
 }

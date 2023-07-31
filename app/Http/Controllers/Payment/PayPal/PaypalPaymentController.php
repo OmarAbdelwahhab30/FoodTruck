@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Payment\PayPal;
+
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -19,27 +20,26 @@ use PayPal\Api\PaymentExecution;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use PayPal\Auth\OAuthTokenCredential;
-
+use PayPal\Common\PayPalModel;
+use PayPal\Rest\ApiContext;
 
 //require __DIR__  . '/PayPal-PHP-SDK/autoload.php';
 //require __DIR__  . '/PayPal-PHP-SDK/autoload.php';
 
 class PaypalPaymentController extends Controller
 {
-    private \PayPal\Rest\ApiContext $_api_context;
-
     public function __construct()
     {
         $paypal_conf = Config::get('paypal');
 
-        $this->_api_context =  new \PayPal\Rest\ApiContext(new OAuthTokenCredential(
+        $this->_api_context = new \PayPal\Rest\ApiContext(new OAuthTokenCredential(
                 $paypal_conf['client_id'],
                 $paypal_conf['secret'])
         );
         $this->_api_context->setConfig($paypal_conf['settings']);
     }
 
-    public function payWithpaypal(Request $request)
+    public function payWithpaypal(Request $request): \Illuminate\Http\RedirectResponse
     {
 
         $order = Order::with(['details'])->where(['id' => session('order_id')])->first();
@@ -52,7 +52,7 @@ class PaypalPaymentController extends Controller
         $items_array = [];
         $item = new Item();
         $number = sprintf("%0.2f", $order['order_amount']);
-        $item->setName($order->customer['f_name'])
+        $item->setName($order->customer['name'])
             ->setCurrency(Helpers::currency_code())
             ->setQuantity(1)
             ->setPrice($number);
@@ -82,7 +82,7 @@ class PaypalPaymentController extends Controller
             ->setRedirectUrls($redirect_urls)
             ->setTransactions(array($transaction));
 
-
+        try {
 
             $payment->create($this->_api_context);
 
@@ -117,15 +117,25 @@ class PaypalPaymentController extends Controller
             Session::put('paypal_payment_id', $payment->getId());
 
             if (isset($redirectUrl)) {
+
                 return Redirect::away($redirectUrl);
+            } else {
+                dd("bye");
             }
 
+        } catch (\Exception $ex) {
+            dd($ex->getData());
+            //   Toastr::error(trans($ex->getData(),['method'=>trans('messages.paypal')]));
 
-        Session::put('error', trans('messages.config_your_account',['method'=>trans('messages.paypal')]));
+            Toastr::error(trans('messages.your_currency_is_not_supported', ['method' => trans('messages.paypal')]));
+            return back();
+        }
+
+        Session::put('error', trans('messages.config_your_account', ['method' => trans('messages.paypal')]));
         return back();
     }
 
-    public function getPaymentStatus(Request $request): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    public function getPaymentStatus(Request $request)
     {
         $payment_id = Session::get('paypal_payment_id');
         if (empty($request['PayerID']) || empty($request['token'])) {
@@ -137,22 +147,39 @@ class PaypalPaymentController extends Controller
         $execution = new PaymentExecution();
         $execution->setPayerId($request['PayerID']);
 
-
+        /**Execute the payment **/
         $result = $payment->execute($execution, $this->_api_context);
         $order = Order::where('transaction_reference', $payment_id)->first();
         if ($result->getState() == 'approved') {
+
             $order->transaction_reference = $payment_id;
             $order->payment_method = 'paypal';
             $order->payment_status = 'paid';
             $order->order_status = 'confirmed';
             $order->confirmed = now();
             $order->save();
+            /*try {
+                Helpers::send_order_notification($order);
+            } catch (\Exception $e) {
+            } */
+
+
             return redirect('&status=success');
+            /*if ($order->callback != null) {
+                return redirect($order->callback . '&status=success');
+            }else{
+                return \redirect()->route('payment-success');
+            }*/
         }
+
         $order->order_status = 'failed';
         $order->failed = now();
         $order->save();
         return redirect('&status=fail');
-
+        /*if ($order->callback != null) {
+            return redirect($order->callback . '&status=fail');
+        }else{
+            return \redirect()->route('payment-fail');
+        }*/
     }
 }

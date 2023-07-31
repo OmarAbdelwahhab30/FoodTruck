@@ -26,6 +26,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'auth:sanctum'],function () {
 
     Route::post("AddToCart",[AddToCartController::class,'AddToCart']);
-    Route::post("deleteProductByProduct_id",[DeleteFromCartController::class,"RemoveProductFromCart"]);
+    Route::post("deleteProductFromCartByProduct_id",[DeleteFromCartController::class,"RemoveProductFromCart"]);
     Route::get("GetCart",[GetCartController::class,'GetCart']);
 });

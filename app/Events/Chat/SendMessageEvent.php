@@ -32,7 +32,7 @@ class SendMessageEvent implements ShouldBroadcast
      */
     public function broadcastOn(): Channel|PrivateChannel|array
     {
-        return new PrivateChannel('chat.' . $this->message->chat_id);
+        return new PrivateChannel('chat.' . $this->message->from_user.$this->message->to_user);
     }
 
     /**

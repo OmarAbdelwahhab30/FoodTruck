@@ -86,4 +86,9 @@ class ReturnOrderInformationService extends \App\Services\Service
             $q->select("delivery","delivery_price","id");
         }])->whereIn('status',['picked-up','cancelled','delivered'])->select("status","created_at","delivery_type","truck_id")->get();
     }
+
+    public function ReturnOrderStatusByOrderID($request)
+    {
+        return Order::where("id",$request->order_id)->select("status_en","status_ar")->first();
+    }
 }
