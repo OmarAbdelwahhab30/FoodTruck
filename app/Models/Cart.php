@@ -11,9 +11,9 @@ class Cart extends Model
 
     protected $guarded = [];
 
-    protected $hidden = [
-        'pivot'
-    ];
+//    protected $hidden = [
+//        'pivot'
+//    ];
 
     public function products(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {

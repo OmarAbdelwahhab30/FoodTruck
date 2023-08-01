@@ -14,14 +14,8 @@ class LoginController extends Controller
         return view("admin.auth.login");
     }
 
-    public function postLogin(Request $request)
+    public function postLogin(Request $request): \Illuminate\Http\RedirectResponse
     {
-
-        dd($request);
-        $this->validate($request, [
-            'name' => 'required',
-            'password' => 'required',
-        ]);
 
         if(auth()->guard('web')
             ->attempt(['name' => $request->input('name')

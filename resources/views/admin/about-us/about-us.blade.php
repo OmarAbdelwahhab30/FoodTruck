@@ -1,0 +1,83 @@
+@extends("admin.includes.app")
+
+@section("content")
+
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                @include("admin.bootstrapHelper.alerts")
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-0">About-Us</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item active">FoodTruck About-us</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h5 class="header-title">About-Us</h5>
+
+                                <div>
+                                    <p>
+                                        @if(isset($about->content))
+                                            {{$about->content}}
+                                    </p>
+                                    <p>
+                                        @else
+                                            Add About As to show.
+                                        @endif
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+
+                    <div class="row">
+                        <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                            <form method="post" action="{{route("admin.post.about")}}">
+                                @csrf
+                                <h4 class="card-title">Update About Us Content</h4>
+                                <div class="mb-3">
+                                    <div>
+                                        <textarea name="content" style="resize: none" required class="form-control" rows="5"></textarea>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
+                                            Submit
+                                        </button>
+                                        <button type="reset" class="btn btn-secondary waves-effect">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                                </form>
+
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+            </div> <!-- container-fluid -->
+        </div>
+            <!-- End Page-content -->
+    </div>
+
+@endsection
