@@ -13,7 +13,7 @@ class UpdateAccountInformationController extends Controller
 
     public function UpdateAccountInformation(UpdateAccountInformationRequest $request,UpdateAccountInformationService $service): \Illuminate\Http\JsonResponse
     {
-        if (! Gate::allows('update-account-information')) {
+        if (! Gate::allows('update_account-information')) {
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
         $updated = $service->UpdateAccountInformation($request);

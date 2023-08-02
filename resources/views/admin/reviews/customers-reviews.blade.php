@@ -1,7 +1,6 @@
 @extends("admin.includes.app")
 @section("addition")
     <!-- jquery-bar-rating css -->
-
     <link href="{{asset("assets/libs/jquery-bar-rating/themes/bars-1to10.css")}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset("assets/libs/jquery-bar-rating/themes/bars-horizontal.css")}}" rel="stylesheet"
           type="text/css"/>

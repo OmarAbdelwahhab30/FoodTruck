@@ -156,6 +156,18 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{route("admin.add.admins")}}">
+                            <i class="uil-dashboard"></i>
+                            <span>Add Administrator</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route("admin.update.account")}}">
+                            <i class="uil-comment-alt-edit"></i>
+                            <span>Update Account</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{route("admin.reviews.trucks")}}">
                             <i class="uil-star-half-alt"></i>
                             <span>Reviews About Trucks</span>
@@ -184,6 +196,12 @@
                         <a href="{{route("admin.terms")}}" >
                             <i class="uil-file-info-alt"></i>
                             <span>Terms&Conditions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" >
+                            <i class="uil-sign-out-alt"></i>
+                            <span>Logout</span>
                         </a>
                     </li>
 

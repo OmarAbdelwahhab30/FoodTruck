@@ -1,0 +1,138 @@
+@extends("admin.includes.app")
+@section("content")
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Add Administrator</h4>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="mt-4">
+                                            <form>
+                                                <?php
+                                                $x = 0;
+                                                ?>
+                                                <div class="col-md-3 border-right">
+                                                    <div class="">
+                                                        <img style="border-radius: 50% ; height: 250px;width: 250px"
+                                                             src="{{asset("storage/images/default.png")}}" id="image">
+                                                        <span class="font-weight-bold"></span><span
+                                                            class="text-black-50"></span><span></span>
+                                                        <input type="file" id="uploadBox" style="width: 192px;
+                                                            height: 38px;
+                                                            margin-top: 48px;
+                                                            margin-left: 21px;"
+                                                               name="image"
+                                                               class="form-control" onchange="loadFile(event);loadBtn()">
+                                                        <a>
+                                                            <script>
+                                                                var loadBtn = function() {
+                                                            if(document.getElementById("uploadBox").value !== "") {
+                                                                document.getElementById('add-btn-id').innerHTML =
+                                                                        `<button style="width: 192px;
+                                                                            height: 38px;
+                                                                             margin-top: 48px;
+                                                                          margin-left: 21px;" type="button"
+                                                                        class="btn btn-outline-success waves-effect waves-light">
+                                                                        Update Profile Picture
+                                                                    </button>`
+                                                                }
+                                                            }
+                                                            </script>
+                                                                <a id ="add-btn-id">
+                                                                </a>
+                                                            <button style="width: 192px;
+                                                            height: 38px;
+                                                            margin-top: 48px;
+                                                            margin-left: 21px;" type="button"
+                                                                    class="btn btn-outline-danger waves-effect waves-light">
+                                                                Delete Profile Picture
+                                                            </button>
+                                                          </a>
+
+                                                            <script>
+                                                                var loadFile = function(event) {
+                                                                    var x = 1;
+                                                                    var image = document.getElementById('image');
+                                                                    image.src = URL.createObjectURL(event.target.files[0]);
+                                                                    image.onload = function() {
+                                                                        URL.revokeObjectURL(image.src)
+                                                                    }
+                                                                };
+                                                            </script>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-9 ms-lg-auto">
+                                        <div class="mt-5 mt-lg-4">
+                                            <form>
+                                                <div class="row mb-4">
+                                                    <label for="horizontal-Fullname-input"
+                                                           class=" col-form-label">admin-name</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control"
+                                                               id="horizontal-Fullname-input"
+                                                               placeholder="Enter your full name">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label class="col-form-label">Email</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="email" class="form-control"
+                                                               id="horizontal-email-input"
+                                                               placeholder="Enter your email address">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label class="col-form-label">Password</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="password" class="form-control"
+                                                               id="horizontal-password-input"
+                                                               placeholder="Enter your password">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label class="col-form-label">Confirm - Password</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="password" class="form-control"
+                                                               id="horizontal-password-input"
+                                                               placeholder="Enter your password">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row justify-content-end">
+                                                    <div class="col-sm-9">
+                                                        <div class="d-flex flex-wrap gap-3">
+                                                            <button type="submit"
+                                                                    class="btn btn-primary waves-effect waves-light w-md">
+                                                                Submit
+                                                            </button>
+                                                            <button type="reset"
+                                                                    class="btn btn-outline-danger waves-effect waves-light w-md">
+                                                                Reset
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Form Layout -->
+
+
+            </div> <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+    </div>
+@endsection
