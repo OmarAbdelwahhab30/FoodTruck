@@ -20,7 +20,7 @@
         <div class="page-content">
             <div class="container-fluid">
                 @forelse($reviews as $review)
-                    <h4>Truck name | {{$review->toWhom->truck->name}}</h4>
+                    <h4>Customer name | {{$review->user->name}}</h4>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
@@ -33,7 +33,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title">
                                                 <div class="br-wrapper br-theme-css-stars">
-                                                    Customer name | {{$review->user->name}}
+                                                    Seller name | {{$review->toWhom->name}}
                                                     <div class="br-widget">
                                                         @for ($i = 0; $i < 5; $i++)
                                                             @if ($i < $review->rate)
