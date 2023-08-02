@@ -17,7 +17,7 @@ class AddCustomerReviewsService extends Service
             'review'    => $request->review,
             'rate'      => $request->rate,
             'to'        => $request->customer_id,
-            'user_id'   => $user->truck->id,
+            'user_id'   => $user->id,
             'role_id'   => 2,
         ]);
         if ($review){

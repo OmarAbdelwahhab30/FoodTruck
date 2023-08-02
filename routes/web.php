@@ -4,6 +4,8 @@ use App\Http\Controllers\admin\about\AboutController;
 use App\Http\Controllers\admin\auth\LoginController;
 use App\Http\Controllers\admin\contact\ContactUsMessagesController;
 use App\Http\Controllers\admin\home\HomeController;
+use App\Http\Controllers\admin\reviews\ReviewsAboutCustomersController;
+use App\Http\Controllers\admin\reviews\ReviewsAboutTrucksController;
 use App\Http\Controllers\admin\terms\TermsController;
 use App\Http\Controllers\Payment\PayPal\PaypalPaymentController;
 use Illuminate\Support\Facades\Route;
@@ -59,4 +61,10 @@ Route::group(['prefix' => 'admin'], function () {
 
     /*Customers messages*/
     Route::get("getCustomersMessages",[ContactUsMessagesController::class,"index"])->name("admin.customers.messages");
+
+    /*Reviews about trucks*/
+    Route::get("ReviewsAboutTrucks",[ReviewsAboutTrucksController::class,"index"])->name("admin.reviews.trucks");
+
+    /*Reviews about customers*/
+    Route::get("ReviewsAboutCustomers",[ReviewsAboutCustomersController::class,"index"])->name("admin.reviews.customers");
 });

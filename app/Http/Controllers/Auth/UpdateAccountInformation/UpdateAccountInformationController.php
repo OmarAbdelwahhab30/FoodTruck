@@ -18,7 +18,7 @@ class UpdateAccountInformationController extends Controller
         }
         $updated = $service->UpdateAccountInformation($request);
         if ($updated){
-            return $this->returnData(__("UserData"),auth("sanctum")->user(),__("responses.User Data has been updated successfully"));
+            return $this->returnData(__("UserData"),$updated,__("responses.User Data has been updated successfully"));
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }

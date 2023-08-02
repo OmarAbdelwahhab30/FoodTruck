@@ -13,7 +13,8 @@ class UpdateAccountInformationService extends Service
     public function UpdateAccountInformation($request)
     {
         $user_id = auth("sanctum")->user()->id;
-        return User::where("id",$user_id)->update(array_filter($request->all())); // except empty fields
+        User::where("id",$user_id)->update(array_filter($request->except("lang"))); // except empty fields
+        return User::find($user_id);
     }
 
     public function ChangePassword($request)

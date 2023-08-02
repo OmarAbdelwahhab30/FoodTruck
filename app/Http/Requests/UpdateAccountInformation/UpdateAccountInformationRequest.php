@@ -24,9 +24,9 @@ class UpdateAccountInformationRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'  => ['sometimes'],
-            'phone' => ['sometimes'],
-            'email' => ['sometimes'],
+            'name'  => ['sometimes','unique:users,name,'.auth()->user()->id],
+            'phone' => ['sometimes','unique:users,phone,'.auth()->user()->id],
+            'email' => ['sometimes','unique:users,email,'.auth()->user()->id],
         ];
     }
 }

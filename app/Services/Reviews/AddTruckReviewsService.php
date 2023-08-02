@@ -21,7 +21,7 @@ class AddTruckReviewsService extends Service
             $review = Review::create([
                 'review' => $request->review,
                 'rate' => $request->rate,
-                'to' => $request->to,
+                'to' => $request->to, // to whom user ?
                 'user_id' => $user->id,
                 'role_id' => 1,
             ]);

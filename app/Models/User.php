@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -44,9 +43,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(ContactUs::class);
     }
+
+    // The reviews that the user said.
     public function reviews(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function ReviewsAboutMe(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Review::class,"to");
     }
 
     public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
@@ -82,4 +88,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Payment::class);
     }
+
 }

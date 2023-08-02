@@ -8,7 +8,7 @@
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset("assets/images/favicon.ico")}}">
-
+    @yield("addition")
     <!-- Bootstrap Css -->
     <link href="{{asset("assets/css/bootstrap.min.css")}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -156,6 +156,24 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{route("admin.reviews.trucks")}}">
+                            <i class="uil-star-half-alt"></i>
+                            <span>Reviews About Trucks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route("admin.reviews.customers")}}">
+                            <i class="uil-star"></i>
+                            <span>Reviews About Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route("admin.customers.messages")}}">
+                            <i class="uil-comment-alt-message"></i>
+                            <span>Customers Messages</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{route("admin.about-us")}}">
                             <i class="uil-file-minus"></i>
                             <span>About-Us</span>
@@ -168,12 +186,7 @@
                             <span>Terms&Conditions</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{route("admin.customers.messages")}}" >
-                            <i class="uil-comment-alt-message"></i>
-                            <span>Customers Messages</span>
-                        </a>
-                    </li>
+
                 </ul>
             </div>
             <!-- Sidebar -->

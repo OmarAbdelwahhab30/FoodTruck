@@ -9,9 +9,20 @@ use App\Services\Service;
 class GetProfileReviewsService extends Service
 {
 
-    public function AllProfileReviews()
+    public function AllProfileReviews(): \Illuminate\Database\Eloquent\Collection|array
     {
         $user = auth("sanctum")->user();
-        return $user->reviews;
+        return User::with(
+            [
+                "reviews" => function($q)
+                {
+                    $q->with("toWhom",function ($qq){
+                        $qq->with("truck",function ($qqq){
+                            $qqq->with("images");
+                        });
+                    })->select("*");
+                }
+        ]
+        )->where("id",$user->id)->get();
     }
 }
