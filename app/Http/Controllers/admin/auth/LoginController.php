@@ -23,15 +23,14 @@ class LoginController extends Controller
         ){
             return redirect()->route('admin.home')->with('success','You are Logged in successfully.');
         }else {
-            return redirect()->back()->withInput()->with('error','Whoops! invalid email and password.');
+            return redirect()->back()->withInput()->with('error','Whoops! invalid name or password.');
         }
     }
 
-    public function adminLogout(Request $request): \Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
+    public function logout(Request $request): \Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
         auth()->guard('web')->logout();
         Session::flush();
-        Session::put('success', 'You are logout successfully');
-        return redirect(route('adminLogin'));
+        return redirect("/admin")->with("success","You are logged out successfully.");
     }
 }

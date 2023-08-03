@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\about\AboutController;
 use App\Http\Controllers\admin\add_admins\AddAdminController;
+use App\Http\Controllers\admin\auth\ForgetPasswordController;
 use App\Http\Controllers\admin\auth\LoginController;
 use App\Http\Controllers\admin\contact\ContactUsMessagesController;
 use App\Http\Controllers\admin\home\HomeController;
@@ -41,38 +42,53 @@ Route::get('payment-fail',[PaypalPaymentController::class,"fail"])->name('paymen
  */
 // ............authentication.........................
 
-Route::group(['prefix' => 'admin'], function () {
-
-    Route::get("/", [LoginController::class, "index"])->name("admin.login");
-    Route::post("post", [LoginController::class, "postLogin"])->name("admin.post.login");
+Route::group(['prefix' => 'admin'], function(){
 
 
-// .............Dashboard..............................
-    /*Home*/
-    Route::get("home", [HomeController::class, "index"])->name("admin.home");
-    Route::get("returnLatestCustomers",[HomeController::class,"returnLatestCustomers"])->name("admin.home.latest.customers");
+    Route::group(['middleware' => 'guest'], function(){
+        Route::get("/", [LoginController::class, "index"])->name("admin.login");
+        Route::get("/forget", [ForgetPasswordController::class, "index"])->name("admin.forget");
+        Route::post("/postForget",[ForgetPasswordController::class,'postForget'])->name("admin.post.forget");
+        Route::post("/resetPass",[ForgetPasswordController::class,'resetPass'])->name("admin.post.reset");
+        Route::get("/resetPass",[ForgetPasswordController::class,'resetPassIndex'])->name("admin.post.add.password");
 
 
-    /*About Us*/
-    Route::get("about-us",[AboutController::class,"index"])->name("admin.about-us");
-    Route::post("about-us",[AboutController::class,"PostAbout"])->name("admin.post.about");
+        Route::post("post", [LoginController::class, "postLogin"])->name("admin.post.login");
+    });
+    Route::get('logout', [LoginController::class, "logout"])->name("admin.logout");
 
-    /*Terms and Conditions*/
-    Route::get("terms",[TermsController::class,"index"])->name("admin.terms");
-    Route::post("terms",[TermsController::class,"PostTerms"])->name("admin.post.terms");
 
-    /*Customers messages*/
-    Route::get("getCustomersMessages",[ContactUsMessagesController::class,"index"])->name("admin.customers.messages");
 
-    /*Reviews about trucks*/
-    Route::get("ReviewsAboutTrucks",[ReviewsAboutTrucksController::class,"index"])->name("admin.reviews.trucks");
+    Route::group(['middleware' => 'CanAccess'], function(){
 
-    /*Reviews about customers*/
-    Route::get("ReviewsAboutCustomers",[ReviewsAboutCustomersController::class,"index"])->name("admin.reviews.customers");
+        // .............Dashboard..............................
+        Route::get("home", [HomeController::class, "index"])->name("admin.home");
+        Route::get("returnLatestCustomers",[HomeController::class,"returnLatestCustomers"])->name("admin.home.latest.customers");
 
-    /*Add admin Routes*/
-    Route::get("add-admin",[AddAdminController::class,"index"])->name("admin.add.admins");
+        /*About Us*/
+        Route::get("about-us",[AboutController::class,"index"])->name("admin.about-us");
+        Route::post("about-us",[AboutController::class,"PostAbout"])->name("admin.post.about");
 
-    /*Update admin profile controller*/
-    Route::get("admin-update_account",[UpdateAdminAccountController::class])->name("admin.update.account");
+        /*Terms and Conditions*/
+        Route::get("terms",[TermsController::class,"index"])->name("admin.terms");
+        Route::post("terms",[TermsController::class,"PostTerms"])->name("admin.post.terms");
+
+        /*Customers messages*/
+        Route::get("getCustomersMessages",[ContactUsMessagesController::class,"index"])->name("admin.customers.messages");
+
+        /*Reviews about trucks*/
+        Route::get("ReviewsAboutTrucks",[ReviewsAboutTrucksController::class,"index"])->name("admin.reviews.trucks");
+
+        /*Reviews about customers*/
+        Route::get("ReviewsAboutCustomers",[ReviewsAboutCustomersController::class,"index"])->name("admin.reviews.customers");
+
+        /*Add admin Routes*/
+        Route::get("add-admin",[AddAdminController::class,"index"])->name("admin.add.admins");
+        Route::post("AdminAddUploadImage",[AddAdminController::class,"addImage"])->name("admin.add.upload.image");
+        Route::post("AdminDeleteImage",[AddAdminController::class,"deleteImage"])->name("admin.delete.image");
+        Route::post("addAdmin",[AddAdminController::class,"addAdmin"])->name("admin.post.add");
+
+        /*Update admin profile controller*/
+        Route::get("admin-update_account",[UpdateAdminAccountController::class])->name("admin.update.account");
+    });
 });

@@ -106,8 +106,7 @@
                         <a class="dropdown-item" href="#"><i class="uil uil-user-circle font-size-18 align-middle text-muted me-1"></i> <span class="align-middle">View Profile</span></a>
                         <a class="dropdown-item" href="#"><i class="uil uil-wallet font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">My Wallet</span></a>
                         <a class="dropdown-item d-block" href="#"><i class="uil uil-cog font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">Settings</span></a>
-                        <a class="dropdown-item" href="#"><i class="uil uil-lock-alt font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">Lock screen</span></a>
-                        <a class="dropdown-item" href="#"><i class="uil uil-sign-out-alt font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">Sign out</span></a>
+                        <a class="dropdown-item" href="{{route("admin.logout")}}"><i class="uil uil-sign-out-alt font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">logout</span></a>
                     </div>
                 </div>
             </div>
@@ -199,9 +198,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" >
+                        <a href="{{route("admin.logout")}}" >
                             <i class="uil-sign-out-alt"></i>
-                            <span>Logout</span>
+                            <span>logout</span>
                         </a>
                     </li>
 

@@ -4,11 +4,9 @@
     <div class="row align-items-center justify-content-center">
         <div class="col-md-8 col-lg-6 col-xl-5">
             <div class="card">
-
                 <div class="card-body p-4">
                     <div class="text-center mt-2">
                         @include("admin.bootstrapHelper.alerts")
-
                         <h5 class="text-primary">Welcome Back !</h5>
                         <p class="text-muted">Sign in to continue to Food Truck Dashboard.</p>
                     </div>
@@ -22,7 +20,7 @@
 
                             <div class="mb-3">
                                 <div class="float-end">
-                                    <a href="auth-recoverpw.html" class="text-muted">Forgot password?</a>
+                                    <a href="{{route("admin.forget")}}" class="text-muted">Forgot password?</a>
                                 </div>
                                 <label class="form-label" for="userpassword">Password</label>
                                 <input type="password" name="password" class="form-control" id="userpassword" value="{{old("password")}}">
