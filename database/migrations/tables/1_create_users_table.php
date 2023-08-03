@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();
+            $table->string("location")->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
