@@ -33,13 +33,4 @@ class AddAdminController extends Controller
         }
         return redirect()->back()->with("error", "Some thing went wrong , try again later.");
     }
-
-    public function addImage(AddAdminImageRequest $request)
-    {
-
-    }
-
-    public function deleteImage(Request $request){
-
-    }
 }

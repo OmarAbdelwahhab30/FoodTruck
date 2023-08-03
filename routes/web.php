@@ -51,8 +51,6 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post("/postForget",[ForgetPasswordController::class,'postForget'])->name("admin.post.forget");
         Route::post("/resetPass",[ForgetPasswordController::class,'resetPass'])->name("admin.post.reset");
         Route::get("/resetPass",[ForgetPasswordController::class,'resetPassIndex'])->name("admin.post.add.password");
-
-
         Route::post("post", [LoginController::class, "postLogin"])->name("admin.post.login");
     });
     Route::get('logout', [LoginController::class, "logout"])->name("admin.logout");
@@ -89,6 +87,8 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post("addAdmin",[AddAdminController::class,"addAdmin"])->name("admin.post.add");
 
         /*Update admin profile controller*/
-        Route::get("admin-update_account",[UpdateAdminAccountController::class])->name("admin.update.account");
+        Route::get("admin_update_account",[UpdateAdminAccountController::class,"index"])->name("admin.update.account");
+        Route::post("updateProfile",[UpdateAdminAccountController::class,"updateProfile"])->name("admin.update");
+
     });
 });
