@@ -13,9 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('payments', function (Blueprint $table) {
-            $table->foreignId("customer_id")->references("id")->on("users");
-            $table->foreignId("order_id")->references("id")->on("orders")->cascadeOnUpdate()->cascadeOnDelete();
+        Schema::table('trucks', function (Blueprint $table) {
         });
     }
 
@@ -26,7 +24,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('payments', function (Blueprint $table) {
+        Schema::table('trucks', function (Blueprint $table) {
             //
         });
     }

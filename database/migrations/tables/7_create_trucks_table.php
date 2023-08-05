@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean("delivery");
             $table->string("plate_no")->unique();
             $table->decimal("delivery_price")->nullable();
+            $table->decimal("rate")->default(0);
             $table->foreignId("food_type_id")->references("id")->on("food_types")
                 ->cascadeOnDelete()->cascadeOnUpdate();
             $table->string("work_time");

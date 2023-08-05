@@ -40,9 +40,9 @@ class Order extends Model
         return $this->belongsTo(Truck::class);
     }
 
-    public function payments(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function payment(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasMany(Payment::class);
+        return $this->belongsTo(Payment::class);
     }
 
 

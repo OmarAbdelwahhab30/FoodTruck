@@ -5,6 +5,7 @@ namespace App\Services\Reviews;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reviews\TruckReviewsRequest;
 use App\Models\Review;
+use App\Models\Truck;
 use App\Models\User;
 use App\Services\Service;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class AddTruckReviewsService extends Service
                 'user_id' => $user->id,
                 'role_id' => 1,
             ]);
+            $this->UpdateTruckRate($request->to,$request->rate);
             if ($review){
                 return true;
             }
@@ -39,6 +41,14 @@ class AddTruckReviewsService extends Service
             return false;
         }
         return true;
+    }
+
+    private function UpdateTruckRate($IdOfTruckOwner,$CurrentRate)
+    {
+        $truck = Truck::where("user_id",$IdOfTruckOwner)->first();
+        $total_rate = ($truck->rate + $CurrentRate)/5;
+        $truck->rate = $total_rate;
+        $truck->save();
     }
 
 

@@ -4,7 +4,7 @@
 
         <div class="page-content">
             <div class="container-fluid">
-
+                @include("admin.bootstrapHelper.alerts")
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
@@ -66,7 +66,6 @@
                                                             <img style="margin-top: 89px;"
                                                                  src="{{asset($truck->license)}}" alt=""
                                                                  class="img-fluid mx-auto d-block tab-img rounded responsive">
-                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -83,7 +82,7 @@
                                                 </div>
 
                                                 <h5 class="mt-4 pt-2">Delivery Price : <span
-                                                        class="text-danger font-size-14 ms-2">{{$truck->delivery_price}} R.S</span>
+                                                        class="text-danger font-size-14 ms-2">{{$truck->delivery_price}} S.R</span>
                                                 </h5>
 
                                                 <div>
@@ -153,10 +152,17 @@
                                                                                 </div>
                                                                             </a>
                                                                         </li>
+
                                                                     @empty
                                                                         There is no images to show !
                                                                     @endforelse
                                                                 </ul>
+                                                               <a href="{{url("admin/searchOrders/".$truck->id)}}"
+                                                                        class="btn btn-info waves-effect waves-light w-100 text-white border text-decoration-none"
+                                                                        type="button" >
+                                                                    Go To Orders <i class="uil uil-arrow-right ms-2"></i>
+                                                                    </a>
+
                                                             </div>
                                                         </div>
                                                     </div>

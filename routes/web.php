@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\auth\LoginController;
 use App\Http\Controllers\admin\contact\ContactUsMessagesController;
 use App\Http\Controllers\admin\control_trucks\ControlTrucksController;
 use App\Http\Controllers\admin\home\HomeController;
+use App\Http\Controllers\admin\ownerPercentage\UpdateOwnerPercentageController;
 use App\Http\Controllers\admin\reviews\ReviewsAboutCustomersController;
 use App\Http\Controllers\admin\reviews\ReviewsAboutTrucksController;
 use App\Http\Controllers\admin\terms\TermsController;
@@ -97,5 +98,13 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post("searchTruck",[ControlTrucksController::class,"index"])->name("admin.truck.search");
         Route::get("getProductsInsideEachSection/{section_id}",[ControlTrucksController::class,"getProducts"]);
         Route::post("deleteProduct",[ControlTrucksController::class,"deleteProduct"])->name("admin.product.delete");
+        Route::get("searchOrders/{truck_id?}",[ControlTrucksController::class,"orders"])->name("admin.orders.search");
+        Route::get("getTruckOrders",[ControlTrucksController::class,"getTruckOrders"])->name("truck.orders.post");
+        Route::get("display_orders",[ControlTrucksController::class,"display_orders"])->name("admin.display.orders");
+        Route::post("DeleteOrder",[ControlTrucksController::class,"deleteOrder"])->name("admin.order.delete");
+
+
+        /*Owner Percentage*/
+        Route::get("owner-percentage",[UpdateOwnerPercentageController::class,"index"])->name("admin.ownerPer.index");
     });
 });

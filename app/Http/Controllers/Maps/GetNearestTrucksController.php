@@ -15,7 +15,7 @@ class GetNearestTrucksController extends Controller
         if (!Gate::allows("find-nearest-trucks")){
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
-        $trucks = $service->GetNearestTrucks($request);
+        $trucks = $service->GetNearestTrucks();
         if ($trucks){
             return $this->returnData(__("Users"),$trucks,__("responses.Here are the nearest Trucks"));
         }

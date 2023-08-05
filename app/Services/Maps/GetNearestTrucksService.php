@@ -16,11 +16,13 @@ class GetNearestTrucksService extends Service
         $latitude = auth("sanctum")->user()->latitude;
         $longitude = auth("sanctum")->user()->longitude;
 
-        $radius = 2000;
+        $radius = 300;
 
         return User::where("role_id", 2)
-            ->with("truck","truck.images")
             ->withinRadius($latitude, $longitude, $radius)
+            ->with(["truck" => function($q){
+                $q->with("images");
+            }])
             ->get();
 
     }

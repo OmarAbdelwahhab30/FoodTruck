@@ -39,7 +39,7 @@
                                                         <p class="text-muted font-size-13">{{$product->description}}</p>
 
                                                         <h5 class="mt-3 mb-0"><span class="text-muted me-2"></span>
-                                                            {{$product->price}} R.S
+                                                            {{$product->price}} S.R
                                                         </h5>
                                                         <div>
                                                             <button type="button" class="btn btn-danger mt-4 w-75" data-bs-toggle="modal" data-bs-target="#exampleModal">
