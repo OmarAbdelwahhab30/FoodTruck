@@ -13,7 +13,7 @@ class SetUsersLocationService extends Service
     {
         $user_id = auth("sanctum")->user()->id;
         $user = User::find($user_id);
-        $user->location  = $request->location;
+        $user->address  = $request->address;
         $user->latitude  = $request->latitude;
         $user->longitude = $request->longitude;
         if ($user->save()) {

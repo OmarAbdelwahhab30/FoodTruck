@@ -29,6 +29,7 @@
                                                                name="image"
                                                                class="form-control"
                                                                onchange="loadFile(event);loadBtn();">
+                                                        <input type="hidden" name="def" id="def">
                                                         <a>
                                                             <script>
                                                                 var loadFile = function (event) {
@@ -40,6 +41,7 @@
                                                                     }
                                                                 };
                                                                 var loadBtn = function () {
+                                                                    document.getElementById("def").value =''
                                                                     document.getElementById('dlt-link').innerHTML =
                                                                         `<button style="width: 192px;
                                                                         height: 38px;
@@ -53,11 +55,20 @@
                                                                 }
                                                                 var deleteImage = function () {
                                                                     document.getElementById("image").src = "{{asset("storage/images/default.png")}}";
-                                                                    document.getElementById("uploadBox").value = null;
                                                                     document.getElementById("dlt-btn").style.display = "none";
+                                                                    document.getElementById("def").value ='default.png' ;
                                                                 }
                                                             </script>
                                                             <a id="dlt-link">
+                                                                <button style="width: 192px;
+                                                                        height: 38px;
+                                                                        display: block;
+                                                                        margin-top: 48px;
+                                                                        margin-left: 21px;" type="button" onclick="deleteImage()"
+                                                                        id="dlt-btn"
+                                                                        class="btn btn-outline-danger waves-effect waves-light">
+                                                                    Delete Profile Picture
+                                                                </button>
                                                             </a>
                                                         </a>
                                                     </div>

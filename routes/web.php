@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\add_admins\AddAdminController;
 use App\Http\Controllers\admin\auth\ForgetPasswordController;
 use App\Http\Controllers\admin\auth\LoginController;
 use App\Http\Controllers\admin\contact\ContactUsMessagesController;
+use App\Http\Controllers\admin\control_trucks\ControlTrucksController;
 use App\Http\Controllers\admin\home\HomeController;
 use App\Http\Controllers\admin\reviews\ReviewsAboutCustomersController;
 use App\Http\Controllers\admin\reviews\ReviewsAboutTrucksController;
@@ -90,5 +91,11 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get("admin_update_account",[UpdateAdminAccountController::class,"index"])->name("admin.update.account");
         Route::post("updateProfile",[UpdateAdminAccountController::class,"updateProfile"])->name("admin.update");
 
+
+        /*Control Truck*/
+        Route::get("controlTrucks",[ControlTrucksController::class,"index"])->name("admin.control.trucks");
+        Route::post("searchTruck",[ControlTrucksController::class,"index"])->name("admin.truck.search");
+        Route::get("getProductsInsideEachSection/{section_id}",[ControlTrucksController::class,"getProducts"]);
+        Route::post("deleteProduct",[ControlTrucksController::class,"deleteProduct"])->name("admin.product.delete");
     });
 });

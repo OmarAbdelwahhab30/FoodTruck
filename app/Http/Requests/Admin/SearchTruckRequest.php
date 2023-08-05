@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Maps;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EnterLocationRequest extends FormRequest
+class SearchTruckRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
@@ -21,12 +21,10 @@ class EnterLocationRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'address'  => 'string|required',
-            'longitude' => 'required',
-            'latitude'  => 'required',
+            'search'    => ['required'],
         ];
     }
 }

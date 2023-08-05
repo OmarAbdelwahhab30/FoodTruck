@@ -75,6 +75,8 @@ class SellerRegisterService extends Service implements RegisterInterface
 
             $truck = $this->addTruck($request,$user->id);
 
+            $this->addTruckID($user,$truck->id);
+
             $this->addTruckImages($request->file("truck_images"),$truck->id);
 
             $user->TruckData = $truck;
@@ -87,6 +89,10 @@ class SellerRegisterService extends Service implements RegisterInterface
         });
     }
 
+    private function addTruckID($user , $truck_id){
+        $user->truck_id = $truck_id;
+        $user->save();
+    }
     private function uploadLicenseImage($Image)
     {
         return $this->UploadFile($Image,"/images/licenses");

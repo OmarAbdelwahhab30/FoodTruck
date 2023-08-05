@@ -167,6 +167,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{route("admin.control.trucks")}}">
+                            <i class="bx bxs-truck"></i>
+                            <span>Control Trucks</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{route("admin.reviews.trucks")}}">
                             <i class="uil-star-half-alt"></i>
                             <span>Reviews About Trucks</span>
@@ -344,7 +350,16 @@
     </div> <!-- end slimscroll-menu-->
 </div>
 <!-- /Right-bar -->
-
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <script>document.write(new Date().getFullYear())</script> © FoodTruck.
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
 <!-- Right bar overlay-->
 <div class="rightbar-overlay"></div>
 

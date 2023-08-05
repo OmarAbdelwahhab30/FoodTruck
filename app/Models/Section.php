@@ -21,8 +21,8 @@ class Section extends Model
         return $this->belongsTo(Truck::class);
     }
 
-    public function products(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    public function products(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasManyThrough(Product::class,Truck::class);
+        return $this->hasMany(Product::class);
     }
 }
