@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string("phone")->unique();
             $table->string("email")->nullable();
             $table->string("image")->nullable();
+            $table->boolean("active")->default(1);
+            $table->boolean("accepted")->nullable();
             $table->string('address')->nullable();
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();

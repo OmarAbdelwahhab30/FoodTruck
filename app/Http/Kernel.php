@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AccountState;
 use App\Http\Middleware\IsAuthenticated;
 use App\Http\Middleware\Permissions\GateDefineMiddleware;
 use App\Http\Middleware\SwitchLanguage;
@@ -49,6 +50,7 @@ class Kernel extends HttpKernel
             SubstituteBindings::class,
             GateDefineMiddleware::class,
             SwitchLanguage::class,
+            AccountState::class,
         ],
     ];
 

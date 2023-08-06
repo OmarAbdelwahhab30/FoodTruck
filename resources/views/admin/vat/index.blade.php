@@ -9,15 +9,15 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Owner Percentage !</h4>
-                                <p class="card-title-desc">Here, You can Update Owner Percentage .</p>
-                                <form method="post" action="{{route("admin.percentage.update")}}">
+                                <h4 class="card-title">Value Added Tax !</h4>
+                                <p class="card-title-desc">Here, You can update the value added tax.</p>
+                                <form method="post" action="{{route("admin.vat.update")}}">
                                     @csrf
                                     <div class="row align-items-center justify-content-center">
                                         <div class="col-sm-6">
                                             <div class="">
                                                 <label for="form-sm-input">The entered value must be only number between 1 an 100</label>
-                                                <input  class="form-control form-control-sm" type="number" step="1" min="1" max="100" name="value"
+                                                <input  class="form-control form-control-sm" type="number" min="1" max="100"  name="value"
                                                                                           id="form-sm-input"
                                                                                           placeholder="ex: 15">
                                                 <button type="submit"

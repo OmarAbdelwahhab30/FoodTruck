@@ -50,6 +50,8 @@ class SellerRegisterService extends Service implements RegisterInterface
             'phone' => $request->phone,
             'password'  => Hash::make($request->password),
             'role_id'   => $this->GetRoleID($request->role),
+            'active'    => 1,
+            'accepted'  => 0,
             'image'     => $request->file("image") !== null ?
                 env("APP_URL")."/storage/images/users/".$this->uploadUserImage($request->file("image"))
                 :env("APP_URL")."/storage/images/default.png",

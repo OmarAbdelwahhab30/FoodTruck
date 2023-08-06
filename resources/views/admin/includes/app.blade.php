@@ -211,6 +211,24 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{route("admin.delivery.price.index")}}">
+                            <i class="uil-bitcoin-alt"></i>
+                            <span>Delivery Price</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route("admin.control.customers")}}">
+                            <i class="uil-user"></i>
+                            <span>Control Customers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route("admin.vat.index")}}">
+                            <i class="uil-focus-add"></i>
+                            <span>Value Added Tax</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{route("admin.about-us")}}">
                             <i class="uil-file-minus"></i>
                             <span>About-Us</span>

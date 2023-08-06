@@ -5,7 +5,6 @@
 <!-- Start right Content here -->
 <!-- ============================================================== -->
 <div class="main-content">
-
     <div class="page-content">
         <div class="container-fluid">
             @include("admin.bootstrapHelper.alerts")
@@ -35,7 +34,7 @@
                                 <div id="total-revenue-chart" data-colors='["--bs-primary"]'></div>
                             </div>
                             <div>
-                                <h4 class="mb-1 mt-1"><span data-plugin="counterup">{{$reviews_count}}</span></h4>
+                                <h4 class="mb-1 mt-1"><span data-plugin="">{{$reviews_count}}</span></h4>
                                 <p class="text-muted mb-0">Total Reviews</p>
                             </div>
                         </div>
@@ -49,7 +48,7 @@
                                 <div id="orders-chart" data-colors='["--bs-success"]'> </div>
                             </div>
                             <div>
-                                <h4 class="mb-1 mt-1"><span data-plugin="counterup">{{$orders_count}}</span></h4>
+                                <h4 class="mb-1 mt-1"><span data-plugin="">{{$orders_count}}</span></h4>
                                 <p class="text-muted mb-0">Orders</p>
                             </div>
                         </div>
@@ -63,7 +62,7 @@
                                 <div id="orders-chart" data-colors='["--bs-success"]'> </div>
                             </div>
                             <div>
-                                <h4 class="mb-1 mt-1"><span data-plugin="counterup">{{$customers_count}}</span></h4>
+                                <h4 class="mb-1 mt-1"><span data-plugin="">{{$customers_count}}</span></h4>
                                 <p class="text-muted mb-0">Customers</p>
                             </div>
                         </div>
@@ -76,7 +75,7 @@
                                 <div id="orders-chart" data-colors='["--bs-success"]'> </div>
                             </div>
                             <div>
-                                <h4 class="mb-1 mt-1"><span data-plugin="counterup">{{$trucks_count}}</span></h4>
+                                <h4 class="mb-1 mt-1"><span data-plugin="">{{$trucks_count}}</span></h4>
                                 <p class="text-muted mb-0">Trucks</p>
                             </div>
                         </div>
@@ -282,8 +281,6 @@
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
-
-
     <footer class="footer">
         <div class="container-fluid">
             <div class="row">

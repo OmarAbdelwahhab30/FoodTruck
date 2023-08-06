@@ -13,7 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('trucks', function (Blueprint $table) {
+        Schema::create('values', function (Blueprint $table) {
+            $table->id();
+            $table->decimal("owner_percentage")->nullable();
+            $table->decimal("kilo_price")->nullable();
+            $table->decimal("vat")->nullable();
         });
     }
 
@@ -24,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('trucks', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('values');
     }
 };

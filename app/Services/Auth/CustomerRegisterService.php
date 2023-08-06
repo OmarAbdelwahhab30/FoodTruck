@@ -20,6 +20,8 @@ class CustomerRegisterService extends Service implements RegisterInterface
             'password'  => Hash::make($request->password),
             'email'     => $request->email,
             'role_id'   => $Role_ID,
+            'active'    => 1,
+            'accepted'  => null,
             'image'     => $request->file("image") !== null ?
                 env("APP_URL")."/storage/images/users/".$this->uploadUserImage($request->file("image"))
                 :env("APP_URL")."/storage/images/default.png",

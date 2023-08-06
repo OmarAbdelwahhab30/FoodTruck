@@ -13,8 +13,6 @@ class IsAuthenticated
     {
         if (!Auth::check())
             return redirect('/admin');
-
         return $next($request);
-
     }
 }

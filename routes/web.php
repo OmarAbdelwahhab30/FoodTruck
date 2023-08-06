@@ -6,12 +6,15 @@ use App\Http\Controllers\admin\auth\ForgetPasswordController;
 use App\Http\Controllers\admin\auth\LoginController;
 use App\Http\Controllers\admin\contact\ContactUsMessagesController;
 use App\Http\Controllers\admin\control_trucks\ControlTrucksController;
+use App\Http\Controllers\admin\controlCustomers\ControlCustomersController;
+use App\Http\Controllers\admin\deliveryPrice\UpdateDeliveryPriceController;
 use App\Http\Controllers\admin\home\HomeController;
 use App\Http\Controllers\admin\ownerPercentage\UpdateOwnerPercentageController;
 use App\Http\Controllers\admin\reviews\ReviewsAboutCustomersController;
 use App\Http\Controllers\admin\reviews\ReviewsAboutTrucksController;
 use App\Http\Controllers\admin\terms\TermsController;
 use App\Http\Controllers\admin\update_account\UpdateAdminAccountController;
+use App\Http\Controllers\admin\vat\UpdateValueAddedTaxController;
 use App\Http\Controllers\Payment\PayPal\PaypalPaymentController;
 use Illuminate\Support\Facades\Route;
 
@@ -106,5 +109,20 @@ Route::group(['prefix' => 'admin'], function(){
 
         /*Owner Percentage*/
         Route::get("owner-percentage",[UpdateOwnerPercentageController::class,"index"])->name("admin.ownerPer.index");
+        Route::post("updatePercentage",[UpdateOwnerPercentageController::class,"update"])->name("admin.percentage.update");
+
+        /*Delivery Price*/
+        Route::get("Delivery-price",[UpdateDeliveryPriceController::class,"index"])->name("admin.delivery.price.index");
+        Route::post("updateKiloPrice",[UpdateDeliveryPriceController::class,"update"])->name("admin.kilo.price");
+
+        /*VAT*/
+        Route::get("Value-Added",[UpdateValueAddedTaxController::class,"index"])->name("admin.vat.index");
+        Route::post("UpdateValueAdded",[UpdateValueAddedTaxController::class,"update"])->name("admin.vat.update");
+
+        /*Control customers**/
+        Route::get("control-customers",[ControlCustomersController::class,'index'])->name("admin.control.customers");
+        Route::get("search/{phone}",[ControlCustomersController::class,'search'])->name("admin.customer.search");
+        Route::get("searchIndex",[ControlCustomersController::class,'search_index']);
+
     });
 });

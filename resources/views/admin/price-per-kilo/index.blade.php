@@ -9,17 +9,17 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Owner Percentage !</h4>
-                                <p class="card-title-desc">Here, You can Update Owner Percentage .</p>
-                                <form method="post" action="{{route("admin.percentage.update")}}">
+                                <h4 class="card-title">Price Per Kilo !</h4>
+                                <p class="card-title-desc">Here, You can update price per kilo for delivery .</p>
+                                <form method="post" action="{{route("admin.kilo.price")}}">
                                     @csrf
                                     <div class="row align-items-center justify-content-center">
                                         <div class="col-sm-6">
                                             <div class="">
-                                                <label for="form-sm-input">The entered value must be only number between 1 an 100</label>
-                                                <input  class="form-control form-control-sm" type="number" step="1" min="1" max="100" name="value"
+                                                <label for="form-sm-input"></label>
+                                                <input  class="form-control form-control-lg" type="number" min="1"  name="value"
                                                                                           id="form-sm-input"
-                                                                                          placeholder="ex: 15">
+                                                                                          placeholder="ex: price">
                                                 <button type="submit"
                                                         class="btn btn-success waves-effect waves-light mt-4 w-100">
                                                     <i class="uil uil-check me-2"></i> Update
