@@ -24,7 +24,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Customers</h4>
+                                <h4 class="card-title mb-4">Users</h4>
                                 <div class="table-responsive">
                                     <table class="table table-centered table-nowrap mb-0">
                                         <thead class="table-light">
@@ -46,7 +46,7 @@
                                         </thead>
                                         <tbody>
 
-                                        @foreach($customers as $customer)
+                                        @foreach($users as $user)
                                             <tr>
                                                 <td>
                                                     <div class="form-check font-size-16">
@@ -56,24 +56,24 @@
                                                     </div>
                                                 </td>
                                                 <td><a href="javascript: void(0);"
-                                                       class="text-body fw-bold">#0000{{$customer->id}}</a></td>
-                                                <td>{{$customer->name}}</td>
+                                                       class="text-body fw-bold">#0000{{$user->id}}</a></td>
+                                                <td>{{$user->name}}</td>
                                                 <td>
-                                                    <img src="{{asset($customer->image)}}" alt="profile Pic" height="50"
+                                                    <img src="{{asset($user->image)}}" alt="profile Pic" height="50"
                                                          width="50" style="border-radius:50px">
                                                 </td>
                                                 <td>
-                                                    {{isset($customer->email)? $customer->email:"NO EMAIL FOUND"}}
+                                                    {{isset($user->email)? $user->email:"NO EMAIL FOUND"}}
                                                 </td>
                                                 <td>
-                                                    {{$customer->phone}}
+                                                    {{$user->phone}}
                                                 </td>
                                                 <td>
-                                                    {{$customer->created_at}}
+                                                    {{$user->created_at}}
                                                 </td>
                                                 <td>
                                                     <?php
-                                                        $x = $customer->active==0 ? "success":"danger";
+                                                        $x = $user->active==0 ? "success":"danger";
                                                     ?>
                                                     <button type="button"
                                                             class="btn btn-outline-{{$x}} waves-effect waves-light">
@@ -84,7 +84,7 @@
                                         @endforeach
                                         </tbody>
                                     </table>
-                                    {{$customers->links()}}
+                                    {{$users->links()}}
                                 </div>
                                 <!-- end table-responsive -->
                             </div>

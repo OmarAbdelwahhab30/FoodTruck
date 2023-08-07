@@ -6,12 +6,13 @@ use App\Http\Controllers\admin\auth\ForgetPasswordController;
 use App\Http\Controllers\admin\auth\LoginController;
 use App\Http\Controllers\admin\contact\ContactUsMessagesController;
 use App\Http\Controllers\admin\control_trucks\ControlTrucksController;
-use App\Http\Controllers\admin\controlCustomers\ControlCustomersController;
+use App\Http\Controllers\admin\controlCustomers\ControlUsersController;
 use App\Http\Controllers\admin\deliveryPrice\UpdateDeliveryPriceController;
 use App\Http\Controllers\admin\home\HomeController;
 use App\Http\Controllers\admin\ownerPercentage\UpdateOwnerPercentageController;
 use App\Http\Controllers\admin\reviews\ReviewsAboutCustomersController;
 use App\Http\Controllers\admin\reviews\ReviewsAboutTrucksController;
+use App\Http\Controllers\admin\SellerRequests\SellerRequestsController;
 use App\Http\Controllers\admin\terms\TermsController;
 use App\Http\Controllers\admin\update_account\UpdateAdminAccountController;
 use App\Http\Controllers\admin\vat\UpdateValueAddedTaxController;
@@ -120,9 +121,14 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post("UpdateValueAdded",[UpdateValueAddedTaxController::class,"update"])->name("admin.vat.update");
 
         /*Control customers**/
-        Route::get("control-customers",[ControlCustomersController::class,'index'])->name("admin.control.customers");
-        Route::get("search/{phone}",[ControlCustomersController::class,'search'])->name("admin.customer.search");
-        Route::get("searchIndex",[ControlCustomersController::class,'search_index']);
+        Route::get("control-customers",[ControlUsersController::class,'index'])->name("admin.control.customers");
+        Route::post("search",[ControlUsersController::class,'search'])->name("admin.customer.search");
+        Route::get("searchIndex",[ControlUsersController::class,'search_index']);
+        Route::get("active/{user_id}",[ControlUsersController::class,"changeAccountState"])->name("admin.user.active");
 
+        /*Selles Request*/
+        Route::get("SellersRequests",[SellerRequestsController::class,"index"])->name("admin.show.requests");
+        Route::get("SellersRequests",[SellerRequestsController::class,"index"])->name("admin.show.requests");
+        Route::get("previewRequests",[SellerRequestsController::class,"preview"])->name("admin.preview.requests");
     });
 });

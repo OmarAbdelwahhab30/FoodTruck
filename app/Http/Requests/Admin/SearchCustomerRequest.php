@@ -24,7 +24,7 @@ class SearchCustomerRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone' => ['required']
+            'phone' => ['required','exists:users,phone','numeric']
         ];
     }
 }

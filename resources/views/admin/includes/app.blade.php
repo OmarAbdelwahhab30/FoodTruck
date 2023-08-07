@@ -219,7 +219,13 @@
                     <li>
                         <a href="{{route("admin.control.customers")}}">
                             <i class="uil-user"></i>
-                            <span>Control Customers</span>
+                            <span>Control Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route("admin.show.requests")}}">
+                            <i class="uil-plus-circle"></i>
+                            <span>Sellers Requests</span>
                         </a>
                     </li>
                     <li>

@@ -13,8 +13,10 @@ class AccountState
 
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->active == 0){
-            return $this->returnError("Your Account is deactivated by the owner. Contact with the technical support.");
+        if (Auth::check()) {
+            if (auth()->user()->active == 0) {
+                return $this->returnError("Your Account is deactivated by the owner. Contact with the technical support.");
+            }
         }
         return $next($request);
     }
