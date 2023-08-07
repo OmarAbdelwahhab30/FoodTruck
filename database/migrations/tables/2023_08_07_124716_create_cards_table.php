@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('carts', function (Blueprint $table) {
-            $table->foreignId("user_id")->references("id")->on("users")->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId("truck_id")->references("id")->on("trucks")->cascadeOnUpdate()->cascadeOnDelete();
+        Schema::create('cards', function (Blueprint $table) {
+            $table->id();
+            $table->string("name_on_card");
+            $table->string("card_number");
+            $table->string("expiry_date");
+            $table->string("cvv");
+            $table->string("card_Type");
+            $table->timestamps();
         });
     }
 
@@ -26,8 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('carts', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('cards');
     }
 };

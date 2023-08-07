@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('carts', function (Blueprint $table) {
-            $table->foreignId("user_id")->references("id")->on("users")->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId("truck_id")->references("id")->on("trucks")->cascadeOnUpdate()->cascadeOnDelete();
+        Schema::table('cards', function (Blueprint $table) {
+            $table->foreignId("user_id")->nullable()->references("id")
+                ->on("users")->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('carts', function (Blueprint $table) {
+        Schema::table('cards', function (Blueprint $table) {
             //
         });
     }
