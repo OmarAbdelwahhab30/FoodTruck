@@ -4,141 +4,216 @@
 
         <div class="page-content">
             <div class="container-fluid">
+                @include("admin.bootstrapHelper.alerts")
                 <!-- start page title -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-xl-5">
-                                        <div class="product-detail">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                                        <img style="margin-top: 89px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnTe7DBAVX9O7EJoTKsF782pX4rP9I894jew&amp;usqp=CAU" alt="" class="img-fluid mx-auto d-block tab-img rounded responsive">
+                @if(isset($truck))
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-xl-5">
+                                            <div class="product-detail">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                            <p class="align-center">Plate number</p>
+                                                            <img style="margin-top: 89px;" src="{{asset($truck->license)}}" alt="" class="img-fluid mx-auto d-block tab-img rounded responsive">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-7">
-                                        <div class="mt-4 mt-xl-3 ps-xl-4">
-                                            <h5 class="font-size-14"><a href="#" class="text-muted">FoodTruck.</a>
-                                            </h5>
-                                            <h4 class="font-size-20 mb-3">omar_Truck</h4>
+                                        <div class="col-xl-7">
+                                            <div class="mt-4 mt-xl-3 ps-xl-4">
+                                                <h5 class="font-size-14"><a href="#" class="text-muted">FoodTruck.</a>
+                                                </h5>
+                                                <h4 class="font-size-20 mb-3">{{$truck->name}}</h4>
+                                                <h5 class="mt-4 pt-2">Delivery Price : <span class="text-danger font-size-14 ms-2">{{$truck->delivery_price}} S.R</span>
+                                                </h5>
 
-                                            <div class="text-muted">
-                                                26 Reviews
-                                            </div>
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="mt-3">
+                                                                <h5 class="font-size-14">Information :</h5>
+                                                                <ul class="list-unstyled product-desc-list text-muted">
+                                                                    @if($truck->delivery == 1)
+                                                                        <li>
+                                                                            <i class="uil uil-exchange text-primary me-1 font-size-16"></i>
+                                                                            Truck supports delivery
+                                                                        </li>
+                                                                    @else
+                                                                        <li>
+                                                                            <i class="uil uil-exchange text-primary me-1 font-size-16"></i>
+                                                                            Truck doesn't support delivery
+                                                                        </li>
+                                                                    @endif
+                                                                    <li>
+                                                                        <i class="uil-server-network-alt text-primary me-1 font-size-16"></i>
+                                                                        Work-time : {{$truck->work_time}}
+                                                                    </li>
+                                                                    <li>
+                                                                        <i class="uil-parking-square text-primary me-1 font-size-16"></i>
+                                                                        Plate-number : {{$truck->plate_no}}
+                                                                    </li>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-7 col-sm-8">
+                                                                            <div class="product-desc-color mt-3">
+                                                                                <h5 class="font-size-14">Truck Images :</h5>
+                                                                                <ul class="list-inline">
+                                                                                    @foreach($truck->images as $image)
+                                                                                    <li class="list-inline-item">
+                                                                                        <a href="#" class="active" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Gray">
+                                                                                            <div class="product-color-item">
+                                                                                                <img src="{{asset($image->image)}}" alt="" class="avatar-md">
+                                                                                            </div>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    @endforeach
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                            <h5 class="mt-4 pt-2">Delivery Price : <span class="text-danger font-size-14 ms-2">0.00 S.R</span>
-                                            </h5>
+                                                    <div class="mt-3">
 
-                                            <div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="mt-3">
-                                                            <h5 class="font-size-14">Information :</h5>
-                                                            <ul class="list-unstyled product-desc-list text-muted">
-                                                                <li>
-                                                                    <i class="uil uil-exchange text-primary me-1 font-size-16"></i>
-                                                                    Truck doesn't support delivery
-                                                                </li>
-                                                                <li>
-                                                                    <i class="uil-server-network-alt text-primary me-1 font-size-16"></i>
-                                                                    Work-time : 09:00-22:00
-                                                                </li>
-                                                                <li>
-                                                                    <i class="uil-parking-square text-primary me-1 font-size-16"></i>
-                                                                    Plate-number : 1456-aaa
-                                                                </li>
-                                                                <div class="row">
-                                                                    <div class="col-lg-7 col-sm-8">
-                                                                        <div class="product-desc-color mt-3">
-                                                                            <h5 class="font-size-14">Truck Images :</h5>
-                                                                            <ul class="list-inline">
-                                                                                <li class="list-inline-item">
-                                                                                    <a href="#" class="active" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Gray">
-                                                                                        <div class="product-color-item">
-                                                                                            <img src="https://img.freepik.com/premium-psd/food-truck-mockup_472818-69.jpg" alt="" class="avatar-md">
-                                                                                        </div>
-                                                                                    </a>
-                                                                                </li>
+                                                        <h5 class="font-size-14 mb-3"><i class="uil uil-location-pin-alt font-size-20 text-primary align-middle me-2"></i>
+                                                            Truck location</h5>
 
-                                                                                <li class="list-inline-item">
-                                                                                    <a href="#" class="active" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Gray">
-                                                                                        <div class="product-color-item">
-                                                                                            <img src="https://img.freepik.com/premium-psd/food-truck-mockup_472818-69.jpg" alt="" class="avatar-md">
-                                                                                        </div>
-                                                                                    </a>
-                                                                                </li>
+                                                        <div class="d-inline-flex">
 
-                                                                                <li class="list-inline-item">
-                                                                                    <a href="#" class="active" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Gray">
-                                                                                        <div class="product-color-item">
-                                                                                            <img src="https://img.freepik.com/premium-psd/food-truck-mockup_472818-69.jpg" alt="" class="avatar-md">
-                                                                                        </div>
-                                                                                    </a>
-                                                                                </li>
+                                                            <div class="input-group mb-3">
+                                                                @if(isset($truck->user->address))
+                                                                    <p>{{$truck->user->address}}</p>
+                                                                @else
+                                                                    <p>There is no location until now.</p>
+                                                                @endif
+                                                            </div>
+                                                        </div>
 
-                                                                                <li class="list-inline-item">
-                                                                                    <a href="#" class="active" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Gray">
-                                                                                        <div class="product-color-item">
-                                                                                            <img src="https://img.freepik.com/premium-psd/food-truck-mockup_472818-69.jpg" alt="" class="avatar-md">
-                                                                                        </div>
-                                                                                    </a>
-                                                                                </li>
-                                                                            </ul>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="mt-3">
+                                                                <hr>
+                                                                <ul class="list-unstyled product-desc-list text-muted">
+                                                                    <li>
+                                                                        <div class="mt-3">
+
+                                                                            <button  type="submit"
+                                                                                     data-bs-toggle="modal" data-bs-target="#ss"
+                                                                                     class="btn btn-outline-success btn-sm waves-effect waves-light mb-1 w-50">
+                                                                                Accept</button>
+                                                                        </div>
+                                                                        <div class="modal fade" id="ss" tabindex="-1" role="dialog" aria-labelledby="ss" aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="ss">Modal title</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <form method="post" action="{{route("admin.accept.seller")}}">
+                                                                                            @csrf
+                                                                                            <div class="modal-body">
+                                                                                                <div class="mb-3">
+                                                                                                    <label for="message-text" class="col-form-label">Are you sure to accept the seller ?</label>
+                                                                                                    <input type="hidden" name="seller_id" value="{{$truck->user->id}}">
+                                                                                                    <input type="hidden" name="phone" value="{{$truck->user->phone}}">
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                    <button type="submit" class="btn btn-soft-success">Accept</button>
+                                                                                                </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </li>
+                                                                    <li>
+                                                                        <button  type="button"
+                                                                                 data-toggle="modal" data-target="#exampleModal"
+                                                                                 data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                                 class="btn btn-outline-danger btn-sm waves-effect waves-light mb-1 w-50">
+                                                                            Reject</button>
+                                                                    </li>
+                                                                </ul>
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLabel"> SMS Message !</h5>
+                                                                                <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                            <form method="post" action="{{route("admin.reject.seller")}}">                                                                                    <div class="mb-3">
+                                                                                        <label for="message-text" class="col-form-label">Send a reason in a message as SMS to the seller.:</label>
+                                                                                        <textarea class="form-control" name="message"  id="message-text"  style="resize: none;height: 200px"></textarea>
+                                                                                    </div>
+
+                                                                            <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Close</button>
+                                                                                @csrf
+                                                                                <input type="hidden" name="seller_id" value="{{$truck->user->id}}">
+                                                                                <input type="hidden" name="phone" value="{{$truck->user->phone}}">
+                                                                                <button type="submit" class="btn btn-soft-danger">Reject</button>
+                                                                            </form>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
 
-                                                <div class="mt-3">
 
-                                                    <h5 class="font-size-14 mb-3"><i class="uil uil-location-pin-alt font-size-20 text-primary align-middle me-2"></i>
-                                                        Truck location</h5>
+{{--                                                                    <div class="modal fade" id="ss" tabindex="-1" role="dialog" aria-labelledby="ss" aria-hidden="false">--}}
+{{--                                                                        <div class="modal-dialog" role="document">--}}
+{{--                                                                            <div class="modal-content">--}}
+{{--                                                                                <div class="modal-header">--}}
+{{--                                                                                    <h5 class="modal-title" id="ss"> Accept the seller !</h5>--}}
+{{--                                                                                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal" aria-label="Close">--}}
+{{--                                                                                        <span aria-hidden="false">&times;</span>--}}
+{{--                                                                                    </button>--}}
+{{--                                                                                </div>--}}
+{{--                                                                                <div class="modal-body">--}}
+{{--                                                                                    <form method="post" action="{{route("admin.accept.seller")}}">--}}
+{{--                                                                                        @csrf--}}
+{{--                                                                                        <div class="mb-3">--}}
+{{--                                                                                            <label for="message-text" class="col-form-label">Are you sure to accept the seller ?</label>--}}
 
-                                                    <div class="d-inline-flex">
-
-                                                        <div class="input-group mb-3">
-                                                            <p>Southern Trinity Joint Unified School District, CA, USA</p>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="mt-3">
-                                                            <hr>
-                                                            <ul class="list-unstyled product-desc-list text-muted">
-                                                                <li>
-                                                                    <div class="mt-3">
-                                                                        <a href="{{route("admin.preview.requests")}}" type="button"
-                                                                           class="btn btn-outline-success btn-sm waves-effect waves-light mb-1 w-50">
-                                                                            Accept</a>
-                                                                        <a href="{{route("admin.preview.requests")}}" type="button"
-                                                                           class="btn btn-outline-danger btn-sm waves-effect waves-light mb-1 w-50">
-                                                                            Reject</a>
-
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
+{{--                                                                                        <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Close</button>--}}
+{{--                                                                                        <input type="hidden" name="seller_id" value="{{$truck->user->id}}">--}}
+{{--                                                                                        <input type="hidden" name="phone" value="{{$truck->user->phone}}">--}}
+{{--                                                                                        <button type="submit" class="btn btn-soft-danger">Reject</button>--}}
+{{--                                                                                        </div>--}}
+{{--                                                                                    </form>--}}
+{{--                                                                                </div>--}}
+{{--                                                                            </div>--}}
+{{--                                                                        </div>--}}
+{{--                                                                    </div>--}}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- end row -->
                                 </div>
-                                <!-- end row -->
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
                 <!-- end row -->
             </div> <!-- container-fluid -->
         </div>

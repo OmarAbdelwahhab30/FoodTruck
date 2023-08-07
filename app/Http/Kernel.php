@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\AccountState;
 use App\Http\Middleware\IsAuthenticated;
 use App\Http\Middleware\Permissions\GateDefineMiddleware;
+use App\Http\Middleware\SellerCanAccess;
 use App\Http\Middleware\SwitchLanguage;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\Routing\Middleware\SubstituteBindings;
@@ -51,6 +52,7 @@ class Kernel extends HttpKernel
             GateDefineMiddleware::class,
             SwitchLanguage::class,
             AccountState::class,
+            //SellerCanAccess::class,
         ],
     ];
 
