@@ -39,4 +39,13 @@ class ControlUsersController extends Controller
         $user->save();
         return redirect()->to("admin/searchIndex")->with('user',$user);
     }
+
+    public function deleteUser($user_id)
+    {
+        $user = User::find($user_id);
+        if ($user->delete()){
+            return redirect()->back()->with("success","User has been deleted successfully.");
+        }
+        return redirect()->back()->with("error","Something went wrong !");
+    }
 }

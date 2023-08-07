@@ -96,6 +96,12 @@
                                                         {{$x == "success"? "Activate":"Deactivate"}}
                                                         </a>
                                                     </button>
+                                                    <button type="button" style="width: 100px"
+                                                            class="btn btn-danger waves-effect waves-light">
+                                                        <a href="{{url("admin/delete/".$user->id)}}">
+                                                            Delete
+                                                        </a>
+                                                    </button>
                                                     <script>
                                                         function change() {
                                                             $.ajax({

@@ -125,8 +125,10 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post("search",[ControlUsersController::class,'search'])->name("admin.customer.search");
         Route::get("searchIndex",[ControlUsersController::class,'search_index']);
         Route::get("active/{user_id}",[ControlUsersController::class,"changeAccountState"])->name("admin.user.active");
+        Route::get("/delete/{user_id}",[ControlUsersController::class,"deleteUser"]);
 
         /*Selles Request*/
+
         //Route::get("SellersRequests",[SellerRequestsController::class,"index"])->name("admin.show.requests");
         Route::get("SellersRequests",[SellerRequestsController::class,"index"])->name("admin.show.requests");
         Route::get("previewRequests/{seller_id}",[SellerRequestsController::class,"preview"])->name("admin.preview.requests");
