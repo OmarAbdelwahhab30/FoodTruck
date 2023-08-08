@@ -14,34 +14,68 @@ use Illuminate\Queue\SerializesModels;
 
 class SendOrderStatusEvent implements ShouldBroadcast
 {
-    public function __construct(private $order_id,private User $user)
+    use Dispatchable, InteractsWithSockets, SerializesModels;
+//    public function __construct(private $order_id,private User $user)
+//    {
+//        $this->order = Order::find($this->order_id);
+//    }
+//
+//
+//    public function broadcastOn(): Channel
+//    {
+//        return new Channel('status');
+//    }
+//
+//
+//    public function broadcastAs()
+//    {
+//        return 'order.status';
+//    }
+//
+//
+//    public function broadcastWith(): array
+//    {
+//
+//        return[
+//            'order' => [
+//                $this->order->status_en,
+//                $this->order->status_ar,
+//            ],
+//            'customer'  =>[
+//                $this->user->name,
+//            ],
+//        ];
+//    }
+
+    private $order;
+
+    public function __construct($order_id)
     {
-        $this->order = Order::find($this->order_id);
+        $this->order = Order::find($order_id);
     }
 
-
-    public function broadcastOn(): Channel|PrivateChannel|array
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return \Illuminate\Broadcasting\Channel|array
+     */
+    public function broadcastOn()
     {
-        return new PrivateChannel('truck.' . $this->order_id);
+        return ['status.'.$this->order->id];
     }
 
-
-    public function broadcastAs(): string
-    {
-        return 'order.status';
+    public function broadcastAs() {
+        return 'new-status';
     }
 
-
-    public function broadcastWith(): array
+        public function broadcastWith(): array
     {
 
         return[
             'order' => [
+                $this->order->id,
                 $this->order->status_en,
                 $this->order->status_ar,
-            ],
-            'customer'  =>[
-                $this->user->name,
             ],
         ];
     }

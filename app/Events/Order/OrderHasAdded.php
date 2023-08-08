@@ -6,8 +6,6 @@ use App\Models\Order;
 use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -20,13 +18,14 @@ class OrderHasAdded implements ShouldBroadcast
 
     public function __construct(private Order $order,private User $user)
     {
-
+        $this->order = $order;
+        $this->user  = $user;
     }
 
 
-    public function broadcastOn(): Channel|PrivateChannel|array
+    public function broadcastOn(): Channel
     {
-        return new PrivateChannel('truck.' . $this->order->truck_id.$this->order->user_id);
+        return new Channel('order');
     }
 
 

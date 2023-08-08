@@ -5,7 +5,9 @@ namespace App\Services\Orders;
 use App\Events\Order\OrderHasAdded;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Truck;
 use App\Models\User;
+use App\Notifications\SellerOrderNotification;
 use App\Services\Service;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\DB;
@@ -16,12 +18,15 @@ class AddOrderService extends Service
 
         public function ExecTransaction($request)
         {
-            return DB::transaction(function () use ($request) {
+            $seller = Truck::find($request->truck_id)->user;
+            return DB::transaction(function () use ($request,$seller) {
 
                 $order = $this->addOrder($request);
                 $this->attachProduct($request->products, $order);
                 broadcast(new OrderHasAdded($order,$order->user))->toOthers();
                 $this->DestroyCart(auth("sanctum")->user());
+                $this->PushNotification($seller->player_id,1,auth("sanctum")->user()->name);
+                //$seller->notify(new SellerOrderNotification(auth("sanctum")->user()->name));
                 return Order::where("id", $order->id)->with("products")->get();
             });
         }
@@ -46,8 +51,10 @@ class AddOrderService extends Service
 
     private function DestroyCart($user)
     {
-        $cart = Cart::find($user->cart->id);
-        $cart->delete();
+        if (isset($user->cart)) {
+            $cart = Cart::find($user->cart->id);
+                $cart->delete();
+            }
     }
 
 }

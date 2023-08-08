@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\Order\SendOrderStatusEvent;
+use App\Models\Chat;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -15,4 +17,8 @@ use Illuminate\Support\Facades\Broadcast;
 
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
+});
+
+Broadcast::channel('truck', function ($user) {
+    return true;
 });

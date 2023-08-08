@@ -2,6 +2,7 @@
 
 namespace App\Services\Orders;
 
+use App\Events\Order\SendOrderStatusEvent;
 use App\Models\Order;
 use App\Models\User;
 
@@ -90,6 +91,8 @@ class ReturnOrderInformationService extends \App\Services\Service
 
     public function ReturnOrderStatusByOrderID($request)
     {
-        return Order::where("id",$request->order_id)->select("status_en","status_ar")->first();
+        $order =  Order::where("id",$request->order_id)->select("status_en","status_ar")->first();
+        broadcast(new SendOrderStatusEvent($request->order_id));
+        return $order;
     }
 }

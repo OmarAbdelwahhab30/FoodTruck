@@ -15,6 +15,8 @@ class UpdateOrderStatusService extends Service
            'status_en' => 'processing',
         ]);
         $this->broadCastOrderStatus($request->order_id,auth("sanctum")->user());
+        $OrderUser = $this->getOrderUser($request->order_id);
+        $this->PushNotification($OrderUser->player_id,2,false);
         return $order;
     }
 
@@ -24,6 +26,8 @@ class UpdateOrderStatusService extends Service
             'status_en' => 'cancelled',
         ]);
         $this->broadCastOrderStatus($request->order_id,auth("sanctum")->user());
+        $OrderUser = $this->getOrderUser($request->order_id);
+        $this->PushNotification($OrderUser->player_id,4,false);
         return $order;
     }
 
@@ -32,6 +36,8 @@ class UpdateOrderStatusService extends Service
             'status_en' => 'delivered',
         ]);
         $this->broadCastOrderStatus($request->order_id,auth("sanctum")->user());
+        $OrderUser = $this->getOrderUser($request->order_id);
+        $this->PushNotification($OrderUser->player_id,5,false);
         return $order;
     }
 
@@ -40,9 +46,15 @@ class UpdateOrderStatusService extends Service
             'status_en' => 'picked-up',
         ]);
         $this->broadCastOrderStatus($request->order_id,auth("sanctum")->user());
+        $OrderUser = $this->getOrderUser($request->order_id);
+        $this->PushNotification($OrderUser->player_id,3,false);
         return $order;
     }
 
+    public function getOrderUser($order_id)
+    {
+        return Order::find($order_id)->user;
+    }
     public function broadCastOrderStatus($order_id,$user)
     {
         broadcast(new SendOrderStatusEvent($order_id,$user))->toOthers();

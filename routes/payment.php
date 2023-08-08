@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Payment\Checkout\PaymentController;
-use App\Http\Controllers\Payment\PayPal\PaypalPaymentController;
+//use App\Http\Controllers\Payment\PayPal\PaypalPaymentController;
 use App\Http\Controllers\Payment\UserCard\AddCardInformationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +29,6 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
 });
 
 
-Route::post('paypal', [PaypalPaymentController::class, 'pay'])->name('payment');
-Route::get('success', [PaypalPaymentController::class, 'success'])->name("paypal.success");
-Route::get('error', [PaypalPaymentController::class, 'error'])->name("paypal.fail");
+//Route::post('paypal', [PaypalPaymentController::class, 'pay'])->name('payment');
+//Route::get('success', [PaypalPaymentController::class, 'success'])->name("paypal.success");
+//Route::get('error', [PaypalPaymentController::class, 'error'])->name("paypal.fail");

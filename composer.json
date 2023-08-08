@@ -9,6 +9,8 @@
         "checkout/checkout-sdk-php": "3.0.13",
         "doctrine/dbal": "^3.6",
         "guzzlehttp/guzzle": "^7.2",
+        "ladumor/one-signal": "1.0.0",
+        "laravel-notification-channels/onesignal": "^2.5",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.8",

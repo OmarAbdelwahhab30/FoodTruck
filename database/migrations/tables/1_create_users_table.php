@@ -25,6 +25,7 @@ return new class extends Migration
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();
             $table->string("location")->nullable();
+            $table->string("player_id")->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
