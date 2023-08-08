@@ -27,11 +27,17 @@ class AddTruckReviewsService extends Service
                 'role_id' => 1,
             ]);
             $this->UpdateTruckRate($request->to,$request->rate);
+            $seller = $this->GetSeller($request->to);
+            $this->PushNotification($seller->player_id,7,$user->name);
             if ($review){
                 return true;
             }
         }
         return false;
+    }
+    private function GetSeller($sellerID)
+    {
+        return User::find($sellerID);
     }
 
     public function CheckUserTruck($user,$truck_id): bool

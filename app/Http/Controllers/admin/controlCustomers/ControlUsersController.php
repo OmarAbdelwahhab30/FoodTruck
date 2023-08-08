@@ -24,9 +24,9 @@ class ControlUsersController extends Controller
 
     public function search(SearchCustomerRequest $request)
     {
-        $user = User::where("phone", 'like', '%' . $request->phone . '%')->first();
-        if ($user != null) {
-            return redirect()->to("admin/searchIndex")->with('user',$user);
+        $users = User::where("phone", 'like', '%' . $request->phone . '%')->get();
+        if ($users != null) {
+            return redirect()->to("admin/searchIndex")->with('users',$users);
         }
         return redirect()->back()->with("error", "Invalid Inputs.");
     }
@@ -37,7 +37,7 @@ class ControlUsersController extends Controller
         $user = User::find($MemberID);
         $user->active = !$user->active;
         $user->save();
-        return redirect()->to("admin/searchIndex")->with('user',$user);
+        return redirect()->to("admin/searchIndex")->with('user',$user)->with("success","The action done successfully.");
     }
 
     public function deleteUser($user_id)

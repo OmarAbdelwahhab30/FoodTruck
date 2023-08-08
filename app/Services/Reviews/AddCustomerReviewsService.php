@@ -4,6 +4,7 @@ namespace App\Services\Reviews;
 
 use App\Http\Controllers\Controller;
 use App\Models\Review;
+use App\Models\User;
 use App\Services\Service;
 use Illuminate\Http\Request;
 
@@ -20,9 +21,16 @@ class AddCustomerReviewsService extends Service
             'user_id'   => $user->id,
             'role_id'   => 2,
         ]);
+        $customer = $this->getCustomer($request->customer_id);
+        $this->PushNotification($customer->player_id,7,$user->name);
         if ($review){
            return true;
         }
         return false;
+    }
+
+    public function getCustomer($customer_id)
+    {
+        return User::find($customer_id);
     }
 }

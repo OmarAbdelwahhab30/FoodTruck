@@ -20,6 +20,19 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+
+    public function routeNotificationForOneSignal() : array
+    {
+        return [
+            'tags'  => [
+                'key'=>'userId',
+                'relation'=>'=',
+                 'value'=>(string)($this->id)
+                ],
+        ];
+    }
+
     protected function serializeDate(DateTimeInterface $date) : string
     {
         return $date->format('h:i:s a m/d/Y');

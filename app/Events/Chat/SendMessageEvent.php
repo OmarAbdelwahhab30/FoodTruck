@@ -25,12 +25,7 @@ class SendMessageEvent implements ShouldBroadcast
 
     }
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return Channel|PrivateChannel|array
-     */
-    public function broadcastOn(): Channel|PrivateChannel|array
+    public function broadcastOn()
     {
         return new PrivateChannel('chat.' . $this->message->from_user.$this->message->to_user);
     }

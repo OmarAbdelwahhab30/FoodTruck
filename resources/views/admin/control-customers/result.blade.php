@@ -32,16 +32,23 @@
                         </div>
                     </div>
                 </div>
-                @if( \Illuminate\Support\Facades\Session::get("user") !== null)
-                    <?php $user = \Illuminate\Support\Facades\Session::get("user")?>
+                @if( \Illuminate\Support\Facades\Session::get("users") !== null)
+                    <?php $users = \Illuminate\Support\Facades\Session::get("users")?>
+
                     <div class="row">
                         <div class="col-lg-12">
+
+
                             <div class="card">
+
                                 <div class="card-body">
                                     <h4 class="card-title mb-4">User</h4>
+
                                     <div class="table-responsive">
+
                                         <table class="table table-centered table-nowrap mb-0">
                                             <thead class="table-light">
+
                                             <tr>
                                                 <th style="width: 20px;">
                                                     <div class="form-check font-size-16">
@@ -61,6 +68,7 @@
                                             </thead>
 
                                             <tbody>
+                                            @forelse($users as $user)
                                             <tr>
                                                 <td>
                                                     <div class="form-check font-size-16">
@@ -97,11 +105,36 @@
                                                         </a>
                                                     </button>
                                                     <button type="button" style="width: 100px"
-                                                            class="btn btn-danger waves-effect waves-light">
-                                                        <a href="{{url("admin/delete/".$user->id)}}">
+                                                            class="btn btn-danger waves-effect waves-light"
+                                                            data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                    >
+                                                        <a href="#">
                                                             Delete
                                                         </a>
                                                     </button>
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">User Deletion!!</h5>
+                                                                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Are you sure to delete this user?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-danger">
+                                                                        <a href="{{url("admin/delete/".$user->id)}}">
+                                                                            Delete
+                                                                        </a>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <script>
                                                         function change() {
                                                             $.ajax({
@@ -123,14 +156,19 @@
                                                     </script>
                                                 </td>
                                             </tr>
+                                            @empty
+                                                <p> There is no users</p>
+                                            @endforelse
                                             </tbody>
                                         </table>
                                     </div>
+
                                     <!-- end table-responsive -->
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <!-- end row -->
                 @endif
             </div> <!-- container-fluid -->
