@@ -28,7 +28,7 @@ class AddTruckReviewsService extends Service
             ]);
             $this->UpdateTruckRate($request->to,$request->rate);
             $seller = $this->GetSeller($request->to);
-            $this->PushNotification($seller->player_id,7,$user->name);
+            //$this->PushNotification($seller->player_id,7,$request->to,$user->name);
             if ($review){
                 return true;
             }

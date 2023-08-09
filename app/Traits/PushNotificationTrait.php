@@ -11,7 +11,7 @@ trait PushNotificationTrait
 {
 
 
-    public function PushNotification($player_id, $type, $user_name = false): void
+    public function PushNotification($player_id, $type, $receiver_id,$user_name = false): void
     {
         $fields['include_player_ids'] = [$player_id];
 
@@ -26,9 +26,17 @@ trait PushNotificationTrait
         "ar" => $messages['message_ar'],
         );
 
-        OneSignal::sendPush($fields);
+        $notificationID = OneSignal::sendPush($fields);
+        $this->AddNotificationToDB($notificationID["id"],$receiver_id);
     }
 
+    private function AddNotificationToDB($id,$receiver_id): void
+    {
+        Notification::create([
+            'notification_id' => $id,
+            'user_id'         => $receiver_id,
+        ]);
+    }
     private function GetNotificationsWithReplacement($type, $user_name): array|string
     {
 

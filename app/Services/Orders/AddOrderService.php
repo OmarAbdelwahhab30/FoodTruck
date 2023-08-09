@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Truck;
 use App\Models\User;
+use App\Models\Wallet;
 use App\Notifications\SellerOrderNotification;
 use App\Services\Service;
 use Illuminate\Support\Facades\Broadcast;
@@ -25,7 +26,8 @@ class AddOrderService extends Service
                 $this->attachProduct($request->products, $order);
                 broadcast(new OrderHasAdded($order,$order->user))->toOthers();
                 $this->DestroyCart(auth("sanctum")->user());
-                $this->PushNotification($seller->player_id,1,auth("sanctum")->user()->name);
+                $this->addPriceToSellerWallet($request->total_price,$seller->id);
+                //$this->PushNotification($seller->player_id,1,$seller->id,auth("sanctum")->user()->name);
                 //$seller->notify(new SellerOrderNotification(auth("sanctum")->user()->name));
                 return Order::where("id", $order->id)->with("products")->get();
             });
@@ -55,6 +57,11 @@ class AddOrderService extends Service
             $cart = Cart::find($user->cart->id);
                 $cart->delete();
             }
+    }
+
+    private function addPriceToSellerWallet($price,$seller_id)
+    {
+        Wallet::where('user_id',$seller_id)->increment('balance',$price);
     }
 
 }

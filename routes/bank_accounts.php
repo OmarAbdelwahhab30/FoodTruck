@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\ContactUs\ContactUsController;
-use App\Http\Controllers\notifications\ReturnAllNotificationsByIDController;
-use App\Http\Controllers\notifications\SetPlayerIdController;
-use App\Http\Controllers\Payment\PayPal\PaymentController;
+
+use App\Http\Controllers\BankAccounts\BankAccountController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'auth:sanctum'],function () {
-    Route::post("AddContactUsContent",[ContactUsController::class,'AddContactUsContent']);
+
+    Route::post("AddBankAccount",[BankAccountController::class,"addBankAccountInfo"]);
+
+    Route::get("returnSellerBankAccounts",[BankAccountController::class,"returnBankInfo"]);
 
 });

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Payment\Checkout\PaymentController;
 //use App\Http\Controllers\Payment\PayPal\PaypalPaymentController;
 use App\Http\Controllers\Payment\UserCard\AddCardInformationController;
+use App\Http\Controllers\Payment\UserCard\ReturnCardsInformationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,8 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::post("ExecutePayment", [PaymentController::class, 'ExecutePayment']);
     Route::get("ConfirmPayment", [PaymentController::class, 'ConfirmPayment']);
     Route::post("addCardInformation",[AddCardInformationController::class,"addCardInformation"]);
+    Route::get("returnCardsInformation",[ReturnCardsInformationController::class,"returnCardsInformation"]);
+
 });
 
 

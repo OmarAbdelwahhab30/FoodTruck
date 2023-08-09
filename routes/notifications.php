@@ -23,6 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'auth:sanctum'],function () {
-    Route::post("AddContactUsContent",[ContactUsController::class,'AddContactUsContent']);
+
+    Route::post("setPlayerID",[SetPlayerIdController::class,"setPlayerID"]);
+
+    Route::get("ReturnNotifications",[ReturnAllNotificationsByIDController::class,"ReturnNotificationsByUserID"]);
 
 });

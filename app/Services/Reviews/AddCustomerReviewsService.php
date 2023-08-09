@@ -22,7 +22,7 @@ class AddCustomerReviewsService extends Service
             'role_id'   => 2,
         ]);
         $customer = $this->getCustomer($request->customer_id);
-        $this->PushNotification($customer->player_id,7,$user->name);
+        //$this->PushNotification($customer->player_id,7,$request->customer_id,$user->name);
         if ($review){
            return true;
         }

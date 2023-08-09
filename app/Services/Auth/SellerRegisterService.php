@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\Truck;
 use App\Models\TruckImage;
 use App\Models\User;
+use App\Models\Wallet;
 use App\Services\Service;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -29,6 +30,14 @@ class SellerRegisterService extends Service implements RegisterInterface
     private function GetRoleID($role_name)
     {
         return Role::where("name",$role_name)->first()->id;
+    }
+
+    private function createWallet($userID)
+    {
+        return Wallet::create([
+            'balance'   => 0,
+            'user_id'   => $userID,
+        ]);
     }
 
     private function addTruck($request,$userID){
@@ -69,11 +78,13 @@ class SellerRegisterService extends Service implements RegisterInterface
         }
     }
 
-    private function Transaction($request){
+    private function Transaction($request)
+    {
         return DB::transaction(function () use ($request) {
 
-
             $user = $this->createUser($request);
+
+            $wallet = $this->createWallet($user->id);
 
             $truck = $this->addTruck($request,$user->id);
 
@@ -82,6 +93,9 @@ class SellerRegisterService extends Service implements RegisterInterface
             $this->addTruckImages($request->file("truck_images"),$truck->id);
 
             $user->TruckData = $truck;
+
+            $user->wallet_id = $wallet->id;
+
             $truck->images;
 
             // create token

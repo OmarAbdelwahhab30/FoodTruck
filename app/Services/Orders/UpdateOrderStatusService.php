@@ -16,7 +16,7 @@ class UpdateOrderStatusService extends Service
         ]);
         $this->broadCastOrderStatus($request->order_id,auth("sanctum")->user());
         $OrderUser = $this->getOrderUser($request->order_id);
-        $this->PushNotification($OrderUser->player_id,2,false);
+        //$this->PushNotification($OrderUser->player_id,2,$OrderUser->id,false);
         return $order;
     }
 
@@ -27,7 +27,7 @@ class UpdateOrderStatusService extends Service
         ]);
         $this->broadCastOrderStatus($request->order_id,auth("sanctum")->user());
         $OrderUser = $this->getOrderUser($request->order_id);
-        $this->PushNotification($OrderUser->player_id,4,false);
+        //$this->PushNotification($OrderUser->player_id,4,$OrderUser->id,false);
         return $order;
     }
 
@@ -37,7 +37,7 @@ class UpdateOrderStatusService extends Service
         ]);
         $this->broadCastOrderStatus($request->order_id,auth("sanctum")->user());
         $OrderUser = $this->getOrderUser($request->order_id);
-        $this->PushNotification($OrderUser->player_id,5,false);
+        //$this->PushNotification($OrderUser->player_id,5,$OrderUser->id,false);
         return $order;
     }
 
@@ -47,7 +47,7 @@ class UpdateOrderStatusService extends Service
         ]);
         $this->broadCastOrderStatus($request->order_id,auth("sanctum")->user());
         $OrderUser = $this->getOrderUser($request->order_id);
-        $this->PushNotification($OrderUser->player_id,3,false);
+        //$this->PushNotification($OrderUser->player_id,3,$OrderUser->id,false);
         return $order;
     }
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactUs\ContactUsController;
 use App\Http\Controllers\notifications\ReturnAllNotificationsByIDController;
 use App\Http\Controllers\notifications\SetPlayerIdController;
 use App\Http\Controllers\Payment\PayPal\PaymentController;
+use App\Http\Controllers\Wallets\WalletController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'auth:sanctum'],function () {
-    Route::post("AddContactUsContent",[ContactUsController::class,'AddContactUsContent']);
+
+    Route::get("returnBalance",[WalletController::class,'returnBalance']);
 
 });

@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Controllers\BankAccounts;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\BankAccounts\AddBankAccountInfoRequest;
+use App\Services\BankAccounts\BankAccountService;
+use Illuminate\Http\Request;
+
+class BankAccountController extends Controller
+{
+
+    public function addBankAccountInfo(AddBankAccountInfoRequest $request,BankAccountService $service)
+    {
+        $added = $service->addBankAccountInfo($request);
+        if ($added){
+            return $this->returnSuccessMessage("Bank Account Information has been added successfully.");
+        }
+        return $this->returnError("something went wrong !");
+    }
+
+    public function returnBankInfo(BankAccountService $service)
+    {
+        $data = $service->returnBankInfo();
+        if ($data){
+            return $this->returnData("accounts",$data,"here are all accounts.");
+        }
+        return $this->returnError("something went wrong !");
+    }
+
+}
