@@ -27,7 +27,7 @@ class Order extends Model
     public function products(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Product::class, "order_product", 'order_id', 'product_id')
-            ->withPivot('optional_' . app()->getLocale());
+            ->withPivot(['optional_id','size_id']);
     }
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo

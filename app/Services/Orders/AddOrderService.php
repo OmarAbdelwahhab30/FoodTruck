@@ -48,7 +48,10 @@ class AddOrderService extends Service
     public function attachProduct($products,$order)
     {
         foreach ($products as $product)
-        $order->products()->attach($product['id'], ['optional_'.app()->getLocale() => $product['optional']]);
+        $order->products()->attach($product['id'], [
+            'optional_id' => $product['optional_id'],
+            'size_id'     => $product['size_id'],
+        ]);
     }
 
     private function DestroyCart($user)

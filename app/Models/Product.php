@@ -41,4 +41,14 @@ class Product extends Model
     {
         return $this->belongsTo(Section::class);
     }
+
+    public function sizes(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Size::class);
+    }
+
+    public function optionals(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Optional::class);
+    }
 }

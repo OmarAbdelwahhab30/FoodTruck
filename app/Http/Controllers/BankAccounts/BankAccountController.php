@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class BankAccountController extends Controller
 {
 
-    public function addBankAccountInfo(AddBankAccountInfoRequest $request,BankAccountService $service)
+    public function addBankAccountInfo(AddBankAccountInfoRequest $request,BankAccountService $service): \Illuminate\Http\JsonResponse
     {
         $added = $service->addBankAccountInfo($request);
         if ($added){
@@ -19,7 +19,7 @@ class BankAccountController extends Controller
         return $this->returnError("something went wrong !");
     }
 
-    public function returnBankInfo(BankAccountService $service)
+    public function returnBankInfo(BankAccountService $service): \Illuminate\Http\JsonResponse
     {
         $data = $service->returnBankInfo();
         if ($data){

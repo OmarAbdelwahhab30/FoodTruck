@@ -25,11 +25,16 @@ class addProductRequest extends FormRequest
     {
         return [
             'name'          => ['required'],
-            'price'         => ['required'],
             'calories'      => ['required'],
             'images' => 'required|array|max:3', // <----
             'images.*' => 'mimes:jpeg,jpg,png',
             'description'   => ['required'],
-        ];
+            'optionals' => 'required|array',
+            'optionals.*.optional' => 'required|string',
+            'optionals.*.price' => 'required|numeric',
+            'sizes'     => 'required|array',
+            'sizes.*.size'    => 'required|string',
+            'sizes.*.price'    => 'required|numeric'
+            ];
     }
 }

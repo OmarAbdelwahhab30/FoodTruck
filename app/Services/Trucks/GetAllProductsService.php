@@ -12,7 +12,7 @@ class GetAllProductsService extends \App\Services\Service
 
     public function GetAllProductsInEachTruckByTruckID($request)
     {
-        $all = Product::where("truck_id", $request->truck_id)->with("images")->get();
+        $all = Product::where("truck_id", $request->truck_id)->with("images")->with("sizes")->with("optionals")->get();
         $products = Section::where("truck_id", $request->truck_id)->with("products",function ($q){
             $q->with("images");
         })->get();

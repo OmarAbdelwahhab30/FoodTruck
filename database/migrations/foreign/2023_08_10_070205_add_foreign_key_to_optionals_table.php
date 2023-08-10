@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('order_product', function (Blueprint $table) {
-            $table->id();
+        Schema::table('optionals', function (Blueprint $table) {
+            $table->foreignId("product_id")->references("id")->on("products")
+                ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -25,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_product');
+        Schema::table('optionals', function (Blueprint $table) {
+            //
+        });
     }
 };
