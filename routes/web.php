@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\control_trucks\ControlTrucksController;
 use App\Http\Controllers\admin\controlCustomers\ControlUsersController;
 use App\Http\Controllers\admin\deliveryPrice\UpdateDeliveryPriceController;
 use App\Http\Controllers\admin\home\HomeController;
+use App\Http\Controllers\admin\notify\NotificationController;
 use App\Http\Controllers\admin\ownerPercentage\UpdateOwnerPercentageController;
 use App\Http\Controllers\admin\reviews\ReviewsAboutCustomersController;
 use App\Http\Controllers\admin\reviews\ReviewsAboutTrucksController;
@@ -135,5 +136,10 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post("acceptSeller",[SellerRequestsController::class,"accept"])->name("admin.accept.seller");
         Route::post("rejectSeller",[SellerRequestsController::class,"reject"])->name("admin.reject.seller");
 
+
+
+        /*Notifications **/
+        Route::get("notify",[NotificationController::class,"index"])->name("admin.notify.index");
+        Route::post("post-notify",[NotificationController::class,"notify"])->name("admin.post.notify");
     });
 });

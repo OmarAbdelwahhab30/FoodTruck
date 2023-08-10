@@ -213,6 +213,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{route("admin.notify.index")}}">
+                            <i class="uil-comment-alt-exclamation"></i>
+                            <span>Control Notifications</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{route("admin.show.requests")}}">
                             <i class="uil-plus-circle"></i>
                             <span>Sellers Requests</span>
