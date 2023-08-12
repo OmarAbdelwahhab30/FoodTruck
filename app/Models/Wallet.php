@@ -16,4 +16,9 @@ class Wallet extends Model
     {
         return $this->hasOne(User::class);
     }
+
+    public function requests()
+    {
+        return $this->hasMany(Request::class);
+    }
 }

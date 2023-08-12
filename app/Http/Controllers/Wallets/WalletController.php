@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Wallets;
 
 use App\Http\Controllers\Controller;
 use App\Models\Wallet;
-use App\Services\Wallets\BankAccountService;
+use App\Services\BankAccounts\BankAccountService;
+use App\Services\Wallets\WalletService;
 use Illuminate\Http\Request;
 
 class WalletController extends Controller
 {
 
 
-    public function returnBalance(BankAccountService $service)
+    public function returnBalance(WalletService $service): \Illuminate\Http\JsonResponse
     {
         $balance = $service->returnBalance();
         if ($balance){

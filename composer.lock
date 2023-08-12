@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "46d6dc176e3455aae6390de221ddceb8",
+    "content-hash": "8f9ed87b54d4a643d6cf9ba7017220bd",
     "packages": [
         {
             "name": "berkayk/onesignal-laravel",
