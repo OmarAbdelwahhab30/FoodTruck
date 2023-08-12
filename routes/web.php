@@ -146,5 +146,13 @@ Route::group(['prefix' => 'admin'], function(){
 
         /*cash out*/
         Route::get("cash-out",[CashoutController::class,"index"])->name("admin.cash.index");
+        Route::get("elements-status/{status}",[CashoutController::class,"elements"])->name("admin.elements.status");
+        Route::get("previewElements/{element_id}",[CashoutController::class,"preview"])->name("admin.preview.status");
+        Route::get("acceptcash/{id}/{amount}",[CashoutController::class,'accept'])->name("admin.accept.cash");
+        Route::get("declinecash/{id}",[CashoutController::class,'decline'])->name("admin.decline.cash");
+        Route::get("accepted",[CashoutController::class,"acceptIndex"])->name("admin.accepted.requests");
+        Route::get("deleterequest/{requestID}",[CashoutController::class,"deleteRequest"])->name("admin.delete.request");
+        Route::get("returnrequest/{id}/{amount}",[CashoutController::class,"returnRequest"])->name("admin.return.request");
+        Route::get("declined",[CashoutController::class,"declineIndex"])->name("admin.declined.requests");
     });
 });

@@ -12,9 +12,10 @@ class Message extends Model
 
     protected function serializeDate(DateTimeInterface $date) : string
     {
-        return $date->format('h:i:s a m/d/Y');
+        return $date->format('h:i a');
     }
     protected $guarded = [];
+    protected $hidden = ['updated_at'];
 
     public function chat(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

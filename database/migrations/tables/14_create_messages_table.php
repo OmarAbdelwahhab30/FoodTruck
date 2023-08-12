@@ -18,6 +18,7 @@ return new class extends Migration
 //            $table->unsignedBigInteger('from_user')->index();
 //            $table->unsignedBigInteger('to_user')->index();
 //            $table->unsignedBigInteger("chat_id")->index();
+            $table->string("type");
             $table->text('content');
             $table->timestamps();
         });

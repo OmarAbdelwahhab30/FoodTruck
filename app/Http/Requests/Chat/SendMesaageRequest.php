@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Chat;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SendMesaageRequest extends FormRequest
 {
@@ -24,16 +25,12 @@ class SendMesaageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'to_user'   => ['required','exists:users,id'],
-            'message' => $this->getValidationRule('message'),
+            'to_user'       => 'required|exists:users,id',
+            'record'        => ['required_without_all:text,file','nullable','file'],
+            'file'          => ['required_without_all:text,record','nullable','mimes:jpeg,jpg,png,gif|max:10000'],
+            'text'          => ['required_without_all:file,record','string','nullable'],
+
         ];
     }
 
-    public function getValidationRule(String $key): string
-    {
-        if (request()->hasFile($key)) {
-            return "required";
-        }
-        return "required|string";
-    }
 }
