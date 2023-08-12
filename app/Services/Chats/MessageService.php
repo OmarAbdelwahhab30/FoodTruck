@@ -23,34 +23,35 @@ class MessageService extends Service
      */
 
     private Chat $chat;
-    public function SendMessage($request)
+    public function SendMessage($request,$to_user)
     {
 
         $sender = auth("sanctum")->user()->id;
 
-        $collection = (new ChatService())->IsTherePreviousChat($sender,$request->to_user);
+        $collection = (new ChatService())->IsTherePreviousChat($sender,$to_user);
 
         if (!$collection)
         {
-            $this->chat = (new ChatService())->createNewChat($sender,$request->to_user);
+            $this->chat = (new ChatService())->createNewChat($sender,$to_user);
         }
-        $message = $this->createMessage($request,$collection);
+        $message = $this->createMessage($request,$collection,$to_user);
 
         broadcast(new SendMessageEvent($message))->toOthers();
         return $message;
     }
 
-    public function createMessage($request,$collection)
+    public function createMessage($request,$collection,$to_user)
     {
+
         return Message::create([
 
             'from_user' => auth("sanctum")->user()->id,
 
-            'to_user'   => $request->to_user,
+            'to_user'   => $to_user,
 
-            'content'   => $request->file("message") !== null ?
-                env("APP_URL")."/storage/chat/".$this->UploadFile($request->file("message"),"chat")
-            :$request->message,
+            'content'   => $this->checkMSG($request),
+
+            'type'      => $this->checkType($request),
 
             'chat_id'   => !$collection ? $this->chat->id:$collection[0]->chat_id,
         ]);
@@ -70,8 +71,34 @@ class MessageService extends Service
                 $query->where('from_user', $request->other_user_id)
                     ->where('to_user'  , auth("sanctum")->user()->id);
             }
-        )->select("content","from_user","to_user","chat_id")->get();
+        )->select("content",'type',"from_user","to_user","chat_id","created_at")->get();
 
+    }
+
+    private function checkMSG($request)
+    {
+        if ($request->has("record")){
+            $content = env("APP_URL")."/storage/chat/".$this->UploadFile($request->file("record"),"chat");
+
+        }elseif($request->has("file")){
+            $content = env("APP_URL")."/storage/chat/".$this->UploadFile($request->file("file"),"chat");
+        }else{
+            $content = $request->text;
+        }
+        return $content;
+    }
+
+    private function checkType($request)
+    {
+        if ($request->has("record")){
+            $type = 'record';
+
+        }elseif($request->has("file")){
+            $type = 'file';
+        }else{
+            $type = 'text';
+        }
+        return $type;
     }
 
 }

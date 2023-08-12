@@ -3,6 +3,7 @@
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
+                @include("admin.bootstrapHelper.alerts")
                 <!-- start page title -->
                 <div class="row">
                     <div class="col-12">
@@ -25,9 +26,9 @@
                                 <p class="card-title-desc">Here , you will find the pending requests for cash-out, Click the button to Preview .
                                     .</p>
                                 <div class="d-grid gap-2">
-                                    <button type="button" class="btn btn-warning btn-lg waves-effect waves-light mb-1">
+                                    <a href="{{route("admin.elements.status",'pending')}}" class="btn btn-warning btn-lg waves-effect waves-light mb-1">
                                         Pending Requests
-                                    </button>
+                                   </a>
                                 </div>
                             </div>
                         </div>
@@ -41,9 +42,9 @@
                                 <p class="card-title-desc">Here , you will find the Accepted requests for cash-out, Click the button for editing .
                                     .</p>
                                 <div class="d-grid gap-2">
-                                    <button type="button" class="btn btn-success btn-lg waves-effect waves-light mb-1">
+                                    <a href="{{route("admin.accepted.requests")}}" class="btn btn-success btn-lg waves-effect waves-light mb-1">
                                         Accepted Requests
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -57,9 +58,9 @@
                                 <p class="card-title-desc">Here , you will find the pending requests for cash-out, Click the button for editing .
                                     .</p>
                                 <div class="d-grid gap-2">
-                                    <button type="button" class="btn btn-danger btn-lg waves-effect waves-light mb-1">
+                                    <a type="button" href="{{route("admin.declined.requests")}}" class="btn btn-danger btn-lg waves-effect waves-light mb-1">
                                         Declined Requests
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
