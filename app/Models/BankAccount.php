@@ -17,4 +17,9 @@ class BankAccount extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function requests()
+    {
+        return $this->hasMany(Request::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\BankAccounts\BankAccountController;
+use App\Http\Controllers\cashout\CashoutController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,5 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
 
     Route::get("returnSellerBankAccounts",[BankAccountController::class,"returnBankInfo"]);
 
+    Route::post("ExecuteCashoutRequest",[CashoutController::class,"ExecuteCashout"]);
 });

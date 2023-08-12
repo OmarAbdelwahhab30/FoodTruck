@@ -10,9 +10,9 @@ class WalletService extends Service
 
     public function returnBalance()
     {
-        $balance = Wallet::where("user_id",auth("sanctum")->user()->id)->first()->balance;
-        if (isset($balance) && $balance != null ){
-            return $balance;
+        $wallet = Wallet::where("user_id",auth("sanctum")->user()->id)->first();
+        if (isset($wallet) && $wallet != null ){
+            return $wallet;
         }
         return false;
     }

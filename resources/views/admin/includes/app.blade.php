@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="{{asset("assets/images/favicon.ico")}}">
     @yield("addition")
     <!-- Bootstrap Css -->
+
     <link href="{{asset("assets/css/bootstrap.min.css")}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="{{asset("assets/css/icons.min.css")}}" rel="stylesheet" type="text/css" />
@@ -216,6 +217,12 @@
                         <a href="{{route("admin.notify.index")}}">
                             <i class="uil-comment-alt-exclamation"></i>
                             <span>Control Notifications</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route("admin.cash.index")}}">
+                            <i class="uil-money-withdrawal"></i>
+                            <span>Cash out requests</span>
                         </a>
                     </li>
                     <li>

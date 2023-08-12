@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\about\AboutController;
 use App\Http\Controllers\admin\add_admins\AddAdminController;
 use App\Http\Controllers\admin\auth\ForgetPasswordController;
 use App\Http\Controllers\admin\auth\LoginController;
+use App\Http\Controllers\admin\cashout\CashoutController;
 use App\Http\Controllers\admin\contact\ContactUsMessagesController;
 use App\Http\Controllers\admin\control_trucks\ControlTrucksController;
 use App\Http\Controllers\admin\controlCustomers\ControlUsersController;
@@ -128,7 +129,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get("active/{user_id}",[ControlUsersController::class,"changeAccountState"])->name("admin.user.active");
         Route::get("/delete/{user_id}",[ControlUsersController::class,"deleteUser"]);
 
-        /*Selles Request*/
+        /*Seller Request*/
 
         //Route::get("SellersRequests",[SellerRequestsController::class,"index"])->name("admin.show.requests");
         Route::get("SellersRequests",[SellerRequestsController::class,"index"])->name("admin.show.requests");
@@ -141,5 +142,9 @@ Route::group(['prefix' => 'admin'], function(){
         /*Notifications **/
         Route::get("notify",[NotificationController::class,"index"])->name("admin.notify.index");
         Route::post("post-notify",[NotificationController::class,"notify"])->name("admin.post.notify");
+
+
+        /*cash out*/
+        Route::get("cash-out",[CashoutController::class,"index"])->name("admin.cash.index");
     });
 });

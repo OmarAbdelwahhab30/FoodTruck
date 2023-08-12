@@ -70,7 +70,7 @@ class MessageService extends Service
                 $query->where('from_user', $request->other_user_id)
                     ->where('to_user'  , auth("sanctum")->user()->id);
             }
-        )->select("content","from_user","to_user")->get();
+        )->select("content","from_user","to_user","chat_id")->get();
 
     }
 
