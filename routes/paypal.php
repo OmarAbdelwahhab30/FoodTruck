@@ -2,24 +2,13 @@
 
 use App\Http\Controllers\Payment\PayPal\PaymentController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Payment\PayPal\PaypalPaymentController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register paypal routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 
-
-Route::post('pay-paypal',[PaypalPaymentController::class,"payWithpaypal"])->name('pay-paypal');
-Route::get('paypal-status',[PaypalPaymentController::class,"getPaymentStatus"])->name('paypal-status');
-Route::get('payment-success',[PaymentController::class,"success"])->name('payment-success');
-Route::get('payment-fail',[PaymentController::class,"fail"])->name('payment-fail');
-
-
+Route::controller(PaymentController::class)
+    ->prefix('paypal')
+    ->group(function () {
+        Route::get('payment/{customer_id}/{order_id}/{currency}/{amount}', 'index')->name('create.payment');
+        Route::get('handle-payment/{customer_id}/{order_id}/{currency}/{amount}', 'handlePayment')->name('make.payment');
+        Route::get('cancel-payment', 'paymentCancel')->name('cancel.payment');
+        Route::get('payment-success/{customer_id}/{order_id}/{currency}/{amount}', 'paymentSuccess')->name('success.payment');
+    });

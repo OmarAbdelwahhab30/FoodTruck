@@ -1,13 +1,25 @@
+{{ isset($response)?dd($response):""}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Add meta tags for mobile and IE -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="_token" content="{{csrf_token()}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Paypal</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://kit.fontawesome.com/f3297bf651.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
 
         body{
@@ -50,33 +62,6 @@
         .topnav .icon {
             display: none;
         }
-        .box {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100vh;
-        }
-
-        .paypal {
-
-        &
-        -logo {
-            font-family: Verdana, Tahoma, serif;
-            font-weight: bold;
-            font-size: 26px;
-        }
-
-        body {
-            height: 100%
-        }
-
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: inherit;
-        }
     </style>
 </head>
 <body>
@@ -89,39 +74,26 @@
         <i class="fa fa-bars"></i>
     </a>
 </div>
-<div class="box">
-  <span class="paypal-logo">
-    <i>Pay</i><i>Pal</i>
-  </span>
-    <br/>
-    <div class="paypal-button">
-    <span class="paypal-button-title">
-      Buy now with
-    </span>
+@if (session()->has('success'))
+    <div class="alert alert-success">
+        {{ session()->get('success') }}
+    </div>
+@endif
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h1 class="text-3xl md:text-5xl font-extrabold text-center uppercase mb-12 bg-gradient-to-r from-indigo-400 via-purple-500 to-indigo-600 bg-clip-text text-transparent transform -rotate-2">
         <span class="paypal-logo">
       <i>Pay</i><i>Pal</i>
     </span>
-    </div>
-    <div id="paypal-button-container" style="margin-top: 15px">
-        <form method="POST" id="payment-form" action="{{route('pay-paypal')}}">
-            @csrf
-            <button class="btn btn-block" type="submit">
-            </button>
-        </form>
+        </h1>
+        <center>
+            <a  href="{{ route('make.payment',[$customer_id,$order_id,$currency,$amount])}}"
+                style="background-image: linear-gradient(#FFF0A8, #F9B421);width: 280px" class="btn btn-default w-full bg-indigo-500 uppercase rounded-xl font-extrabold text-white px-6 h-8">
+                <i class="fa-brands fa-cc-paypal fa-fade fa-xs"></i>
+                Pay with PayPal
+            </a>
+        </center>
     </div>
 </div>
-
-<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD&disable-funding=card&intent=authorize"></script>
-<script>
-    // Render the PayPal button into #paypal-button-container
-    paypal.Buttons({
-        style: {
-            layout: 'vertical',
-            color: 'gold',
-            shape: 'pill',
-            label: 'pay',
-        }
-    }).render('#paypal-button-container');
-</script>
 </body>
 </html>

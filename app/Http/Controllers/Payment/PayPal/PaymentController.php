@@ -4,51 +4,96 @@ namespace App\Http\Controllers\Payment\PayPal;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 class PaymentController extends Controller
 {
 
-    public function payment(Request $request)
+    public function index($customer_id,$order_id,$currency,$amount)
     {
-
-        session()->put('customer_id', auth("sanctum")->user()->id);
-        session()->put('order_id', $request->order_id);
-
-
-        $customer = User::find(auth("sanctum")->user()->id);
-
-        $order = Order::where(['id' => $request->order_id, 'user_id' => auth("sanctum")->user()->id])->first();
-
-
-            $data = [
-                'name'  => $customer->name,
-                'email' => $customer->email !== null? $customer->email : "no email found" ,
-                'phone' => $customer->phone,
-            ];
-            session()->put('data', $data);
-            return view('payment-view');
+        $amount = number_format($amount,2);
+        return view("payment-view",compact(['customer_id','currency','order_id','amount']));
     }
 
-    public function success(): \Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
+    /**
+     * @throws \Throwable
+     */
+    public function handlePayment($customer_id,$order_id,$currency,$amount)
     {
-        $order = Order::where(['id' => session('order_id'), 'user_id'=>session('customer_id')])->first();
-        /*if ($order->callback != null) {
-            return redirect($order->callback . '&status=success');
+        $provider = new PayPalClient;
+        $provider->setApiCredentials(config('paypal'));
+        $paypalToken = $provider->getAccessToken();
+        $response = $provider->createOrder([
+            "intent" => "CAPTURE",
+            "application_context" => [
+                "return_url" => route('success.payment'),
+                "cancel_url" => route('cancel.payment'),
+            ],
+            "purchase_units" => [
+                0 => [
+                    "amount" => [
+                        "currency_code" => $currency,
+                        "value" => $amount
+                    ]
+                ]
+            ]
+        ]);
+
+        if (isset($response['id']) && $response['id'] != null) {
+            foreach ($response['links'] as $links) {
+                if ($links['rel'] == 'approve') {
+                    return redirect()->away($links['href']);
+                }
+            }
+            dd($response);
+            Payment::create([
+                'payment_status'    => 'success',
+                'payment_method'    => 'paypal',
+                'payment_response'  => null,
+                'customer_id'       => $customer_id,
+                'order_id'          => $order_id ,
+                'payment_id'	    => null,
+                'payer_email'       => null,
+                'currency'          => $currency
+
+            ]);
+            return redirect()
+                ->route('cancel.payment')
+                ->with('error', 'Something went wrong.');
+        } else {
+            return redirect()
+                ->route('create.payment',[$customer_id,$order_id,$currency,$amount])
+                ->with('error', $response['message'] ?? 'Something went wrong.');
         }
-        return response()->json(['message' => 'Payment succeeded'], 200); */
-        return redirect('&status=success');
     }
 
-    public function fail()
+    public function paymentCancel()
     {
-        $order = Order::where(['id' => session('order_id'), 'user_id'=>session('customer_id')])->first();
-        /*if ($order->callback != null) {
-            return redirect($order->callback . '&status=fail');
+        return redirect()
+            ->route('create.payment')
+            ->with('error', $response['message'] ?? 'You have canceled the transaction.');
+    }
+
+    /**
+     * @throws \Throwable
+     */
+    public function paymentSuccess(Request $request,$customer_id,$order_id,$currency,$amount)
+    {
+        $provider = new PayPalClient;
+        $provider->setApiCredentials(config('paypal'));
+        $provider->getAccessToken();
+        $response = $provider->capturePaymentOrder($request['token']);
+        if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+            return redirect()
+                ->route('create.payment',[$customer_id,$order_id,$currency,$amount])
+                ->with('response', $response);
+        } else {
+            return redirect()
+                ->route('create.payment')
+                ->with('error', $response['message'] ?? 'Something went wrong.');
         }
-        return response()->json(['message' => 'Payment failed'], 403);*/
-        return redirect('&status=success');
     }
 }

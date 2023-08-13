@@ -75,7 +75,7 @@ class ReturnOrderInformationService extends \App\Services\Service
             $q->with("images");
             $q->with("images");
             $q->select("name","delivery","delivery_price","id");
-        }])->whereIn('status',['pending','processing'])->select("id","status","created_at","delivery_type","truck_id")->get();
+        }])->whereIn('status_en',['pending','processing'])->select("id","status_en","created_at","delivery_type_en","truck_id")->get();
     }
 
     public function ReturnAllPreviousSellerOrders(): \Illuminate\Database\Eloquent\Collection|array
@@ -86,7 +86,7 @@ class ReturnOrderInformationService extends \App\Services\Service
             $q->with("images");
             $q->with("images");
             $q->select("name","delivery","delivery_price","id");
-        }])->whereIn('status',['picked-up','cancelled','delivered'])->select("id","status","created_at","delivery_type","truck_id")->get();
+        }])->whereIn('status_en',['picked-up','cancelled','delivered'])->select("id","status_en","created_at","delivery_type_en","truck_id")->get();
     }
 
     public function ReturnOrderStatusByOrderID($request)
