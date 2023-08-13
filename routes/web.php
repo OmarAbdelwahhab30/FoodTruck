@@ -18,40 +18,19 @@ use App\Http\Controllers\admin\SellerRequests\SellerRequestsController;
 use App\Http\Controllers\admin\terms\TermsController;
 use App\Http\Controllers\admin\update_account\UpdateAdminAccountController;
 use App\Http\Controllers\admin\vat\UpdateValueAddedTaxController;
-use App\Http\Controllers\Payment\PayPal\PaypalPaymentController;
+use App\Http\Controllers\Payment\PayPal\PaymentController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
-//Route::group(['prefix' => 'payment-mobile'], function () {
-//    Route::get('/', [PaypalPaymentController::class,"payment"])->name('payment-mobile');
-//    Route::get('set-payment-method/{name}', [PaypalPaymentController::class,"payment"])
-//        ->name('set_payment_method');
-//});
-//Route::post('pay-paypal',[PaypalPaymentController::class,"payWithpaypal"])->name('pay-paypal');
-//Route::get('paypal-status',[PaypalPaymentController::class,"getPaymentStatus"])->name('paypal-status');
-//Route::get('payment-success',[PaypalPaymentController::class,"success"])->name('payment-success');
-//Route::get('payment-fail',[PaypalPaymentController::class,"fail"])->name('payment-fail');
 
 /*
  *
  * Admin Routes are here
  *
  */
+
 // ............authentication.........................
 
 Route::group(['prefix' => 'admin'], function(){
-
 
     Route::group(['middleware' => 'guest'], function(){
         Route::get("/", [LoginController::class, "index"])->name("admin.login");
@@ -154,5 +133,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get("deleterequest/{requestID}",[CashoutController::class,"deleteRequest"])->name("admin.delete.request");
         Route::get("returnrequest/{id}/{amount}",[CashoutController::class,"returnRequest"])->name("admin.return.request");
         Route::get("declined",[CashoutController::class,"declineIndex"])->name("admin.declined.requests");
+
     });
+
 });

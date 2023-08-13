@@ -9,6 +9,7 @@ use App\Models\Message;
 use App\Services\Service;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 use Pusher\ApiErrorException;
 use Pusher\PusherException;
 
@@ -36,7 +37,8 @@ class MessageService extends Service
         }
         $message = $this->createMessage($request,$collection,$to_user);
 
-        broadcast(new SendMessageEvent($message))->toOthers();
+        broadcast(new SendMessageEvent($message->id))->toOthers();
+
         return $message;
     }
 

@@ -24,6 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:sanctum'],function () {
 
+    Route::group(['prefix' => 'payment-mobile'], function () {
+        Route::get('/button', [\App\Http\Controllers\Payment\PayPal\PaymentController::class,"payment"]);
+    });
     Route::post("ExecutePayment", [PaymentController::class, 'ExecutePayment']);
     Route::get("ConfirmPayment", [PaymentController::class, 'ConfirmPayment']);
     Route::post("addCardInformation",[AddCardInformationController::class,"addCardInformation"]);

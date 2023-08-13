@@ -8,26 +8,25 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class SendMessageEvent implements ShouldBroadcast
+class SendMessageEvent implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /**
-     * SendMessageEvent constructor.
-     *
-     * @param Message $message
-     */
-    public function __construct(private Message $message)
-    {
+    private $message;
 
+
+    public function __construct($messageID)
+    {
+        $this->message = Message::find($messageID);
     }
 
-    public function broadcastOn()
+    public function broadcastOn(): Channel
     {
-        return new PrivateChannel('chat.' . $this->message->from_user.$this->message->to_user);
+        return new Channel('chat.' . $this->message->from_user .".". $this->message->to_user);
     }
 
     /**

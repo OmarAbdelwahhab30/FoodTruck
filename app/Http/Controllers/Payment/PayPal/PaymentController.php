@@ -6,9 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Omnipay\Omnipay;
-use PayPal\Api\Payment;
-use function PHPUnit\Framework\isNull;
+
 
 class PaymentController extends Controller
 {
@@ -16,28 +14,22 @@ class PaymentController extends Controller
     public function payment(Request $request)
     {
 
-        if ($request->has('callback')) {
-            Order::where(['id' => $request->order_id])->update(['callback' => $request['callback']]);
-        }
-
-        session()->put('customer_id', $request['customer_id']);
+        session()->put('customer_id', auth("sanctum")->user()->id);
         session()->put('order_id', $request->order_id);
 
-        $customer = User::find($request['customer_id']);
 
-        $order = Order::where(['id' => $request->order_id, 'user_id' => $request['customer_id']])->first();
+        $customer = User::find(auth("sanctum")->user()->id);
 
-        if (isset($customer) && isset($order)) {
+        $order = Order::where(['id' => $request->order_id, 'user_id' => auth("sanctum")->user()->id])->first();
+
+
             $data = [
-                'name'  => $customer['name'],
-                'email' => $customer['email'] !== null? $customer['email'] : "no email found" ,
-                'phone' => $customer['phone'],
+                'name'  => $customer->name,
+                'email' => $customer->email !== null? $customer->email : "no email found" ,
+                'phone' => $customer->phone,
             ];
             session()->put('data', $data);
             return view('payment-view');
-        }
-
-        return response()->json(['errors' => ['code' => 'order-payment', 'message' => 'Data not found']], 403);
     }
 
     public function success(): \Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
