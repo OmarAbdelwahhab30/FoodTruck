@@ -14,12 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('cart_product', function (Blueprint $table) {
-            $table->foreignId("cart_id")->references("id")->on("carts")->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId("product_id")->references("id")->on("products")->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId("size_id")->references("id")->on("sizes")->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string("optional");
-            $table->double("optional_price");
-            $table->double("total_price");
+
         });
     }
 

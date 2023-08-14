@@ -3,6 +3,7 @@
 namespace App\Services\Payment\Checkout;
 
 use App\Models\Payment;
+use App\Models\Wallet;
 use App\Services\Service;
 use Checkout\CheckoutApiException;
 use Checkout\CheckoutArgumentException;
@@ -58,7 +59,9 @@ class PaymentService extends Service
          {
              $record = $this->createPaymentRecord($response,$req->order_id);
              if ($record){
-                 return $this->createPaymentRecord($response,$req->order_id);
+                 $this->createPaymentRecord($response,$req->order_id);
+                 $this->ConfirmCheckout($response['id'],$req->amount,$req->seller_id);
+                 return true;
              }
              return false;
          }
@@ -81,8 +84,9 @@ class PaymentService extends Service
     /**
      * @throws CheckoutApiException
      */
-    public function ConfirmCheckout($payment_id): bool
+    public function ConfirmCheckout($payment_id,$amount,$seller_id): bool
     {
+        $this->IncreaseWalletBalance($amount,$seller_id);
         $request = new CaptureRequest();
         $request->processing_channel_id = getenv("CHECKOUT_PROCESSING_CHANNEL_ID");
         $response = $this->api->getPaymentsClient()->capturePayment($payment_id, $request);
@@ -102,4 +106,6 @@ class PaymentService extends Service
         }
         return false;
     }
+
+
 }

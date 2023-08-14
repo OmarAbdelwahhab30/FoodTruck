@@ -17,7 +17,8 @@ class Cart extends Model
 
     public function products(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Product::class,"cart_product","cart_id","product_id")->withPivot('count');
+        return $this->belongsToMany(Product::class,"cart_product","cart_id","product_id")
+            ->withPivot(['count','optional_price',"total_price","optional"]);
     }
 
     public function user(): \Illuminate\Database\Eloquent\Relations\HasOne

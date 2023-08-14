@@ -31,7 +31,7 @@ class PaymentController extends Controller
         $done = $service->ExecutePayment($req);
         if ($done)
         {
-            return $this->returnData(__("Payment"),$done,__("responses.Here is payment Info"));
+            return $this->returnSuccessMessage("Payment is done successfully.");
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
@@ -39,13 +39,13 @@ class PaymentController extends Controller
     /**
      * @throws CheckoutApiException
      */
-    public function ConfirmPayment(ConfirmPaymentRequest $req, PaymentService $service): \Illuminate\Http\JsonResponse
-    {
-        if ($service->ConfirmCheckout($req->payment_id))
-        {
-            return $this->returnSuccessMessage(__("responses.Payment has been completed successfully."));
-        }
-        return $this->returnError(__("responses.Some thing went wrong ,try again later"));
-    }
+//    public function ConfirmPayment(ConfirmPaymentRequest $req, PaymentService $service): \Illuminate\Http\JsonResponse
+//    {
+//        if ($service->ConfirmCheckout($req->payment_id))
+//        {
+//            return $this->returnSuccessMessage(__("responses.Payment has been completed successfully."));
+//        }
+//        return $this->returnError(__("responses.Some thing went wrong ,try again later"));
+//    }
 
 }

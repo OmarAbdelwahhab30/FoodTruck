@@ -9,19 +9,33 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
+use Throwable;
+
 class PaymentController extends Controller
 {
 
-    public function index($customer_id,$order_id,$currency,$amount)
+    public function index($customer_id,$order_id,$currency,$amount,$seller_id)
     {
         $amount = number_format($amount,2);
+        session()->put('customer_id',$customer_id);
+
+        session()->put('order_id',$order_id);
+
+        session()->put('currency',$currency);
+
+        session()->put('amount',$amount);
+
+        session()->put('seller_id',$seller_id);
+
+        session()->put("customer_email",User::find($customer_id)->email);
+
         return view("payment-view",compact(['customer_id','currency','order_id','amount']));
     }
 
     /**
      * @throws \Throwable
      */
-    public function handlePayment($customer_id,$order_id,$currency,$amount)
+    public function handlePayment()
     {
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
@@ -35,8 +49,8 @@ class PaymentController extends Controller
             "purchase_units" => [
                 0 => [
                     "amount" => [
-                        "currency_code" => $currency,
-                        "value" => $amount
+                        "currency_code" => session()->get("currency"),
+                        "value" => session()->get("amount")
                     ]
                 ]
             ]
@@ -48,52 +62,52 @@ class PaymentController extends Controller
                     return redirect()->away($links['href']);
                 }
             }
-            dd($response);
-            Payment::create([
-                'payment_status'    => 'success',
-                'payment_method'    => 'paypal',
-                'payment_response'  => null,
-                'customer_id'       => $customer_id,
-                'order_id'          => $order_id ,
-                'payment_id'	    => null,
-                'payer_email'       => null,
-                'currency'          => $currency
 
-            ]);
             return redirect()
                 ->route('cancel.payment')
                 ->with('error', 'Something went wrong.');
         } else {
-            return redirect()
-                ->route('create.payment',[$customer_id,$order_id,$currency,$amount])
-                ->with('error', $response['message'] ?? 'Something went wrong.');
+            return redirect()->route('suc');
         }
     }
 
-    public function paymentCancel()
-    {
-        return redirect()
-            ->route('create.payment')
-            ->with('error', $response['message'] ?? 'You have canceled the transaction.');
-    }
-
     /**
-     * @throws \Throwable
+     * @throws Throwable
      */
-    public function paymentSuccess(Request $request,$customer_id,$order_id,$currency,$amount)
+    public function paymentSuccess(Request $request): \Illuminate\Http\RedirectResponse
     {
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $provider->getAccessToken();
         $response = $provider->capturePaymentOrder($request['token']);
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
-            return redirect()
-                ->route('create.payment',[$customer_id,$order_id,$currency,$amount])
-                ->with('response', $response);
+            $this->CreatePayment($response);
+            $this->IncreaseWalletBalance(session()->get("amount"),session()->get("seller_id"));
+             return redirect()->route('suc');
         } else {
-            return redirect()
-                ->route('create.payment')
-                ->with('error', $response['message'] ?? 'Something went wrong.');
+            return redirect()->route('er');
         }
+    }
+    private function CreatePayment($response)
+    {
+        Payment::create([
+            'payment_status'    => $response['status'],
+            'payment_method'    => 'paypal',
+            'payment_response'  => json_encode($response),
+            'customer_id'       => session()->get("customer_id"),
+            'order_id'          => session()->get("order_id") ,
+            'payment_id'	    => $response['id'],
+            'payer_email'       => session()->get("customer_email"),
+            'currency'          => session()->get("currency")
+        ]);
+    }
+    public function SUC()
+    {
+        return view("suc");
+    }
+
+    public function er()
+    {
+        return view("er");
     }
 }
