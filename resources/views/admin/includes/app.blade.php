@@ -251,6 +251,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{route("admin.env.index")}}" >
+                            <i class="uil-exclamation-triangle"></i>
+                            <span>Change Configurations</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{route("admin.logout")}}" >
                             <i class="uil-sign-out-alt"></i>
                             <span>logout</span>

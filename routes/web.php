@@ -134,6 +134,10 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get("returnrequest/{id}/{amount}",[CashoutController::class,"returnRequest"])->name("admin.return.request");
         Route::get("declined",[CashoutController::class,"declineIndex"])->name("admin.declined.requests");
 
+
+        /*Change Env vars*/
+        Route::get("index",[\App\Http\Controllers\admin\ChangeEnv\ChangeEnvController::class,"index"])->name("admin.env.index");
+        Route::get("changeEnv",[\App\Http\Controllers\admin\ChangeEnv\ChangeEnvController::class,"change"])->name("env.change");
     });
 
 });
