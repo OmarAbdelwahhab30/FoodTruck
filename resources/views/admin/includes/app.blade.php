@@ -110,7 +110,7 @@
                 </div>
                 <div>
                     <span type="button" class="btn header-item waves-effect" aria-haspopup="true" aria-expanded="false"></span>
-                        <img class="rounded-circle header-profile-user" src="{{asset(auth()->user()->image)}}"
+                        <img class="rounded-circle header-profile-user" src="{{auth()->user()->image}}"
                              alt="Header Avatar">
                         <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15">{{auth()->user()->name}}</span>
                 </div>

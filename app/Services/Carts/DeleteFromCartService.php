@@ -11,12 +11,10 @@ use Illuminate\Support\Facades\DB;
 
 class DeleteFromCartService extends Service
 {
-
-
     public function deleteProductFromCart($request): bool
     {
         $cart = auth("sanctum")->user()->cart;
-        if ($cart->products()->detach($request->product_id))
+        if ($cart->products()->wherePivot('id', '=', $request->pivot_id)->detach())
         {
             return true;
         }

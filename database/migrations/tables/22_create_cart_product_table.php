@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('cart_product', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("count")->default(1);
+            $table->string("optional");
+            $table->double("optional_price");
+            $table->double("total_price");
             $table->timestamps();
         });
     }

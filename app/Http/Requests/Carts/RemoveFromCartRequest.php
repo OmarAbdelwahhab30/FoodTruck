@@ -24,7 +24,7 @@ class RemoveFromCartRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_id'    => 'required',
+            'pivot_id'    => 'required',
         ];
     }
 }

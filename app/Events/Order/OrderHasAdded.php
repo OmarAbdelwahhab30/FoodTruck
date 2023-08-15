@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
@@ -41,7 +42,8 @@ class OrderHasAdded implements ShouldBroadcastNow
         return[
             'order' => [
                 $this->order->created_at,
-                $this->order->delivery_type,
+                $this->order->delivery_type_en,
+                $this->order->status_en,
                 "#00000".$this->order->id
             ],
             'customer'  =>[

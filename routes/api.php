@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactUs\ContactUsController;
 use App\Http\Controllers\notifications\ReturnAllNotificationsByIDController;
 use App\Http\Controllers\notifications\SetPlayerIdController;
 use App\Http\Controllers\Payment\PayPal\PaymentController;
+use App\Http\Controllers\VAT\ReturnValuesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:sanctum'],function () {
 
+    Route::get("returnVAT",[ReturnValuesController::class,"returnVAT"]);
+    Route::get("returnOwnerPercentage",[ReturnValuesController::class,"returnOwnerPercentage"]);
+    Route::get("returnKiloPrice",[ReturnValuesController::class,"returnKiloPrice"]);
     Route::post("AddContactUsContent",[ContactUsController::class,'AddContactUsContent']);
 
 });

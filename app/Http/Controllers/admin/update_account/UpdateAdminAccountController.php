@@ -31,7 +31,7 @@ class UpdateAdminAccountController extends Controller
             $user->image = "storage/images/default.png";
             $user->save();
         } elseif ($request->file("image")!== null){
-            $user->image = "storage/images/admins/".
+            $user->image = env("APP_URL")."storage/images/admins/".
                 $this->UploadFile($request->file("image"),"images/admins/");
             $user->save();
         }

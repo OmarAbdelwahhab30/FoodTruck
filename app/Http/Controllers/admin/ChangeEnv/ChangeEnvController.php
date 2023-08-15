@@ -41,7 +41,7 @@ class ChangeEnvController extends Controller
         return view("admin.env.index",compact('arr'));
     }
 
-    public function change(Request $request)
+    public function change(\Illuminate\Http\Request $request)
     {
         $return = $this->changeEnv($request->key, $request->value);
         if ($return) {

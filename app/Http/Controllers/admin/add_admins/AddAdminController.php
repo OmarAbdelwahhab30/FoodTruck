@@ -26,7 +26,10 @@ class AddAdminController extends Controller
             'phone' =>$request->phone,
             'role_id'   => Role::ROLE_ADMINISTRATOR,
             'password'  => Hash::make($request->password),
-            'image'     => $request->file("image") !== null ? "storage/images/admins/".$this->UploadFile($request->file("image"),"images/admins/"):"storage/images/default.png",
+            'image'     => $request->file("image") !== null ?
+                env("APP_URL")."storage/images/admins/".$this->UploadFile($request->file("image")
+                    ,"images/admins/")
+                :env("APP_URL")."storage/images/default.png",
         ]);
         if ($user){
             return redirect()->back()->with("success", "Admin has been added successfully.");

@@ -21,13 +21,14 @@ class Order extends Model
 
     protected function serializeDate(DateTimeInterface $date): string
     {
-        return $date->format('h:i:s a m/d/Y');
+        return $date->format('h:i:s a');
     }
 
     public function products(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Product::class, "order_product", 'order_id', 'product_id')
-            ->withPivot(['optional_id','size_id']);
+        return $this->belongsToMany(Product::class, "order_product",
+            'order_id', 'product_id')->using(OrderProduct::class)
+            ->withPivot(["optional","count",'size_id']);
     }
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -44,7 +45,6 @@ class Order extends Model
     {
         return $this->belongsTo(Payment::class);
     }
-
 
 
 }

@@ -52,7 +52,7 @@ class RoleAndPermissionSeeder extends Seeder
             'update-truck-info'         => [Role::ROLE_SELLER],
             'return-truck-orders'       => [Role::ROLE_SELLER],
             // Seller and Customer Permissions
-            'update_account-information'=> [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
+            'update_account_information'=> [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'change-password'           => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'get-profile-reviews'       => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'send-message'              => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],

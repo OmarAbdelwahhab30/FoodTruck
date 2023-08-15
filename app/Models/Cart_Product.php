@@ -16,4 +16,5 @@ class Cart_Product extends Pivot
 
 
 
+
 }

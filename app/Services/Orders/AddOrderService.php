@@ -49,8 +49,9 @@ class AddOrderService extends Service
     {
         foreach ($products as $product)
         $order->products()->attach($product['id'], [
-            'optional_id' => $product['optional_id'],
             'size_id'     => $product['size_id'],
+            'optional'    => $product['optional'],
+            'count'       => $product['count'],
         ]);
     }
 
