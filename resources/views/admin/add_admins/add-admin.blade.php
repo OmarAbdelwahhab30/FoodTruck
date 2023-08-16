@@ -9,7 +9,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Add Administrator</h4>
+                                <h4 class="card-title">{{__("admin.Add Administrator")}}</h4>
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <for class="mt-4">
@@ -18,7 +18,7 @@
                                                 @csrf
                                                 <div class="col-md-3 border-right">
                                                     <div class="">
-                                                        <img style="border-radius: 50% ; height: 250px;width: 250px"
+                                                        <img style="border-radius: 50% ; height: 250px;width: 250px ;padding: 35px"
                                                              src="{{asset("storage/images/default.png")}}" id="image">
                                                         <span class="font-weight-bold"></span><span
                                                             class="text-black-50"></span><span></span>
@@ -48,7 +48,7 @@
                                                                         margin-left: 21px;" type="button" onclick="deleteImage()"
                                                                         id="dlt-btn"
                                                                         class="btn btn-outline-danger waves-effect waves-light">
-                                                                            Delete Profile Picture
+                                                                            {{__("admin.Delete Profile Picture")}}
                                                                         </button>`
                                                                 }
                                                                 var deleteImage = function () {
@@ -68,46 +68,46 @@
 
                                             <div class="row mb-4">
                                                 <label for="horizontal-Fullname-input"
-                                                       class=" col-form-label">admin-name</label>
+                                                       class=" col-form-label">{{__("admin.admin-name")}}</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" name="name" value="{{old("name")}}"
                                                            class="form-control"
                                                            id="horizontal-Fullname-input"
-                                                           placeholder="Enter your name">
+                                                           placeholder="{{__("admin.Enter your name")}}">
                                                 </div>
                                             </div>
                                             <div class="row mb-4">
-                                                <label class="col-form-label">Phone Number</label>
+                                                <label class="col-form-label">{{__("admin.Phone Number")}}</label>
                                                 <div class="col-sm-9">
                                                     <input type="tel" name="phone" value="{{old("phone")}}"
                                                            class="form-control"
                                                            id="horizontal-email-input"
-                                                           placeholder="Enter your phone number">
+                                                           placeholder="{{__("admin.Enter your phone number")}}">
                                                 </div>
                                             </div>
                                             <div class="row mb-4">
-                                                <label class="col-form-label">Email</label>
+                                                <label class="col-form-label">{{__("admin.Email")}}</label>
                                                 <div class="col-sm-9">
                                                     <input type="email" name="email" value="{{old("email")}}"
                                                            class="form-control"
                                                            id="horizontal-email-input"
-                                                           placeholder="Enter your email address">
+                                                           placeholder="{{__("admin.Enter your email address")}}">
                                                 </div>
                                             </div>
                                             <div class="row mb-4">
-                                                <label class="col-form-label">Password</label>
+                                                <label class="col-form-label">{{__("admin.Password")}}</label>
                                                 <div class="col-sm-9">
                                                     <input type="password" name="password" class="form-control"
                                                            id="horizontal-password-input"
-                                                           placeholder="Enter your password">
+                                                           placeholder="{{__("admin.Enter your password")}}">
                                                 </div>
                                             </div>
                                             <div class="row mb-4">
-                                                <label class="col-form-label">Confirm - Password</label>
+                                                <label class="col-form-label">{{__("admin.Confirm - Password")}}</label>
                                                 <div class="col-sm-9">
                                                     <input type="password" name="confirm_password" class="form-control"
                                                            id="horizontal-password-input"
-                                                           placeholder="Enter your password">
+                                                           placeholder="{{__("admin.Confirm your password")}}">
                                                 </div>
                                             </div>
 
@@ -116,11 +116,11 @@
                                                     <div class="d-flex flex-wrap gap-3">
                                                         <button type="submit"
                                                                 class="btn btn-primary waves-effect waves-light w-md">
-                                                            Submit
+                                                            {{__("admin.Submit")}}
                                                         </button>
                                                         <button type="reset"
                                                                 class="btn btn-outline-danger waves-effect waves-light w-md">
-                                                            Reset
+                                                            {{__("admin.Reset")}}
                                                         </button>
                                                     </div>
                                                 </div>

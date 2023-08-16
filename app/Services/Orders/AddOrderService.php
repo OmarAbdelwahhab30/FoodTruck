@@ -59,7 +59,7 @@ class AddOrderService extends Service
     {
         if (isset($user->cart)) {
             $cart = Cart::find($user->cart->id);
-                $cart->delete();
+                $cart->products()->detach();
             }
     }
 

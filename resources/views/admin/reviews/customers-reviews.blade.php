@@ -19,20 +19,20 @@
         <div class="page-content">
             <div class="container-fluid">
                 @forelse($reviews as $review)
-                    <h4>Customer name | {{$review->user->name}}</h4>
+                    <h4> {{__("admin.Customer name")}} | {{$review->user->name}}</h4>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="row g-0 align-items-center">
                                     <div class="col-md-2">
                                         <img height="100px" width="100px" src="{{asset($review->user->image)}}"
-                                             alt="Card image" style="border-radius: 50%; margin-left: 70px">
+                                             alt="Card image" style="border-radius: 50%; margin: 60px">
                                     </div><!-- end col-->
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             <h5 class="card-title">
                                                 <div class="br-wrapper br-theme-css-stars">
-                                                    Seller name | {{$review->toWhom->name}}
+                                                    {{__("admin.Seller Name")}} | {{$review->toWhom->name}}
                                                     <div class="br-widget">
                                                         @for ($i = 0; $i < 5; $i++)
                                                             @if ($i < $review->rate)
@@ -65,8 +65,7 @@
                         class="alert alert-border alert-border-info alert-dismissible fade show mt-4 px-4 mb-0 text-center"
                         role="alert">
                         <i class="uil uil-question-circle d-block display-4 mt-2 mb-3 text-info"></i>
-                        <h5 class="text-info">Info</h5>
-                        <p>No reviews to show !</p>
+                        <p>{{__("admin.No reviews to show")}}</p>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                         </button>
                     </div>

@@ -6,7 +6,10 @@ Website: https://themesbrand.com/
 Contact: themesbrand@gmail.com
 File: Main Css File
 */
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Amiri&family=Barlow+Condensed:wght@200&family=IBM+Plex+Sans+Arabic:wght@300&family=Noto+Naskh+Arabic&family=Tajawal:wght@200&display=swap');
+body {
+    font-family: 'Amiri', serif;
+}
 :root {
   --bs-sidebar-bg: #ffffff;
   --bs-sidebar-menu-item-color: #7b8190;
@@ -1364,10 +1367,10 @@ body[data-layout=horizontal][data-layout-size=boxed] .container-fluid, body[data
 
 /*!
  * Waves v0.7.6
- * http://fian.my.id/Waves 
- * 
- * Copyright 2014-2018 Alfiana E. Sibuea and other contributors 
- * Released under the MIT license 
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014-2018 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
  * https://github.com/fians/Waves/blob/master/LICENSE */
 .waves-effect {
   position: relative;

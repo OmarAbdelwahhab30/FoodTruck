@@ -9,7 +9,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Update Profile</h4>
+                                <h4 class="card-title">{{__("admin.Update Profile")}}</h4>
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <for class="mt-4">
@@ -18,7 +18,7 @@
                                                 @csrf
                                                 <div class="col-md-3 border-right">
                                                     <div class="">
-                                                        <img style="border-radius: 50% ; height: 250px;width: 250px"
+                                                        <img style="border-radius: 50% ; height: 250px;width: 250px;padding: 35px"
                                                              src="{{asset(auth()->user()->image)}}" id="image">
                                                         <span class="font-weight-bold"></span><span
                                                             class="text-black-50"></span><span></span>
@@ -50,7 +50,7 @@
                                                                         margin-left: 21px;" type="button" onclick="deleteImage()"
                                                                         id="dlt-btn"
                                                                         class="btn btn-outline-danger waves-effect waves-light">
-                                                                            Delete Profile Picture
+                                                                            {{__("admin.Delete Profile Picture")}}
                                                                         </button>`
                                                                 }
                                                                 var deleteImage = function () {
@@ -67,7 +67,7 @@
                                                                         margin-left: 21px;" type="button" onclick="deleteImage()"
                                                                         id="dlt-btn"
                                                                         class="btn btn-outline-danger waves-effect waves-light">
-                                                                    Delete Profile Picture
+                                                                    {{__("admin.Delete Profile Picture")}}
                                                                 </button>
                                                             </a>
                                                         </a>
@@ -79,7 +79,7 @@
 
                                             <div class="row mb-4">
                                                 <label for="horizontal-Fullname-input"
-                                                       class=" col-form-label">admin-name</label>
+                                                       class=" col-form-label">{{__("admin.admin-name")}}</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" name="name"
                                                            class="form-control"
@@ -88,7 +88,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-4">
-                                                <label class="col-form-label">Phone Number</label>
+                                                <label class="col-form-label">{{__("admin.Phone Number")}}</label>
                                                 <div class="col-sm-9">
                                                     <input type="tel" name="phone"
                                                            class="form-control"
@@ -97,7 +97,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-4">
-                                                <label class="col-form-label">Email</label>
+                                                <label class="col-form-label">{{__("admin.Email")}}</label>
                                                 <div class="col-sm-9">
                                                     <input type="email" name="email"
                                                            class="form-control"
@@ -106,19 +106,19 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-4">
-                                                <label class="col-form-label">New Password</label>
+                                                <label class="col-form-label">{{__("admin.New Password")}}</label>
                                                 <div class="col-sm-9">
                                                     <input type="password" name="password" class="form-control"
                                                            id="horizontal-password-input"
-                                                           placeholder="Enter your password">
+                                                           placeholder="{{__("admin.Enter your password")}}">
                                                 </div>
                                             </div>
                                             <div class="row mb-4">
-                                                <label class="col-form-label">Confirm - New Password</label>
+                                                <label class="col-form-label">{{__("admin.Confirm - New Password")}}</label>
                                                 <div class="col-sm-9">
                                                     <input type="password" name="confirm_password" class="form-control"
                                                            id="horizontal-password-input"
-                                                           placeholder="Enter your password">
+                                                           placeholder="{{__("admin.Confirm your password")}}">
                                                 </div>
                                             </div>
 
@@ -127,11 +127,11 @@
                                                     <div class="d-flex flex-wrap gap-3">
                                                         <button type="submit"
                                                                 class="btn btn-primary waves-effect waves-light w-md">
-                                                            Submit
+                                                            {{__("admin.Submit")}}
                                                         </button>
                                                         <button type="reset"
                                                                 class="btn btn-outline-danger waves-effect waves-light w-md">
-                                                            Reset
+                                                            {{__("admin.Reset")}}
                                                         </button>
                                                     </div>
                                                 </div>

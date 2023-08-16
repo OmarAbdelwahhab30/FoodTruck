@@ -10,9 +10,9 @@
                         <div class="card" style="height: 500px">
                             <div class="card-body">
 
-                                <h4 class="card-title">Truck Orders Search</h4>
+                                <h4 class="card-title">{{__("admin.Truck Orders Search")}}</h4>
                                 <p class="card-title-desc">
-                                    Search about orders by certain date .
+                                    {{__("admin.Search about orders by certain date")}} .
                                 </p>
 
                                 <form method="get" action="{{route("truck.orders.post")}}">
@@ -21,10 +21,10 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
 
-                                                <label class="form-label">Search here</label>
+                                                <label class="form-label">{{__("admin.Search here")}}</label>
                                                 <div class="input-group" id="datepicker1">
                                                     <input type="text" autocomplete="off" name="date"
-                                                           class="form-control" placeholder="dd M, yyyy"
+                                                           class="form-control" placeholder="{{__("admin.dd M, yyyy")}}"
                                                            data-date-format="dd M, yyyy"
                                                            data-date-container="#datepicker1" data-provide="datepicker">
                                                     <input type="hidden" name="truck_id" value="{{$truck_id}}">
@@ -33,7 +33,7 @@
                                                 </div><!-- input-group -->
                                                 <button type="submit"
                                                         class="btn btn-success waves-effect waves-light mt-4 w-100">
-                                                    <i class="uil uil-check me-2"></i> Search
+                                                    <i class="uil uil-check me-2"></i> {{__("admin.Search")}}
                                                 </button>
                                             </div>
                                         </div>

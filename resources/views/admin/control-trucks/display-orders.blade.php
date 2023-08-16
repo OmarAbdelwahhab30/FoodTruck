@@ -21,11 +21,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0">Orders</h4>
+                            <h4 class="mb-0">{{__("admin.Orders")}}</h4>
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">FoodTruck</a></li>
-                                    <li class="breadcrumb-item active">Orders</li>
+                                    <li class="breadcrumb-item active">{{__("admin.Orders")}}</li>
                                 </ol>
                             </div>
                         </div>
@@ -44,12 +44,12 @@
                                             <label class="form-check-label" for="ordercheck"></label>
                                         </div>
                                     </th>
-                                    <th>Order ID</th>
-                                    <th>Date</th>
-                                    <th>CustomerName</th>
-                                    <th>Total</th>
-                                    <th>Orders Status</th>
-                                    <th style="width: 120px;">Action</th>
+                                    <th>{{__("admin.Order ID")}}</th>
+                                    <th>{{__("admin.Date")}}</th>
+                                    <th>{{__("admin.CustomerName")}}</th>
+                                    <th>{{__("admin.Total Price")}}</th>
+                                    <th>{{__("admin.Orders Status")}}</th>
+                                    <th style="width: 120px;">{{__("admin.Action")}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -66,13 +66,14 @@
                                     </td>
                                     <td>{{$order->user->name}}</td>
                                     <td>
-                                        {{$order->total_price}} S.R
+                                        {{$order->total_price}} {{__("admin.S.R")}}
                                     </td>
                                     <td>
-                                        <div class="badge bg-pill bg-soft-success font-size-12">{{app()->getLocale() =="en"? $order->status_en:$order->status_ar}}</div>
+                                        <div class="badge bg-pill bg-soft-success font-size-12">
+                                            {{app()->getLocale() =="en"? $order->status_en:$order->status_ar}}</div>
                                     </td>
                                     <td>
-                                        <a href="{{url("admin/DeleteOrder/".$order->id.'/'.$truck_id)}}"
+                                        <a href="{{url(LaravelLocalization::getCurrentLocale()."admin/DeleteOrder/".$order->id.'/'.$truck_id)}}"
                                            data-bs-toggle="modal" data-bs-target="#exampleModal"
                                            class="px-3 text-danger"><i
                                                 class="uil uil-trash-alt font-size-18"></i></a>
@@ -83,19 +84,19 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Delete the order !</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">{{__("admin.Delete the order")}}</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Are you sure to permanently delete the order ?
+                                                    {{__("admin.Are you sure to permanently delete the order")}}
                                                 </div>
                                                 <div class="modal-footer">
                                                     <form method="post" action="{{route("admin.order.delete")}}">
                                                         @csrf
                                                         <input type="hidden" name="order_id" id="order" value="{{$order->id}}">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__("admin.Close")}}</button>
+                                                        <button type="submit" class="btn btn-danger">{{__("admin.Delete")}}</button>
                                                     </form>
                                                 </div>
                                             </div>

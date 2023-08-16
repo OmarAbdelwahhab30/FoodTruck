@@ -9,8 +9,8 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Searching !</h4>
-                                <p class="card-title-desc">Here, You can search about truck by its seller phone .</p>
+                                <h4 class="card-title">{{__("admin.Searching")}} !</h4>
+                                <p class="card-title-desc">{{__("admin.Here, You can search about truck by its seller phone")}} .</p>
                                 <form method="post" action="{{route("admin.truck.search")}}">
                                     @csrf
                                     <div class="row align-items-center justify-content-center">
@@ -18,10 +18,10 @@
                                             <div class="">
                                                 <input class="form-control form-control-lg" type="text" name="search"
                                                        id="form-lg-input"
-                                                       placeholder="Search Here.">
+                                                       placeholder="{{__("admin.Search Here")}}.">
                                                 <button type="submit"
                                                         class="btn btn-success waves-effect waves-light mt-4 w-100">
-                                                    <i class="uil uil-check me-2"></i> Search
+                                                    <i class="uil uil-check me-2"></i> {{__("admin.Search")}}
                                                 </button>
                                             </div>
                                         </div>
@@ -38,12 +38,12 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="mb-0">Truck Detail</h4>
+                                <h4 class="mb-0">{{__("admin.Truck details")}}</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">FoodTruck</a></li>
-                                        <li class="breadcrumb-item active">Truck Detail</li>
+                                        <li class="breadcrumb-item active">{{__("admin.Truck Details")}}</li>
                                     </ol>
                                 </div>
 
@@ -78,41 +78,46 @@
                                                 <h4 class="font-size-20 mb-3">{{$truck->name}}</h4>
 
                                                 <div class="text-muted">
-                                                    {{$reviews_count}} Reviews
+                                                    {{$reviews_count}} {{__("admin.Reviews")}}
                                                 </div>
 
-                                                <h5 class="mt-4 pt-2">Delivery Price : <span
-                                                        class="text-danger font-size-14 ms-2">{{$truck->delivery_price}} S.R</span>
+                                                <h5 class="mt-4 pt-2">{{__("admin.Delivery Price")}} : <span
+                                                        class="text-danger font-size-14 ms-2">{{$truck->delivery_price}} {{__("admin.S.R")}}</span>
                                                 </h5>
 
                                                 <div>
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="mt-3">
-                                                                <h5 class="font-size-14">Information :</h5>
+                                                                <h5 class="font-size-14">{{__("admin.Information")}} :</h5>
                                                                 <ul class="list-unstyled product-desc-list text-muted">
                                                                     @if($truck->delivery == 1)
                                                                         <li>
                                                                             <i class="uil uil-exchange text-primary me-1 font-size-16"></i>
-                                                                            Truck supports delivery
+                                                                            {{__("admin.Truck supports delivery")}}
                                                                         </li>
                                                                     @else
                                                                         <li>
                                                                             <i class="uil uil-exchange text-primary me-1 font-size-16"></i>
-                                                                            Truck doesn't support delivery
+                                                                            {{__("admin.Truck doesn't support delivery")}}
                                                                         </li>
                                                                     @endif
                                                                     <li>
                                                                         <i class="uil-server-network-alt text-primary me-1 font-size-16"></i>
-                                                                        Work-time : {{$truck->work_time}}
+                                                                        {{__("admin.Work-time")}} : {{$truck->work_time}}
                                                                     </li>
                                                                     <li>
                                                                         <i class="uil-parking-square text-primary me-1 font-size-16"></i>
-                                                                        Plate-number : {{$truck->plate_no}}
+                                                                        {{__("admin.Plate-number")}} : {{$truck->plate_no}}
                                                                     </li>
                                                                     <li>
                                                                         <i class="uil-constructor text-primary me-1 font-size-16"></i>
-                                                                        Status : <span class="badge bg-success">Activated</span>
+                                                                        <?php
+                                                                            $x = $truck->user->accepted == 0 ? "pending":"activated";
+                                                                            $y = $truck->user->accepted == 0 ? "warning":"success";
+                                                                            ?>
+
+                                                                        {{__("admin.Status")}} : <span class="badge bg-{{$y}}">{{$x}}</span>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -123,7 +128,7 @@
 
                                                         <h5 class="font-size-14 mb-3"><i
                                                                 class="uil uil-location-pin-alt font-size-20 text-primary align-middle me-2"></i>
-                                                            Truck location</h5>
+                                                            {{__("admin.Truck location")}}</h5>
 
                                                         <div class="d-inline-flex">
 
@@ -137,7 +142,7 @@
                                                     <div class="row">
                                                         <div class="col-lg-7 col-sm-8">
                                                             <div class="product-desc-color mt-3">
-                                                                <h5 class="font-size-14">Truck Images :</h5>
+                                                                <h5 class="font-size-14">{{__("admin.Truck Images")}} :</h5>
                                                                 <ul class="list-inline">
                                                                     @forelse($truck_images as  $image)
                                                                         <li class="list-inline-item">
@@ -154,13 +159,13 @@
                                                                         </li>
 
                                                                     @empty
-                                                                        There is no images to show !
+                                                                        {{__("admin.There is no images to show")}} !
                                                                     @endforelse
                                                                 </ul>
-                                                               <a href="{{url("admin/searchOrders/".$truck->id)}}"
+                                                               <a href="{{url(LaravelLocalization::getCurrentLocale()."/admin/searchOrders/".$truck->id)}}"
                                                                         class="btn btn-info waves-effect waves-light w-100 text-white border text-decoration-none"
                                                                         type="button" >
-                                                                    Go To Orders <i class="uil uil-arrow-right ms-2"></i>
+                                                                   {{__("admin.Go To Orders")}} <i class="uil uil-arrow-right ms-2"></i>
                                                                     </a>
 
                                                             </div>
@@ -178,7 +183,7 @@
                                                 <li class="nav-item" role="presentation">
                                                     <a class="nav-link active" id="specifi-tab" data-bs-toggle="tab"
                                                        role="tab"
-                                                       aria-selected="true">Truck Food Sections</a>
+                                                       aria-selected="true">{{__("admin.Truck Food Sections")}}</a>
                                                 </li>
                                             </ul>
                                             <div class="tab-content border border-top-0 p-4">
@@ -188,11 +193,11 @@
                                                         <ul class="list-unstyled categories-list m-lg-5">
                                                             @forelse($sections as $section)
                                                                 <li>
-                                                                    <a href="{{url("admin/getProductsInsideEachSection/".$section->id)}}"><i
+                                                                    <a href="{{url(LaravelLocalization::getCurrentLocale()."/admin/getProductsInsideEachSection/".$section->id)}}"><i
                                                                             class="mdi mdi-circle-medium me-1 text-info">{{$section->type}}</i>
                                                                     </a></li>
                                                             @empty
-                                                                {{"There is no sections to show"}}
+                                                                {{__("admin.There is no sections to show")}}
                                                             @endforelse
                                                         </ul>
                                                     </div>
@@ -203,9 +208,9 @@
 
                                     @if(isset($reviews))
                                         <div class="mt-4">
-                                            <h5 class="font-size-14 mb-3">Reviews : </h5>
+                                            <h5 class="font-size-14 mb-3">{{__("admin.Reviews")}} : </h5>
                                             <div class="text-muted mb-3">
-                                                {{$reviews_count}} Reviews
+                                                {{$reviews_count}} {{__("admin.Reviews")}}
                                             </div>
                                             <div class="border p-4 rounded">
                                                 @foreach($reviews as $review)

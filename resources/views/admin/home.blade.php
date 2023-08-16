@@ -1,5 +1,4 @@
 @extends("admin.includes.app")
-
 @section("content")
 <!-- ============================================================== -->
 <!-- Start right Content here -->
@@ -12,12 +11,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-flex align-items-center justify-content-between">
-                        <h4 class="mb-0">Dashboard</h4>
+                        <h4 class="mb-0">{{__("admin.Dashboard")}}</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">FoodTruck</a></li>
-                                <li class="breadcrumb-item active">Dashboard</li>
+                                <li class="breadcrumb-item active">{{__("admin.Dashboard")}}</li>
                             </ol>
                         </div>
 
@@ -35,7 +34,7 @@
                             </div>
                             <div>
                                 <h4 class="mb-1 mt-1"><span data-plugin="">{{$reviews_count}}</span></h4>
-                                <p class="text-muted mb-0">Total Reviews</p>
+                                <p class="text-muted mb-0">{{__("admin.Total Reviews")}}</p>
                             </div>
                         </div>
                     </div>
@@ -49,7 +48,7 @@
                             </div>
                             <div>
                                 <h4 class="mb-1 mt-1"><span data-plugin="">{{$orders_count}}</span></h4>
-                                <p class="text-muted mb-0">Orders</p>
+                                <p class="text-muted mb-0">{{__("admin.Orders")}}</p>
                             </div>
                         </div>
                     </div>
@@ -63,7 +62,7 @@
                             </div>
                             <div>
                                 <h4 class="mb-1 mt-1"><span data-plugin="">{{$customers_count}}</span></h4>
-                                <p class="text-muted mb-0">Customers</p>
+                                <p class="text-muted mb-0">{{__("admin.Customers")}}</p>
                             </div>
                         </div>
                     </div>
@@ -76,7 +75,7 @@
                             </div>
                             <div>
                                 <h4 class="mb-1 mt-1"><span data-plugin="">{{$trucks_count}}</span></h4>
-                                <p class="text-muted mb-0">Trucks</p>
+                                <p class="text-muted mb-0">{{__("admin.Trucks")}}</p>
                             </div>
                         </div>
                     </div>
@@ -91,7 +90,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Latest Customers</h4>
+                            <h4 class="card-title mb-4">{{__("admin.Latest Customers")}}</h4>
                             <div class="table-responsive">
                                 <table class="table table-centered table-nowrap mb-0">
                                     <thead class="table-light">
@@ -102,12 +101,12 @@
                                                 <label class="form-check-label" for="customCheck2">&nbsp;</label>
                                             </div>
                                         </th>
-                                        <th>user-ID</th>
-                                        <th>username</th>
-                                        <th>image</th>
-                                        <th>Email</th>
-                                        <th>phone</th>
-                                        <th>Date Of join</th>
+                                        <th>{{__("admin.user-ID")}}</th>
+                                        <th>{{__("admin.username")}}</th>
+                                        <th>{{__("admin.image")}}</th>
+                                        <th>{{__("admin.Email")}}</th>
+                                        <th>{{__("admin.phone")}}</th>
+                                        <th>{{__("admin.Date Of join")}}</th>
                                         <th>..</th>
                                     </tr>
                                     </thead>
@@ -126,7 +125,7 @@
                                                 <img src="{{asset($customer->image)}}" alt="profile Pic" height="50" width="50" style="border-radius:50px">
                                             </td>
                                             <td>
-                                                {{isset($customer->email)? $customer->email:"NO EMAIL FOUND"}}
+                                                {{isset($customer->email)? $customer->email:__("admin.NO EMAIL FOUND")}}
                                             </td>
                                             <td>
                                                 {{$customer->phone}}
@@ -153,7 +152,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Latest Trcuks</h4>
+                            <h4 class="card-title mb-4">{{__("admin.Latest Trcuks")}}</h4>
                             <div class="table-responsive">
                                 <table class="table table-centered table-nowrap mb-0">
                                     <thead class="table-light">
@@ -164,12 +163,12 @@
                                                 <label class="form-check-label" for="customCheck1">&nbsp;</label>
                                             </div>
                                         </th>
-                                        <th>Truck-ID</th>
-                                        <th>Truck-name</th>
-                                        <th>Plate-no</th>
-                                        <th>Delivery-Price</th>
-                                        <th>Work-Time</th>
-                                        <th>Date Of join</th>
+                                        <th>{{__("admin.Truck-ID")}}</th>
+                                        <th>{{__("admin.Truck-name")}}</th>
+                                        <th>{{__("admin.Plate-no")}}</th>
+                                        <th>{{__("admin.Delivery-Price")}}</th>
+                                        <th>{{__("admin.Work-Time")}}</th>
+                                        <th>{{__("admin.Date Of join")}}</th>
                                         <th>..</th>
                                     </tr>
                                     </thead>
@@ -218,7 +217,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Latest Transactions</h4>
+                            <h4 class="card-title mb-4">{{__("admin.Latest Transactions")}}</h4>
                             <div class="table-responsive">
                                 <table class="table table-centered table-nowrap mb-0">
                                     <thead class="table-light">
@@ -229,12 +228,12 @@
                                                 <label class="form-check-label" for="customCheck2">&nbsp;</label>
                                             </div>
                                         </th>
-                                        <th>Id</th>
-                                        <th>Customer</th>
-                                        <th>Payment-ID</th>
-                                        <th>Payment status</th>
-                                        <th>Payment Method</th>
-                                        <th>Date Of transaction</th>
+                                        <th>{{__("admin.Id")}}</th>
+                                        <th>{{__("admin.Customer")}}</th>
+                                        <th>{{__("admin.Payment-ID")}}</th>
+                                        <th>{{__("admin.Payment status")}}</th>
+                                        <th>{{__("admin.Payment Method")}}</th>
+                                        <th>{{__("admin.Date Of transaction")}}</th>
                                         <th>..</th>
                                     </tr>
                                     </thead>
