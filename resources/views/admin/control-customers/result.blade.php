@@ -9,20 +9,20 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Customer Search!</h4>
-                                <p class="card-title-desc">Here, You can Search About Certain Customer .</p>
+                                <h4 class="card-title">{{__("admin.Customer Search")}}</h4>
+                                <p class="card-title-desc">{{__("admin.Here, You can Search About Certain Customer")}}</p>
                                 <form method="post" action="{{route("admin.customer.search")}}">
                                     @csrf
                                     <div class="row align-items-center justify-content-center">
                                         <div class="col-sm-6">
                                             <div class="">
-                                                <label for="form-sm-input">Enter the phone of the customer.</label>
+                                                <label for="form-sm-input">{{__("admin.Enter the phone of the customer")}}</label>
                                                 <input class="form-control form-control-sm" type="tel" name="phone"
                                                        id="form-sm-input"
-                                                       placeholder="ex: +2010000058">
+                                                       placeholder="{{__('admin.ex: +2010000058')}}">
                                                 <button type="submit"
                                                         class="btn btn-success waves-effect waves-light mt-4 w-100">
-                                                    <i class="uil uil-check me-2"></i> Search
+                                                    <i class="uil uil-check me-2"></i> {{__("admin.Search")}}
                                                 </button>
                                             </div>
                                         </div>
@@ -42,7 +42,7 @@
                             <div class="card">
 
                                 <div class="card-body">
-                                    <h4 class="card-title mb-4">User</h4>
+                                    <h4 class="card-title mb-4">{{__("admin.User")}}</h4>
 
                                     <div class="table-responsive">
 
@@ -57,13 +57,13 @@
                                                                for="customCheck2">&nbsp;</label>
                                                     </div>
                                                 </th>
-                                                <th>user-ID</th>
-                                                <th>username</th>
-                                                <th>image</th>
-                                                <th>Email</th>
-                                                <th>phone</th>
-                                                <th>Date Of join</th>
-                                                <th>Action</th>
+                                                <th>{{__("admin.user-ID")}}</th>
+                                                <th>{{__("admin.username")}}</th>
+                                                <th>{{__("admin.image")}}</th>
+                                                <th>{{__("admin.Email")}}</th>
+                                                <th>{{__("admin.phone")}}</th>
+                                                <th>{{__("admin.Date Of join")}}</th>
+                                                <th>{{__("admin.Action")}}</th>
                                             </tr>
                                             </thead>
 
@@ -85,13 +85,13 @@
                                                          width="50" style="border-radius:50px">
                                                 </td>
                                                 <td>
-                                                    {{isset($user->email)? $user->email:"NO EMAIL FOUND"}}
+                                                    {{$user->email!=null ? $user->email:__("admin.NO EMAIL FOUND")}}
                                                 </td>
                                                 <td>
                                                     {{$user->phone}}
                                                 </td>
                                                 <td>
-                                                    {{$user->created_at}}
+                                                    {{$user->created_at!=null ? $user->created_at:__('admin.NO DATE FOUND')}}
                                                 </td>
                                                 <td>
                                                         <?php
@@ -100,8 +100,8 @@
                                                     <button type="button"
                                                             id="active"
                                                             class="btn btn-outline-{{$x}} waves-effect waves-light">
-                                                        <a href="{{url("admin/active/".$user->id)}}">
-                                                        {{$x == "success"? "Activate":"Deactivate"}}
+                                                        <a href="{{url(LaravelLocalization::getCurrentLocale().'/admin/active/'.$user->id)}}">
+                                                        {{$x == "success"? __("admin.Activate"):__("admin.Deactivate")}}
                                                         </a>
                                                     </button>
                                                     <button type="button" style="width: 100px"
@@ -109,26 +109,26 @@
                                                             data-bs-toggle="modal" data-bs-target="#exampleModal"
                                                     >
                                                         <a href="#">
-                                                            Delete
+                                                            {{__("admin.Delete")}}
                                                         </a>
                                                     </button>
                                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">User Deletion!!</h5>
+                                                                    <h5 class="modal-title" id="exampleModalLabel">{{__("admin.User Deletion")}}</h5>
                                                                     <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    Are you sure to delete this user?
+                                                                    {{__("admin.Are you sure to delete this user")}}
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-info" data-bs-dismiss="modal">{{__("admin.Close")}}</button>
                                                                     <button type="button" class="btn btn-danger">
-                                                                        <a href="{{url("admin/delete/".$user->id)}}">
-                                                                            Delete
+                                                                        <a href="{{url(LaravelLocalization::getCurrentLocale().'/admin/delete/'.$user->id)}}">
+                                                                            {{__("admin.Delete")}}
                                                                         </a>
                                                                     </button>
                                                                 </div>
@@ -138,7 +138,7 @@
                                                     <script>
                                                         function change() {
                                                             $.ajax({
-                                                                url:`{{url("admin/active/".$user->id)}}`,
+                                                                url:`{{url(LaravelLocalization::getCurrentLocale().'/admin/active/'.$user->id)}}`,
                                                                 dataType:"json",
                                                                 cache:false,
                                                                 success:function (data, status) {
@@ -157,7 +157,7 @@
                                                 </td>
                                             </tr>
                                             @empty
-                                                <p> There is no users</p>
+                                                <p>{{__("admin.There is no users")}}</p>
                                             @endforelse
                                             </tbody>
                                         </table>

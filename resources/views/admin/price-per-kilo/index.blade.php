@@ -9,8 +9,8 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Price Per Kilo !</h4>
-                                <p class="card-title-desc">Here, You can update price per kilo for delivery .</p>
+                                <h4 class="card-title">{{__("admin.Price Per Kilo")}}</h4>
+                                <p class="card-title-desc">{{__("admin.Here, You can update price per kilo for delivery")}}</p>
                                 <form method="post" action="{{route("admin.kilo.price")}}">
                                     @csrf
                                     <div class="row align-items-center justify-content-center">
@@ -19,10 +19,10 @@
                                                 <label for="form-sm-input"></label>
                                                 <input  class="form-control form-control-lg" type="number" min="1"  name="value"
                                                                                           id="form-sm-input"
-                                                                                          placeholder="ex: price">
+                                                                                          placeholder="{{__("admin.ex: 15 S.R")}}">
                                                 <button type="submit"
                                                         class="btn btn-success waves-effect waves-light mt-4 w-100">
-                                                    <i class="uil uil-check me-2"></i> Update
+                                                    <i class="uil uil-check me-2"></i> {{__("admin.Update")}}
                                                 </button>
                                             </div>
                                         </div>

@@ -107,16 +107,16 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
 
                 <div class="d-inline-block language-switch mt-4">
 
-                    <ul class="list-unstyled">
+
                         @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                            <li>
+
                                 <a class="mb-1 text-muted" rel="alternate" hreflang="{{ $localeCode }}"
                                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                    {{ $properties['native'] }}
+                                     | {{ $properties['native'] }}
                                 </a>
-                            </li>
+
                         @endforeach
-                    </ul>
+
                 </div>
 
 

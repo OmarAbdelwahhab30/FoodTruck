@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\SearchCustomerRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class ControlUsersController extends Controller
 {
@@ -26,7 +27,7 @@ class ControlUsersController extends Controller
     {
         $users = User::where("phone", 'like', '%' . $request->phone . '%')->get();
         if ($users != null) {
-            return redirect()->to("admin/searchIndex")->with('users',$users);
+            return redirect()->to(LaravelLocalization::getCurrentLocale()."/admin/searchIndex")->with('users',$users);
         }
         return redirect()->back()->with("error", "Invalid Inputs.");
     }
@@ -37,7 +38,7 @@ class ControlUsersController extends Controller
         $user = User::find($MemberID);
         $user->active = !$user->active;
         $user->save();
-        return redirect()->to("admin/searchIndex")->with('user',$user)->with("success","The action done successfully.");
+        return redirect()->to(LaravelLocalization::getCurrentLocale()."/admin/searchIndex")->with('user',$user)->with("success","The action done successfully.");
     }
 
     public function deleteUser($user_id)
