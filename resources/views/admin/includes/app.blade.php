@@ -34,15 +34,15 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
           rel="stylesheet" type="text/css"/>
 
     <!-- Bootstrap Css -->
-{{--    <link href="{{asset("assets/css/bootstrap.min.css")}}" id="bootstrap-style" rel="stylesheet" type="text/css"/>--}}
+    {{--    <link href="{{asset("assets/css/bootstrap.min.css")}}" id="bootstrap-style" rel="stylesheet" type="text/css"/>--}}
     <link href="{{asset("assets/css/bootstrap$x.min.css")}}" id="bootstrap-style" rel="stylesheet" type="text/css"/>
 
     <!-- Icons Css -->
-{{--    <link href="{{asset("assets/css/icons.min.css")}}" rel="stylesheet" type="text/css"/>--}}
+    {{--    <link href="{{asset("assets/css/icons.min.css")}}" rel="stylesheet" type="text/css"/>--}}
     <link href="{{asset("assets/css/icons$x.min.css")}}" rel="stylesheet" type="text/css"/>
 
     <!-- App Css-->
-{{--    <link href="{{asset("assets/css/app.min.css")}}" id="app-style" rel="stylesheet" type="text/css"/>--}}
+    {{--    <link href="{{asset("assets/css/app.min.css")}}" id="app-style" rel="stylesheet" type="text/css"/>--}}
     <link href="{{asset("assets/css/app$x.min.css")}}" id="app-style" rel="stylesheet" type="text/css"/>
 
 </head>
@@ -54,7 +54,7 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
             <div class="d-flex">
                 <!-- LOGO -->
                 <div class="navbar-brand-box">
-                    <a href="index.html" class="logo logo-dark">
+                    <a href="#" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="{{asset("assets/images/logo-light.png")}}" alt="" height="22">
                                 </span>
@@ -108,14 +108,14 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
                 <div class="d-inline-block language-switch mt-4">
 
 
-                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
 
-                                <a class="mb-1 text-muted" rel="alternate" hreflang="{{ $localeCode }}"
-                                   href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                     | {{ $properties['native'] }}
-                                </a>
+                        <a class="mb-1 text-muted" rel="alternate" hreflang="{{ $localeCode }}"
+                           href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                            | {{ $properties['native'] }}
+                        </a>
 
-                        @endforeach
+                    @endforeach
 
                 </div>
 
@@ -140,33 +140,13 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
 
         <!-- LOGO -->
         <div class="navbar-brand-box">
-            <a href="#" class="logo logo-dark">
-                        <span class="logo-sm">
-                            <img style="margin-right: 20px" src="{{asset("assets/images/logo-dark.png")}}" alt=""
-                                 height="35">
-                        </span>
-                <span class="logo-lg">
-                            <img style="margin-left:50px;margin-top: 10px"
-                                 src="{{asset("assets/images/logo-dark.png")}}" alt="" height="70">
-                        </span>
-            </a>
-
-            <a href="#" class="logo logo-light">
-                        <span class="logo-sm">
-                            <img src="{{asset("assets/images/logo-light.png")}}" alt="" height="35">
-                        </span>
-                <span class="logo-lg">
-                            <img src="{{asset("assets/images/logo-light.png")}}" alt="" height="35">
-                        </span>
-            </a>
+            <?php
+            $x= \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getCurrentLocale() == "ar"? "-right":"-left";
+            ?>
+            <img style="margin-top: 19px;margin{{$x}}: 52px;"
+                 src="{{asset("assets/images/logo-dark.png")}}" alt="" height="70">
         </div>
-
-        <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect vertical-menu-btn">
-            <i class="fa fa-fw fa-bars"></i>
-        </button>
-
-        <div data-simplebar class="sidebar-menu-scroll">
-
+        <div style="margin-top:100px " data-simplebar class="sidebar-menu-scroll">
             <!--- Sidemenu -->
             <div id="sidebar-menu">
                 <!-- Left Menu Start -->

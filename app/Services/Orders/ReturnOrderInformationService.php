@@ -12,23 +12,19 @@ class ReturnOrderInformationService extends \App\Services\Service
 
     public function ReturnOrderInfoByOrderID($request): \Illuminate\Database\Eloquent\Collection|array
     {
-        //$order = new Order();
-        //return $order->through("products")->has("size");
-
-        //return OrderProduct::where("order_id",$request->order_id)->with("size")->get();
         return Order::with([
             'user' => function ($query) {
                 $query->select('id', 'name',"phone");
             },
             'products' => function ($p) {
                 $p->with(['orderProduct' => function ($pivot) {
-                        $pivot->with('size:id,size'); // Eager load the 'size' relationship from the pivot model
+                        $pivot->with('size:id,size,price'); // Eager load the 'size' relationship from the pivot model
                     }]);
             },
             'products.images' => function($image){
                 $image->select("id","product_id","image");
             }
-        ])->select("id","status_en as status","user_id")->where("id", $request->order_id)->get();
+        ])->select("id","status_en as status","user_id","delivery_type_en","total_price")->where("id", $request->order_id)->get();
     }
 
     public function ReturnAllPreviousCustomerOrders(): \Illuminate\Database\Eloquent\Collection|array
