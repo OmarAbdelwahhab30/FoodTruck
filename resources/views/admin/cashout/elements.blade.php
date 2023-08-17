@@ -9,12 +9,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0">Cashout requests</h4>
+                            <h4 class="mb-0">{{__("admin.Cashout requests")}}</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Food Truck</a></li>
-                                    <li class="breadcrumb-item active">Cashout Requests</li>
+                                    <li class="breadcrumb-item active">{{__("admin.Cashout Requests")}}</li>
                                 </ol>
                             </div>
 
@@ -39,7 +39,7 @@
                                         </div>
                                         <div class="flex-grow-1 align-self-center">
                                             <div class="border-bottom pb-1">
-                                                <h5 class="text-truncate font-size-16 mb-1"><a href="#" class="text-dark">Truck name |{{$element->user->truck->name}}  </a></h5>
+                                                <h5 class="text-truncate font-size-16 mb-1"><a href="#" class="text-dark">{{__("admin.Truck name")}} |{{$element->user->truck->name}}  </a></h5>
                                                 <p class="text-muted">
                                                     <i class="mdi mdi-account me-1">{{$element->user->name}}</i>
                                                 </p>
@@ -49,7 +49,7 @@
                                                     <div class="mt-3">
                                                         <a href="{{route("admin.preview.status",$element->id)}}" type="button"
                                                            class="btn btn-primary btn-sm waves-effect waves-light mb-1 w-100">
-                                                            Preview
+                                                            {{__("admin.Preview")}}
                                                         </a>
                                                     </div>
                                                 </div>
@@ -61,13 +61,16 @@
                             </div>
                         </div>
                         @empty
-                            There is no requests until yet.
+                            <div class="h-100 d-flex align-items-center justify-content-center">
+                                <div class="alert alert-border alert-border-info alert-dismissible fade show mt-4 px-4 mb-0 text-center" role="alert">
+                                    <i class="uil uil-question-circle d-block display-4 mt-2 mb-3 text-info"></i>
+                                    <p>{{__("admin.There is no requests until now")}}</p>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                    </button>
+                                </div>
+                            </div>
                         @endforelse
                     </div>
-
-
-
-
             </div> <!-- container-fluid -->
         </div>
         <!-- End Page-content -->

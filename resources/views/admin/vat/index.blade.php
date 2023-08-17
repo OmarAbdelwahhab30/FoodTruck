@@ -9,20 +9,20 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Value Added Tax !</h4>
-                                <p class="card-title-desc">Here, You can update the value added tax.</p>
+                                <h4 class="card-title">{{__("admin.Value Added Tax")}}</h4>
+                                <p class="card-title-desc">{{__("admin.Here, You can update the value added tax")}}</p>
                                 <form method="post" action="{{route("admin.vat.update")}}">
                                     @csrf
                                     <div class="row align-items-center justify-content-center">
                                         <div class="col-sm-6">
                                             <div class="">
-                                                <label for="form-sm-input">The entered value must be only number between 1 an 100</label>
+                                                <label for="form-sm-input">{{__("admin.The entered value must be only number between 1 an 100")}}</label>
                                                 <input  class="form-control form-control-sm" type="number" min="1" max="100"  name="value"
                                                                                           id="form-sm-input"
-                                                                                          placeholder="ex: 15">
+                                                                                          placeholder="{{__("admin.ex: 15")}}">
                                                 <button type="submit"
                                                         class="btn btn-success waves-effect waves-light mt-4 w-100">
-                                                    <i class="uil uil-check me-2"></i> Update
+                                                    <i class="uil uil-check me-2"></i> {{__("admin.Update")}}
                                                 </button>
                                             </div>
                                         </div>

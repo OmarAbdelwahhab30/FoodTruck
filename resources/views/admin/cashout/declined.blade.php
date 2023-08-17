@@ -9,11 +9,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0">Accepted Requests</h4>
+                            <h4 class="mb-0">{{__("admin.Declined Requests")}}</h4>
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">FoodTruck</a></li>
-                                    <li class="breadcrumb-item active">Accepted Requests</li>
+                                    <li class="breadcrumb-item active">{{__("admin.Declined Requests")}}</li>
                                 </ol>
                             </div>
                         </div>
@@ -31,15 +31,11 @@
                                     id="DataTables_Table_0" role="grid"
                                     aria-describedby="DataTables_Table_0_info">
                                     <thead>
+                                    @if(!empty($accepted[0]))
                                     <tr class="bg-transparent" role="row">
                                         <th style="width: 24px;" class="sorting_asc" tabindex="0"
                                             aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                            aria-sort="ascending" aria-label="
-
-
-
-
-                                                : activate to sort column descending">
+                                            aria-sort="ascending" aria-label=": activate to sort column descending">
                                             <div class="form-check text-center font-size-16">
                                                 <input type="checkbox" class="form-check-input" id="ordercheck">
                                                 <label class="form-check-label" for="ordercheck"></label>
@@ -47,26 +43,27 @@
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                             rowspan="1" colspan="1" style="width: 128px;"
-                                            aria-label="Order ID: activate to sort column ascending">Request ID
+                                            aria-label="Order ID: activate to sort column ascending">{{__("admin.Request ID")}}
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                             rowspan="1" colspan="1" style="width: 139px;"
-                                            aria-label="Date: activate to sort column ascending">Date
+                                            aria-label="Date: activate to sort column ascending">{{__("admin.Date")}}
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                             rowspan="1" colspan="1" style="width: 175px;"
-                                            aria-label="Billing Name: activate to sort column ascending">Wallet balance
+                                            aria-label="Billing Name: activate to sort column ascending">{{__("admin.Wallet balance")}}
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                             rowspan="1" colspan="1" style="width: 87px;"
-                                            aria-label="Total: activate to sort column ascending">amount
+                                            aria-label="Total: activate to sort column ascending">{{__("admin.amount")}}
                                         </th>
                                         <th style="width: 120px;" class="sorting" tabindex="0"
                                             aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                            aria-label="Action: activate to sort column ascending">Action
+                                            aria-label="Action: activate to sort column ascending">{{__("admin.Action")}}
                                         </th>
                                     </tr>
                                     </thead>
+                                    @endif
                                     <tbody>
                                     @forelse($declined as $dec )
                                         <tr role="row" class="odd">
@@ -90,10 +87,10 @@
                                             </td>
                                             <td>
                                                 <button type="button" data-bs-toggle="modal" data-bs-target="#del"  class="btn btn-soft-danger px-3 text-black text-decoration-none">
-                                                    Delete Request
+                                                    {{__("admin.Delete Request")}}
                                                 </button>
                                                 <button type="button" data-bs-toggle="modal" data-bs-target="#return" class="btn btn-soft-success px-3 text-black text-decoration-none">
-                                                    Accept Amount
+                                                    {{__("admin.Accept Amount")}}
                                                 </button>
                                             </td>
                                         </tr>
@@ -101,17 +98,17 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="dell">Delete request</h5>
+                                                        <h5 class="modal-title" id="dell">{{__("admin.Delete request")}}</h5>
                                                         <button type="button" class="btn btn-default" data-bs-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Are you sure to delete the request?
+                                                        {{__("admin.Are you sure to delete the request")}}
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
-                                                        <a type="button" href="{{route("admin.delete.request",$dec->id)}}" class="btn btn-danger">Delete</a>
+                                                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">{{__("admin.Close")}}</button>
+                                                        <a type="button" href="{{route("admin.delete.request",$dec->id)}}" class="btn btn-danger">{{__("admin.Delete")}}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -129,18 +126,25 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Are you sure to accept the request?
+                                                        {{__("admin.Are you sure to accept the request")}}
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
                                                         <a type="button" href="{{route("admin.accept.cash",[$dec->id,$dec->amount])}}"
-                                                           class="btn btn-soft-success">Accept</a>
+                                                           class="btn btn-soft-success">{{__("admin.Accept")}}</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     @empty
-                                        <p>There is no declined requests until now !!</p>
+                                        <div class="h-100 d-flex align-items-center justify-content-center">
+                                            <div class="alert alert-border alert-border-info alert-dismissible fade show mt-4 px-4 mb-0 text-center" role="alert">
+                                                <i class="uil uil-question-circle d-block display-4 mt-2 mb-3 text-info"></i>
+                                                <p>{{__("admin.There is no declined requests until now")}}</p>
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                                </button>
+                                            </div>
+                                        </div>
                                     @endforelse
                                     </tbody>
                                 </table>

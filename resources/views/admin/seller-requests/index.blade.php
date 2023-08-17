@@ -11,12 +11,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0">Requests</h4>
+                            <h4 class="mb-0">{{__("admin.Requests")}}</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Food Truck</a></li>
-                                    <li class="breadcrumb-item active">Seller Requests</li>
+                                    <li class="breadcrumb-item active">{{__("admin.Seller Requests")}}</li>
                                 </ol>
                             </div>
 
@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="flex-grow-1 align-self-center">
                                         <div class="border-bottom pb-1">
-                                            <h5 class="text-truncate font-size-16 mb-1"><a href="#" class="text-dark">Truck name | {{$seller->truck->name}} </a></h5>
+                                            <h5 class="text-truncate font-size-16 mb-1"><a href="#" class="text-dark">{{__("admin.Truck name")}} | {{$seller->truck->name}} </a></h5>
                                             <p class="text-muted">
                                                 <i class="mdi mdi-account me-1"></i> {{$seller->name}}
                                             </p>
@@ -51,7 +51,7 @@
                                                 <div class="mt-3">
                                                     <a href="{{route("admin.preview.requests",$seller->id)}}" type="button"
                                                        class="btn btn-primary btn-sm waves-effect waves-light mb-1 w-100">
-                                                        Preview</a>
+                                                        {{__("admin.Preview")}}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     @empty
-                        There is no sellers requests untill now !
+                        {{__("admin.There is no sellers requests untill now")}}
                     @endforelse
                 </div>
             </div> <!-- container-fluid -->
