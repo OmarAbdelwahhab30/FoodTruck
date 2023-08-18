@@ -38,9 +38,9 @@ class CashoutController extends Controller
         ]);
         if ($request->save())
         {
-            return redirect()->route("admin.cash.index")->with("success", "The request is accepted successfully.");
+            return redirect()->route("admin.cash.index")->with("success", __("admin.The request is accepted successfully"));
         }
-        return redirect()->route("admin.cash.index")->with("fail", "something went wrong !");
+        return redirect()->route("admin.cash.index")->with("error", __("admin.Something went wrong try again later"));
     }
 
     public function decline($request_id)
@@ -48,7 +48,7 @@ class CashoutController extends Controller
         $request = Request::find($request_id);
         $request->status = "declined";
         $request->save();
-        return redirect()->route("admin.cash.index")->with("success","The request is declined successfully.");
+        return redirect()->route("admin.cash.index")->with("success",__("admin.The request is declined successfully"));
     }
 
     public function acceptIndex(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
@@ -61,9 +61,9 @@ class CashoutController extends Controller
     {
         $request = Request::find($requestID);
         if ($request->delete()) {
-            return redirect()->back()->with("success", "Request has been deleted successfully.");
+            return redirect()->back()->with("success", __("admin.Request has been deleted successfully"));
         }
-        return redirect()->back()->with("fail", "something went wrong !");
+        return redirect()->back()->with("error", __("admin.Something went wrong try again later"));
 
     }
 
@@ -78,9 +78,9 @@ class CashoutController extends Controller
         ]);
         if ($request->save())
         {
-            return redirect()->back()->with("success", "The request is returned successfully.");
+            return redirect()->back()->with("success", __("admin.The request is returned successfully"));
         }
-        return redirect()->back()->with("fail", "something went wrong !");
+        return redirect()->back()->with("error", __("admin.Something went wrong try again later"));
     }
 
     public function declineIndex()

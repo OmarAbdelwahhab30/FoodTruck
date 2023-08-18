@@ -6,9 +6,9 @@ Website: https://themesbrand.com/
 Contact: themesbrand@gmail.com
 File: Main Css File
 */
-@import url('https://fonts.googleapis.com/css2?family=Amiri&family=Barlow+Condensed:wght@200&family=IBM+Plex+Sans+Arabic:wght@300&family=Noto+Naskh+Arabic&family=Tajawal:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri&family=Barlow+Condensed:wght@200&family=Cairo&family=IBM+Plex+Sans+Arabic:wght@300&family=Noto+Naskh+Arabic&family=Tajawal:wght@200&display=swap');
 body {
-    font-family: 'Amiri', serif;
+    font-family: 'Cairo', sans-serif;
 }
 :root {
   --bs-sidebar-bg: #ffffff;

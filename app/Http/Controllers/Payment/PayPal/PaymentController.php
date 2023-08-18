@@ -17,6 +17,7 @@ class PaymentController extends Controller
     public function index($customer_id,$order_id,$currency,$amount,$seller_id)
     {
         $amount = number_format($amount,2);
+
         session()->put('customer_id',$customer_id);
 
         session()->put('order_id',$order_id);
@@ -81,16 +82,17 @@ class PaymentController extends Controller
         $provider->getAccessToken();
         $response = $provider->capturePaymentOrder($request['token']);
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
-            $this->CreatePayment($response);
-            $this->IncreaseWalletBalance(session()->get("amount"),session()->get("seller_id"));
-             return redirect()->route('suc');
+            if ($this->CreatePayment($response) && $this->IncreaseWalletBalance(session()->get("amount"),session()->get("seller_id"))){
+                return redirect()->route('suc');
+            }
+            return redirect()->route('er');
         } else {
             return redirect()->route('er');
         }
     }
     private function CreatePayment($response)
     {
-        Payment::create([
+        $payment = Payment::create([
             'payment_status'    => $response['status'],
             'payment_method'    => 'paypal',
             'payment_response'  => json_encode($response),
@@ -100,6 +102,10 @@ class PaymentController extends Controller
             'payer_email'       => session()->get("customer_email"),
             'currency'          => session()->get("currency")
         ]);
+        if ($payment){
+            return true;
+        }
+        return false;
     }
     public function SUC()
     {

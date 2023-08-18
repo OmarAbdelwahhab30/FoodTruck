@@ -17,9 +17,12 @@
                                         <div class="col-sm-6">
                                             <div class="">
                                                 <label for="form-sm-input"></label>
-                                                <input  class="form-control form-control-lg" type="number" min="1"  name="value"
+                                                <input  class="form-control form-control-lg" type="number" min="0.1" step="0.1" name="value"
                                                                                           id="form-sm-input"
                                                                                           placeholder="{{__("admin.ex: 15 S.R")}}">
+                                                @error('value')
+                                                <div class="error">{{ $message }}</div>
+                                                @enderror
                                                 <button type="submit"
                                                         class="btn btn-success waves-effect waves-light mt-4 w-100">
                                                     <i class="uil uil-check me-2"></i> {{__("admin.Update")}}

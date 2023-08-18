@@ -24,7 +24,7 @@ class OwnerPercentageRequest extends FormRequest
     public function rules()
     {
         return [
-            'value' => ['required','numeric',"min:1","max:100"],
+            'value' => ['required','numeric',"min:0.1","max:100"],
         ];
     }
 }

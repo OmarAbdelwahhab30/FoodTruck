@@ -32,8 +32,8 @@ class AddAdminController extends Controller
                 :env("APP_URL")."storage/images/default.png",
         ]);
         if ($user){
-            return redirect()->back()->with("success", "Admin has been added successfully.");
+            return redirect()->back()->with("success", __("admin.Admin has been added successfully"));
         }
-        return redirect()->back()->with("error", "Some thing went wrong , try again later.");
+        return redirect()->back()->with("error", __("admin.Something went wrong try again later"));
     }
 }

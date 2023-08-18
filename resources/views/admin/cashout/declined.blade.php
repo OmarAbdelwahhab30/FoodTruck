@@ -31,16 +31,8 @@
                                     id="DataTables_Table_0" role="grid"
                                     aria-describedby="DataTables_Table_0_info">
                                     <thead>
-                                    @if(!empty($accepted[0]))
+                                    @if(!empty($declined[0]))
                                     <tr class="bg-transparent" role="row">
-                                        <th style="width: 24px;" class="sorting_asc" tabindex="0"
-                                            aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                            aria-sort="ascending" aria-label=": activate to sort column descending">
-                                            <div class="form-check text-center font-size-16">
-                                                <input type="checkbox" class="form-check-input" id="ordercheck">
-                                                <label class="form-check-label" for="ordercheck"></label>
-                                            </div>
-                                        </th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                             rowspan="1" colspan="1" style="width: 128px;"
                                             aria-label="Order ID: activate to sort column ascending">{{__("admin.Request ID")}}
@@ -67,14 +59,6 @@
                                     <tbody>
                                     @forelse($declined as $dec )
                                         <tr role="row" class="odd">
-                                            <td class="sorting_1 dtr-control">
-                                                <div class="form-check text-center font-size-16">
-                                                    <input type="checkbox" class="form-check-input"
-                                                           id="ordercheck1">
-                                                    <label class="form-check-label" for="ordercheck1"></label>
-                                                </div>
-                                            </td>
-
                                             <td><a href="javascript: void(0);" class="text-dark fw-bold">#000{{$dec->id}}</a>
                                             </td>
                                             <td>
@@ -90,7 +74,7 @@
                                                     {{__("admin.Delete Request")}}
                                                 </button>
                                                 <button type="button" data-bs-toggle="modal" data-bs-target="#return" class="btn btn-soft-success px-3 text-black text-decoration-none">
-                                                    {{__("admin.Accept Amount")}}
+                                                    {{__("admin.Accept Request")}}
                                                 </button>
                                             </td>
                                         </tr>
@@ -120,7 +104,7 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="returnll">Accept request</h5>
+                                                        <h5 class="modal-title" id="returnll">{{__("admin.Accept Request")}}</h5>
                                                         <button type="button" class="btn btn-default" data-bs-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -129,7 +113,7 @@
                                                         {{__("admin.Are you sure to accept the request")}}
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">{{__("admin.Close")}}</button>
                                                         <a type="button" href="{{route("admin.accept.cash",[$dec->id,$dec->amount])}}"
                                                            class="btn btn-soft-success">{{__("admin.Accept")}}</a>
                                                     </div>

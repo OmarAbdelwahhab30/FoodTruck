@@ -41,8 +41,12 @@
                                                            name="check[]"
                                                            value="users"
                                                            class="form-check-input">
+
                                                     <label class="form-check-label"
                                                            for="customRadioInline1">{{__("admin.Users")}}</label>
+                                                    @error("check[]")
+                                                    <div class="error">{{$message}}</div>
+                                                    @enderror
                                                 </div>
                                                 <div class="custom-radio form-check form-check-inline">
                                                     <input type="checkbox" id="customRadioInline2"
@@ -51,6 +55,9 @@
                                                            class="form-check-input">
                                                     <label class="form-check-label"
                                                            for="customRadioInline2">{{__("admin.Sellers")}}</label>
+                                                    @error("check")
+                                                        <div class="error">{{$message}}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
 
@@ -58,6 +65,9 @@
                                                 <label class="form-label" for="formmessage">{{__("admin.Notification")}}</label>
                                                 <textarea required id="formmessage" name="notification" class="form-control" rows="3"
                                                           placeholder="{{__('admin.Enter your notification')}}"></textarea>
+                                                @error("notification")
+                                                    <div class="error">{{$message}}</div>
+                                                @enderror
                                             </div>
                                             <button type="button" class="btn btn-soft-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                 {{__("admin.Send")}}

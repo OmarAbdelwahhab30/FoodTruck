@@ -80,7 +80,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
 
             /*Control Truck*/
             Route::get("controlTrucks", [ControlTrucksController::class, "index"])->name("admin.control.trucks");
-            Route::post("searchTruck", [ControlTrucksController::class, "index"])->name("admin.truck.search");
+            Route::post("searchTruck", [ControlTrucksController::class, "display_truck"])->name("admin.truck.search");
             Route::get("getProductsInsideEachSection/{section_id}", [ControlTrucksController::class, "getProducts"]);
             Route::post("deleteProduct", [ControlTrucksController::class, "deleteProduct"])->name("admin.product.delete");
             Route::get("searchOrders/{truck_id?}", [ControlTrucksController::class, "orders"])->name("admin.orders.search");

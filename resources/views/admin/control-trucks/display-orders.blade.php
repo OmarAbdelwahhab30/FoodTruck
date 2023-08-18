@@ -38,6 +38,8 @@
                             <table class="table table-centered datatable dt-responsive nowrap table-card-list"
                                    style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
                                 <thead>
+                                @if(!empty($orders[0]))
+
                                 <tr class="bg-transparent">
                                     <th style="width: 20px;">
                                         <div class="form-check text-center font-size-16">
@@ -51,8 +53,20 @@
                                     <th>{{__("admin.Orders Status")}}</th>
                                     <th style="width: 120px;">{{__("admin.Action")}}</th>
                                 </tr>
+                                @else
+                                    <div class="h-100 d-flex align-items-center justify-content-center">
+                                        <div class="alert alert-border alert-border-info alert-dismissible fade show mt-4 px-4 mb-0 text-center" role="alert">
+                                            <i class="uil uil-question-circle d-block display-4 mt-2 mb-3 text-info"></i>
+                                            <p>{{__("admin.There is no requests until now")}}</p>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
+
                                 </thead>
                                 <tbody>
+
                                 @foreach($orders as $order)
                                     <tr>
                                     <td>

@@ -45,8 +45,8 @@ class ChangeEnvController extends Controller
     {
         $return = $this->changeEnv($request->key, $request->value);
         if ($return) {
-            return redirect()->back()->with("success", "The value has been changed successfully.");
+            return redirect()->back()->with("success", __("admin.The value has been changed successfully"));
         }
-        return redirect()->back()->with("error", "Something went wrong try again later.");
+        return redirect()->back()->with("error", __("admin.Something went wrong try again later"));
     }
 }

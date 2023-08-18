@@ -7,7 +7,8 @@
                 <!-- start page title -->
                 <div class="row">
                 </div>
-                    <p> <a href="{{url(LaravelLocalization::getCurrentLocale().'/admin/searchIndex')}}">{{__("admin.Click Here to search about certain user")}}</a></p>
+                    <p> <a href="{{url(LaravelLocalization::getCurrentLocale().'/admin/searchIndex')}}">
+                            {{__("admin.Click Here to search about certain user")}}</a></p>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">

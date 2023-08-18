@@ -26,13 +26,8 @@ class TermsController extends Controller
         $item?->delete();
         $added = Terms::create($request->validated());
         if ($added){
-            return redirect()->back()->with("success","Terms and Conditions content has been added successfully.");
+            return redirect()->back()->with("success",__("admin.Terms and Conditions content has been added successfully"));
         }
-        return redirect()->back()->with("error","Something went wrong try again later");
-    }
-
-    public function DeleteAbout()
-    {
-
+        return redirect()->back()->with("error",__("admin.Something went wrong try again later"));
     }
 }

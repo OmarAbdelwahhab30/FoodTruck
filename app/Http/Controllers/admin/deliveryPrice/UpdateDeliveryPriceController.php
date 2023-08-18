@@ -19,8 +19,8 @@ class UpdateDeliveryPriceController extends Controller
         $first = Value::first();
         $first->kilo_price  = $request->value;
         if ($first->save()){
-            return redirect()->back()->with("success","Price Per Kilo Value Has Been Updated Successfully.");
+            return redirect()->back()->with("success",__("admin.Price Per Kilo Value Has Been Updated Successfully"));
         }
-        return redirect()->back()->with("error","Something went wrong , try again later.");
+        return redirect()->back()->with("error",__("admin.Something went wrong try again later"));
     }
 }

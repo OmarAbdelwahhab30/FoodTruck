@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class ForgetPasswordController extends Controller
 {
@@ -35,7 +36,7 @@ class ForgetPasswordController extends Controller
         $this->send($request->email , $data);
         $email = $request->email;
         return redirect()->route("admin.post.add.password")
-            ->with("success", "Code has sent to you, Check it please")
+            ->with("success", __("admin.Code has sent to you, Check it please"))
             ->with("email",$email)
             ->with("code",$code);
     }
@@ -47,15 +48,16 @@ class ForgetPasswordController extends Controller
     public function resetPass(ResetPasswordRequest $request)
     {
         if ($request->code != $request->iscode){
-            return redirect()->back()->with("error","The Code is not correct try again !");
+            return redirect()->to(LaravelLocalization::getCurrentLocale()."/admin")
+                ->with("error",__("admin.The Code is not correct try again"));
         }
         $updated = User::where("email",$request->email)->update([
             'password' => Hash::make($request->password),
         ]);
         if ($updated){
-            return redirect()->route('admin.login')->with('success','Password has been reset successfully.');
+            return redirect()->route('admin.login')->with('success',__("admin.Password has been reset successfully"));
         }else {
-            return redirect()->back()->withInput()->with('error','Code is not correct.');
+            return redirect()->back()->withInput()->with('error',__("admin.Code is not correct"));
         }
     }
 

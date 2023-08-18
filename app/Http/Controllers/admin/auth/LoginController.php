@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin\auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class LoginController extends Controller
 {
@@ -21,9 +22,9 @@ class LoginController extends Controller
             ->attempt(['name' => $request->input('name')
             ,'password' => $request->input('password')],isset($request->remember))
         ){
-            return redirect()->route('admin.home')->with('success','You are Logged in successfully.');
+            return redirect()->route('admin.home')->with('success',__("admin.You are Logged in successfully"));
         }else {
-            return redirect()->back()->withInput()->with('error','Whoops! invalid name or password.');
+            return redirect()->back()->withInput()->with('error',__("admin.Whoops! invalid name or password"));
         }
     }
 
@@ -31,6 +32,6 @@ class LoginController extends Controller
     {
         auth()->guard('web')->logout();
         Session::flush();
-        return redirect("/admin")->with("success","You are logged out successfully.");
+        return redirect(LaravelLocalization::getCurrentLocale()."/admin")->with("success",__("admin.You are logged out successfully"));
     }
 }

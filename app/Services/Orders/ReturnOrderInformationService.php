@@ -15,6 +15,8 @@ class ReturnOrderInformationService extends \App\Services\Service
         return Order::with([
             'user' => function ($query) {
                 $query->select('id', 'name',"phone");
+            }, "truck" => function($q){
+                $q->select("id","user_id");
             },
             'products' => function ($p) {
                 $p->with(['orderProduct' => function ($pivot) {
@@ -24,7 +26,7 @@ class ReturnOrderInformationService extends \App\Services\Service
             'products.images' => function($image){
                 $image->select("id","product_id","image");
             }
-        ])->select("id","status_en as status","user_id","delivery_type_en","total_price")->where("id", $request->order_id)->get();
+        ])->select("id","status_en as status","user_id","delivery_type_en","total_price","truck_id")->where("id", $request->order_id)->get();
     }
 
     public function ReturnAllPreviousCustomerOrders(): \Illuminate\Database\Eloquent\Collection|array

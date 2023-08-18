@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\Truck;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Throwable;
 use Vonage\Client\Exception\Exception;
 
@@ -33,10 +34,11 @@ class SellerRequestsController
         try {
             $response = $client->sms()->send(
                 new \Vonage\SMS\Message\SMS($request->phone, "Food-Truck",
-                    'We are pleased to inform you that your application for food truck has been accepted.')
+                    __("admin.We are pleased to inform you that your application for food truck has been accepted"))
             );
         } catch (Throwable  $exception) {
-            return redirect()->to("admin/SellersRequests")->with("error", "connection was disabled.");
+            return redirect()->to("admin/SellersRequests")
+                ->with("error", __("admin.connection was disabled"));
         }
 
         $message = $response->current();
@@ -45,16 +47,16 @@ class SellerRequestsController
             $user = User::find($request->seller_id);
             $user->accepted = 1;
             if ($user->save()) {
-                return redirect()->to("admin/SellersRequests")->with("success", "The message was sent successfully\n");
+                return redirect()->to(LaravelLocalization::getCurrentLocale()."/admin/SellersRequests")
+                    ->with("success", __("admin.The message was sent successfully"));
             }
-            return redirect()->to("admin/SellersRequests")->with("error", "something went wrong !");
+            return redirect()->to(LaravelLocalization::getCurrentLocale()."/admin/SellersRequests")
+                ->with("error", __("admin.Something went wrong try again later"));
         } else {
-            return redirect()->to("admin/SellersRequests")->with("error", "The message failed with status: " . $message->getStatus() . "\n");
-
+            return redirect()->to(LaravelLocalization::getCurrentLocale()."/admin/SellersRequests")
+                ->with("error", __("admin.Something went wrong try again later"));
         }
     }
-
-
     public function reject(RejectionSellerRequest $request)
     {
         $basic = new \Vonage\Client\Credentials\Basic(env("VONAGE_KEY"), env("VONAGE_SECRET"));
@@ -65,18 +67,22 @@ class SellerRequestsController
                     $request->message . " Register again please.")
             );
         } catch (Throwable  $exception) {
-            return redirect()->to("admin/SellersRequests")->with("error", "connection was disabled.");
+            return redirect()->to(LaravelLocalization::getCurrentLocale()."/admin/SellersRequests")
+                ->with("error", __("admin.connection was disabled"));
         }
 
         $message = $response->current();
         if ($message->getStatus() == 0) {
             $user = User::find($request->seller_id);
             if ($user->delete()) {
-                return redirect()->to("admin/SellersRequests")->with("success", "The message was sent successfully with rejection message.\n");
+                return redirect()->to(LaravelLocalization::getCurrentLocale()."/admin/SellersRequests")
+                    ->with("success", __("admin.The message was sent successfully with rejection message"));
             }
-            return redirect()->to("admin/SellersRequests")->with("error", "something went wrong !");
+            return redirect()->to(LaravelLocalization::getCurrentLocale()."/admin/SellersRequests")
+                ->with("error",__("admin.Something went wrong try again later"));
         } else {
-            return redirect()->to("admin/SellersRequests")->with("error", "The message failed with status: " . $message->getStatus() . "\n");
+            return redirect()->to(LaravelLocalization::getCurrentLocale()."/admin/SellersRequests")
+                ->with("error", __("admin.Something went wrong try again later"));
         }
     }
 }

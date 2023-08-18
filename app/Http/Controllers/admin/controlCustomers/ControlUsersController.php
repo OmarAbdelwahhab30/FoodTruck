@@ -45,8 +45,8 @@ class ControlUsersController extends Controller
     {
         $user = User::find($user_id);
         if ($user->delete()){
-            return redirect()->back()->with("success","User has been deleted successfully.");
+            return redirect()->back()->with("success",__("admin.User has been deleted successfully"));
         }
-        return redirect()->back()->with("error","Something went wrong !");
+        return redirect()->back()->with("error",__("admin.Something went wrong try again later"));
     }
 }

@@ -11,8 +11,6 @@ use Ladumor\OneSignal\OneSignal;
 
 class NotificationController
 {
-
-
     public function index()
     {
         return view("admin.notify.index");
@@ -21,6 +19,9 @@ class NotificationController
     public function notify(ControlNotificationsRequest $request)
     {
         $users = [];
+        if (empty($request->check[0])){
+            return redirect()->back()->with("error",__("admin.Please choose at least one of checkboxes!"));
+        }
         if ($request->check && count($request->check) > 1 ) {
             $users = User::where("role_id","<>", Role::ROLE_ADMINISTRATOR)->select("player_id")->get();
         } elseif ($request->check && count($request->check) == 1) {
@@ -31,6 +32,6 @@ class NotificationController
             }
         }
         SendNotifications::dispatch($users, $request->notification);
-        return redirect()->back()->with("success","Notification has been sent to the selected users");
+        return redirect()->back()->with("success",__("admin.Notification has been sent to the selected users"));
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(PaymentController::class)
     ->prefix('paypal')
+    ->middleware("auth:sanctum")
     ->group(function () {
         Route::get('payment/{customer_id}/{order_id}/{currency}/{amount}/{seller_id}', 'index')->name('create.payment');
         Route::get('handle-payment', 'handlePayment')->name('make.payment');

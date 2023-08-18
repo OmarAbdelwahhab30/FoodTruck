@@ -24,7 +24,6 @@ class ControlNotificationsRequest extends FormRequest
     public function rules()
     {
         return [
-            'check' => ['required','array','min:1',"max:2"],
             'notification'  => ['required','string'],
         ];
     }

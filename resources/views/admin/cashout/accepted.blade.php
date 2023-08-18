@@ -34,14 +34,6 @@
                                     <thead>
                                     @if(!empty($accepted[0]))
                                     <tr class="bg-transparent" role="row">
-                                        <th style="width: 24px;" class="sorting_asc" tabindex="0"
-                                            aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                            aria-sort="ascending" aria-label=": activate to sort column descending">
-                                            <div class="form-check text-center font-size-16">
-                                                <input type="checkbox" class="form-check-input" id="ordercheck">
-                                                <label class="form-check-label" for="ordercheck"></label>
-                                            </div>
-                                        </th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                             rowspan="1" colspan="1" style="width: 128px;"
                                             aria-label="Order ID: activate to sort column ascending">{{__("admin.Request ID")}}
@@ -68,13 +60,6 @@
                                     <tbody>
                                     @forelse($accepted as $accept )
                                     <tr role="row" class="odd">
-                                        <td class="sorting_1 dtr-control">
-                                            <div class="form-check text-center font-size-16">
-                                                <input type="checkbox" class="form-check-input"
-                                                       id="ordercheck1">
-                                                <label class="form-check-label" for="ordercheck1"></label>
-                                            </div>
-                                        </td>
 
                                         <td><a href="javascript: void(0);" class="text-dark fw-bold">#000{{$accept->id}}</a>
                                         </td>

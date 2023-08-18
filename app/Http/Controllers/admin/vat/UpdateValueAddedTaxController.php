@@ -19,8 +19,8 @@ class UpdateValueAddedTaxController extends Controller
         $first = Value::first();
         $first->vat  = $request->value;
         if ($first->save()){
-            return redirect()->back()->with("success","Value Added Tax Has Been Updated Successfully.");
+            return redirect()->back()->with("success",__("admin.Value Added Tax Has Been Updated Successfully"));
         }
-        return redirect()->back()->with("error","Something went wrong , try again later.");
+        return redirect()->back()->with("error",__("admin.Something went wrong try again later"));
     }
 }

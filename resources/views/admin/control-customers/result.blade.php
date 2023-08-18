@@ -20,6 +20,9 @@
                                                 <input class="form-control form-control-sm" type="tel" name="phone"
                                                        id="form-sm-input"
                                                        placeholder="{{__('admin.ex: +2010000058')}}">
+                                                @error("phone")
+                                                <div class="error">{{$message}}</div>
+                                                @enderror
                                                 <button type="submit"
                                                         class="btn btn-success waves-effect waves-light mt-4 w-100">
                                                     <i class="uil uil-check me-2"></i> {{__("admin.Search")}}

@@ -31,7 +31,7 @@
                             <div class="card-body">
 
                                 <div class="invoice-title">
-                                    <h4 class="float-end font-size-16">{{__("admin.")}}Request #0000{{$element->id}} <span
+                                    <h4 class="float-end font-size-16">{{__("admin.Request")}} #0000{{$element->id}} <span
                                             class="badge bg-warning font-size-12 ms-2">{{__("admin.pending")}}</span></h4>
                                     <div class="text-muted">
                                         <p class="mb-1">{{$element->user->address}}</p>

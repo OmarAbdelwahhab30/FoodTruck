@@ -19,8 +19,6 @@ class UpdateAdminAccountController extends Controller
 
     public function updateProfile(UpdateProfileRequest $request): \Illuminate\Http\RedirectResponse
     {
-
-
         $user = auth("web")->user();
         $updated = User::where("id",$user->id)->update(Arr::except(array_filter($request->validated()),
             ['image','password','confirm_password']));
@@ -28,7 +26,7 @@ class UpdateAdminAccountController extends Controller
             $user->password = Hash::make($request->password);
         }
         if ($request->def == "default.png"){
-            $user->image = "storage/images/default.png";
+            $user->image = getenv("APP_URL")."storage/images/default.png";
             $user->save();
         } elseif ($request->file("image")!== null){
             $user->image = env("APP_URL")."storage/images/admins/".
@@ -36,8 +34,8 @@ class UpdateAdminAccountController extends Controller
             $user->save();
         }
         if ($updated){
-            return redirect()->back()->with("success", "Your profile has been updated successfully.");
+            return redirect()->back()->with("success", __("admin.Your profile has been updated successfully"));
         }
-        return redirect()->back()->with("error", "Some thing went wrong , try again later.");
+        return redirect()->back()->with("error", __("admin.Something went wrong try again later"));
     }
 }

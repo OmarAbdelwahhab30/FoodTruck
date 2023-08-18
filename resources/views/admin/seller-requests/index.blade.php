@@ -62,7 +62,14 @@
                         </div>
                     </div>
                     @empty
-                        {{__("admin.There is no sellers requests untill now")}}
+                        <div
+                            class="alert alert-border alert-border-info alert-dismissible fade show mt-4 px-4 mb-0 text-center"
+                            role="alert">
+                            <i class="uil uil-question-circle d-block display-4 mt-2 mb-3 text-info"></i>
+                            <p>  {{__("admin.There is no sellers requests untill now")}}</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            </button>
+                        </div>
                     @endforelse
                 </div>
             </div> <!-- container-fluid -->

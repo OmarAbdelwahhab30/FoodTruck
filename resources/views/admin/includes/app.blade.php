@@ -1,11 +1,15 @@
 <!doctype html>
-<html dir="auto">
 <?php
 $x = "";
 if (LaravelLocalization::getCurrentLocale() == "ar") {
     $x = "-rtl";
+    $dir = "rtl";
+}else{
+    $dir = "ltr";
 }
 ?>
+
+<html dir="{{$dir}}">
 <head>
     <meta charset="utf-8"/>
     <title>{{__("admin.Dashboard")}}</title>
@@ -79,7 +83,7 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
 
             </div>
 
-            <div class="d-flex">
+            <div class="d-flex text-center m-5">
 
                 <div class="dropdown d-inline-block d-lg-none ms-2">
                     <button type="button" class="btn header-item noti-icon waves-effect"
@@ -99,6 +103,7 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
                                         <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i>
                                         </button>
                                     </div>
+
                                 </div>
                             </div>
                         </form>
@@ -118,12 +123,8 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
                     @endforeach
 
                 </div>
-
-
-                <div class="dropdown d-none d-lg-inline-block ms-1">
-                    <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
-                        <i class="uil-minus-path"></i>
-                    </button>
+                <div class="d-inline-block language-switch mt-4">
+                        <a class="m-5" href="{{route("admin.logout")}}">Logout</a>
                 </div>
                 <div>
                     <span type="button" class="btn header-item waves-effect" aria-haspopup="true"
@@ -131,6 +132,7 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
                     <img class="rounded-circle header-profile-user" src="{{auth()->user()->image}}"
                          alt="Header Avatar">
                     <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15">{{auth()->user()->name}}</span>
+
                 </div>
             </div>
         </div>

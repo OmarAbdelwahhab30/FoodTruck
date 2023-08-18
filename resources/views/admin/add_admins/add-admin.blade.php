@@ -13,7 +13,7 @@
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <for class="mt-4">
-             <form method="post" action="{{route("admin.post.add")}}"
+                                        <form method="post" action="{{route("admin.post.add")}}"
                                                   enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="col-md-3 border-right">
@@ -29,6 +29,9 @@
                                                                name="image"
                                                                class="form-control"
                                                                onchange="loadFile(event);loadBtn();">
+                                                        @error('image')
+                                                        <div class="error">{{ $message }}</div>
+                                                        @enderror
                                                         <a>
                                                             <script>
                                                                 var loadFile = function (event) {
@@ -74,6 +77,12 @@
                                                            class="form-control"
                                                            id="horizontal-Fullname-input"
                                                            placeholder="{{__("admin.Enter your name")}}">
+                                                    @error('name')
+                                                    <div class="error">{{ $message }}</div>
+                                                    @enderror
+                                                    @error('name')
+                                                    <div class="error">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="row mb-4">
@@ -83,6 +92,9 @@
                                                            class="form-control"
                                                            id="horizontal-email-input"
                                                            placeholder="{{__("admin.Enter your phone number")}}">
+                                                    @error('phone')
+                                                    <div class="error">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="row mb-4">
@@ -92,6 +104,9 @@
                                                            class="form-control"
                                                            id="horizontal-email-input"
                                                            placeholder="{{__("admin.Enter your email address")}}">
+                                                    @error('email')
+                                                    <div class="error">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="row mb-4">
@@ -100,6 +115,9 @@
                                                     <input type="password" name="password" class="form-control"
                                                            id="horizontal-password-input"
                                                            placeholder="{{__("admin.Enter your password")}}">
+                                                    @error('password')
+                                                    <div class="error">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="row mb-4">
@@ -108,6 +126,9 @@
                                                     <input type="password" name="confirm_password" class="form-control"
                                                            id="horizontal-password-input"
                                                            placeholder="{{__("admin.Confirm your password")}}">
+                                                    @error('confirm_password')
+                                                    <div class="error">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
 
