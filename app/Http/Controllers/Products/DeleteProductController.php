@@ -19,17 +19,6 @@ class DeleteProductController extends Controller
 //        if (! Gate::allows('add-product')) {
 //            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
 //        }
-
-
-        $product = Product::find($request->product_id);
-        foreach ($product->images as $image) {
-
-            unlink(public_path($image));
-        }
-
-
-
-
         $product = $service->exec($request);
         if($product){
             return $this->returnSuccessMessage("Product has been deleted successfully");
