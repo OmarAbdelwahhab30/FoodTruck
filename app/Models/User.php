@@ -22,6 +22,9 @@ class User extends Authenticatable
     ];
 
 
+    public function getImageAttribute() {
+        return asset($this->attributes['image']);
+    }
     public function routeNotificationForOneSignal() : array
     {
         return [

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin\update_account;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\admin\UpdateProfileRequest;
+use App\Http\Requests\Admin\UpdateProfileRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
