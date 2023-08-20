@@ -17,8 +17,7 @@ class UpdateTruckImageService extends Service
 
         foreach ($images as $image) {
             TruckImage::create([
-                'image'         => "storage/".
-                    $this->UploadFile($image,"images/trucks"),
+                'image'         => $this->UploadFile($image),
                 'truck_id'    => $truck_id,
             ]);
         }
@@ -29,8 +28,7 @@ class UpdateTruckImageService extends Service
     {
         $image = TruckImage::find($image_id);
         $image->delete();
-        $image_name = str_replace("http://localhost:8000/storage/images/trucks/","",$image->image);
-        $deleted = $this->DeleteFile($image_name,"/images/trucks/");
+        $deleted = $this->DeleteFile($image->image);
         if ($deleted){
             return true;
         }

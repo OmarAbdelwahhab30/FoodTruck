@@ -36,7 +36,7 @@
                                 <div class="d-flex align-items-start">
                                     <div class="flex-shrink-0 me-4">
                                         <div class="avatar-sm">
-                                            <img src="{{asset($seller->image)}}" class="avatar-title bg-soft-primary text-primary font-size-16 rounded-circle">
+                                            <img src="{{$seller->image}}" class="avatar-title bg-soft-primary text-primary font-size-16 rounded-circle">
                                         </div>
                                     </div>
                                     <div class="flex-grow-1 align-self-center">

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ContactUs\ContactUsController;
 use App\Http\Controllers\notifications\ReturnAllNotificationsByIDController;
-use App\Http\Controllers\notifications\SetPlayerIdController;
+use App\Http\Controllers\notifications\SetDeviceTokenController;
 use App\Http\Controllers\Payment\PayPal\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:sanctum'],function () {
 
-    Route::post("setPlayerID",[SetPlayerIdController::class,"setPlayerID"]);
+    Route::post("SetDeviceToken",[SetDeviceTokenController::class,"SetDeviceToken"]);
 
     Route::get("ReturnNotifications",[ReturnAllNotificationsByIDController::class,"ReturnNotificationsByUserID"]);
 

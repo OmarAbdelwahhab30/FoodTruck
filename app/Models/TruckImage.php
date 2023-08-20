@@ -17,6 +17,10 @@ class TruckImage extends Model
         'updated_at',
         'truck_id',
     ];
+
+    public function getImageAttribute() {
+        return asset("storage/".$this->attributes['image']);
+    }
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);

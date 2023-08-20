@@ -38,11 +38,6 @@ class SendNotifications implements ShouldQueue
      */
     public function handle()
     {
-        $fields = [];
-        foreach ($this->users as $user) {
-            $fields['include_player_ids'][] = $user->player_id;
-        }
-        $message = $this->notification;
-        OneSignal::sendPush($fields, $message);
+
     }
 }

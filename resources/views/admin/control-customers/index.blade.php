@@ -48,7 +48,7 @@
                                                        class="text-body fw-bold">#0000{{$user->id}}</a></td>
                                                 <td>{{$user->name}}</td>
                                                 <td>
-                                                    <img src="{{asset($user->image)}}" alt="profile Pic" height="50"
+                                                    <img src="{{$user->image}}" alt="profile Pic" height="50"
                                                          width="50" style="border-radius:50px">
                                                 </td>
                                                 <td>

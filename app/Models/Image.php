@@ -17,6 +17,10 @@ class Image extends Model
             'product_id'
         ];
 
+    public function getImageAttribute() {
+        return asset("storage/".$this->attributes['image']);
+    }
+
     public function Product(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Product::class);

@@ -25,16 +25,6 @@ class User extends Authenticatable
     public function getImageAttribute() {
         return asset("storage/".$this->attributes['image']);
     }
-    public function routeNotificationForOneSignal() : array
-    {
-        return [
-            'tags'  => [
-                'key'=>'userId',
-                'relation'=>'=',
-                 'value'=>(string)($this->id)
-                ],
-        ];
-    }
 
     protected function serializeDate(DateTimeInterface $date) : string
     {

@@ -23,9 +23,8 @@ class DeleteProductController extends Controller
 
         $product = Product::find($request->product_id);
         foreach ($product->images as $image) {
-            $filename = str_replace("storage/","",$image->image);
-            public_path('storage'.DIRECTORY_SEPARATOR.$filename);
-            unlink(public_path('storage'.DIRECTORY_SEPARATOR.$filename));
+
+            unlink(public_path($image));
         }
 
 

@@ -11,6 +11,10 @@ class Truck extends Model
     use HasFactory;
     protected $guarded = [];
 
+
+    public function getLicenseAttribute() {
+        return asset("storage/".$this->attributes['license']);
+    }
     public function products(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Product::class);

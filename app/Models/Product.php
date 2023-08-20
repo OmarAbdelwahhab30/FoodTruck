@@ -17,6 +17,8 @@ class Product extends Model
         "section_id",
     ];
 
+
+
     public function truck(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Truck::class);

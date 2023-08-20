@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ContactUs\ContactUsController;
 use App\Http\Controllers\notifications\ReturnAllNotificationsByIDController;
-use App\Http\Controllers\notifications\SetPlayerIdController;
+use App\Http\Controllers\notifications\SetDeviceTokenController;
 use App\Http\Controllers\Payment\PayPal\PaymentController;
 use App\Http\Controllers\VAT\ReturnValuesController;
 use Illuminate\Http\Request;

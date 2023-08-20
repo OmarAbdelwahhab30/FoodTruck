@@ -65,7 +65,7 @@
                                                                                     <li class="list-inline-item">
                                                                                         <a href="#" class="active" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Gray">
                                                                                             <div class="product-color-item">
-                                                                                                <img src="{{asset($image->image)}}" alt="" class="avatar-md">
+                                                                                                <img src="{{$image->image}}" alt="" class="avatar-md">
                                                                                             </div>
                                                                                         </a>
                                                                                     </li>

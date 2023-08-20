@@ -25,7 +25,7 @@
                         <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <img src="{{asset($message->user->image)}}" style="border-radius: 50%" width="50" height="50"/>
+                                    <img src="{{$message->user->image}}" style="border-radius: 50%" width="50" height="50"/>
                                     <h4 class="card-title">{{$message->user->name}}</h4>
 
                                     <!-- Nav tabs -->

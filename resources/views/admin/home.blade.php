@@ -122,7 +122,7 @@
                                             <td><a href="javascript: void(0);" class="text-body fw-bold">#0000{{$customer->id}}</a> </td>
                                             <td>{{$customer->name}}</td>
                                             <td>
-                                                <img src="{{asset($customer->image)}}" alt="profile Pic" height="50" width="50" style="border-radius:50px">
+                                                <img src="{{$customer->image}}" alt="profile Pic" height="50" width="50" style="border-radius:50px">
                                             </td>
                                             <td>
                                                 {{isset($customer->email)? $customer->email:__("admin.NO EMAIL FOUND")}}

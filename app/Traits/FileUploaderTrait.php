@@ -34,17 +34,16 @@ trait FileUploaderTrait {
      * $FromWhichFolder => the image folder(UserImages-BooksImages-BooksFiles)
      * unlink(string $filename, ?resource $context = null): bool
      * */
-    function DeleteFile($Filename,$FromWhichFolder){
-        if (unlink(public_path('storage/'.$FromWhichFolder.$Filename))){
+    function DeleteFile($Filename){
+        if (unlink(public_path('storage/'.$Filename))){
             return true;
         }
         return false;
     }
 
-    function deleteFileByCompletePath($completePath)
+    function deleteFileByCompletePath($image)
     {
-        $filename = str_replace("storage/","",$completePath);
-        unlink(public_path('storage'.DIRECTORY_SEPARATOR.$filename));
+        unlink(public_path('storage'.DIRECTORY_SEPARATOR.$image));
     }
     public function uploadUserImage($Image): bool|string
     {

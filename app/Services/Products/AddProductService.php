@@ -43,8 +43,7 @@ class AddProductService extends Service
     {
         foreach ($images as $image) {
             Image::create([
-                'image'         => "storage/".
-                    $this->UploadFile($image),
+                'image'         => $this->UploadFile($image),
                 'product_id'    => $product_id,
             ]);
         }

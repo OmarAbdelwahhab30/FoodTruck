@@ -15,7 +15,7 @@ class UpdateProductImagesService extends Service
     {
         foreach ($images as $image) {
             Image::create([
-                'image'         => "storage/".$this->UploadFile($image),
+                'image'         => $this->UploadFile($image),
                 'product_id'    => $product_id,
             ]);
         }
@@ -25,8 +25,8 @@ class UpdateProductImagesService extends Service
     {
         $image = Image::find($Product_Image_ID);
         if($image->delete()){
-        $image_name = str_replace("http://localhost:8000/storage/images/products/","",$image->image);
-        $deleted = $this->DeleteFile($image_name,"/images/products/");
+
+        $deleted = $this->DeleteFile($image->image);
         if ($deleted){
             return true;
         }

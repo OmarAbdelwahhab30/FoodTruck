@@ -62,7 +62,7 @@ class SellerRegisterService extends Service implements RegisterInterface
             'active'    => 1,
             'accepted'  => 0,
             'image'     => $request->file("image") !== null ?
-                "storage/images/users/".$this->uploadUserImage($request->file("image"))
+                $this->UploadFile($request->file("image"))
                 :"/storage/images/default.png",
         ]);
     }
@@ -72,7 +72,7 @@ class SellerRegisterService extends Service implements RegisterInterface
     {
         foreach ($images as $image) {
             TruckImage::create([
-                'image'         => "storage/images/trucks/".$this->UploadFile($image,"images/trucks"),
+                'image'         => $this->UploadFile($image),
                 'truck_id'    => $truck_id,
             ]);
         }
@@ -111,7 +111,7 @@ class SellerRegisterService extends Service implements RegisterInterface
     }
     private function uploadLicenseImage($Image)
     {
-        return $this->UploadFile($Image,"/images/licenses");
+        return $this->UploadFile($Image);
     }
 
 

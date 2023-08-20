@@ -12,6 +12,7 @@ class Chat extends Model
 
     protected $guarded  = [];
 
+
     protected function serializeDate(DateTimeInterface $date) : string
     {
         return $date->format('h:i:s a m/d/Y');

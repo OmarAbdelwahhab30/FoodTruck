@@ -80,10 +80,10 @@ class MessageService extends Service
     private function checkMSG($request)
     {
         if ($request->has("record")){
-            $content = "storage/".$this->UploadFile($request->file("record"));
+            $content = $this->UploadFile($request->file("record"));
 
         }elseif($request->has("file")){
-            $content = "storage/".$this->UploadFile($request->file("file"));
+            $content = $this->UploadFile($request->file("file"));
         }else{
             $content = $request->text;
         }

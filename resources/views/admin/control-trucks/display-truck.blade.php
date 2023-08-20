@@ -123,7 +123,7 @@
                                                                    aria-label="Gray">
                                                                     <div class="product-color-item">
                                                                         <img
-                                                                            src="{{asset($image->image)}}"
+                                                                            src="{{$image->image}}"
                                                                             alt="" class="avatar-md">
                                                                     </div>
                                                                 </a>

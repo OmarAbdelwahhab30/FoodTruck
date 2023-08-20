@@ -19,7 +19,7 @@
                                                 <div class="col-md-3 border-right">
                                                     <div class="">
                                                         <img style="border-radius: 50% ; height: 250px;width: 250px;padding: 35px"
-                                                             src="{{asset(auth()->user()->image)}}" id="image">
+                                                             src="{{auth()->user()->image}}" id="image">
                                                         <span class="font-weight-bold"></span><span
                                                             class="text-black-50"></span><span></span>
                                                         <input type="file" id="uploadBox" style="width: 192px;
@@ -33,7 +33,6 @@
                                                         <div class="error">{{ $message }}</div>
                                                         @enderror
                                                         <input type="hidden" name="def" id="def">
-
                                                         <a>
                                                             <script>
                                                                 var loadFile = function (event) {

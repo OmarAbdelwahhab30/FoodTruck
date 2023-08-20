@@ -26,7 +26,7 @@
                                 <div class="card">
                                     <div class="row g-0 align-items-center">
                                         <div class="col-md-2">
-                                            <img height="100px" width="100px" src="{{asset($review->user->image)}}"
+                                            <img height="100px" width="100px" src="{{$review->user->image}}"
                                                  alt="Card image" style="border-radius: 50%; margin: 60px">
                                         </div><!-- end col-->
                                         <div class="col-md-8">

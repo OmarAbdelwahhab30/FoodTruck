@@ -187,6 +187,7 @@ return [
          */
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
         Ladumor\OneSignal\OneSignalServiceProvider::class,
+        Kreait\Laravel\Firebase\ServiceProvider::class,
 
         /*
          * Application Service Providers...

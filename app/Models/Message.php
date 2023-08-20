@@ -10,6 +10,10 @@ class Message extends Model
 {
     use HasFactory;
 
+
+    public function getContentAttribute() {
+        return asset("storage/".$this->attributes['content']);
+    }
     protected function serializeDate(DateTimeInterface $date) : string
     {
         return $date->format('h:i a');
