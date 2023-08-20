@@ -31,7 +31,7 @@ return [
     "Email" => "الإيميل",
     "phone" => "رقم الهاتف",
     "Date Of join" => "تاريخ الإنضمام",
-    "NO EMAIL FOUND" => "لا يجود بريد إالكتروني",
+    "NO EMAIL FOUND" => "لا يوجد بريد إالكتروني",
     "Latest Trcuks" => "آخر العربات",
     "Truck-ID" => "رقم العربة التعريفي ",
     "Truck-name" => "اسم العربة",
