@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin\controlCustomers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SearchCustomerRequest;
+use App\Models\Role;
 use App\Models\User;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -12,7 +13,7 @@ class ControlUsersController extends Controller
 
     public function index()
     {
-        $users = User::paginate(5);
+        $users = User::where("role_id","<>",Role::ROLE_ADMINISTRATOR)->paginate(5);
         return view("admin.control-customers.index", compact("users"));
     }
 
