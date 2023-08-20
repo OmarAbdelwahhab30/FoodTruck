@@ -44,7 +44,7 @@ class SellerRegisterService extends Service implements RegisterInterface
         return Truck::create([
             'name'	        => $request->truck_name,
             'plate_no'      => $request->plate_no,
-            'license'       => "storage/images/licenses/".$this->uploadLicenseImage($request->file('license')),
+            'license'       => $this->UploadFile($request->file('license')),
             'delivery'      => $request->delivery,
             'user_id'       => $userID,
             'work_time'     => $request->work_time,
@@ -63,7 +63,7 @@ class SellerRegisterService extends Service implements RegisterInterface
             'accepted'  => 0,
             'image'     => $request->file("image") !== null ?
                 $this->UploadFile($request->file("image"))
-                :"/storage/images/default.png",
+                :"default.png",
         ]);
     }
 
