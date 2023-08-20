@@ -26,11 +26,10 @@ class UpdateAdminAccountController extends Controller
             $user->password = Hash::make($request->password);
         }
         if ($request->def == "default.png"){
-            $user->image = getenv("APP_URL")."storage/images/default.png";
+            $user->image = "storage/default.png";
             $user->save();
         } elseif ($request->file("image")!== null){
-            $user->image = env("APP_URL")."storage/images/admins/".
-                $this->UploadFile($request->file("image"),"images/admins/");
+            $user->image = "storage/". $this->UploadFile($request->file("image"));
             $user->save();
         }
         if ($updated){

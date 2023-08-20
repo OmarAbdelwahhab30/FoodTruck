@@ -43,11 +43,11 @@ trait FileUploaderTrait {
 
     function deleteFileByCompletePath($completePath)
     {
-        $filename = str_replace(getenv("APP_URL")."storage/","",$completePath);
+        $filename = str_replace("storage/","",$completePath);
         unlink(public_path('storage'.DIRECTORY_SEPARATOR.$filename));
     }
     public function uploadUserImage($Image): bool|string
     {
-        return $this->UploadFile($Image,"/images/users");
+        return $this->UploadFile($Image);
     }
 }

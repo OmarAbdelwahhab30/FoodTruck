@@ -23,8 +23,8 @@ class CustomerRegisterService extends Service implements RegisterInterface
             'active'    => 1,
             'accepted'  => null,
             'image'     => $request->file("image") !== null ?
-                env("APP_URL")."/storage/images/users/".$this->uploadUserImage($request->file("image"))
-                :env("APP_URL")."/storage/images/default.png",
+                "storage/".$this->uploadUserImage($request->file("image"))
+                :"storage/default.png",
 
             ]);
         $user->token = $this->createToken($user);

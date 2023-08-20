@@ -15,7 +15,7 @@ class UpdateProductImagesService extends Service
     {
         foreach ($images as $image) {
             Image::create([
-                'image'         => env("APP_URL").":8000/storage/images/products/".$this->UploadFile($image,"images/products"),
+                'image'         => "storage/".$this->UploadFile($image),
                 'product_id'    => $product_id,
             ]);
         }

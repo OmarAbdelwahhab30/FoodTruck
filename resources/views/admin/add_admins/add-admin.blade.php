@@ -19,7 +19,7 @@
                                                 <div class="col-md-3 border-right">
                                                     <div class="">
                                                         <img style="border-radius: 50% ; height: 250px;width: 250px ;padding: 35px"
-                                                             src="{{asset("storage/images/default.png")}}" id="image">
+                                                             src="{{asset("storage/default.png")}}" id="image">
                                                         <span class="font-weight-bold"></span><span
                                                             class="text-black-50"></span><span></span>
                                                         <input type="file" id="uploadBox" style="width: 192px;
@@ -55,7 +55,7 @@
                                                                         </button>`
                                                                 }
                                                                 var deleteImage = function () {
-                                                                    document.getElementById("image").src = "{{asset("storage/images/default.png")}}";
+                                                                    document.getElementById("image").src = "{{asset("storage/default.png")}}";
                                                                     document.getElementById("uploadBox").value = null;
                                                                     document.getElementById("dlt-btn").style.display = "none";
                                                                 }

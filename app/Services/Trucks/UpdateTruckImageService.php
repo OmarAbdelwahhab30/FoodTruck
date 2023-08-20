@@ -17,7 +17,7 @@ class UpdateTruckImageService extends Service
 
         foreach ($images as $image) {
             TruckImage::create([
-                'image'         => env("APP_URL").":8000/storage/images/trucks/".
+                'image'         => "storage/".
                     $this->UploadFile($image,"images/trucks"),
                 'truck_id'    => $truck_id,
             ]);

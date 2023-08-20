@@ -58,7 +58,7 @@
                                                                         </button>`
                                                                 }
                                                                 var deleteImage = function () {
-                                                                    document.getElementById("image").src = "{{asset("storage/images/default.png")}}";
+                                                                    document.getElementById("image").src = "{{asset("storage/default.png")}}";
                                                                     document.getElementById("dlt-btn").style.display = "none";
                                                                     document.getElementById("def").value ='default.png' ;
                                                                 }

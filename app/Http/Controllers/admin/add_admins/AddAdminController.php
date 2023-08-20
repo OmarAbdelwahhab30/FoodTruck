@@ -27,9 +27,8 @@ class AddAdminController extends Controller
             'role_id'   => Role::ROLE_ADMINISTRATOR,
             'password'  => Hash::make($request->password),
             'image'     => $request->file("image") !== null ?
-                env("APP_URL")."storage/images/admins/".$this->UploadFile($request->file("image")
-                    ,"images/admins/")
-                :env("APP_URL")."storage/images/default.png",
+                "storage/images/admins/".$this->UploadFile($request->file("image"))
+                :"storage/images/default.png",
         ]);
         if ($user){
             return redirect()->back()->with("success", __("admin.Admin has been added successfully"));
