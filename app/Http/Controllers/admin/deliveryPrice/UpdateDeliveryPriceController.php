@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\admin\deliveryPrice;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\admin\KiloPriceRequest;
+use App\Http\Requests\Admin\KiloPriceRequest;
 use App\Models\Value;
-use Illuminate\Http\Client\Request;
 
 class UpdateDeliveryPriceController extends Controller
 {

@@ -3,9 +3,6 @@
 namespace App\Http\Controllers\admin\notify;
 
 use App\Http\Requests\Admin\ControlNotificationsRequest;
-use App\Jobs\SendNotifications;
-use App\Models\Role;
-use App\Models\User;
 use Kreait\Firebase\Exception\FirebaseException;
 use Kreait\Firebase\Exception\MessagingException;
 use Kreait\Firebase\Messaging\CloudMessage;

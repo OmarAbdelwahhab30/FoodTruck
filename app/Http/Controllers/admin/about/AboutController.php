@@ -5,7 +5,6 @@ namespace App\Http\Controllers\admin\about;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AboutUsRequest;
 use App\Models\About;
-use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {

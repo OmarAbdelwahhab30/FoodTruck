@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\admin\ownerPercentage;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\admin\OwnerPercentageRequest;
+use App\Http\Requests\Admin\OwnerPercentageRequest;
 use App\Models\Value;
-use Illuminate\Http\Request;
 
 class UpdateOwnerPercentageController extends Controller
 {

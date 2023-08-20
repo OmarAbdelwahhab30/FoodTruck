@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\admin\vat;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\admin\OwnerPercentageRequest;
 use App\Http\Requests\Admin\VATRequest;
 use App\Models\Value;
 

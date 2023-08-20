@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\admin\terms;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\AboutUsRequest;
 use App\Http\Requests\Admin\TermsRequest;
-use App\Models\About;
 use App\Models\Terms;
-use Illuminate\Http\Request;
 
 class TermsController extends Controller
 {

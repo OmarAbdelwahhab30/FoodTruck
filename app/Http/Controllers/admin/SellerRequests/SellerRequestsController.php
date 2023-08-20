@@ -9,7 +9,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Throwable;
-use Vonage\Client\Exception\Exception;
 
 class SellerRequestsController
 {

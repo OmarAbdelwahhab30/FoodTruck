@@ -4,9 +4,7 @@ namespace App\Http\Controllers\admin\controlCustomers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SearchCustomerRequest;
-use App\Models\Role;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class ControlUsersController extends Controller

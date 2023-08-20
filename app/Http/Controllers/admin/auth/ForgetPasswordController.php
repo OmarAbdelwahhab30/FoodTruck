@@ -5,13 +5,10 @@ namespace App\Http\Controllers\admin\auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ForgetPasswordRequest;
 use App\Http\Requests\Admin\ResetPasswordRequest;
-use App\Mail\NotifyMail;
 use App\Models\User;
 use App\Mail\RecoveryPasswordMail;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
