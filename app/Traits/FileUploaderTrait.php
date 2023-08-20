@@ -14,11 +14,12 @@ trait FileUploaderTrait {
      *@param $ToWhichFolder you need to move the image or file
      * @return string|bool
      */
-    function UploadFile($File,$ToWhichFolder): string|bool
+    function UploadFile($File): string|bool
     {
         if (!empty($File)) {
-            $FileName = time() ."_". str_replace('-', '_', $File->getClientOriginalName());
-            $Done = $File->move(public_path('storage/' . $ToWhichFolder), $FileName);
+            $extension = pathinfo($File->getClientOriginalName(), PATHINFO_EXTENSION);
+            $FileName = time() .$File->getClientOriginalName().".".$extension;
+            $Done = $File->move(public_path('storage/'), $FileName);
             if ($Done) {
                 return $FileName;
             }
@@ -40,6 +41,11 @@ trait FileUploaderTrait {
         return false;
     }
 
+    function deleteFileByCompletePath($completePath)
+    {
+        $filename = str_replace(getenv("APP_URL")."storage/","",$completePath);
+        unlink(public_path('storage'.DIRECTORY_SEPARATOR.$filename));
+    }
     public function uploadUserImage($Image): bool|string
     {
         return $this->UploadFile($Image,"/images/users");

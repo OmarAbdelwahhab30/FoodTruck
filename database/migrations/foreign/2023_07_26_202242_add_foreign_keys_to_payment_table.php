@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::table('payments', function (Blueprint $table) {
             $table->foreignId("customer_id")->references("id")->on("users");
             $table->foreignId("order_id")->references("id")->on("orders")->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId("seller_id")->references("id")->on("users");
         });
     }
 

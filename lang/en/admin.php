@@ -92,7 +92,7 @@ return [
     "Go To Orders" => "Go To Orders",
     "Truck details" => "Truck details",
     "There is no images to show" => "There is no images to show",
-    "Truck Images" => "Truck Images",
+    "Truck images" => "Truck images",
     "Truck location" => "Truck location",
     "Status" => "Status",
     "Plate-number" => "Plate-number",

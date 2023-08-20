@@ -4,7 +4,7 @@ namespace App\Http\Requests\products;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class deleteProductRequest extends FormRequest
+class addOptionalRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,9 @@ class deleteProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_id'   => ['required'],
+            'optional' => ['required'],
+            'price' => ['required'],
+            'product_id' => ['required'],
         ];
     }
 }

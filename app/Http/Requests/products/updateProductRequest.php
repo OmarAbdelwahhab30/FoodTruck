@@ -30,6 +30,7 @@ class updateProductRequest extends FormRequest
             'images' => 'sometimes|array|max:3', // <----
             'images.*' => 'mimes:jpeg,jpg,png',
             'description'   => ['sometimes'],
+            "sizes" => ['sometimes',"array"]
         ];
     }
 }

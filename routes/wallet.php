@@ -23,8 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'auth:sanctum'],function () {
+Route::group(['middleware' => 'auth:sanctum'], function () {
 
-    Route::get("returnBalance",[WalletController::class,'returnBalance']);
+    Route::get("returnBalance", [WalletController::class, 'returnBalance']);
+
+    Route::get("returnRecentTransactions", [WalletController::class, 'returnRecentTransactions']);
 
 });

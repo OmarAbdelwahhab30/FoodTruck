@@ -26,7 +26,7 @@ class SendMessageEvent implements ShouldBroadcastNow
 
     public function broadcastOn(): Channel
     {
-        return new Channel('chat.' . $this->message->from_user .".". $this->message->to_user);
+        return new Channel('chat');
     }
 
     /**

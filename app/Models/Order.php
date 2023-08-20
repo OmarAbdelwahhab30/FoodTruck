@@ -15,8 +15,8 @@ class Order extends Model
 
 
     protected $hidden = [
-        'create_at',
-        'updated_id',
+        'created_at',
+        'updated_at',
     ];
 
     protected function serializeDate(DateTimeInterface $date): string
@@ -41,9 +41,9 @@ class Order extends Model
         return $this->belongsTo(Truck::class);
     }
 
-    public function payment(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function payment(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->belongsTo(Payment::class);
+        return $this->hasOne(Payment::class);
     }
 
 

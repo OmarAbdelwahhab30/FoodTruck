@@ -2,6 +2,7 @@
 
 namespace App\Services\Payment\Checkout;
 
+use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Wallet;
 use App\Services\Service;
@@ -70,33 +71,37 @@ class PaymentService extends Service
 
     private function createPaymentRecord($request,$order_id)
     {
-        return Payment::create([
+        $payment =  Payment::create([
             'payment_id'        => $request['id'],
             'payment_Status'    => $request['status'],
             'payment_method'    => $request['source']['card_type'],
             'customer_id'       => auth("sanctum")->user()->id,
             'order_id'          => $order_id,
             'payment_response'  => json_encode($request),
+            'seller_id'         => $request['seller_id'],
         ]);
+        $this->UpdateOrderWithPaymentID($payment->id,$order_id);
+        return $payment;
     }
 
 
     /**
      * @throws CheckoutApiException
      */
-    public function ConfirmCheckout($payment_id,$amount,$seller_id): bool
+    private function ConfirmCheckout($payment_id,$amount,$seller_id): bool
     {
         $this->IncreaseWalletBalance($amount,$seller_id);
         $request = new CaptureRequest();
         $request->processing_channel_id = getenv("CHECKOUT_PROCESSING_CHANNEL_ID");
         $response = $this->api->getPaymentsClient()->capturePayment($payment_id, $request);
         if ($response) {
+
             return $this->updatePaymentStatus($payment_id);
         }
         return false;
     }
 
-    public function updatePaymentStatus($payment_id): bool
+    private function updatePaymentStatus($payment_id): bool
     {
         $payment = Payment::where("payment_id", $payment_id)->update([
             'payment_status' => "captured"
@@ -105,6 +110,13 @@ class PaymentService extends Service
             return true;
         }
         return false;
+    }
+
+    private function UpdateOrderWithPaymentID($payment_id,$order_id)
+    {
+        $order = Order::find($order_id);
+        $order->payment_id = $payment_id;
+        $order->save();
     }
 
 

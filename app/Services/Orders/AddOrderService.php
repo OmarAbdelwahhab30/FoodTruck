@@ -39,7 +39,8 @@ class AddOrderService extends Service
         return Order::create([
             'truck_id'      => $request->truck_id ,
             'arrival_time'  => $request->arrival_time,
-            'delivery_type_'.app()->getLocale() => $request->delivery_type,
+            'delivery_type_en' => $request->delivery_type_en,
+            'delivery_type_ar' => $request->delivery_type_ar,
             'total_price'   => $request->total_price,
             'user_id'       => auth("sanctum")->user()->id,
         ]);

@@ -92,7 +92,7 @@ return [
     "Go To Orders" => "إذهب للطلبات",
     "Truck details" => "تفاصيل العربة",
     "There is no images to show" => "لا يوجد صور لعرضها",
-    "Truck Images" => "صور العربة",
+    "Truck images" => "صور العربة",
     "Truck location" => "مكان العربة",
     "Status" => "الحالة",
     "Plate-number" => "رقم لوحة العربة ",

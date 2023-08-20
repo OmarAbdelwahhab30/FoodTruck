@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Products\DeleteProductController;
 use App\Http\Controllers\Sections\AddSectionController;
 use App\Http\Controllers\Sections\UpdateSectionController;
 use App\Http\Controllers\Products\AddProductController;
@@ -31,9 +32,19 @@ Route::group(['middleware' => 'auth:sanctum'],function ()
 
     Route::post("addProduct",[AddProductController::class,'addProduct']);
 
+    Route::post("deleteProduct",[DeleteProductController::class,'deleteProduct']);
+
     Route::post("deleteProductImageByID",[UpdateProductImagesController::class,"deleteProductImageByID"]);
 
     Route::post("updateProduct",[UpdateProductController::class,'updateProduct']);
+
+    Route::post("addOptional",[UpdateProductController::class,'addOptional']);
+
+    Route::post("editOptional",[UpdateProductController::class,'editOptional']);
+
+    Route::post("deleteProductOptionalByOptionalID",[UpdateProductController::class,'deleteProductOptionalByOptionalID']);
+
+    Route::post("deleteProductSizeBySizeID",[UpdateProductController::class,'deleteProductSizeBySizeID']);
 
     Route::post("add_section",[AddSectionController::class,"addSection"]);
 

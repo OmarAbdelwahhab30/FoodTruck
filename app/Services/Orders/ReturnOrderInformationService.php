@@ -26,7 +26,8 @@ class ReturnOrderInformationService extends \App\Services\Service
             'products.images' => function($image){
                 $image->select("id","product_id","image");
             }
-        ])->select("id","status_en as status","user_id","delivery_type_en","total_price","truck_id")->where("id", $request->order_id)->get();
+        ])->select("id","status_en as status","user_id","delivery_type_en"
+            ,"total_price","truck_id")->where("id", $request->order_id)->get();
     }
 
     public function ReturnAllPreviousCustomerOrders(): \Illuminate\Database\Eloquent\Collection|array

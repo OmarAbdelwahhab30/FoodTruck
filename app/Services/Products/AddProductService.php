@@ -25,7 +25,7 @@ class AddProductService extends Service
             return $product->id;
         });
 
-        return Product::where("id",$product_id)->with("sizes")->with("optionals")->get();
+        return Product::where("id",$product_id)->with("sizes")->with("optionals")->with("images")->get();
     }
 
     public function addProduct($request)
@@ -43,7 +43,8 @@ class AddProductService extends Service
     {
         foreach ($images as $image) {
             Image::create([
-                'image'         => env("APP_URL").":8000/storage/images/products/".$this->UploadFile($image,"images/products"),
+                'image'         => env("APP_URL")."storage/".
+                    $this->UploadFile($image),
                 'product_id'    => $product_id,
             ]);
         }

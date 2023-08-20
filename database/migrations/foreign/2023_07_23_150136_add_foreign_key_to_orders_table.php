@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::table('orders', function (Blueprint $table) {
             $table->foreignId("truck_id")->references("id")->on("trucks")->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId("user_id")->references("id")->on("users")->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId("payment_id")->references("id")->on("payments");
+
         });
     }
 

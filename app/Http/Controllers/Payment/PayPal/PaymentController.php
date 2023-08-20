@@ -100,8 +100,10 @@ class PaymentController extends Controller
             'order_id'          => session()->get("order_id") ,
             'payment_id'	    => $response['id'],
             'payer_email'       => session()->get("customer_email"),
-            'currency'          => session()->get("currency")
+            'currency'          => session()->get("currency"),
+            'seller_id'         => session()->get("seller_id"),
         ]);
+        $this->UpdateOrderWithPaymentID($payment->id,session()->get("order_id"));
         if ($payment){
             return true;
         }
@@ -115,5 +117,12 @@ class PaymentController extends Controller
     public function er()
     {
         return view("er");
+    }
+
+    private function UpdateOrderWithPaymentID($payment_id,$order_id)
+    {
+        $order = Order::find($order_id);
+        $order->payment_id = $payment_id;
+        $order->save();
     }
 }

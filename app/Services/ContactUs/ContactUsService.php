@@ -8,7 +8,6 @@ use App\Services\Service;
 class ContactUsService extends Service
 {
 
-
     public function AddContactUsContent($request): bool
     {
         $user_id = auth("sanctum")->user()->id;

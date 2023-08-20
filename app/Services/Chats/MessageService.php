@@ -80,10 +80,10 @@ class MessageService extends Service
     private function checkMSG($request)
     {
         if ($request->has("record")){
-            $content = env("APP_URL")."/storage/chat/".$this->UploadFile($request->file("record"),"chat");
+            $content = env("APP_URL")."storage/".$this->UploadFile($request->file("record"));
 
         }elseif($request->has("file")){
-            $content = env("APP_URL")."/storage/chat/".$this->UploadFile($request->file("file"),"chat");
+            $content = env("APP_URL")."storage/".$this->UploadFile($request->file("file"));
         }else{
             $content = $request->text;
         }

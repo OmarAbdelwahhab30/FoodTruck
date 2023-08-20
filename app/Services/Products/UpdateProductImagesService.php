@@ -25,8 +25,8 @@ class UpdateProductImagesService extends Service
     {
         $image = Image::find($Product_Image_ID);
         if($image->delete()){
-        $image_name = str_ireplace("http://localhost:8000/storage/images/products/","",$image->image);
-        $deleted = $this->DeleteFile($image_name,"/Images/products/");
+        $image_name = str_replace("http://localhost:8000/storage/images/products/","",$image->image);
+        $deleted = $this->DeleteFile($image_name,"/images/products/");
         if ($deleted){
             return true;
         }

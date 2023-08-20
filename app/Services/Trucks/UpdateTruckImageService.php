@@ -29,8 +29,8 @@ class UpdateTruckImageService extends Service
     {
         $image = TruckImage::find($image_id);
         $image->delete();
-        $image_name = str_ireplace("http://localhost:8000/storage/images/trucks/","",$image->image);
-        $deleted = $this->DeleteFile($image_name,"/Images/trucks/");
+        $image_name = str_replace("http://localhost:8000/storage/images/trucks/","",$image->image);
+        $deleted = $this->DeleteFile($image_name,"/images/trucks/");
         if ($deleted){
             return true;
         }

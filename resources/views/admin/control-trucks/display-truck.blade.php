@@ -113,7 +113,7 @@
                                             <div class="row">
                                                 <div class="col-lg-7 col-sm-8">
                                                     <div class="product-desc-color mt-3">
-                                                        <h5 class="font-size-14">{{__("admin.Truck Images")}} :</h5>
+                                                        <h5 class="font-size-14">{{__("admin.Truck images")}} :</h5>
                                                         <ul class="list-inline">
                                                             @forelse($truck_images as  $image)
                                                             <li class="list-inline-item">

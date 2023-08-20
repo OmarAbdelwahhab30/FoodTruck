@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Gate;
 class UpdateProductImagesController extends Controller
 {
 
-    public function deleteProductImageByID(deleteProductRequest $request,UpdateProductImagesService $service): \Illuminate\Http\JsonResponse
+    public function deleteProductImageByID(deleteProductImagesRequest $request,UpdateProductImagesService $service): \Illuminate\Http\JsonResponse
     {
         if (! Gate::allows('update-product')) {
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
