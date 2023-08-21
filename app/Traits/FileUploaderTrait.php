@@ -53,7 +53,8 @@ trait FileUploaderTrait {
     {
         foreach ($images as $image)
         {
-            unlink($image->image);
+            $image = str_replace(asset("/"),"",$image->image);
+            unlink(public_path($image));
         }
     }
 }
