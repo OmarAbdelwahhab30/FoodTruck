@@ -19,15 +19,7 @@ trait FileUploaderTrait {
         if (!empty($File)) {
             $FileName = time() .$File->getClientOriginalName();
             //$Done = $File->move(public_path('storage/'), $FileName);
-            //$Done = Storage::disk('public')->put($FileName, $File);
-//            Storage::putFileAs(
-//                public_path('storage/'), $File, $FileName
-//            );
-            $Done = $File->storePubliclyAs(
-                public_path('storage/'),
-                $FileName,
-                'public'
-            );
+            $Done = Storage::disk('files')->put($FileName, $File);
             if ($Done) {
                 return $FileName;
             }
