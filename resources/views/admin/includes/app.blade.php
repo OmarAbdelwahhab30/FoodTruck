@@ -4,6 +4,7 @@ $x = "";
 if (LaravelLocalization::getCurrentLocale() == "ar") {
     $x = "-rtl";
     $dir = "rtl";
+
 }else{
     $dir = "ltr";
 }
@@ -17,10 +18,12 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description"/>
     <meta content="Themesbrand" name="author"/>
     <!-- App favicon -->
+<style>
+    input:-moz-placeholder { text-align:right; }
+</style>
     <link rel="shortcut icon" href="{{asset("assets/images/favicon.ico")}}">
     @yield("addition")
     <!-- Bootstrap Css -->
-
     <link href="{{asset("assets/css/bootstrap.min.css")}}" id="bootstrap-style" rel="stylesheet" type="text/css"/>
     <!-- Icons Css -->
     <link href="{{asset("assets/css/icons.min.css")}}" rel="stylesheet" type="text/css"/>
@@ -213,6 +216,13 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
                         <a href="{{route("admin.control.customers")}}">
                             <i class="uil-user"></i>
                             <span>{{__("admin.Control Users")}}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route("admin.payments.details.show",)}}">
+                            <i class="mdi mdi-contactless-payment-circle"></i>
+                            <span>
+                                {{__("admin.Payments Details")}}</span>
                         </a>
                     </li>
                     <li>

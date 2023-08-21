@@ -104,7 +104,7 @@
                                                 <div class="d-inline-flex">
 
                                                     <div class="input-group mb-3">
-                                                        <p>{{$truck->user->address}}</p>
+                                                        <p>{{$truck->user->address ?? "No address available"}}</p>
                                                     </div>
                                                 </div>
 

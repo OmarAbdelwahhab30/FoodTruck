@@ -86,7 +86,7 @@
     </span>
         </h1>
         <center>
-            <a  href="{{ route('make.payment',[$customer_id,$order_id,$currency,$amount])}}"
+            <a  href="{{ route('make.payment',[$customer_id,$order_id,$currency,$amount,$seller_id])}}"
                 style="background-image: linear-gradient(#FFF0A8, #F9B421);width: 280px" class="btn btn-default w-full bg-indigo-500 uppercase rounded-xl font-extrabold text-white px-6 h-8">
                 <i class="fa-brands fa-cc-paypal fa-fade fa-xs"></i>
                 Pay with PayPal

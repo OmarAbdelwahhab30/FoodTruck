@@ -28,9 +28,9 @@ class PaymentController extends Controller
 
         session()->put('seller_id',$seller_id);
 
-        session()->put("customer_email",User::find($customer_id)->email);
+        session()->put("customer_email",User::find($customer_id)->email ?? null);
 
-        return view("payment-view",compact(['customer_id','currency','order_id','amount']));
+        return view("payment-view",compact(['customer_id','currency','order_id','amount','seller_id']));
     }
 
     /**

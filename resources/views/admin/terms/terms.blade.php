@@ -64,9 +64,6 @@
                                         <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
                                             {{__("admin.Submit")}}
                                         </button>
-                                        <button type="reset" class="btn btn-secondary waves-effect">
-                                            {{__("admin.Cancel")}}
-                                        </button>
                                     </div>
                                 </div>
                                 </form>
