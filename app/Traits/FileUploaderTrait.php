@@ -18,8 +18,8 @@ trait FileUploaderTrait {
     {
         if (!empty($File)) {
             $FileName = time() .$File->getClientOriginalName();
-            $Done = Storage::disk("public")->putFileAs(
-                '', $File, $FileName,"public"
+            $Done = Storage::disk("files")->putFileAs(
+                'storage/', $File, $FileName,"public"
             );
             if ($Done) {
                 return $FileName;
@@ -52,10 +52,7 @@ trait FileUploaderTrait {
         foreach ($images as $image)
         {
             $img = str_replace(asset('storage/'),"",$image->image);
-            Storage::disk("public")->delete($img);
-            //dd($image->image);
-           //dd($img,public_path("storage".$img));
-            //unlink(public_path("storage".$img));
+            Storage::disk("files")->delete("storage".$img);
         }
     }
 }
