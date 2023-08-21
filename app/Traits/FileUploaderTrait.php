@@ -53,9 +53,10 @@ trait FileUploaderTrait {
     {
         foreach ($images as $image)
         {
-            $image = str_replace(asset("storage"),"",$image->image);
-            dd($image,public_path("storage/".$image));
-            unlink(public_path("storage/".$image));
+            //dd($image->image);
+            $img = str_replace(asset('storage/'),"",$image->image);
+            //dd($img,public_path("storage".$img));
+            unlink(public_path("storage".$img));
         }
     }
 }
