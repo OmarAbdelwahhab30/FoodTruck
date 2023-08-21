@@ -17,8 +17,7 @@ trait FileUploaderTrait {
     function UploadFile($File): string|bool
     {
         if (!empty($File)) {
-            $extension = pathinfo($File->getClientOriginalName(), PATHINFO_EXTENSION);
-            $FileName = time() .$File->getClientOriginalName().".".$extension;
+            $FileName = time() .$File->getClientOriginalName();
             $Done = $File->move(public_path('storage/'), $FileName);
             if ($Done) {
                 return $FileName;
@@ -54,6 +53,7 @@ trait FileUploaderTrait {
     {
         foreach ($images as $image)
         {
+            dd($image->image);
             unlink($image->image);
         }
     }
