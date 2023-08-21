@@ -52,6 +52,7 @@ trait FileUploaderTrait {
         foreach ($images as $image)
         {
             $img = str_replace(asset('storage/'),"",$image->image);
+            dd($img);
             Storage::disk("files")->delete("storage".$img);
         }
     }
