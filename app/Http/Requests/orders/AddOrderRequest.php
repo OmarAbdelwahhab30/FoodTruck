@@ -26,7 +26,8 @@ class AddOrderRequest extends FormRequest
         return [
             'truck_id'      => ['required'] ,
             'arrival_time'  => ['required'],
-            'delivery_type' => ['required'],
+            'delivery_type_en' => ['required'],
+            'delivery_type_ar' => ['required'],
             'total_price'   => ['required'],
             'products'      => ['required','array','min:1'],
         ];

@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\deliveryPrice\UpdateDeliveryPriceController;
 use App\Http\Controllers\admin\home\HomeController;
 use App\Http\Controllers\admin\notify\NotificationController;
 use App\Http\Controllers\admin\ownerPercentage\UpdateOwnerPercentageController;
+use App\Http\Controllers\admin\paymnets_order_details\PaymentOrdersDetailsController;
 use App\Http\Controllers\admin\reviews\ReviewsAboutCustomersController;
 use App\Http\Controllers\admin\reviews\ReviewsAboutTrucksController;
 use App\Http\Controllers\admin\SellerRequests\SellerRequestsController;
@@ -137,6 +138,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
             /*Change Env vars*/
             Route::get("index", [\App\Http\Controllers\admin\ChangeEnv\ChangeEnvController::class, "index"])->name("admin.env.index");
             Route::get("changeEnv", [\App\Http\Controllers\admin\ChangeEnv\ChangeEnvController::class, "change"])->name("env.change");
+
+            /*payments details*/
+            Route::get("payments_details",[PaymentOrdersDetailsController::class,"index"])->name("admin.payments.details.show");
         });
 
     });
