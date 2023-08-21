@@ -20,8 +20,8 @@ trait FileUploaderTrait {
             $FileName = time() .$File->getClientOriginalName();
             //$Done = $File->move(public_path('storage/'), $FileName);
             //$Done = Storage::disk('files')->put($FileName, $File);
-            $Done = Storage::putFileAs(
-                'storage/', $File, $FileName,"files"
+            $Done = Storage::disk("files")->putFileAs(
+                'storage/', $File, $FileName,"public"
             );
             if ($Done) {
                 return $FileName;
