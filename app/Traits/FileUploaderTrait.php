@@ -36,8 +36,8 @@ trait FileUploaderTrait {
      * unlink(string $filename, ?resource $context = null): bool
      * */
     function DeleteFile($Filename){
-        $file = str_replace(asset('storage/'),"",$Filename);
-        if (unlink(unlink(public_path("storage".$file)))){
+        $img = str_replace(asset('storage/'),"",$Filename);
+        if (Storage::disk("files")->delete("storage".$img)){
             return true;
         }
         return false;
