@@ -29,10 +29,6 @@ class ChangeEnvController extends Controller
             'PAYPAL_CURRENCY',
             'PAYPAL_MODE'
         ],
-        'OneSignal' => [
-            'ONE_SIGNAL_APP_ID',
-            'ONE_SIGNAL_AUTHORIZE',     // REST API KEY
-        ],
     ];
     public function index()
     {
