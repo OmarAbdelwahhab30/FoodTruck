@@ -81,7 +81,7 @@ return [
     "Search" => "ابحث",
     "Search about orders by certain date" => "ابحث عن الطلبات بإستخدام تاريخ معين",
     "Truck Orders Search" => "البحث عن طلبات العربة",
-    "There is no products to show" => "لا يوجد منتجان لعرضها",
+    "There is no products to show" => "لا يوجد منتجات لعرضها",
     "Are you sure to permanently delete the product" => "هل أنت متأكد من حذف المنتج نهائيًا؟",
     "calories" => "السعرات الحرارية",
     "Categories" => "الأقسام",
