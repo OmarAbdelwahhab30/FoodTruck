@@ -49,4 +49,11 @@ trait FileUploaderTrait {
     {
         return $this->UploadFile($Image);
     }
+
+    public function deleteArrayOfImages($images)
+    {
+        foreach ($images as $image){
+            unlink(public_path('storage/'.$image->image));
+        }
+    }
 }
