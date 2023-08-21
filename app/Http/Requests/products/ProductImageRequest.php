@@ -24,12 +24,7 @@ class ProductImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          => ['sometimes'],
-            'price'         => ['sometimes'],
-            'calories'      => ['sometimes'],
-            'images' => 'sometimes|array|max:3', // <----
-            'images.*' => 'mimes:jpeg,jpg,png',
-            'description'   => ['sometimes'],
+            'image_id'          => ['required'],
         ];
     }
 }

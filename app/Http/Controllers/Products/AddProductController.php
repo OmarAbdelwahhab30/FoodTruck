@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Products;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\products\addProductRequest;
 use App\Services\Products\AddProductService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class AddProductController extends Controller
