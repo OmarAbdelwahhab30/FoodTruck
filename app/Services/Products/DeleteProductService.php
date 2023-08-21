@@ -23,7 +23,7 @@ class DeleteProductService extends Service
     public function unlinkProductImages($images)
     {
         foreach ($images as $image) {
-            $this->deleteFileByCompletePath($image['image']);
+            $this->DeleteFile($image['image']);
         }
     }
 

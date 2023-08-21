@@ -18,7 +18,8 @@ trait FileUploaderTrait {
     {
         if (!empty($File)) {
             $FileName = time() .$File->getClientOriginalName();
-            $Done = $File->move(public_path('storage/'), $FileName);
+            //$Done = $File->move(public_path('storage/'), $FileName);
+            $Done = Storage::disk('public')->put($FileName, $File);
             if ($Done) {
                 return $FileName;
             }
@@ -34,15 +35,11 @@ trait FileUploaderTrait {
      * unlink(string $filename, ?resource $context = null): bool
      * */
     function DeleteFile($Filename){
-        if (unlink($Filename)){
+        $file = str_replace(asset('storage/'),"",$Filename);
+        if (unlink(unlink(public_path("storage".$file)))){
             return true;
         }
         return false;
-    }
-
-    function deleteFileByCompletePath($image)
-    {
-        unlink($image);
     }
     public function uploadUserImage($Image): bool|string
     {
@@ -55,7 +52,7 @@ trait FileUploaderTrait {
         {
             //dd($image->image);
             $img = str_replace(asset('storage/'),"",$image->image);
-            //dd($img,public_path("storage".$img));
+           //dd($img,public_path("storage".$img));
             unlink(public_path("storage".$img));
         }
     }
