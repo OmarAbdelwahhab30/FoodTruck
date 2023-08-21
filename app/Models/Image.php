@@ -18,7 +18,7 @@ class Image extends Model
         ];
 
     public function getImageAttribute() {
-        return asset("storage/".$this->attributes['image']);
+        return public_path("storage/".$this->attributes['image']);
     }
 
     public function Product(): \Illuminate\Database\Eloquent\Relations\BelongsTo

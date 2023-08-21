@@ -35,7 +35,7 @@ trait FileUploaderTrait {
      * unlink(string $filename, ?resource $context = null): bool
      * */
     function DeleteFile($Filename){
-        if (unlink(public_path('storage/'.$Filename))){
+        if (unlink($Filename)){
             return true;
         }
         return false;
@@ -43,7 +43,7 @@ trait FileUploaderTrait {
 
     function deleteFileByCompletePath($image)
     {
-        unlink(public_path('storage'.DIRECTORY_SEPARATOR.$image));
+        unlink($image);
     }
     public function uploadUserImage($Image): bool|string
     {
@@ -52,8 +52,9 @@ trait FileUploaderTrait {
 
     public function deleteArrayOfImages($images)
     {
-        foreach ($images as $image){
-            unlink(public_path('storage/'.$image->image));
+        foreach ($images as $image)
+        {
+            unlink($image->image);
         }
     }
 }
