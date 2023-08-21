@@ -59,7 +59,6 @@ class ControlTrucksController extends Controller
     public function deleteProduct(DeleteProductRequest $request): \Illuminate\Http\RedirectResponse
     {
         $product = Product::find($request->product_id);
-        //dd($product->images);
         $this->deleteArrayOfImages($product->images);
         if ($product->delete())
         {

@@ -53,7 +53,6 @@ trait FileUploaderTrait {
     {
         foreach ($images as $image)
         {
-            dd($image->image);
             unlink($image->image);
         }
     }
