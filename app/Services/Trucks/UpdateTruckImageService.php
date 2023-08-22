@@ -27,9 +27,11 @@ class UpdateTruckImageService extends Service
     public function deleteImageByID($image_id)
     {
         $image = TruckImage::find($image_id);
-        $image->delete();
-        $deleted = $this->DeleteFile($image->image);
-        if ($deleted){
+        $deleted = DB::transaction(function ($q) use ($image) {
+            $this->DeleteFile($image->image);
+            return $image->delete();
+        });
+        if ($deleted) {
             return true;
         }
         return false;

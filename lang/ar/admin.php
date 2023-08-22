@@ -284,4 +284,5 @@ return [
     "Payment Detail" => "تفاصيل الدفع" ,
     "Payments" => "المدفوعات",
     "Seller information" => "بيانات البائع",
+    "Download The Invoice"  => "تحميل الفاتورة",
 ];

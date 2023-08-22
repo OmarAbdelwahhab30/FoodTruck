@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class ForgetPasswordRequest extends FormRequest
 {
@@ -24,7 +25,12 @@ class ForgetPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'password'          => 'required|string|min:6',
+            'password' => [
+                'required',
+                'min:8',
+                'regex:/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-_=+{};:,<.>]).*$/',
+                Password::uncompromised(),
+            ],
             'confirm_password'  => 'same:password',
         ];
     }

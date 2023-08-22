@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class UpdateProfileRequest extends FormRequest
 {
@@ -27,7 +28,13 @@ class UpdateProfileRequest extends FormRequest
             'name'   => 'nullable|string|unique:users',
             'email'  => 'nullable|email|unique:users',
             'phone'  => ['nullable',"min:4","unique:users"],
-            'password'      => 'nullable|string|min:6',
+            'password' => [
+                'nullable',
+                'min:8',
+                'regex:/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-_=+{};:,<.>]).*$/',
+                Password::uncompromised(),
+            ],
+
             'confirm_password'  => 'same:password',
             'image' => 'nullable|mimes:jpeg,jpg,png|max:10000',
         ];

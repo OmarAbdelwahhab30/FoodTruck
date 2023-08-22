@@ -144,7 +144,7 @@
                                                 <div class="col-sm-9">
                                                     <div class="d-flex flex-wrap gap-3">
                                                         <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light w-md">
+                                                                class="btn btn-success waves-effect waves-light w-md">
                                                             {{__("admin.Submit")}}
                                                         </button>
                                                         <button type="reset"

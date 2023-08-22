@@ -11,12 +11,12 @@ class UpdateProductImagesService extends Service
 {
 
 
-    public function updateProductImages($images,$product_id)
+    public function updateProductImages($images, $product_id)
     {
         foreach ($images as $image) {
             Image::create([
-                'image'         => $this->UploadFile($image),
-                'product_id'    => $product_id,
+                'image' => $this->UploadFile($image),
+                'product_id' => $product_id,
             ]);
         }
     }
@@ -24,15 +24,15 @@ class UpdateProductImagesService extends Service
     public function deleteImageByID($Product_Image_ID)
     {
         $image = Image::find($Product_Image_ID);
-        if($image->delete()){
-
-        $deleted = $this->DeleteFile($image->image);
-        if ($deleted){
+        $deleted = DB::transaction(function ($q) use ($image) {
+            $this->DeleteFile($image);
+            return $image->delete();
+        });
+        if ($deleted) {
             return true;
-        }
-            return false;
         }
         return false;
     }
+
 
 }

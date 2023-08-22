@@ -106,7 +106,7 @@
                                         </table>
                                         <hr>
                                         <div class="text-lg-end">
-                                            <a href="{{route("pdf.download",$information[0]->id)}}" class="btn btn-success">Download the invoice</a>
+                                            <a href="{{route("pdf.download",$information[0]->id)}}" class="btn btn-success">{{__("admin.Download The Invoice")}}</a>
                                         </div>
                                     </div>
                                 </div>

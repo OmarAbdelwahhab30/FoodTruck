@@ -4,6 +4,7 @@ namespace App\Http\Requests\Auth;
 
 use App\Interfaces\Auth\RegisterRequestInterface;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 
 class CustomerRegisterRequest extends FormRequest implements RegisterRequestInterface
@@ -28,7 +29,12 @@ class CustomerRegisterRequest extends FormRequest implements RegisterRequestInte
         return [
             'name'      => 'required|string|unique:users|max:191',
             'phone'         => 'required|max:20|unique:users',
-            'password'      => 'required|string|min:6',
+            'password' => [
+                'required',
+                'min:8',
+                'regex:/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-_=+{};:,<.>]).*$/',
+                Password::uncompromised(),
+            ],
             'confirm_password'  => 'same:password',
             'email'             => "email|nullable",
             'role'              => 'required',

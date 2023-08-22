@@ -286,4 +286,5 @@ return [
     'Order No' => "Order No",
     "Order" => "Order",
     "Seller information" => "Seller information",
+    "Download The Invoice"  => "Download The Invoice",
 ];

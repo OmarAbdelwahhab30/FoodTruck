@@ -4,6 +4,7 @@ namespace App\Http\Requests\Auth;
 
 use App\Interfaces\Auth\RegisterRequestInterface;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 
 class SellerRegisterRequest extends FormRequest implements RegisterRequestInterface
@@ -28,7 +29,12 @@ class SellerRegisterRequest extends FormRequest implements RegisterRequestInterf
         return [
             'name'      => 'required|string|unique:users|max:191',
             'phone'         => 'required|max:20|unique:users',
-            'password'      => 'required|string|min:6',
+            'password' => [
+                'required',
+                'min:8',
+                'regex:/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-_=+{};:,<.>]).*$/',
+                Password::uncompromised(),
+            ],
             'confirm_password'  => 'same:password',
             'truck_name'        => 'required',
             'plate_no'          => 'required|unique:trucks',

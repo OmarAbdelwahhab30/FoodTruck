@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class AddAdminRequest extends FormRequest
 {
@@ -27,7 +28,13 @@ class AddAdminRequest extends FormRequest
             'name'   => 'required|string|unique:users',
             'email'  => 'required|email|unique:users',
             'phone'  => ['required',"min:4","unique:users"],
-            'password'      => 'required|string|min:6',
+            'password' => [
+                'required',
+                'min:8',
+                'regex:/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-_=+{};:,<.>]).*$/',
+                Password::uncompromised(),
+            ],
+
             'confirm_password'  => 'required|same:password',
             'image' => 'nullable|mimes:jpeg,jpg,png|max:10000',
         ];
