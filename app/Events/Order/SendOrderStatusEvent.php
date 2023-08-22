@@ -19,9 +19,10 @@ class SendOrderStatusEvent implements ShouldBroadcastNow
 
     private $order;
 
-    public function __construct($order_id)
+    public function __construct($order_id,$time)
     {
         $this->order = Order::find($order_id);
+        $this->time = $time;
     }
 
     /**
@@ -47,6 +48,9 @@ class SendOrderStatusEvent implements ShouldBroadcastNow
                 $this->order->status_en,
                 $this->order->status_ar,
             ],
+            'time' => [
+                $this->time,
+            ]
         ];
     }
 }

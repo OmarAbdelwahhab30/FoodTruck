@@ -15,7 +15,8 @@ class UpdateOrderStatusService extends Service
             'status_en' => 'processing',
             'status_ar' => 'يتم تجهيزه',
         ]);
-        $this->broadCastOrderStatus($request->order_id, auth("sanctum")->user());
+        $time = $this->GetCurrentTime();
+        $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
         //$this->PushNotification($OrderUser->player_id,2,$OrderUser->id,false);
         return $order;
@@ -27,7 +28,8 @@ class UpdateOrderStatusService extends Service
             'status_en' => 'cancelled',
             'status_ar' => 'تم الإلغاء',
         ]);
-        $this->broadCastOrderStatus($request->order_id, auth("sanctum")->user());
+        $time = $this->GetCurrentTime();
+        $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
         //$this->PushNotification($OrderUser->player_id,4,$OrderUser->id,false);
         return $order;
@@ -39,7 +41,8 @@ class UpdateOrderStatusService extends Service
             'status_en' => 'delivered',
             'status_ar' => 'تم التوصيل',
         ]);
-        $this->broadCastOrderStatus($request->order_id, auth("sanctum")->user());
+        $time = $this->GetCurrentTime();
+        $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
         //$this->PushNotification($OrderUser->player_id,5,$OrderUser->id,false);
         return $order;
@@ -51,7 +54,8 @@ class UpdateOrderStatusService extends Service
             'status_en' => 'picked-up',
             'status_ar' => 'تم الإستلام',
         ]);
-        $this->broadCastOrderStatus($request->order_id, auth("sanctum")->user());
+        $time = $this->GetCurrentTime();
+        $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
         //$this->PushNotification($OrderUser->player_id,3,$OrderUser->id,false);
         return $order;
@@ -62,8 +66,8 @@ class UpdateOrderStatusService extends Service
         return Order::find($order_id)->user;
     }
 
-    public function broadCastOrderStatus($order_id, $user)
+    public function broadCastOrderStatus($order_id,$time)
     {
-        broadcast(new SendOrderStatusEvent($order_id, $user))->toOthers();
+        broadcast(new SendOrderStatusEvent($order_id,$time))->toOthers();
     }
 }
