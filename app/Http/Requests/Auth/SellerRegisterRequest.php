@@ -33,7 +33,6 @@ class SellerRegisterRequest extends FormRequest implements RegisterRequestInterf
                 'required',
                 'min:8',
                 'regex:/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-_=+{};:,<.>]).*$/',
-                Password::uncompromised(),
             ],
             'confirm_password'  => 'same:password',
             'truck_name'        => 'required',

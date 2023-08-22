@@ -80,9 +80,6 @@
                                                     @error('name')
                                                     <div class="error">{{ $message }}</div>
                                                     @enderror
-                                                    @error('name')
-                                                    <div class="error">{{ $message }}</div>
-                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="row mb-4">

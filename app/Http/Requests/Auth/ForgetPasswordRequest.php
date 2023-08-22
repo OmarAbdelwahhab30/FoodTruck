@@ -29,7 +29,6 @@ class ForgetPasswordRequest extends FormRequest
                 'required',
                 'min:8',
                 'regex:/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-_=+{};:,<.>]).*$/',
-                Password::uncompromised(),
             ],
             'confirm_password'  => 'same:password',
         ];

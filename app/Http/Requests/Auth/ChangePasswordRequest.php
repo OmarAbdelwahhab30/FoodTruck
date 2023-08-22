@@ -31,7 +31,6 @@ class ChangePasswordRequest extends FormRequest
                 'required',
                 'min:8',
                 'regex:/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-_=+{};:,<.>]).*$/',
-                Password::uncompromised(),
             ],
             'new_password_confirmation'  => 'required|same:new_password',
         ];
