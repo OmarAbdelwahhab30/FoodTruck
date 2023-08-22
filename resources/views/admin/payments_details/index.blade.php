@@ -33,9 +33,6 @@
                                                 </th>
                                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 79px;" aria-label="Status: activate to sort column ascending">{{__("admin.Status")}}
                                                 </th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;" aria-label="Download Pdf: activate to sort column ascending">
-                                                    Download Pdf
-                                                </th>
                                                 <th style="width: 120px;" class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending">{{__("admin.Action")}}
                                                 </th>
                                             </tr>
@@ -53,12 +50,7 @@
                                                         {{$payment->order->total_price}} S.R
                                                     </td>
                                                     <td>
-                                                        <div class="badge bg-soft-success font-size-12">{{$payment->status}}</div>
-                                                    </td>
-                                                    <td>
-                                                        <div>
-                                                            <button class="btn btn-light btn-sm w-xs">Pdf <i class="uil uil-download-alt ms-2"></i></button>
-                                                        </div>
+                                                        <div class="badge bg-soft-success font-size-12">{{$payment->payment_status}}</div>
                                                     </td>
                                                     <td>
                                                         <a href="{{route("admin.payments.details.display",$payment->id)}}" class="px-3 text-primary">
@@ -66,7 +58,9 @@
                                                             </i>
                                                         </a>
                                                     </td>
+
                                                 </tr>
+
                                             @endforeach
                                             </tbody>
                                         </table>

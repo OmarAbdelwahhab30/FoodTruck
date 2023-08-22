@@ -101,8 +101,13 @@
                                                 <th scope="row" colspan="4" class="border-0 text-end">{{__("admin.Total Price")}}</th>
                                                 <td class="border-0 text-end"><h4 class="m-0">{{$information[0]->order->total_price}} {{__("admin.S.R")}}</h4></td>
                                             </tr>
+
                                             </tbody>
                                         </table>
+                                        <hr>
+                                        <div class="text-lg-end">
+                                            <a href="{{route("pdf.download",$information[0]->id)}}" class="btn btn-success">Download the invoice</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
