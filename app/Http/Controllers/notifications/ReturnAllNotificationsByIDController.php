@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\notifications;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\notifications\ReturnNotificationsRequest;
 use App\Services\notifications\ReturnAllNotificationsByIDService;
-use Illuminate\Http\Request;
 
 class ReturnAllNotificationsByIDController extends Controller
 {

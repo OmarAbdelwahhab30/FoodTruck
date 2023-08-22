@@ -21,7 +21,7 @@ class AddAdminController extends Controller
         $user = User::create([
             'name'  => $request->name,
             'email' => $request->email,
-            'phone' =>$request->phone,
+            'phone' =>$request->countryCode.$request->phone,
             'role_id'   => Role::ROLE_ADMINISTRATOR,
             'password'  => Hash::make($request->password),
             'image'     => $request->file("image") !== null ?

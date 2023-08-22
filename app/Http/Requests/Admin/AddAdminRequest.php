@@ -33,7 +33,7 @@ class AddAdminRequest extends FormRequest
                 'min:8',
                 'regex:/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-_=+{};:,<.>]).*$/',
             ],
-
+            'countryCode' => 'required',
             'confirm_password'  => 'required|same:password',
             'image' => 'nullable|mimes:jpeg,jpg,png|max:10000',
         ];

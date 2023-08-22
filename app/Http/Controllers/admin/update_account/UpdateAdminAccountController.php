@@ -20,7 +20,11 @@ class UpdateAdminAccountController extends Controller
     {
         $user = auth("web")->user();
         $updated = User::where("id",$user->id)->update(Arr::except(array_filter($request->validated()),
-            ['image','password','confirm_password']));
+            ['image','password','confirm_password','phone','countryCode']));
+        if ($request->countryCode !==null && $request->phone !==null){
+            $user->phone = $request->countryCode . $request->phone;
+            $user->save();
+        }
         if ($request->password!== null){
             $user->password = Hash::make($request->password);
         }

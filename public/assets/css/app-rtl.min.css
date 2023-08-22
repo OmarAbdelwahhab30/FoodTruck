@@ -12,6 +12,10 @@ body {
     font-family: 'Cairo', sans-serif;
 }
 
+.iti__country-list{
+    width: 250px;
+    overflow-x: hidden !important;
+}
 * {
 
 
@@ -32,8 +36,15 @@ body {
     background: black;
     border-radius: 10px;
 }
+.iti.iti--allow-dropdown {
+    width: 527px;
+}
 
 }
+.iti__arrow{
+    margin: 5px;
+}
+
 :root {
     --bs-sidebar-bg: #ffffff;
     --bs-sidebar-menu-item-color: #7b8190;
@@ -1371,7 +1382,7 @@ body[data-layout=horizontal] .navbar-brand-box {
 @media (min-width: 1200px) {
     body[data-layout=horizontal] .container-fluid,
     body[data-layout=horizontal] .navbar-header {
-        max-width: 85%;
+        max-width: 100%;
     }
 }
 
