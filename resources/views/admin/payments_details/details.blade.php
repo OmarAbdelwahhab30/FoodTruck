@@ -1,3 +1,6 @@
+<?php
+$z = " | ".__("admin.Payment Detail");
+?>
 @extends("admin.includes.app")
 @section("content")
     <div class="main-content">
@@ -106,7 +109,7 @@
                                         </table>
                                         <hr>
                                         <div class="text-lg-end">
-                                            <a href="{{route("pdf.download",$information[0]->id)}}" class="btn btn-success">{{__("admin.Download The Invoice")}}</a>
+                                            <a href="{{route("pdf.download",$information[0]->id)}}" download="FoodTruckInvoice.pdf" class="btn btn-success">{{__("admin.Download The Invoice")}}</a>
                                         </div>
                                     </div>
                                 </div>

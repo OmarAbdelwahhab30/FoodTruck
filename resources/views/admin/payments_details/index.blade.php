@@ -1,3 +1,6 @@
+<?php
+$z = " | ".__("admin.Payment Detail");
+?>
 @extends("admin.includes.app")
 @section("content")
     <div class="main-content">

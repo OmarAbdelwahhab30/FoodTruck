@@ -16,7 +16,8 @@ class LoginService extends Service
 
         if (Auth::attempt($credentials))
         {
-            $user = User::where("phone",$request->phone)->with("cart",function ($q){
+            $user = User::where("phone",$request->phone)->with("cart",function ($q)
+            {
                 $q->select("id","user_id");
             })->first();
             $user->token = $this->createToken($user);

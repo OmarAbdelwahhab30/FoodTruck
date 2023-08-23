@@ -35,6 +35,6 @@ class PaymentOrdersDetailsController extends Controller
         })->get();
         $vat = Value::first()->vat;
         $pdf = PDF::loadView('admin.payments_details.invoice',compact('information','vat'));
-        return $pdf->download('techsolutionstuff.pdf');
+        return $pdf->download('FoodTruck.pdf');
     }
 }

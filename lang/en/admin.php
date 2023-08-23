@@ -4,6 +4,8 @@ return [
 
     /*Home**/
     "Dashboard" => "Dashboard",
+    "Home"  => "Home",
+    "Menu"  => "Menu",
     "Add Administrator" => "Add Administrator",
     "Update Account" => "Update Account",
     "Control Trucks" => "Control Trucks",

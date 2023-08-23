@@ -19,20 +19,9 @@ class AddToCartService extends Service
         $cart = auth("sanctum")->user()->cart;
 
         $product = Product::find($request->product_id);
-        $truck_id = $product->truck->id;
-        $flag = false;
-        if (!isset($cart)) {
-
-            $cart = Cart::create([
-                'user_id' => auth("sanctum")->user()->id,
-                'truck_id' => $truck_id,
-            ]);
-            $flag = true;
-        }
-        if ($flag === false) { // this means that there is a cart
-            if ($product->truck->id != $cart->truck_id) {
-                return false;
-            }
+        $Product_truck_id = $product->truck->id;
+        if (!$this->HandleCart($Product_truck_id, $cart)){
+            return false;
         }
         $cart->products()->attach($request->product_id, array(
             'count' => $request->count,
@@ -41,7 +30,18 @@ class AddToCartService extends Service
             'optional_price' => $request->optional_price,
             'total_price' => $request->total_price,
         ));
-
         return $cart->products;
+    }
+
+    private function HandleCart($Product_truck_id,$cart){
+        if ($cart->truck_id !== null) {
+            if ($cart->truck_id !== $Product_truck_id) {
+                return false;
+            }
+        }elseif ($cart->truck_id  == null){
+            $cart->truck_id = $Product_truck_id;
+            $cart->save();
+        }
+        return true;
     }
 }

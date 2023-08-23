@@ -1,3 +1,6 @@
+<?php
+$z = " | ".__("admin.Reviews About Users");
+?>
 @extends("admin.includes.app")
 @section("addition")
     <!-- jquery-bar-rating css -->

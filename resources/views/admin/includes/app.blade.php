@@ -13,7 +13,10 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
 <html dir="{{$dir}}">
 <head>
     <meta charset="utf-8"/>
-    <title>{{__("admin.Dashboard")}}</title>
+    <?php
+        $z = isset($z)&& $z !=null ? $z:"";
+        ?>
+    <title>{{__("admin.Dashboard") . $z ?? ""}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description"/>
     <meta content="Themesbrand" name="author"/>
@@ -156,7 +159,7 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
             <div id="sidebar-menu">
                 <!-- Left Menu Start -->
                 <ul class="metismenu list-unstyled">
-                    <li class="menu-title">Menu</li>
+                    <li class="menu-title">{{__("admin.Menu")}}</li>
 
                     <li>
                         <a href="{{route("admin.home")}}">

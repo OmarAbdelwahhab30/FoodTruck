@@ -1,3 +1,6 @@
+<?php
+$z = " | ".__("admin.Notifications");
+?>
 @extends("admin.includes.app")
 @section("content")
     <div class="main-content">

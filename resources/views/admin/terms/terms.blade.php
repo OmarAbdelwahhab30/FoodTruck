@@ -1,5 +1,7 @@
+<?php
+$z = " | ".__("admin.Terms and Conditions");
+?>
 @extends("admin.includes.app")
-
 @section("content")
 
     <div class="main-content">
@@ -12,13 +14,6 @@
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
                             <h4 class="mb-0">{{__("admin.Terms and Conditions")}}</h4>
-
-                            <div class="page-title-right">
-                                <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item active">{{__("admin.Terms and Conditions")}} </li>
-                                </ol>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -29,7 +24,6 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h5 class="header-title">{{__("admin.Terms and Conditions")}}</h5>
 
                                 <div>
                                     <p>

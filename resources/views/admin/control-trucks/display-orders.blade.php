@@ -1,3 +1,6 @@
+<?php
+$z = " | ".__("admin.Control Trucks");
+?>
 @extends("admin.includes.app")
 @section("content")
     <?php

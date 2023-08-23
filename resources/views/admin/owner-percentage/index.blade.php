@@ -1,3 +1,6 @@
+<?php
+$z = " | ".__("admin.Owner Percentage");
+?>
 @extends("admin.includes.app")
 @section("content")
     <div class="main-content">

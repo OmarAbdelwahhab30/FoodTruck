@@ -4,6 +4,8 @@ return [
 
     /*Home**/
     "Dashboard" => "لوحة التحكم",
+    "Home"  => "الصفحة الرئيسية",
+    "Menu"  => "القائمة",
     "Add Administrator" => "إضافة أدمن",
     "Update Account" => "تحديث الحساب",
     "Control Trucks" => "التحكم في العربات",

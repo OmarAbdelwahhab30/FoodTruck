@@ -1,3 +1,6 @@
+<?php
+$z = " | ".__("admin.Add Administrator");
+?>
 @extends("admin.includes.app")
 @section("content")
     <link

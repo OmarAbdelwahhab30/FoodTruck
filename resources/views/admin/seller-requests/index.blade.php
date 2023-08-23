@@ -1,3 +1,6 @@
+<?php
+$z = " | ".__("admin.Seller Requests");
+?>
 @extends("admin.includes.app")
 @section("content")
 

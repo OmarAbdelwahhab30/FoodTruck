@@ -3,9 +3,11 @@
 namespace App\Services\Auth;
 
 use App\Interfaces\Auth\RegisterInterface;
+use App\Models\Cart;
 use App\Models\Role;
 use App\Models\User;
 use App\Services\Service;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class CustomerRegisterService extends Service implements RegisterInterface
@@ -14,21 +16,29 @@ class CustomerRegisterService extends Service implements RegisterInterface
     public function register($request)
     {
         $Role_ID = $this->GetRoleID($request->role);
-        $user = User::create([
-            'name'  => $request->name,
-            'phone' => $request->phone,
-            'password'  => Hash::make($request->password),
-            'email'     => $request->email,
-            'role_id'   => $Role_ID,
-            'active'    => 1,
-            'accepted'  => null,
-            'image'     => $request->file("image") !== null ?
-               $this->UploadFile($request->file("image"))
-                :"default.png",
+        return DB::transaction(function ()use ($request,$Role_ID){
+            $user = User::create([
+                'name'  => $request->name,
+                'phone' => $request->phone,
+                'password'  => Hash::make($request->password),
+                'email'     => $request->email,
+                'role_id'   => $Role_ID,
+                'active'    => 1,
+                'accepted'  => null,
+                'image'     => $request->file("image") !== null ?
+                    $this->UploadFile($request->file("image"))
+                    :"default.png",
 
             ]);
-        $user->token = $this->createToken($user);
-        return $user;
+            $user->token = $this->createToken($user);
+            $cart = Cart::create([
+                'user_id' => $user->id,
+                'truck_id' => null,
+            ]);
+            $user->cart = $cart;
+            return $user;
+        });
+
     }
 
     private function createToken(User $user)
