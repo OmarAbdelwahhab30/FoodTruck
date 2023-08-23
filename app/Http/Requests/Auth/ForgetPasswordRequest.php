@@ -25,12 +25,9 @@ class ForgetPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'password' => [
+            'new_password' => [
                 'required',
-                'min:8',
-                'regex:/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-_=+{};:,<.>]).*$/',
             ],
-            'confirm_password'  => 'same:password',
         ];
     }
 }
