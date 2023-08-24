@@ -15,7 +15,6 @@ class AddOrderController extends Controller
 //     */
     public function addOrder(AddOrderRequest $request, AddOrderService $service): \Illuminate\Http\JsonResponse
     {
-
         if (! Gate::allows('add-order')) {
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }

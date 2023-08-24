@@ -29,13 +29,14 @@ class SellerRegisterRequest extends FormRequest implements RegisterRequestInterf
         return [
             'name'      => 'required|string|unique:users|max:191',
             'phone'         => 'required|max:20|unique:users',
-            'password' => [
+            'password' =>
+                [
                 'required',
                 'min:8',
                 'regex:/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-_=+{};:,<.>]).*$/',
             ],
             'confirm_password'  => 'same:password',
-            'truck_name'        => 'required',
+            'truck_name'        => 'required|min:3',
             'plate_no'          => 'required|unique:trucks',
             'license'           => 'mimes:jpeg,jpg,png|required|max:10000',
             'truck_images'      => 'required|array|min:4|max:9', // <----

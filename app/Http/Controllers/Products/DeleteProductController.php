@@ -15,10 +15,9 @@ class DeleteProductController extends Controller
 {
     public function deleteProduct(deleteProductRequest $request, DeleteProductService $service)
     {
-        //return response()->json($request);
-//        if (! Gate::allows('add-product')) {
-//            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
-//        }
+        if (! Gate::allows('delete-product')) {
+            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
+        }
         $product = $service->exec($request);
         if($product){
             return $this->returnSuccessMessage("Product has been deleted successfully");

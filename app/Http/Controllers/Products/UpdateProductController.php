@@ -29,6 +29,9 @@ class UpdateProductController extends Controller
 
     public function deleteProductOptionalByOptionalID(deleteProductOptionalRequest $request, UpdateProductService $service)
     {
+        if (! Gate::allows('update-product')) {
+            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
+        }
         $deleted = $service->deleteProductOptionalByOptionalID($request);
         if($deleted){
             return $this->returnSuccessMessage("Product optional has been deleted successfully");
@@ -38,6 +41,9 @@ class UpdateProductController extends Controller
 
     public function deleteProductSizeBySizeID(deleteProductSizeRequest $request, UpdateProductService $service)
     {
+        if (! Gate::allows('update-product')) {
+            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
+        }
         $deleted = $service->deleteProductSizeBySizeID($request);
         if($deleted){
             return $this->returnSuccessMessage("Product size has been deleted successfully");
@@ -47,6 +53,9 @@ class UpdateProductController extends Controller
 
     public function addOptional(addOptionalRequest $request,UpdateProductService $service): \Illuminate\Http\JsonResponse
     {
+        if (! Gate::allows('update-product')) {
+            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
+        }
         $deleted = $service->addOptional($request);
         if($deleted){
             return $this->returnSuccessMessage("Product optional has been added successfully");
@@ -56,6 +65,9 @@ class UpdateProductController extends Controller
 
     public function editOptional(editOptionalRequest $request,UpdateProductService $service): \Illuminate\Http\JsonResponse
     {
+        if (! Gate::allows('update-product')) {
+            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
+        }
         $deleted = $service->editOptional($request);
         if($deleted){
             return $this->returnSuccessMessage("Product optional has been updated successfully");

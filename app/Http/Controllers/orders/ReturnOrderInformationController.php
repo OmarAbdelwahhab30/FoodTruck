@@ -94,8 +94,10 @@ class ReturnOrderInformationController extends Controller
 
     public function ReturnOrderStatusByOrderID(OrderStatusRequest $request,ReturnOrderInformationService $service): \Illuminate\Http\JsonResponse
     {
+        if (! Gate::allows('return-order-status')) {
+            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
+        }
         $status = $service->ReturnOrderStatusByOrderID($request);
-
         if ($status)
         {
             return $this->returnData("order_status",$status);

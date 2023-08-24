@@ -14,9 +14,9 @@ class DeleteFromCartController extends Controller
 
     public function RemoveProductFromCart(RemoveFromCartRequest $request,DeleteFromCartService $service): \Illuminate\Http\JsonResponse
     {
-//        if (!Gate::allows('remove-from-cart')){
-//            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
-//        }
+        if (!Gate::allows('remove-from-cart')){
+            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
+        }
         $cart = $service->deleteProductFromCart($request);
         if ($cart){
             return $this->returnSuccessMessage(__("responses.Product has been removed successfully."));

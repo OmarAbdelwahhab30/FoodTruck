@@ -14,11 +14,10 @@ class MessageController extends Controller
 
     public function sendMessage(SendMesaageRequest $request, MessageService $service)
    {
-       $to_user = $request->to_user ;
        if (!Gate::allows("send-message")){
            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
        }
-       $message = $service->SendMessage($request,$to_user);
+       $message = $service->SendMessage($request,$request->to_user);
        return  $this->returnData("msg",$message,"message is here");
    }
 

@@ -21,7 +21,6 @@ class RoleAndPermissionSeeder extends Seeder
         $permissions = [
 
             // Customer Permissions
-            'add-contactus'             => [Role::ROLE_CUSTOMER],
             'return-customer-orders'    => [Role::ROLE_CUSTOMER],
             'add-truck-review'          => [Role::ROLE_CUSTOMER],
             'add-order'                 => [Role::ROLE_CUSTOMER],
@@ -32,9 +31,10 @@ class RoleAndPermissionSeeder extends Seeder
             'find-nearest-trucks'       => [Role::ROLE_CUSTOMER],
             'add-to-cart'               => [Role::ROLE_CUSTOMER],
             'cancel-order-by-id'        => [Role::ROLE_CUSTOMER],
-
-
-
+            'remove-from-cart'          => [Role::ROLE_CUSTOMER],
+            'Get-Cart'                  => [Role::ROLE_CUSTOMER],
+            'add-payment-card-info'     => [Role::ROLE_CUSTOMER],
+            'get-payment-card-info'     => [Role::ROLE_CUSTOMER],
 
             // Seller Permissions
             'add-product'               => [Role::ROLE_SELLER],
@@ -51,6 +51,14 @@ class RoleAndPermissionSeeder extends Seeder
             'delete-truck-image'        => [Role::ROLE_SELLER],
             'update-truck-info'         => [Role::ROLE_SELLER],
             'return-truck-orders'       => [Role::ROLE_SELLER],
+            'add-bankAccountInfo'       => [Role::ROLE_SELLER],
+            'return-bankAccountInfo'    => [Role::ROLE_SELLER],
+            'Execute-Cashout'           => [Role::ROLE_SELLER],
+            'return-foodtypes'          => [Role::ROLE_SELLER],
+            'return-OwnerPer'           => [Role::ROLE_SELLER],
+            'return-balance'            => [Role::ROLE_SELLER],
+            'return-recent-transactions'=> [Role::ROLE_SELLER],
+
             // Seller and Customer Permissions
             'update_account_information'=> [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'change-password'           => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
@@ -62,6 +70,15 @@ class RoleAndPermissionSeeder extends Seeder
             'get-truck-products'        => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'enter-location'            => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'get-order-by-id'           => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
+            'return-aboutUs'            => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
+            'add-contactus'             => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
+            'get-notifications'         => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
+            'store-notifications'       => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
+            'return-order-status'       => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
+            'return-terms'              => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
+            'return-vat'       => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
+            'return-kiloPrice'       => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
+            ''       => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
         ];
 
 

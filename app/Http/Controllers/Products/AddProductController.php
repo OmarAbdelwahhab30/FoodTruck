@@ -11,7 +11,6 @@ class AddProductController extends Controller
 {
     public function addProduct(addProductRequest $request, AddProductService $service): \Illuminate\Http\JsonResponse
     {
-        //return response()->json($request);
         if (! Gate::allows('add-product')) {
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }

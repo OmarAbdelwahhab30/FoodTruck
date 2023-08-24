@@ -12,8 +12,6 @@ class AddToCartController extends Controller
 
     public function AddToCart(AddToCartRequest $request,AddToCartService $service): \Illuminate\Http\JsonResponse
     {
-
-        //return  response()->json($request);
         if (!Gate::allows('add-to-cart')){
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
