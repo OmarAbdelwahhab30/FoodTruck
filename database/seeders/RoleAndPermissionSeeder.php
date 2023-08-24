@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Permission;
 use App\Models\Role;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class RoleAndPermissionSeeder extends Seeder
@@ -76,9 +75,8 @@ class RoleAndPermissionSeeder extends Seeder
             'store-notifications'       => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'return-order-status'       => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'return-terms'              => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
-            'return-vat'       => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
-            'return-kiloPrice'       => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
-            ''       => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
+            'return-vat'                => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
+            'return-kiloPrice'          => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
         ];
 
 
