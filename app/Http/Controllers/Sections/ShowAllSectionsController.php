@@ -16,7 +16,7 @@ class ShowAllSectionsController extends Controller
         }
         $Sections = $service->GetAllSectionInsideEachTruckByID($request);
         if (!empty($Sections)){
-            return $this->returnData(__("Sections"),$Sections,__("responses.Here are All Section inside this truck."));
+            return $this->returnData("Sections",$Sections,__("responses.Here are All Section inside this truck."));
         }
         return $this->returnError(__("responses.There is no sections to show"));
     }

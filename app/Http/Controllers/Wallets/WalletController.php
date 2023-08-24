@@ -22,7 +22,7 @@ class WalletController extends Controller
         if ($balance) {
             return $this->returnData("balance", $balance, "the balance is here.");
         }
-        return $this->returnError("something went wrong!");
+        return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
 
     public function returnRecentTransactions(WalletService $service)
@@ -34,6 +34,7 @@ class WalletController extends Controller
         if ($transactions) {
             return $this->returnData("transactions", $transactions, "Here are transactions");
         }
-        return $this->returnError("Something went wrong try again later");
+        return $this->returnError(__("responses.Some thing went wrong ,try again later"));
+
     }
 }

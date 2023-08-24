@@ -17,6 +17,6 @@ class ReturnTermsController extends Controller
         if ($terms) {
             return $this->returnData("terms",$terms,"");
         }
-        return $this->returnError("No information to show");
+        return $this->returnError(__("responses.No information to show"));
     }
 }

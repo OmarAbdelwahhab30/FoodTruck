@@ -34,7 +34,7 @@ class UpdateProductController extends Controller
         }
         $deleted = $service->deleteProductOptionalByOptionalID($request);
         if($deleted){
-            return $this->returnSuccessMessage("Product optional has been deleted successfully");
+            return $this->returnSuccessMessage(__("responses.Product optional has been deleted successfully"));
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
@@ -46,7 +46,7 @@ class UpdateProductController extends Controller
         }
         $deleted = $service->deleteProductSizeBySizeID($request);
         if($deleted){
-            return $this->returnSuccessMessage("Product size has been deleted successfully");
+            return $this->returnSuccessMessage(__("responses.Product size has been deleted successfully"));
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
@@ -58,7 +58,7 @@ class UpdateProductController extends Controller
         }
         $deleted = $service->addOptional($request);
         if($deleted){
-            return $this->returnSuccessMessage("Product optional has been added successfully");
+            return $this->returnSuccessMessage(__("responses.Product optional has been added successfully"));
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
@@ -70,7 +70,7 @@ class UpdateProductController extends Controller
         }
         $deleted = $service->editOptional($request);
         if($deleted){
-            return $this->returnSuccessMessage("Product optional has been updated successfully");
+            return $this->returnSuccessMessage(__("responses.Product optional has been updated successfully"));
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }

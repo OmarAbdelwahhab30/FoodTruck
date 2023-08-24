@@ -20,6 +20,6 @@ class ReturnAllNotificationsByIDController extends Controller
         if ($notifications){
             return $this->returnData("notifications",$notifications,"All notifications");
         }
-        return $this->returnError("no notifications are available");
+        return $this->returnError(__("responses.no notifications are available"));
     }
 }

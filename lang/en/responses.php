@@ -89,4 +89,21 @@ return [
     "Order is Picked Up ."
     => "Order is Picked Up .",
 
+    "Please , choose your products from the same truck !" => "Please , choose your products from the same truck !",
+    "Bank Account Information has been added successfully." => "Bank Account Information has been added successfully.",
+    "No information to show" => "No information to show",
+
+    "notification has been saved successfully."=>"Notification has been saved successfully.",
+    "no notifications are available"=>"No notifications are available",
+    "message is here"=>"message is here",
+    "Something went wrong, Check your inputs well !"=>"Something went wrong, Check your inputs well !",
+    "Request Has been sent to admin successfully ,wait for bank response ."
+    =>"Request has been sent to admin successfully ,wait for bank response .",
+    "Product optional has been deleted successfully"=>"Product optional has been deleted successfully",
+    "Product has been deleted successfully"=>"Product has been deleted successfully",
+    "Card information has been added successfully."=>"Card information has been added successfully.",
+    "Payment is done successfully."=>"Payment is done successfully.",
+    "Product optional has been updated successfully"=>"Product optional has been updated successfully",
+    "Product optional has been added successfully" =>"Product optional has been added successfully",
+    "Product size has been deleted successfully"=>"Product size has been deleted successfully",
 ];

@@ -16,7 +16,7 @@ class ShowAllProductsInsideEachSectionController extends Controller
         }
         $products = $service->GetAllProductsInsideEachSectionByID($request);
         if (!empty($products)){
-            return $this->returnData(__("Products"),$products,__("responses.Here are All Products inside this Section."));
+            return $this->returnData("Products",$products,__("responses.Here are All Products inside this Section."));
         }
         return $this->returnError(__("responses.There is no products to show"));
     }

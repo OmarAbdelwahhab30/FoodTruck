@@ -18,8 +18,8 @@ class CashoutController extends Controller
         }
         $created = $service->ExecuteCashout($request);
         if ($created){
-            return $this->returnSuccessMessage("Request Has been sent to admin successfully ,wait for bank response .");
+            return $this->returnSuccessMessage(__("responses.Request Has been sent to admin successfully ,wait for bank response ."));
         }
-        return $this->returnError("Something went wrong, Check your inputs well !");
+        return $this->returnError(__("responses.Something went wrong, Check your inputs well !"));
     }
 }

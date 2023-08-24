@@ -18,9 +18,9 @@ class StoreNotificationsController extends Controller
         $notifications = $service->StoreNotifications($request);
         if ($notifications)
         {
-            return $this->returnSuccessMessage("notification has been saved successfully.");
+            return $this->returnSuccessMessage(__("responses.notification has been saved successfully."));
         }
-        return $this->returnError("some thing went wrong");
+        return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
 }
 

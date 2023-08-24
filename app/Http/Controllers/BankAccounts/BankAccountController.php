@@ -18,9 +18,9 @@ class BankAccountController extends Controller
         }
         $added = $service->addBankAccountInfo($request);
         if ($added){
-            return $this->returnSuccessMessage("Bank Account Information has been added successfully.");
+            return $this->returnSuccessMessage(__("responses.Bank Account Information has been added successfully."));
         }
-        return $this->returnError("something went wrong !");
+        return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
 
     public function returnBankInfo(BankAccountService $service): \Illuminate\Http\JsonResponse

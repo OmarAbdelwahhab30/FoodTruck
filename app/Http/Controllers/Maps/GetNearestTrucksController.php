@@ -17,7 +17,7 @@ class GetNearestTrucksController extends Controller
         }
         $trucks = $service->GetNearestTrucks();
         if ($trucks){
-            return $this->returnData(__("Users"),$trucks,__("responses.Here are the nearest Trucks"));
+            return $this->returnData("Users",$trucks,__("responses.Here are the nearest Trucks"));
         }
         return $this->returnError(__("responses.User must enter his location firstly"));
     }

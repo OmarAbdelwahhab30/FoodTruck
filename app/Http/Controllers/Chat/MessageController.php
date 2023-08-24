@@ -18,7 +18,7 @@ class MessageController extends Controller
            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
        }
        $message = $service->SendMessage($request,$request->to_user);
-       return  $this->returnData("msg",$message,"message is here");
+       return  $this->returnData("msg",$message,__("responses.message is here"));
    }
 
    public function LoadLatestMessages(loadMessagesRequest $request,MessageService $service): \Illuminate\Http\JsonResponse

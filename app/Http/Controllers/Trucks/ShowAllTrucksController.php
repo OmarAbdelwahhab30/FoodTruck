@@ -16,7 +16,7 @@ class ShowAllTrucksController extends Controller
         }
         $trucks = $service->GetAllTrucks();
         if (!empty($trucks)){
-            return $this->returnData(__("Trucks"),$trucks,__("responses.Here are All Trucks."));
+            return $this->returnData("Trucks",$trucks,__("responses.Here are All Trucks."));
         }
         return $this->returnError(__("responses.There is no trucks to show"));
     }

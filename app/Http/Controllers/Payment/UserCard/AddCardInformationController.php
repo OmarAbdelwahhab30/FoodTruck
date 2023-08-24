@@ -18,8 +18,8 @@ class AddCardInformationController extends Controller
         }
         $added = $service->addCardInformation($request);
         if ($added){
-            return $this->returnSuccessMessage("Card information has been added successfully.");
+            return $this->returnSuccessMessage(__("responses.Card information has been added successfully."));
         }
-        return $this->returnError("Something went wrong ,try again later .");
+        return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
 }

@@ -20,6 +20,7 @@ class ReturnAboutController extends Controller
         if ($about) {
             return $this->returnData("About",$about,"");
         }
-        return $this->returnError("No information to show");
+
+        return $this->returnError(__("responses.No information to show"));
     }
 }

@@ -20,7 +20,7 @@ class DeleteProductController extends Controller
         }
         $product = $service->exec($request);
         if($product){
-            return $this->returnSuccessMessage("Product has been deleted successfully");
+            return $this->returnSuccessMessage(__("responses.Product has been deleted successfully"));
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }

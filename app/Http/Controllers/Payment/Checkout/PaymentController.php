@@ -31,7 +31,7 @@ class PaymentController extends Controller
         $done = $service->ExecutePayment($req);
         if ($done)
         {
-            return $this->returnSuccessMessage("Payment is done successfully.");
+            return $this->returnSuccessMessage(__("responses.Payment is done successfully."));
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }

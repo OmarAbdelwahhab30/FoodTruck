@@ -16,7 +16,7 @@ class ShowDetailsOfEachTruckController extends Controller
         }
         $truck = $service->GetTruckDetailsByID($request->id);
         if (!empty($truck)){
-            return $this->returnData(__("Truck"),$truck,__("responses.Here is the truck information."));
+            return $this->returnData("Truck",$truck,__("responses.Here is the truck information."));
         }
         return $this->returnError("responses.There is no details");
     }

@@ -18,7 +18,7 @@ class GetAllProductsController extends Controller
        $products =  $service->GetAllProductsInEachTruckByTruckID($request);
         if ($products)
         {
-            return $this->returnData(__("All Products"),$products,__("responses.Here are all products"));
+            return $this->returnData("All Products",$products,__("responses.Here are all products"));
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));    }
 }

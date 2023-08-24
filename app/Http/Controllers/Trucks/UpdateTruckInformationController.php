@@ -21,7 +21,8 @@ class UpdateTruckInformationController extends Controller
         {
             return $this->returnSuccessMessage(__("responses.Truck information Has been updated successfully"));
         }
-        return $this->returnError(__("responses.Some thing went wrong ,try again later"));    }
+        return $this->returnError(__("responses.Some thing went wrong ,try again later"));
+    }
 
     public function ChangeDeliveryStatus(DeliveryStatusRequest $request,UpdateTruckInformationService $service): \Illuminate\Http\JsonResponse
     {

@@ -17,7 +17,7 @@ class AddSectionController extends Controller
         }
         $section = $service->addSection($request);
         if($section){
-            return $this->returnData(__("Section"),$section,__("responses.Food Type has been added successfully"));
+            return $this->returnData("Section",$section,__("responses.Food Type has been added successfully"));
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }

@@ -19,6 +19,6 @@ class ReturnCardsInformationController extends Controller
         if ($cards->first() != null){
             return $this->returnData("Cards",$cards,"All cards");
         }
-        return $this->returnError("Something went wrong ,try again later .");
+        return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
 }

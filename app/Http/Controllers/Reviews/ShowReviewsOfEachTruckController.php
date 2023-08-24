@@ -16,7 +16,7 @@ class ShowReviewsOfEachTruckController extends Controller
         }
         $Truck_Reviews = $service->GetTruckReviewsByID($request->id);
         if ($Truck_Reviews) {
-            return $this->returnData(__("Truck Reviews"), $Truck_Reviews,__( "responses.Here is the truck Reviews."));
+            return $this->returnData("Truck Reviews", $Truck_Reviews,__( "responses.Here is the truck Reviews."));
         }
         return $this->returnError(__("responses.There is no reviews to show."));
     }

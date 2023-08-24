@@ -19,7 +19,7 @@ class AddToCartController extends Controller
         if ($cart){
             return $this->returnData(__("Cart_Products"),$cart,__("responses.Product Added Successfully"));
         }elseif ($cart == false){
-            return $this->returnError("Please , choose your products from the same truck !");
+            return $this->returnError(__("responses.Please , choose your products from the same truck !"));
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
