@@ -18,7 +18,6 @@ class RoleAndPermissionSeeder extends Seeder
         $allRoles = Role::all()->keyBy('id');
 
         $permissions = [
-
             // Customer Permissions
             'return-customer-orders'    => [Role::ROLE_CUSTOMER],
             'add-truck-review'          => [Role::ROLE_CUSTOMER],
@@ -53,7 +52,7 @@ class RoleAndPermissionSeeder extends Seeder
             'add-bankAccountInfo'       => [Role::ROLE_SELLER],
             'return-bankAccountInfo'    => [Role::ROLE_SELLER],
             'Execute-Cashout'           => [Role::ROLE_SELLER],
-            'return-foodtypes'          => [Role::ROLE_SELLER],
+            //'return-foodtypes'          => [Role::ROLE_SELLER],
             'return-OwnerPer'           => [Role::ROLE_SELLER],
             'return-balance'            => [Role::ROLE_SELLER],
             'return-recent-transactions'=> [Role::ROLE_SELLER],

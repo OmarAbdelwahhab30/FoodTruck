@@ -18,17 +18,16 @@ class CustomerRegisterService extends Service implements RegisterInterface
         $Role_ID = $this->GetRoleID($request->role);
         return DB::transaction(function ()use ($request,$Role_ID){
             $user = User::create([
-                'name'  => $request->name,
-                'phone' => $request->phone,
+                'name'      => $request->name,
+                'phone'     => $request->phone,
                 'password'  => Hash::make($request->password),
                 'email'     => $request->email,
                 'role_id'   => $Role_ID,
                 'active'    => 1,
-                'accepted'  => null,
+                'accepted'  => 1,
                 'image'     => $request->file("image") !== null ?
                     $this->UploadFile($request->file("image"))
                     :"default.png",
-
             ]);
             $user->token = $this->createToken($user);
             $cart = Cart::create([

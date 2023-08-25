@@ -42,9 +42,8 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::post("UpdateAccountInformation", [UpdateAccountInformationController::class, 'UpdateAccountInformation']);
 
     Route::post("changepassword", [UpdateAccountInformationController::class, 'ChangePassword']);
-
-    Route::get("GetAllFoodTypes",[FoodTypesController::class,"GetAllFoodTypes"]);
 });
+Route::get("GetAllFoodTypes",[FoodTypesController::class,"GetAllFoodTypes"]);
 
 
 
