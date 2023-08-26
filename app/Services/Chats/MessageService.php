@@ -85,11 +85,11 @@ class MessageService extends Service
     {
         $customer = User::where("id",$request->customer_id)->select("name","image")->get();
         $seller_truck = User::where("id",$request->seller_id)->with("truck" , function ($q){
-            $q->select("name","user_id");
+            $q->select("name","user_id","id");
             $q->with("images",function ($qq){
                 $qq->select("image","truck_id");
             })->get();
-        })->select("id","truck_id")->get();
+        })->select("id","truck_id","image")->get();
         $returned = $customer->merge($seller_truck);
         return [
             'customer' => $returned[0],
