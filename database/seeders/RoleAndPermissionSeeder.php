@@ -33,7 +33,7 @@ class RoleAndPermissionSeeder extends Seeder
             'Get-Cart'                  => [Role::ROLE_CUSTOMER],
             'add-payment-card-info'     => [Role::ROLE_CUSTOMER],
             'get-payment-card-info'     => [Role::ROLE_CUSTOMER],
-
+            'delete-payment-card-info'  => [Role::ROLE_CUSTOMER],
             // Seller Permissions
             'add-product'               => [Role::ROLE_SELLER],
             'delete-product'            => [Role::ROLE_SELLER],
