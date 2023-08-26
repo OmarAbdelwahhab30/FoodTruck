@@ -7,6 +7,7 @@ use App\Http\Middleware\IsAuthenticated;
 use App\Http\Middleware\Permissions\GateDefineMiddleware;
 use App\Http\Middleware\SellerCanAccess;
 use App\Http\Middleware\SwitchLanguage;
+use App\Http\Middleware\UserCanAccess;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
@@ -52,7 +53,8 @@ class Kernel extends HttpKernel
             GateDefineMiddleware::class,
             SwitchLanguage::class,
             AccountState::class,
-            //SellerCanAccess::class,
+            SellerCanAccess::class,
+            UserCanAccess::class
         ],
     ];
 

@@ -15,8 +15,9 @@ class SellerCanAccess
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            if (auth()->user()->role_id == Role::ROLE_SELLER && auth()->user()->accepted == 0){
-                return $this->returnError("You are not accepted yet, try again later");
+            if (auth("sanctum")->user()->role_id == Role::ROLE_SELLER && auth("sanctum")->user()->accepted == 0)
+            {
+                return $this->returnError(__("responses.You are not accepted yet, try again later"));
             }
         }
         return $next($request);

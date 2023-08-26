@@ -94,5 +94,6 @@ return [
     "Product optional has been updated successfully"=>"تم تحديث البيانات بنجاح",
     "Product optional has been added successfully" =>"تمت الإضافة بنجاح",
     "Product size has been deleted successfully"=>"تم الحذف بنجاح",
-
+    "You are not accepted yet, try again later" => "لم يتم قبولك حتى الآن , حاول لاحقًا",
+    "Your account is deactivated for some reason !" => "تم إلغاء تنشيط حسابك لسببٍ ما ",
 ];
