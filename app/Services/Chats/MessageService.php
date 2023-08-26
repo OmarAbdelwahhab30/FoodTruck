@@ -85,7 +85,7 @@ class MessageService extends Service
     {
         $customer = User::where("id",$request->customer_id)->select("name","image")->get();
         $seller_truck = User::where("id",$request->seller_id)->with("truck" , function ($q){
-            $q->select("name");
+            $q->select("name","user_id");
             $q->with("images");
         })->get();
         return $customer->merge($seller_truck);
