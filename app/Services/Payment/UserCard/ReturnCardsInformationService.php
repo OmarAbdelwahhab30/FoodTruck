@@ -15,6 +15,6 @@ class ReturnCardsInformationService extends Service
         if ($created){
             return $created;
         }
-        return false;
+        return [];
     }
 }

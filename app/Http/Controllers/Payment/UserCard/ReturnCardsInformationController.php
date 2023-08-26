@@ -16,7 +16,7 @@ class ReturnCardsInformationController extends Controller
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
         $cards = $service->returnCardsInformation();
-        if ($cards->first() != null){
+        if ($cards){
             return $this->returnData("Cards",$cards,"All cards");
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
