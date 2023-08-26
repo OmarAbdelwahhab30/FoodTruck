@@ -89,7 +89,7 @@ class MessageService extends Service
             $q->with("images",function ($qq){
                 $qq->select("image","truck_id");
             })->get();
-        })->select("id","truck_id","image")->get();
+        })->select("id",'name',"truck_id","image")->get();
         $returned = $customer->merge($seller_truck);
         return [
             'customer' => $returned[0],
