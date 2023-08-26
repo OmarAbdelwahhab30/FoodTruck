@@ -26,6 +26,7 @@ class RoleAndPermissionSeeder extends Seeder
             'get-truck-review-by-id'    => [Role::ROLE_CUSTOMER],
             'get-all-trucks'            => [Role::ROLE_CUSTOMER],
             'get-truck-by-id'           => [Role::ROLE_CUSTOMER],
+            'get-truck-by-seller-id'    => [Role::ROLE_CUSTOMER],
             'find-nearest-trucks'       => [Role::ROLE_CUSTOMER],
             'add-to-cart'               => [Role::ROLE_CUSTOMER],
             'cancel-order-by-id'        => [Role::ROLE_CUSTOMER],

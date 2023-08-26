@@ -29,6 +29,8 @@ Route::middleware("auth:sanctum")->group(function (){
 
     Route::get("GetTruckByID",[ShowDetailsOfEachTruckController::class,"GetDetailsOfEachTruckByID"]);
 
+    Route::get("GetTruckDetailsBySellerID",[ShowDetailsOfEachTruckController::class,"GetTruckDetailsBySellerID"]);
+
     //Route::get("GetTruckReviewsByID",[ShowReviewsOfEachTruckController::class,"GetTruckReviewsByID"]);
 
     Route::get("GetAllSectionInsideEachTruckByID",[ShowAllSectionsController::class,"GetAllSectionInsideEachTruckByID"]);
