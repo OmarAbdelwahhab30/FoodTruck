@@ -12,7 +12,10 @@ class Message extends Model
 
 
     public function getContentAttribute() {
-        return asset("storage/".$this->attributes['content']);
+        if ($this->attributes['type'] !== "text"){
+            return asset("storage/".$this->attributes['content']);
+        }
+        return $this->attributes['content'];
     }
     protected function serializeDate(DateTimeInterface $date) : string
     {
