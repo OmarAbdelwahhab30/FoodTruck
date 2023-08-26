@@ -82,7 +82,8 @@ class User extends Authenticatable
                 * sin(radians(latitude))
             ), 3) AS distance", [$latitude, $longitude, $latitude])
             ->having("distance", "<", $radius)
-            ->where("role_id", 2);
+            ->where("role_id", 2)
+            ->where("active",1);
     }
 
     public function cart(): \Illuminate\Database\Eloquent\Relations\HasOne

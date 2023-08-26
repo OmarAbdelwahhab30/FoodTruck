@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
 
     Route::post("changepassword", [UpdateAccountInformationController::class, 'ChangePassword']);
 });
+
 Route::get("GetAllFoodTypes",[FoodTypesController::class,"GetAllFoodTypes"]);
 
 

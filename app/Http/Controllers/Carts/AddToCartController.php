@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Carts;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Carts\AddToCartRequest;
+use App\Models\Role;
 use App\Services\Carts\AddToCartService;
 use Illuminate\Support\Facades\Gate;
 

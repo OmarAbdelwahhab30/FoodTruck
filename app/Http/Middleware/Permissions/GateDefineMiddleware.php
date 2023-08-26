@@ -3,6 +3,7 @@
 namespace App\Http\Middleware\Permissions;
 
 use App\Models\Permission;
+use App\Models\Role;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -18,6 +19,7 @@ class GateDefineMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+
         if (auth()->check()) {
             $permissions = Permission::whereHas('roles', function($query) {
                 $query->where('roles.id', auth("sanctum")->user()->role_id);
