@@ -3,13 +3,17 @@
 namespace App\Services\Chats;
 
 use App\Events\Chat\SendMessageEvent;
+use App\Http\Requests\Chat\GetChatParticipantsRequest;
 use App\Http\Requests\Chat\SendMesaageRequest;
 use App\Models\Chat;
 use App\Models\Message;
+use App\Models\Truck;
+use App\Models\User;
 use App\Services\Service;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Gate;
 use Pusher\ApiErrorException;
 use Pusher\PusherException;
 
@@ -77,6 +81,15 @@ class MessageService extends Service
 
     }
 
+    public function GetChatParticipants($request)
+    {
+        $customer = User::where("id",$request->customer_id)->select("name","image")->get();
+        $seller_truck = User::where("id",$request->seller_id)->with("truck" , function ($q){
+            $q->select("name");
+            $q->with("images");
+        })->get();
+        return $customer->merge($seller_truck);
+    }
     private function checkMSG($request)
     {
         if ($request->has("record")){

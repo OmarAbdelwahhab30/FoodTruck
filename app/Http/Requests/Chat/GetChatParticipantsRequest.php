@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Trucks;
+namespace App\Http\Requests\Chat;
 
 use Illuminate\Foundation\Http\FormRequest;
 use function Symfony\Component\Translation\t;
 
-class GetTruckBySellerIDRequest extends FormRequest
+class GetChatParticipantsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +25,7 @@ class GetTruckBySellerIDRequest extends FormRequest
     public function rules()
     {
         return [
+            'customer_id'    => 'required|exists:users,id',
             'seller_id'    => 'required|exists:trucks,user_id',
         ];
     }

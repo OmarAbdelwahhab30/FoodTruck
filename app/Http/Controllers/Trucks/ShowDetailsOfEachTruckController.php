@@ -22,15 +22,4 @@ class ShowDetailsOfEachTruckController extends Controller
         return $this->returnError("responses.There is no details");
     }
 
-    public function GetTruckDetailsBySellerID(GetTruckBySellerIDRequest $request,ShowDetailsOfEachTruckService $service): \Illuminate\Http\JsonResponse
-    {
-        if (!Gate::allows("get-truck-by-seller-id")){
-            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
-        }
-        $truck = $service->GetTruckDetailsBySellerID($request->id);
-        if (!empty($truck)){
-            return $this->returnData("Truck",$truck,__("responses.Here is the truck information."));
-        }
-        return $this->returnError("responses.There is no details");
-    }
 }

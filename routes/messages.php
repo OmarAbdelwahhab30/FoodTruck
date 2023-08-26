@@ -24,4 +24,6 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::get('LoadLatestMessages', [MessageController::class,"LoadLatestMessages"]);
 
     Route::post('sendmsg', [MessageController::class,"sendMessage"]);
+
+    Route::get("GetChatParticipants",[MessageController::class,"GetChatParticipants"]);
 });

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Chat;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Chat\GetChatParticipantsRequest;
 use App\Http\Requests\Chat\SendMesaageRequest;
 use App\Http\Requests\Chats\loadMessagesRequest;
+use App\Models\Request;
 use App\Services\Chats\MessageService;
 use Illuminate\Support\Facades\Gate;
 
@@ -26,7 +28,15 @@ class MessageController extends Controller
        if (!Gate::allows("load-latest-message")){
            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
        }
-      return $this->returnData(__("messages"),$service->LoadLatestMessages($request),__("responses.Here are the latest messages"));
+      return $this->returnData("messages",$service->LoadLatestMessages($request),__("responses.Here are the latest messages"));
    }
 
+   public function GetChatParticipants(GetChatParticipantsRequest $request,MessageService $service)
+   {
+       if (!Gate::allows("Get-Chat-Participants")){
+           return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
+       }
+       return $this->returnData("chatParticipants",$service->GetChatParticipants($request),"");
+
+   }
 }
