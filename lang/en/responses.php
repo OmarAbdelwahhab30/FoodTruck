@@ -108,4 +108,5 @@ return [
     "Product size has been deleted successfully"=>"Product size has been deleted successfully",
     "You are not accepted yet, try again later" => "You are not accepted yet, try again later",
     "Your account is deactivated for some reason !" => "Your account is deactivated for some reason !",
+    "Card information has been deleted successfully."   => "Card information has been deleted successfully."
 ];

@@ -96,4 +96,5 @@ return [
     "Product size has been deleted successfully"=>"تم الحذف بنجاح",
     "You are not accepted yet, try again later" => "لم يتم قبولك حتى الآن , حاول لاحقًا",
     "Your account is deactivated for some reason !" => "تم إلغاء تنشيط حسابك لسببٍ ما ",
+    "Card information has been deleted successfully."   => "تم حذف البيانات بنجاح"
 ];
