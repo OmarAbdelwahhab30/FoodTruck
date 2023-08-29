@@ -19,8 +19,8 @@ class SetUsersLocationService extends Service
         if($updated) {
             return [
                 'address'   => $request->address,
-                'latitude'  => round($request->latitude,6),
-                'longitude' => round($request->longitude, 6),
+                'latitude'  => $request->latitude,
+                'longitude' => $request->longitude,
             ];
         }
         return false;
