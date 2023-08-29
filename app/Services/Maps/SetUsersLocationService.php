@@ -21,8 +21,7 @@ class SetUsersLocationService extends Service
             auth("sanctum")->user()->longitude = $request->longitude;
             return [
                 auth("sanctum")->user()->latitude  = $request->latitude,
-            auth("sanctum")->user()->longitude = $request->longitude,
-
+                auth("sanctum")->user()->longitude = $request->longitude,
             ];
         }
         return false;
