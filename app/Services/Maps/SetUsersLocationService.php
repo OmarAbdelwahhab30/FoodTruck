@@ -13,14 +13,14 @@ class SetUsersLocationService extends Service
         $user_id = auth("sanctum")->user()->id;
         $updated = User::where("id",$user_id)->update([
             'address'   => $request->address,
-            'latitude'  => bcdiv($request->latitude, 1, 6),
-            'longitude' => bcdiv($request->longitude, 1, 6),
+            'latitude'  => round($request->latitude,6),
+            'longitude' => round($request->longitude, 6),
         ]);
         if($updated) {
             return [
                 'address'   => $request->address,
-                'latitude'  => bcdiv($request->latitude, 1, 6),
-                'longitude' => bcdiv($request->longitude, 1, 6),
+                'latitude'  => round($request->latitude,6),
+                'longitude' => round($request->longitude, 6),
             ];
         }
         return false;
