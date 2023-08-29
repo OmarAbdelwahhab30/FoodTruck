@@ -25,7 +25,8 @@
         "pusher/pusher-php-server": "^7.2",
         "srmklive/paypal": "~3.0",
         "symfony/http-client": "^6.3",
-        "vonage/client": "^4.0"
+        "vonage/client": "^4.0",
+      "ext-bcmath": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
