@@ -14,7 +14,6 @@ use Checkout\Environment;
 use Checkout\Payments\CaptureRequest;
 use Checkout\Payments\Request\PaymentRequest;
 use Checkout\Payments\Request\Source\RequestTokenSource;
-use Checkout\Tokens\CardTokenRequest;
 
 
 class PaymentService extends Service
