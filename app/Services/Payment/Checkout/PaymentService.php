@@ -41,15 +41,6 @@ class PaymentService extends Service
     // Master-Card * Visa * Credit Card * American Express.
     public function ExecutePayment($req)
     {
-
-//        $request = new CardTokenRequest();
-//        $request->name = "Name";
-//        $request->number = "4242424242424242";
-//        $request->expiry_year = 2027;
-//        $request->expiry_month = 10;
-//        $request->cvv = "123";
-//        $token = $this->api->getTokensClient()->requestCardToken($request)['token'];
-
         $requestTokenSource = new RequestTokenSource();   // may be not the desired class , Check on Live
         $requestTokenSource->token = $req->token;
         $request = new PaymentRequest();
@@ -65,7 +56,7 @@ class PaymentService extends Service
         $capture->processing_channel_id = getenv("CHECKOUT_PROCESSING_CHANNEL_ID");
         $res = $this->api->getPaymentsClient()->capturePayment($response['id'], $capture);
         if ($res) {
-            $record = $this->createPaymentRecord($response, $req->order_id);
+            $record = $this->createPaymentRecord($response, $req->order_id,$req->seller_id);
             $this->IncreaseWalletBalance($req->amount, $req->seller_id);
             if ($record) {
                 return true;
@@ -75,7 +66,7 @@ class PaymentService extends Service
         return false;
     }
 
-    private function createPaymentRecord($request, $order_id)
+    private function createPaymentRecord($request, $order_id,$seller_id)
     {
         $payment = Payment::create([
             'payment_id' => $request['id'],
@@ -84,7 +75,7 @@ class PaymentService extends Service
             'customer_id' => auth("sanctum")->user()->id,
             'order_id' => $order_id,
             'payment_response' => json_encode($request),
-            'seller_id' => $request['seller_id'],
+            'seller_id' => $seller_id,
         ]);
         $this->UpdateOrderWithPaymentID($payment->id, $order_id);
         return $payment;
