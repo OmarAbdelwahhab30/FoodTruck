@@ -20,6 +20,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $casts = [
+        'latitude' => 'double:6',
+        'longitude' => 'double:6'
+    ];
+
 
     public function getImageAttribute() {
         return asset("storage/".$this->attributes['image']);
