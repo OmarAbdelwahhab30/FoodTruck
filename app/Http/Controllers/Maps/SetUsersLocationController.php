@@ -18,7 +18,7 @@ class SetUsersLocationController extends Controller
         $entered = $service->EnterLocation($request);
         if ($entered)
         {
-            return $this->returnData("UserData",auth("sanctum")->user(),__("responses.Location has been added successfully"));
+            return $this->returnData("data",$entered,__("responses.Location has been added successfully"));
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
