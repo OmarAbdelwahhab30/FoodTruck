@@ -4,7 +4,6 @@ namespace App\Services\Maps;
 
 use App\Models\User;
 use App\Services\Service;
-use Illuminate\Http\Request;
 
 class SetUsersLocationService extends Service
 {
@@ -12,11 +11,12 @@ class SetUsersLocationService extends Service
     public function EnterLocation($request): bool
     {
         $user_id = auth("sanctum")->user()->id;
-        $user = User::find($user_id);
-        $user->address  = $request->address;
-        $user->latitude  = $request->latitude;
-        $user->longitude = $request->longitude;
-        if ($user->save()) {
+        $updated = User::where("id",$user_id)->update([
+            'address'   => $request->address,
+            'latitude'  => round($request->latitude,2),
+            'longitude' => round($request->longitude,2),
+        ]);
+        if($updated) {
             return true;
         }
         return false;

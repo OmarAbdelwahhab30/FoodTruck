@@ -22,8 +22,7 @@ class GetNearestTrucksService extends Service
             ->withinRadius($latitude, $longitude, $radius)
             ->with(["truck" => function($q){
                 $q->with("images");
-            }])
-            ->get();
+            }])->get();
 
     }
 
