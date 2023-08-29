@@ -14,6 +14,8 @@ class ContactUsService extends Service
         $content = ContactUs::create([
             'content'     => $request->content,
             'user_id'     => $user_id,
+            'phone'       => $request->phone,
+            'name'        => $request->name
         ]);
         if ($content){
             return true;
