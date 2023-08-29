@@ -21,6 +21,7 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
+        'email_verified_at' => 'datetime',
         'latitude' => 'decimal:6',
         'longitude' => 'decimal:6'
     ];
@@ -35,9 +36,7 @@ class User extends Authenticatable
         return $date->format('h:i:s a m/d/Y');
     }
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+
 
     public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
