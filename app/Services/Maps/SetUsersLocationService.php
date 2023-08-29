@@ -17,8 +17,6 @@ class SetUsersLocationService extends Service
             'longitude' => number_format($request->longitude, 6),
         ]);
         if($updated) {
-            auth("sanctum")->user()->latitude  = $request->latitude;
-            auth("sanctum")->user()->longitude = $request->longitude;
             return [
                 auth("sanctum")->user()->latitude  = $request->latitude,
                 auth("sanctum")->user()->longitude = $request->longitude,
