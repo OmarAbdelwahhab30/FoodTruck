@@ -13,7 +13,6 @@ class Product extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
-        'truck_id',
         "section_id",
     ];
 
