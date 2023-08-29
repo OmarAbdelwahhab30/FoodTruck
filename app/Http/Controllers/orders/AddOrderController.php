@@ -13,7 +13,7 @@ class AddOrderController extends Controller
 //    /**
 //     * @throws AuthorizationException
 //     */
-    public function addOrder(AddOrderRequest $request, AddOrderService $service): \Illuminate\Http\JsonResponse
+    public function AddOrder(AddOrderRequest $request, AddOrderService $service): \Illuminate\Http\JsonResponse
     {
         if (! Gate::allows('add-order')) {
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));

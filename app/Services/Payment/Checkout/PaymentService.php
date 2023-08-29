@@ -11,9 +11,10 @@ use Checkout\CheckoutArgumentException;
 use Checkout\CheckoutSdk;
 use Checkout\Common\Currency;
 use Checkout\Environment;
-use Checkout\Payments\Previous\CaptureRequest;
+use Checkout\Payments\CaptureRequest;
 use Checkout\Payments\Request\PaymentRequest;
 use Checkout\Payments\Request\Source\RequestTokenSource;
+use Checkout\Tokens\CardTokenRequest;
 
 
 class PaymentService extends Service
@@ -41,46 +42,51 @@ class PaymentService extends Service
     public function ExecutePayment($req)
     {
 
+//        $request = new CardTokenRequest();
+//        $request->name = "Name";
+//        $request->number = "4242424242424242";
+//        $request->expiry_year = 2027;
+//        $request->expiry_month = 10;
+//        $request->cvv = "123";
+//        $token = $this->api->getTokensClient()->requestCardToken($request)['token'];
+
+        $requestTokenSource = new RequestTokenSource();   // may be not the desired class , Check on Live
+        $requestTokenSource->token = $req->token;
         $request = new PaymentRequest();
+        $request->source = $requestTokenSource;
+
         $request->capture = false;
         $request->reference = "reference";
         $request->amount = $req->amount;
         $request->currency = Currency::$SAR;
         $request->processing_channel_id = getenv("CHECKOUT_PROCESSING_CHANNEL_ID");
-
-        $requestTokenSource = new RequestTokenSource();   // may be not the desired class , Check on Live
-        $requestTokenSource->token = $req->token;
-
-        $request = new PaymentRequest();
-        $request->source = $requestTokenSource;
-
-
-         $response = $this->api->getPaymentsClient()->requestPayment($request);
-         if ($response['approved'] === true)
-         {
-             $record = $this->createPaymentRecord($response,$req->order_id);
-             if ($record){
-                 $this->createPaymentRecord($response,$req->order_id);
-                 $this->ConfirmCheckout($response['id'],$req->amount,$req->seller_id);
-                 return true;
-             }
-             return false;
-         }
-         return false;
+        $response = $this->api->getPaymentsClient()->requestPayment($request);
+        $capture = new CaptureRequest();
+        $capture->processing_channel_id = getenv("CHECKOUT_PROCESSING_CHANNEL_ID");
+        $res = $this->api->getPaymentsClient()->capturePayment($response['id'], $capture);
+        if ($res) {
+            $record = $this->createPaymentRecord($response, $req->order_id);
+            $this->IncreaseWalletBalance($req->amount, $req->seller_id);
+            if ($record) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
-    private function createPaymentRecord($request,$order_id)
+    private function createPaymentRecord($request, $order_id)
     {
-        $payment =  Payment::create([
-            'payment_id'        => $request['id'],
-            'payment_Status'    => $request['status'],
-            'payment_method'    => $request['source']['card_type'],
-            'customer_id'       => auth("sanctum")->user()->id,
-            'order_id'          => $order_id,
-            'payment_response'  => json_encode($request),
-            'seller_id'         => $request['seller_id'],
+        $payment = Payment::create([
+            'payment_id' => $request['id'],
+            'payment_Status' => $request['status'],
+            'payment_method' => $request['source']['card_type'],
+            'customer_id' => auth("sanctum")->user()->id,
+            'order_id' => $order_id,
+            'payment_response' => json_encode($request),
+            'seller_id' => $request['seller_id'],
         ]);
-        $this->UpdateOrderWithPaymentID($payment->id,$order_id);
+        $this->UpdateOrderWithPaymentID($payment->id, $order_id);
         return $payment;
     }
 
@@ -88,31 +94,31 @@ class PaymentService extends Service
     /**
      * @throws CheckoutApiException
      */
-    private function ConfirmCheckout($payment_id,$amount,$seller_id): bool
-    {
-        $this->IncreaseWalletBalance($amount,$seller_id);
-        $request = new CaptureRequest();
-        $request->processing_channel_id = getenv("CHECKOUT_PROCESSING_CHANNEL_ID");
-        $response = $this->api->getPaymentsClient()->capturePayment($payment_id, $request);
-        if ($response) {
+//    private function ConfirmCheckout($payment_id,$amount,$seller_id): bool
+//    {
+//        $this->IncreaseWalletBalance($amount,$seller_id);
+//        $request = new CaptureRequest();
+//        $request->processing_channel_id = getenv("CHECKOUT_PROCESSING_CHANNEL_ID");
+//        $response = $this->api->getPaymentsClient()->capturePayment($payment_id, $request);
+//        if ($response) {
+//
+//            return $this->updatePaymentStatus($payment_id);
+//        }
+//        return false;
+//    }
 
-            return $this->updatePaymentStatus($payment_id);
-        }
-        return false;
-    }
+//    private function updatePaymentStatus($payment_id): bool
+//    {
+//        $payment = Payment::where("payment_id", $payment_id)->update([
+//            'payment_status' => "captured"
+//        ]);
+//        if ($payment){
+//            return true;
+//        }
+//        return false;
+//    }
 
-    private function updatePaymentStatus($payment_id): bool
-    {
-        $payment = Payment::where("payment_id", $payment_id)->update([
-            'payment_status' => "captured"
-        ]);
-        if ($payment){
-            return true;
-        }
-        return false;
-    }
-
-    private function UpdateOrderWithPaymentID($payment_id,$order_id)
+    private function UpdateOrderWithPaymentID($payment_id, $order_id)
     {
         $order = Order::find($order_id);
         $order->payment_id = $payment_id;

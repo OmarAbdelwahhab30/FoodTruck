@@ -3,7 +3,7 @@
 namespace App\Http\Requests\food_types;
 
 use Illuminate\Foundation\Http\FormRequest;
-use function Symfony\Component\Translation\t;
+
 
 class GetTruckRequest extends FormRequest
 {

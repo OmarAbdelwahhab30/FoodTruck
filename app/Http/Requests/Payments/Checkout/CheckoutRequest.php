@@ -24,7 +24,7 @@ class CheckoutRequest extends FormRequest
     public function rules()
     {
         return [
-            'token'     => 'required',
+           // 'token'     => 'required',
             'amount'    => 'required',
             'order_id'  => 'required',
         ];

@@ -19,7 +19,7 @@ class AboutController extends Controller
     {
         //dd($request);
         $item = About::orderBy('id', 'ASC')->first();
-        $item?->delete();
+        $item->delete();
         $added = About::create($request->validated());
         if ($added){
             return redirect()->back()->with("success",__("admin.About Us content has been added successfully"));

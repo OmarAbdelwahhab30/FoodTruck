@@ -41,7 +41,5 @@ class CreateModule extends Command implements PromptsForMissingInput
     public function handle()
     {
         $arguments = $this->arguments();
-
-
     }
 }
