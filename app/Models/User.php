@@ -21,8 +21,8 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
-        'latitude' => 'double:6',
-        'longitude' => 'double:6'
+        'latitude' => 'decimal:6',
+        'longitude' => 'decimal:6'
     ];
 
 
