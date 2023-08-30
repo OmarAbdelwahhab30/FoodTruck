@@ -14,7 +14,7 @@ class ReturnOrderInformationController extends Controller
 
     public function ReturnOrderInfoByOrderID(UpdateOrderStatusRequest $request,ReturnOrderInformationService $service): \Illuminate\Http\JsonResponse
     {
-        if (! Gate::allows('get-order-by-id')) {
+        if (!Gate::allows('get-order-by-id')) {
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
         $order_Info = $service->ReturnOrderInfoByOrderID($request);

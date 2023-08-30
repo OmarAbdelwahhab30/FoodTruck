@@ -13,7 +13,7 @@ class BankAccountController extends Controller
 
     public function addBankAccountInfo(AddBankAccountInfoRequest $request,BankAccountService $service): \Illuminate\Http\JsonResponse
     {
-        if (! Gate::allows('add-bankAccountInfo')) {
+        if (!Gate::allows('add-bankAccountInfo')) {
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
         $added = $service->addBankAccountInfo($request);

@@ -14,7 +14,7 @@ class UpdateOrderStatusController extends Controller
 
     public function AcceptOrder(UpdateOrderStatusRequest $request,UpdateOrderStatusService $service): \Illuminate\Http\JsonResponse
     {
-        if (! Gate::allows('accept-order')) {
+        if (!Gate::allows('accept-order')) {
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
         $accepted = $service->AcceptOrder($request);
