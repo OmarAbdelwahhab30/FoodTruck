@@ -10,6 +10,6 @@ class FoodTypesService extends Controller
 {
     public function GetAllFoodTypes(): \Illuminate\Database\Eloquent\Collection
     {
-        return FoodType::select("id","name_".app()->getLocale())->get();
+        return FoodType::select("id","name_".app()->getLocale().' as name')->get();
     }
 }

@@ -20,9 +20,11 @@ class GetNearestTrucksService extends Service
 
         return User::where("role_id", 2)
             ->withinRadius($latitude, $longitude, $radius)
+            ->WithCount("ReviewsAboutMe")
             ->with(["truck" => function($q){
                 $q->with("images");
             }])->get();
+
 
     }
 

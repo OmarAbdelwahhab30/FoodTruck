@@ -12,7 +12,9 @@ class ShowDetailsOfEachTruckService extends Service
 {
     public function GetTruckDetailsByID($truck_id)
     {
+        return User::where("id",$truck_id)->withCount("ReviewsAboutMe")->get();
         return Truck::where("id",$truck_id)->with("images")->get();
+
     }
 
 

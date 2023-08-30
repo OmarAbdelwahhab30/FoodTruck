@@ -6,6 +6,7 @@ use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -77,13 +78,11 @@ class User extends Authenticatable
     public function scopeWithinRadius($query, $latitude, $longitude, $radius)
     {
         return $query->select("id", "phone", "latitude", "longitude")
-            ->selectRaw("FORMAT(6371 * acos(
-                cos(radians(?))
-                * cos(radians(latitude))
-                * cos(radians(longitude) - radians(?))
-                + sin(radians(?))
-                * sin(radians(latitude))
-            ), 3) AS distance", [$latitude, $longitude, $latitude])
+            ->selectRaw(DB::raw(
+                '( 6371 * acos( cos( radians(' . $latitude . ') ) * cos( radians( latitude ) ) *
+                 cos( radians( longitude ) - radians(' . $longitude . ') ) +
+                  sin( radians(' . $latitude . ') ) * sin( radians( latitude ) ) ) ) AS distance'
+            ))
             ->having("distance", "<", $radius)
             ->where("role_id", 2)
             ->where("active",1);

@@ -19,7 +19,7 @@ class SendOrderStatusEvent implements ShouldBroadcastNow
 
     private $order;
 
-    public function __construct($order_id,$time)
+    public function __construct($order_id,$time =null)
     {
         $this->order = Order::find($order_id);
         $this->time = $time;
