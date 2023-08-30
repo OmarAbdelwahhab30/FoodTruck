@@ -59,4 +59,11 @@ trait ApiResponseHandler
         return $code;
     }
 
+    public function returnCustomResponse($array){
+        $res  = isset($array['status']) && $array['status'] == 200 ? "request_id":"message";
+        return response()->json([
+            'status' => $array['status'] ?? null,
+             $res => $array[$res] ?? null,
+        ]);
+    }
 }

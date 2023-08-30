@@ -4,6 +4,7 @@ namespace App\Services\Auth\OTP;
 
 
 use App\Services\Service;
+use Vonage\Client\Exception\Exception;
 
 class VonageService extends Service
 {
@@ -19,17 +20,33 @@ class VonageService extends Service
 
     public function send($request)
     {
-        $result = new \Vonage\Verify\Request($request->to, "FoodTruck");
-        $response = $this->client->verify()->start($result);
-        return $response->getRequestId();
+        try {
+            $result = new \Vonage\Verify\Request($request->to, "FoodTruck");
+            $response = $this->client->verify()->start($result);
+        }catch (Exception $exception){
+            return [
+                'status' => $exception->getCode(),
+                'message'   => $exception->getMessage(),
+            ];
+        }
+        return [
+            'status'    => 200,
+            'request_id'    => $response->getRequestId(),
+        ];
     }
 
     public function check($request)
     {
-        $result = $this->client->verify()->check($request->request_id, $request->code);
-        if ($result){
-            return $this->returnSuccessMessage("Verified");
+        try {
+            $result = $this->client->verify()->check($request->request_id, $request->code);
+        }catch (Exception $exception){
+            $arr =  [
+                'status' => $exception->getCode(),
+                'message'   => $exception->getMessage(),
+            ];
+            return $this->returnCustomResponse($arr);
         }
-        return $this->returnError("not verified");
+        return $this->returnSuccessMessage("Verified");
+
     }
 }

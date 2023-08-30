@@ -6,14 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\OTP\CheckVonageCodeRequest;
 use App\Http\Requests\OTP\SendVonageCodeRequest;
 use App\Services\Auth\OTP\VonageService;
+use Vonage\Client\Exception\Exception;
 
 class SMSController extends Controller
 {
 
     public function send(SendVonageCodeRequest $request,VonageService $service): \Illuminate\Http\JsonResponse
     {
-        $request_id = $service->send($request);
-        return $this->returnData("request_id",$request_id);
+        $response = $service->send($request);
+        return $this->returnCustomResponse($response);
     }
 
     public function check(CheckVonageCodeRequest $request,VonageService $service): \Illuminate\Http\JsonResponse
