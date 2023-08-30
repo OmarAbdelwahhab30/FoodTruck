@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Http\Controllers\Payment\PayPal;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Payments\Paypal\EnterPayPalResponseRequest;
+use App\Models\Payment;
+use Illuminate\Http\Request;
+
+
+class EnterPayPalResponseController extends Controller
+{
+
+    public function EnterResponse(EnterPayPalResponseRequest $request)
+    {
+       $created =  Payment::create([
+            'payment_status' =>$request->payment_status ,
+            'payment_method' => 'Paypal',
+            'payment_response' =>$request->payment_response ,
+            'customer_id' => $request->customer_id,
+            'order_id' => $request->order_id,
+            'payment_id' =>$request->payment_id,
+            'payer_email' => $request->payer_email,
+            'currency' => $request->currency,
+            'seller_id' =>$request->seller_id,
+        ]);
+       if ($created){
+           return $this->returnSuccessMessage(__("responses.Payment is done successfully."));
+       }
+        return $this->returnError(__("responses.Some thing went wrong ,try again later"));
+    }
+}
