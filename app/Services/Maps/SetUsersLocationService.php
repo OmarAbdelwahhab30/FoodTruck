@@ -18,7 +18,7 @@ class SetUsersLocationService extends Service
         ]);
         if ($updated) {
             return [
-                'address' => auth("sanctum")->user()->latitude = $request->address,
+                'address' => auth("sanctum")->user()->address = $request->address,
                 'latitude' => auth("sanctum")->user()->latitude = $request->latitude,
                 'longitude' => auth("sanctum")->user()->longitude = $request->longitude,
                 'role_id' => auth("sanctum")->user()->role_id
