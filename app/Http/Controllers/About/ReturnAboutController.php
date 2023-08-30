@@ -13,7 +13,7 @@ class ReturnAboutController extends Controller
 
     public function returnAbout(): \Illuminate\Http\JsonResponse
     {
-        if (! Gate::allows('return-aboutUs')) {
+        if (!Gate::allows('return-aboutUs')) {
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
         $about = About::first();
