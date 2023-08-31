@@ -27,7 +27,7 @@ class WalletController extends Controller
 
     public function returnRecentTransactions(WalletService $service)
     {
-        if (!Gate::allows(" return-recent-transactions")) {
+        if (!Gate::allows("return-recent-transactions")) {
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
         $transactions = $service->returnRecentTransactions();

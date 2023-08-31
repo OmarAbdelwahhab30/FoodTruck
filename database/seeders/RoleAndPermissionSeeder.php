@@ -25,7 +25,6 @@ class RoleAndPermissionSeeder extends Seeder
             'bookings-manage'           => [Role::ROLE_CUSTOMER],
             'get-truck-review-by-id'    => [Role::ROLE_CUSTOMER],
             'get-all-trucks'            => [Role::ROLE_CUSTOMER],
-            'get-truck-by-id'           => [Role::ROLE_CUSTOMER],
             'find-nearest-trucks'       => [Role::ROLE_CUSTOMER],
             'add-to-cart'               => [Role::ROLE_CUSTOMER],
             'cancel-order-by-id'        => [Role::ROLE_CUSTOMER],
@@ -77,7 +76,8 @@ class RoleAndPermissionSeeder extends Seeder
             'return-vat'                => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'return-kiloPrice'          => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
             'Get-Chat-Participants'     => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
-        ];
+            'get-truck-by-id'           => [Role::ROLE_SELLER , Role::ROLE_CUSTOMER],
+            ];
 
 
         foreach ($permissions as $key => $roles) {
