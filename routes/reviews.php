@@ -31,7 +31,9 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
 
     Route::post("AddCustomerReview", [AddCustomerReviewsController::class, "AddCustomerReview"]);
 
-    Route::get("AllProfileReviews",  [AllProfileReviewsController::class,"AllProfileReviews"]);
+    Route::get("CustomerProfileReviews",  [AllProfileReviewsController::class,"CustomerProfileReviews"]);
+
+    Route::get("SellerProfileReviews",  [AllProfileReviewsController::class,"SellerProfileReviews"]);
 
     Route::get("GetTruckReviewsByID",[ShowReviewsOfEachTruckController::class,"GetTruckReviewsByID"]);
 
