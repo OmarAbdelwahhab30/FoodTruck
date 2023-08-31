@@ -29,7 +29,9 @@ class GetProfileReviewsService extends Service
     {
         $user = auth("sanctum")->user();
         return User::with(["ReviewsAboutMe" => function ($q) {
-                    $q->with("user");
+                    $q->with("user",function ($q){
+                        $q->select("name","image","id");
+                    });
                 }])->select("id")->where("id", $user->id)->get();
     }
 
