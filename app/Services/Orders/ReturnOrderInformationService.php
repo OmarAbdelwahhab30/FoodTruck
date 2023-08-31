@@ -29,7 +29,7 @@ class ReturnOrderInformationService extends \App\Services\Service
             }
         ])->select("id","status_".app()->getLocale()." as status"
             ,"user_id","delivery_type_".app()->getLocale()." as delivery_type"
-            ,"total_price","truck_id","created_at")->where("id", $request->order_id)->get();
+            ,"total_price","truck_id","created_at","updated_at")->where("id", $request->order_id)->get();
     }
 
     public function ReturnAllPreviousCustomerOrders(): \Illuminate\Database\Eloquent\Collection|array
