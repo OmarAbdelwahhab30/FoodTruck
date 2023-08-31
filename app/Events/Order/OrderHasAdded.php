@@ -43,10 +43,12 @@ class OrderHasAdded implements ShouldBroadcastNow
             'order' => [
                 $this->order->created_at,
                 $this->order->delivery_type_en,
+                $this->order->delivery_type_ar,
                 $this->order->status_en,
+                $this->order->status_ar,
                 "#00000".$this->order->id
             ],
-            'customer'  =>[
+            'customer'  => [
                 $this->user->name,
             ],
         ];
