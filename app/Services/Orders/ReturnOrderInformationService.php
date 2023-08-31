@@ -13,15 +13,15 @@ class ReturnOrderInformationService extends \App\Services\Service
     public function ReturnOrderInfoByOrderID($request): \Illuminate\Database\Eloquent\Collection|array
     {
         return Order::with([
-            'user' => function ($query) {
+            'user' => function ($query)  {
                 $query->select('id', 'name',"phone");
             }, "truck" => function($q){
                 $q->select("id","user_id");
             },
-            'products' => function ($p) {
-                $p->with(['orderProduct' => function ($pivot) {
+            'products' => function ($p) use($request){
+                $p->with(['orderProduct' => function ($pivot) use($request) {
                         $pivot->with('size:id,size,price'); // Eager load the 'size' relationship from the pivot model
-                    }]);
+                }])->where("order_id",$request->order_id);
             },
             'products.images' => function($image){
                 $image->select("id","product_id","image");
