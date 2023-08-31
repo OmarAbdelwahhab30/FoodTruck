@@ -42,10 +42,8 @@ class OrderHasAdded implements ShouldBroadcastNow
         return[
             'order' => [
                 $this->order->created_at,
-                $this->order->delivery_type_en,
-                $this->order->delivery_type_ar,
-                $this->order->status_en,
-                $this->order->status_ar,
+                $this->order->delivery_type_.app()->getLocale(),
+                $this->order->status_.app()->getLocale(),
                 "#00000".$this->order->id
             ],
             'customer'  => [
