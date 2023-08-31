@@ -21,7 +21,8 @@ class ReturnOrderInformationService extends \App\Services\Service
             'products' => function ($p) use($request){
                 $p->with(['orderProduct' => function ($pivot) use($request) {
                         $pivot->with('size:id,size,price'); // Eager load the 'size' relationship from the pivot model
-                }])->where("order_id",$request->order_id);
+                        $pivot->where("order_id",$request->order_id);
+                }]);
             },
             'products.images' => function($image){
                 $image->select("id","product_id","image");
