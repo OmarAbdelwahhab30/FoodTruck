@@ -29,10 +29,11 @@ class GetProfileReviewsService extends Service
     {
         $user = auth("sanctum")->user();
         return User::with(["ReviewsAboutMe" => function ($q) {
-                    $q->with("user",function ($q){
-                        $q->select("name","image","id");
-                    });
-                }])->select("id")->where("id", $user->id)->get();
+            $q->select("id","review", "rate", "user_id");
+            $q->with("user", function ($qq) {
+                $qq->select("name", "image", "id");
+            });
+        }])->select("id")->where("id", $user->id)->get();
     }
 
 }
