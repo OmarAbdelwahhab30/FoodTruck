@@ -62,7 +62,7 @@ class User extends Authenticatable
 
     public function ReviewsAboutMe(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Review::class,"to","user_id");
+        return $this->hasMany(Review::class,"to");
     }
 
     public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
