@@ -2,6 +2,7 @@
 
 namespace App\Services\Orders;
 
+use App\Abstracts\Notification;
 use App\Events\Order\SendOrderStatusEvent;
 use App\Models\Order;
 use App\Services\Service;
@@ -18,7 +19,7 @@ class UpdateOrderStatusService extends Service
         $time = $this->GetCurrentTime();
         $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
-        //$this->PushNotification($OrderUser->player_id,2,$OrderUser->id,false);
+        $this->PushNotification($OrderUser->device_token,Notification::OrderAccepted,$OrderUser->id,false);
         return $order;
     }
 
@@ -31,7 +32,7 @@ class UpdateOrderStatusService extends Service
         $time = $this->GetCurrentTime();
         $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
-        //$this->PushNotification($OrderUser->player_id,4,$OrderUser->id,false);
+        $this->PushNotification($OrderUser->device_token,Notification::OrderCancelled,$OrderUser->id,false);
         return $order;
     }
 
@@ -44,7 +45,7 @@ class UpdateOrderStatusService extends Service
         $time = $this->GetCurrentTime();
         $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
-        //$this->PushNotification($OrderUser->player_id,5,$OrderUser->id,false);
+        $this->PushNotification($OrderUser->device_token,Notification::OrderDelivered,$OrderUser->id,false);
         return $order;
     }
 
@@ -57,7 +58,7 @@ class UpdateOrderStatusService extends Service
         $time = $this->GetCurrentTime();
         $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
-        //$this->PushNotification($OrderUser->player_id,3,$OrderUser->id,false);
+        $this->PushNotification($OrderUser->player_id,Notification::OrderPickedUp,$OrderUser->id,false);
         return $order;
     }
 

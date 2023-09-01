@@ -2,6 +2,7 @@
 
 namespace App\Services\Orders;
 
+use App\Abstracts\Notification;
 use App\Events\Order\OrderHasAdded;
 use App\Models\Cart;
 use App\Models\Order;
@@ -27,8 +28,12 @@ class AddOrderService extends Service
             broadcast(new OrderHasAdded($order, $order->user))->toOthers();
             $this->DestroyCart(auth("sanctum")->user());
             $this->addPriceToSellerWallet($request->total_price, $seller->id);
-            //$this->PushNotification($seller->player_id,1,$seller->id,auth("sanctum")->user()->name);
-            //$seller->notify(new SellerOrderNotification(auth("sanctum")->user()->name));
+            $this->PushNotification(
+                $seller->device_token,
+                Notification::OrderAdded,
+                $seller->id,
+                auth("sanctum")->user()->name
+            );
             return Order::where("id", $order->id)->with("products")->get();
         });
     }

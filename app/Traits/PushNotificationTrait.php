@@ -32,10 +32,6 @@ trait PushNotificationTrait
         $this->AddNotificationToDB($notifications,$receiver_id);
     }
 
-    private function GetNotificationFromDB($type)
-    {
-        return \App\Models\Notification::where("type",$type)->get();
-    }
     private function AddNotificationToDB($notifications,$receiver_id): void
     {
         User_Notification::create([

@@ -2,6 +2,7 @@
 
 namespace App\Services\Reviews;
 
+use App\Abstracts\Notification;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reviews\TruckReviewsRequest;
 use App\Models\Review;
@@ -28,7 +29,7 @@ class AddTruckReviewsService extends Service
             ]);
             $this->UpdateTruckRate($request->to,$request->rate);
             $seller = $this->GetSeller($request->to);
-            //$this->PushNotification($seller->player_id,7,$request->to,$user->name);
+            $this->PushNotification($seller->device_token,Notification::REVIEW,$request->to,$user->name);
             if ($review){
                 return true;
             }
