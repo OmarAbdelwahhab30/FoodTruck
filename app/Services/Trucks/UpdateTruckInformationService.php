@@ -33,11 +33,13 @@ class UpdateTruckInformationService
         ]);
         if ($updated){
             return response()->json([
+                'status'    => 200,
                 'delivery'  => !$current_delivery,
                 'message'   => __("responses.Truck delivery status has been updated successfully."),
                 ]);
         }
         return response()->json([
+            'status'    => 500,
             'delivery'  => $current_delivery,
             'message'   => __("responses.Some thing went wrong ,try again later"),
         ]);
