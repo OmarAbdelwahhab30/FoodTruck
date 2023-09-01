@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Payment\PayPal;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Payments\Paypal\EnterPayPalResponseRequest;
+use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,8 @@ class EnterPayPalResponseController extends Controller
 
     public function EnterResponse(EnterPayPalResponseRequest $request)
     {
+
+
        $created =  Payment::create([
             'payment_status' =>$request->payment_status ,
             'payment_method' => 'Paypal',
@@ -24,9 +27,19 @@ class EnterPayPalResponseController extends Controller
             'currency' => $request->currency,
             'seller_id' =>$request->seller_id,
         ]);
+
        if ($created){
+           $this->UpdateOrderWithPaymentID($created->id,$request->order_id);
+           $this->IncreaseWalletBalance($request->amount, $request->seller_id);
            return $this->returnSuccessMessage(__("responses.Payment is done successfully."));
        }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
+    }
+
+    private function UpdateOrderWithPaymentID($payment_id, $order_id)
+    {
+        $order = Order::find($order_id);
+        $order->payment_id = $payment_id;
+        $order->save();
     }
 }

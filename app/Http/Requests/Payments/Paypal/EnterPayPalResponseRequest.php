@@ -32,6 +32,7 @@ class EnterPayPalResponseRequest extends FormRequest
             'payer_email' => ['nullable'],
             'currency' => ['required'],
             'seller_id' => ['required'],
+            'amount'    => ['required']
         ];
     }
 }
