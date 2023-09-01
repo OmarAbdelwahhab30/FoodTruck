@@ -100,7 +100,7 @@ class User extends Authenticatable
 
     public function notifications(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Notification::class);
+        return $this->hasMany(User_Notification::class);
     }
 
     public function wallet(): \Illuminate\Database\Eloquent\Relations\HasOne

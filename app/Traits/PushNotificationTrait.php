@@ -3,73 +3,78 @@
 namespace App\Traits;
 
 use App\Abstracts\Notification;
-use App\Models\ArNotification;
-use App\Models\EnNotification;
+
+use App\Models\User_Notification;
+use Kreait\Firebase\Contract\Messaging;
+use Kreait\Firebase\Messaging\CloudMessage;
 use Ladumor\OneSignal\OneSignal;
 
 trait PushNotificationTrait
 {
 
-
-    public function PushNotification($player_id, $type, $receiver_id,$user_name = false): void
+    public function __construct(Messaging $messaging)
     {
-        $fields['include_player_ids'] = [$player_id];
-
-        if ($user_name !== false) {
-            $messages = $this->GetNotificationsWithReplacement($type, $user_name);
-        }else{
-            $messages = $this->GetNotificationsWithoutReplacement($type);
-        }
-
-        $fields['contents'] = array(
-        "en" => $messages['message_en'],
-        "ar" => $messages['message_ar'],
-        );
-
-        $notificationID = OneSignal::sendPush($fields);
-        $this->AddNotificationToDB($notificationID["id"],$receiver_id);
+        $this->messaging = $messaging;
     }
 
-    private function AddNotificationToDB($id,$receiver_id): void
+    public function PushNotification($device_token,$type, $receiver_id,$user_name = false): void
     {
-        Notification::create([
-            'notification_id' => $id,
+        $notifications = [];
+        if ($user_name !== false) {
+            $notifications = $this->GetNotificationsWithReplacement($type, $user_name);
+        }else{
+            $notifications = $this->GetNotificationsWithoutReplacement($type);
+        }
+        $message = CloudMessage::fromArray([
+            'token' => $device_token,
+            'notification' => [$notifications],
+        ]);
+        $this->messaging->send($message);
+        $this->AddNotificationToDB($notifications,$receiver_id);
+    }
+
+    private function GetNotificationFromDB($type)
+    {
+        return \App\Models\Notification::where("type",$type)->get();
+    }
+    private function AddNotificationToDB($notifications,$receiver_id): void
+    {
+        User_Notification::create([
+            'notification_ar' => $notifications['notification_ar'],
+            'notification_en' => $notifications['notification_en'],
             'user_id'         => $receiver_id,
         ]);
     }
     private function GetNotificationsWithReplacement($type, $user_name): array|string
     {
-
-        $message_ar = $this->getArNotification($type);
-        $message_en = $this->getEnNotification($type);
-        $message_en = str_replace("@", $user_name . " ", $message_en);
-        $message_ar = str_replace("@", $user_name . " ", $message_ar);
+        $notification_ar = $this->getArNotification($type);
+        $notification_en = $this->getEnNotification($type);
+        $notification_en = str_replace("@", $user_name . " ", $notification_en);
+        $notification_ar = str_replace("@", $user_name . " ", $notification_ar);
         return [
-            'message_ar' => $message_ar,
-            'message_en' => $message_en,
+            'notification_ar' => $notification_ar,
+            'notification_en' => $notification_en,
         ];
     }
 
     private function GetNotificationsWithoutReplacement($type): array
     {
-        $message_ar = $this->getArNotification($type);
-        $message_en = $this->getEnNotification($type);
+        $notification_ar = $this->getArNotification($type);
+        $notification_en = $this->getEnNotification($type);
         return [
-            'message_ar' => $message_ar,
-            'message_en' => $message_en,
+            'notification_ar' => $notification_ar,
+            'notification_en' => $notification_en,
         ];
     }
 
     private function getArNotification($type)
     {
-        return ArNotification::find($type)->value;
+        return \App\Models\Notification::find($type)->notification_ar;
     }
-
-
 
     private function getEnNotification($type)
     {
-        return EnNotification::find($type)->value;
+        return \App\Models\Notification::find($type)->notification_en;
     }
 }
 

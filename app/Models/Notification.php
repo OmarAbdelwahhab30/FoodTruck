@@ -16,8 +16,4 @@ class Notification extends Model
         return $date->format('h:i:s a m/d/Y');
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }

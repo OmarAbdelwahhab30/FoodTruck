@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('contact_us', function (Blueprint $table) {
-            $table->string("phone");
-            $table->string("name");
+        Schema::table('users_notifications', function (Blueprint $table) {
+            $table->foreignId("user_id")->references("id")
+                ->on("users")->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('contact_us', function (Blueprint $table) {
+        Schema::table('users_notifications', function (Blueprint $table) {
             //
         });
     }

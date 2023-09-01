@@ -22,6 +22,10 @@ class NotificationController
         return view("admin.notify.index");
     }
 
+    /**
+     * @throws MessagingException
+     * @throws FirebaseException
+     */
     public function notify(ControlNotificationsRequest $request)
     {
         $topic = "";
