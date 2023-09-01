@@ -16,11 +16,10 @@ class OrderHasAdded implements ShouldBroadcastNow
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
 
-
-    public function __construct(private Order $order,private User $user)
+    public function __construct(private Order $order, private User $user)
     {
         $this->order = $order;
-        $this->user  = $user;
+        $this->user = $user;
     }
 
 
@@ -39,14 +38,15 @@ class OrderHasAdded implements ShouldBroadcastNow
     public function broadcastWith(): array
     {
 
-        return[
+        return [
             'order' => [
-                $this->order->created_at,
-                $this->order->delivery_type_.app()->getLocale(),
-                $this->order->status_.app()->getLocale(),
-                "#00000".$this->order->id
+                'created_at' => $this->order->created_at,
+                "delivery_type" => $this->order->delivery_type_ . app()->getLocale(),
+                "status" => $this->order->status_ . app()->getLocale(),
+                "id" => "#00000" . $this->order->id,
+                "updated_at" => $this->order->updated_at,
             ],
-            'customer'  => [
+            'customer' => [
                 $this->user->name,
             ],
         ];

@@ -32,8 +32,14 @@ class UpdateTruckInformationService
             'delivery'  =>  !$current_delivery,
         ]);
         if ($updated){
-            return true;
+            return response()->json([
+                'delivery'  => !$current_delivery,
+                'message'   => __("responses.Truck delivery status has been updated successfully."),
+                ]);
         }
-        return false;
+        return response()->json([
+            'delivery'  => $current_delivery,
+            'message'   => __("responses.Some thing went wrong ,try again later"),
+        ]);
     }
 }

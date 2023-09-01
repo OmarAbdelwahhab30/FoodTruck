@@ -29,9 +29,6 @@ class UpdateTruckInformationController extends Controller
         if (!Gate::allows("change-delivery-status")){
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
-        $done = $service->ChangeDeliveryStatus($request);
-        if ($done){
-            return $this->returnSuccessMessage(__("responses.Truck delivery status has been updated successfully."));
-        }
-        return $this->returnError(__("responses.Some thing went wrong ,try again later"));    }
+        return $service->ChangeDeliveryStatus($request);
+    }
 }

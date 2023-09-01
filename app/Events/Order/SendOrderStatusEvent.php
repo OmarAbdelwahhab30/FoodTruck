@@ -44,11 +44,12 @@ class SendOrderStatusEvent implements ShouldBroadcastNow
 
         return[
             'order' => [
-                $this->order->id,
-                $this->order->status_.app()->getLocale(),
+                'order_id' => $this->order->id,
+                'order_status' => $this->order->status_.app()->getLocale(),
+                'order_updated_at' =>$this->order->updated_at,
             ],
             'time' => [
-                $this->time,
+                'time' => $this->time,
             ]
         ];
     }
