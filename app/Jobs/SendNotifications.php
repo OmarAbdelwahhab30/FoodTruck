@@ -23,6 +23,8 @@ class SendNotifications implements ShouldQueue
 
     private Messaging $messaging;
     private Request $request;
+    private array $check;
+    private $notification;
 
     /**
      * Create a new job instance.
