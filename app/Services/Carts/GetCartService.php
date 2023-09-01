@@ -17,9 +17,12 @@ class GetCartService extends Service
     {
         $user = auth("sanctum")->user();
         return Cart::with(["products" => function ($q) {
-            $q->select("name", "products.id");
+            $q->select("products.truck_id", "name", "products.id");
             $q->with("images", function ($qq) {
                 $qq->select("*");
+            });
+            $q->with("truck", function ($qq) {
+                $qq->select("id", "delivery");
             });
         }])->where("id", $request->cart_id)->where("user_id", $user->id)->select("id", "truck_id")->get();
     }
