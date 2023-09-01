@@ -30,8 +30,9 @@ class SendNotifications implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($check,$notification)
+    public function __construct($check,$notification,Messaging $messaging)
     {
+        $this->messaging = $messaging;
         $this->check = $check;
         $this->notification = $notification;
     }
@@ -41,9 +42,8 @@ class SendNotifications implements ShouldQueue
      *
      * @return void
      */
-    public function handle(Messaging $messaging)
+    public function handle()
     {
-        $this->messaging = $messaging;
         $topic = "";
         if ($this->check && count($this->check) > 1) {
             $topic = "both";
