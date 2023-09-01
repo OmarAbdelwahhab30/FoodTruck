@@ -7,7 +7,6 @@ use App\Abstracts\Notification;
 use App\Models\User_Notification;
 use Kreait\Firebase\Contract\Messaging;
 use Kreait\Firebase\Messaging\CloudMessage;
-use Ladumor\OneSignal\OneSignal;
 
 trait PushNotificationTrait
 {
