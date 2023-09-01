@@ -29,7 +29,7 @@ class ReturnOrderInformationService extends \App\Services\Service
             }
         ])->select("id","status_".app()->getLocale()." as status"
             ,"user_id","delivery_type_".app()->getLocale()." as delivery_type"
-            ,"total_price","truck_id","created_at","updated_at")->where("id", $request->order_id)->get();
+            ,"total_price","truck_id","created_at","updated_at","payment_id")->where("id", $request->order_id)->get();
     }
 
     public function ReturnAllPreviousCustomerOrders(): \Illuminate\Database\Eloquent\Collection|array
@@ -43,7 +43,7 @@ class ReturnOrderInformationService extends \App\Services\Service
                     $qq->select("name","delivery","delivery_price","id");
                 });
                 $q->whereIn('status_en',['delivered','cancelled','picked-up'])
-                    ->select("id","status_".app()->getLocale()." as status" ,"truck_id","user_id","created_at");
+                    ->select("id","status_".app()->getLocale()." as status" ,"truck_id","user_id","created_at","payment_id");
             },
         ])->select("id","name","phone")->get();
     }
@@ -59,7 +59,7 @@ class ReturnOrderInformationService extends \App\Services\Service
                     $qq->select("name","delivery","delivery_price","id");
                 });
                 $q->where('status_en','processing')
-                    ->select("id","status_".app()->getLocale()." as status","truck_id","user_id","created_at");
+                    ->select("id","status_".app()->getLocale()." as status","truck_id","user_id","created_at","payment_id");
             }
         )->select("id","name","phone")->get();
     }
@@ -74,7 +74,8 @@ class ReturnOrderInformationService extends \App\Services\Service
                 $qq->with("images");
                 $qq->select("name","delivery","delivery_price","id");
             });
-            $q->where('status_en','pending')->select("id","status_".app()->getLocale()." as status","truck_id","user_id","created_at");
+            $q->where('status_en','pending')->select("id","status_".app()->getLocale()." as status",
+                "truck_id","user_id","created_at","payment_id");
         }
         )->select("id","name","phone")->get();
     }
@@ -91,7 +92,7 @@ class ReturnOrderInformationService extends \App\Services\Service
             $q->select("name","delivery","delivery_price","id");
         }])->whereIn('status_en',['pending','processing'])
             ->select("id","user_id","status_".app()->getLocale()." as status"
-                ,"created_at","delivery_type_".app()->getLocale()." as delivery_type","truck_id")->get();
+                ,"created_at","delivery_type_".app()->getLocale()." as delivery_type","truck_id","payment_id")->get();
     }
 
     public function ReturnAllPreviousSellerOrders(): \Illuminate\Database\Eloquent\Collection|array
@@ -107,7 +108,7 @@ class ReturnOrderInformationService extends \App\Services\Service
         }])->whereIn('status_en',['picked-up','cancelled','delivered'])
             ->select("id","status_".app()->getLocale()." as status","created_at"
                 ,"delivery_type_".app()->getLocale()." as delivery_type"
-                ,"truck_id","user_id")->get();
+                ,"truck_id","user_id","payment_id")->get();
     }
 
     public function ReturnOrderStatusByOrderID($request)
