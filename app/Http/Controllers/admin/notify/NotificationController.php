@@ -35,7 +35,7 @@ class NotificationController
         if (empty($request->check[0])) {
             return redirect()->back()->with("error", __("admin.Please choose at least one of checkboxes!"));
         }
-        SendNotifications::dispatch($request);
+        dispatch(new SendNotifications($request));
         return redirect()->back()->with("success", __("admin.Notification has been sent to the selected users"));
     }
 }
