@@ -43,7 +43,8 @@ class ReturnOrderInformationService extends \App\Services\Service
                     $qq->select("name","delivery","delivery_price","id");
                 });
                 $q->whereIn('status_en',['delivered','cancelled','picked-up'])
-                    ->select("id","status_".app()->getLocale()." as status" ,"truck_id","user_id","created_at","payment_id");
+                    ->select("id","delivery_type_".app()->getLocale()," as delivery_type","status_".app()->getLocale()." as status"
+                        ,"truck_id","user_id","created_at","payment_id");
             },
         ])->select("id","name","phone")->get();
     }
@@ -59,7 +60,8 @@ class ReturnOrderInformationService extends \App\Services\Service
                     $qq->select("name","delivery","delivery_price","id");
                 });
                 $q->where('status_en','processing')
-                    ->select("id","status_".app()->getLocale()." as status","truck_id","user_id","created_at","payment_id");
+                    ->select("id","delivery_type_".app()->getLocale()." as delivery_type",
+                        "status_".app()->getLocale()." as status","truck_id","user_id","created_at","payment_id");
             }
         )->select("id","name","phone")->get();
     }
@@ -75,7 +77,7 @@ class ReturnOrderInformationService extends \App\Services\Service
                 $qq->select("name","delivery","delivery_price","id");
             });
             $q->where('status_en','pending')->select("id","status_".app()->getLocale()." as status",
-                "truck_id","user_id","created_at","payment_id");
+                "truck_id","user_id","created_at","delivery_type_".app()->getLocale()." as delivery_type","payment_id");
         }
         )->select("id","name","phone")->get();
     }
