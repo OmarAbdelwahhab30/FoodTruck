@@ -14,12 +14,6 @@ use Kreait\Firebase\Contract\Messaging;
 
 class NotificationController
 {
-    private Messaging $messaging;
-
-    public function __construct(Messaging $messaging)
-    {
-        $this->messaging = $messaging;
-    }
 
     public function index()
     {
@@ -35,7 +29,7 @@ class NotificationController
         if (empty($request->check[0])) {
             return redirect()->back()->with("error", __("admin.Please choose at least one of checkboxes!"));
         }
-        dispatch(new SendNotifications($request));
+        dispatch(new SendNotifications($request->check,$request->notification));
         return redirect()->back()->with("success", __("admin.Notification has been sent to the selected users"));
     }
 }
