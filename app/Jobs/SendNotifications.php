@@ -22,7 +22,6 @@ class SendNotifications implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private Messaging $messaging;
-    private Request $request;
     private array $check;
     private $notification;
 
@@ -53,7 +52,7 @@ class SendNotifications implements ShouldQueue
             if ($this->check[0] == "users") {
                 $topic = "customers";
                 $this->SaveNotificationToDBForCustomers($this->notification);
-            } elseif ($this->request->check[0] == "sellers") {
+            } elseif ($this->check[0] == "sellers") {
                 $topic = "sellers";
                 $this->SaveNotificationToDBForSellers($this->notification);
             }
