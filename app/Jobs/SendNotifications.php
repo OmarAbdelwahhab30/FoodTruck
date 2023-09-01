@@ -28,9 +28,8 @@ class SendNotifications implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($request,Messaging $messaging)
+    public function __construct($request)
     {
-        $this->messaging = $messaging;
         $this->request = $request;
     }
 
@@ -39,8 +38,9 @@ class SendNotifications implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(Messaging $messaging)
     {
+        $this->messaging = $messaging;
         $topic = "";
         if ($this->request->check && count($this->request->check) > 1) {
             $topic = "both";
@@ -60,34 +60,36 @@ class SendNotifications implements ShouldQueue
 
     private function SaveNotificationToDBForSellers($notification)
     {
-        $users = User::where("role_id",Role::ROLE_SELLER)->get("id");
-        foreach ($users as $user){
+        $users = User::where("role_id", Role::ROLE_SELLER)->get("id");
+        foreach ($users as $user) {
             User_Notification::create([
                 'notification_ar' => $notification,
-                'notification_en'   => $notification,
-                'user_id'           => $user->id
+                'notification_en' => $notification,
+                'user_id' => $user->id
             ]);
         }
     }
+
     private function SaveNotificationToDBForCustomers($notification)
     {
-        $users = User::where("role_id",Role::ROLE_CUSTOMER)->get("id");
-        foreach ($users as $user){
+        $users = User::where("role_id", Role::ROLE_CUSTOMER)->get("id");
+        foreach ($users as $user) {
             User_Notification::create([
                 'notification_ar' => $notification,
-                'notification_en'   => $notification,
-                'user_id'           => $user->id
+                'notification_en' => $notification,
+                'user_id' => $user->id
             ]);
         }
     }
+
     private function SaveNotificationToDBForAll($notification)
     {
-        $users = User::where("role_id",Role::ROLE_SELLER)->where("role_id",Role::ROLE_CUSTOMER)->get("id");
-        foreach ($users as $user){
+        $users = User::where("role_id", Role::ROLE_SELLER)->where("role_id", Role::ROLE_CUSTOMER)->get("id");
+        foreach ($users as $user) {
             User_Notification::create([
                 'notification_ar' => $notification,
-                'notification_en'   => $notification,
-                'user_id'           => $user->id
+                'notification_en' => $notification,
+                'user_id' => $user->id
             ]);
         }
     }
