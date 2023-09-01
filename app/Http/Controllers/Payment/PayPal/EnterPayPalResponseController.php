@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Payment\PayPal;
 
+use AmrShawky\LaravelCurrency\Facade\Currency;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Payments\Paypal\EnterPayPalResponseRequest;
 use App\Models\Order;
@@ -30,7 +31,12 @@ class EnterPayPalResponseController extends Controller
 
        if ($created){
            $this->UpdateOrderWithPaymentID($created->id,$request->order_id);
-           $this->IncreaseWalletBalance($request->amount, $request->seller_id);
+            $amount_in_Riyal = Currency::convert()
+               ->from('USD')
+               ->to('SAR')
+               ->amount($request->amount)
+               ->get();
+           $this->IncreaseWalletBalance($amount_in_Riyal, $request->seller_id);
            return $this->returnSuccessMessage(__("responses.Payment is done successfully."));
        }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
