@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Payment\PayPal;
 
-use AmrShawky\LaravelCurrency\Facade\Currency;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Payments\Paypal\EnterPayPalResponseRequest;
 use App\Models\Order;
