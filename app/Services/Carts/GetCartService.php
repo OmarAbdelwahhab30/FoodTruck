@@ -21,9 +21,6 @@ class GetCartService extends Service
             $q->with("images", function ($qq) {
                 $qq->select("*");
             });
-            $q->with("truck", function ($qq) {
-                $qq->select("id", "delivery");
-            });
         }])->where("id", $request->cart_id)->where("user_id", $user->id)->select("id", "truck_id")->get();
     }
 }
