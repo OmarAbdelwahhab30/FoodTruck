@@ -16,16 +16,14 @@ class GetCartService extends Service
     public function GetCart($request): \Illuminate\Database\Eloquent\Collection|array
     {
         $user = auth("sanctum")->user();
-        return Cart::with(["products" => function($q){
-            $q->select("truck_id","name","products.id");
-            $q->with([
-                "images" => function ($qq){
-                    $qq->select("*");
-                },
-                "truck" => function ($qq){
-                    $qq->select("id","delivery");
-                }
-            ]);
-        }])->where("id",$request->cart_id)->where("user_id",$user->id)->select("id","truck_id")->get();
+        return Cart::with(["products" => function ($q) {
+            $q->select("products.truck_id", "name", "products.id");
+            $q->with("images", function ($qq) {
+                $qq->select("*");
+            });
+            $q->with("truck", function ($qq) {
+                $qq->select("id", "delivery");
+            });
+        }])->where("id", $request->cart_id)->where("user_id", $user->id)->select("id", "truck_id")->get();
     }
 }
