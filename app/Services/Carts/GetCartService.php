@@ -17,7 +17,7 @@ class GetCartService extends Service
     {
         $user = auth("sanctum")->user();
         return Cart::with(["products" => function ($q) {
-            $q->select("products.truck_id", "name", "products.id");
+            $q->select("name", "products.id");
             $q->with("images", function ($qq) {
                 $qq->select("*");
             });
