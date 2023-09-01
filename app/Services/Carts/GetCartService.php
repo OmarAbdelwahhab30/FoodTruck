@@ -16,7 +16,7 @@ class GetCartService extends Service
     public function GetCart($request): \Illuminate\Database\Eloquent\Collection|array
     {
         $user = auth("sanctum")->user();
-        $cart =  Cart::with(["products" => function($q){
+        return Cart::with(["products" => function($q){
             $q->select("truck_id","name","products.id");
             $q->with("images" , function ($qq){
                 $qq->select("*");
