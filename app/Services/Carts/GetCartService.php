@@ -17,13 +17,13 @@ class GetCartService extends Service
     {
         $user = auth("sanctum")->user();
         return Cart::with(["products" => function($q){
-            $q->select("truck_id","name","products.id");
+            $q->select("id","truck_id","name","products.id");
             $q->with([
                 "images" => function ($qq){
-                $qq->select("*");
+                    $qq->select("*");
                 },
-                "truck" => function ($qqq){
-                    $qqq->select("id","delivery");
+                "truck" => function ($qq){
+                    $qq->select("id","delivery");
                 }
             ]);
         }])->where("id",$request->cart_id)->where("user_id",$user->id)->select("id")->get();
