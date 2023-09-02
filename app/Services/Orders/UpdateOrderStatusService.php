@@ -29,8 +29,8 @@ class UpdateOrderStatusService extends Service
         $this->PushNotification(
             $OrderUser->device_token,
             Notification::OrderAccepted,
-            auth("sanctum")->user()->id,
             $OrderUser->id,
+            auth("sanctum")->user()->id,
         );
         return $order;
     }
