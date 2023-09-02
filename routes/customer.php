@@ -29,7 +29,7 @@ Route::middleware("auth:sanctum")->group(function (){
 
     Route::get("GetTruckByID",[ShowDetailsOfEachTruckController::class,"GetDetailsOfEachTruckByID"]);
 
-    Route::get("GetDeliveryStatus",[\App\Services\Trucks\ShowDetailsOfEachTruckService::class,"GetDeliveryStatus"]);
+    Route::get("GetDeliveryStatus",[ShowDetailsOfEachTruckController::class,"GetDeliveryStatus"]);
     //Route::get("GetTruckReviewsByID",[ShowReviewsOfEachTruckController::class,"GetTruckReviewsByID"]);
     Route::get("GetAllSectionInsideEachTruckByID",[ShowAllSectionsController::class,"GetAllSectionInsideEachTruckByID"]);
 
