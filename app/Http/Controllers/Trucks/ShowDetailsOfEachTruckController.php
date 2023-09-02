@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Trucks;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\food_types\GetTruckRequest;
-use App\Http\Requests\Trucks\GetTruckBySellerIDRequest;
+use App\Models\User;
 use App\Services\Trucks\ShowDetailsOfEachTruckService;
 use Illuminate\Support\Facades\Gate;
 
@@ -20,6 +20,15 @@ class ShowDetailsOfEachTruckController extends Controller
             return $this->returnData("Truck",$truck,__("responses.Here is the truck information."));
         }
         return $this->returnError("responses.There is no details");
+    }
+
+    public function GetDeliveryStatus(ShowDetailsOfEachTruckService $service)
+    {
+        if (!Gate::allows("get-truck-by-id")){
+            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
+        }
+        $status = $service->GetDeliveryStatus();
+        return $this->returnData("delivery_status",$status,"");
     }
 
 }

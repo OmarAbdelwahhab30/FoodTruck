@@ -14,7 +14,11 @@ class ShowDetailsOfEachTruckService extends Service
     {
         //return User::where("id",$truck_id)->withCount("ReviewsAboutMe")->get();
         return Truck::where("id",$truck_id)->with("images")->get();
+    }
 
+    public function GetDeliveryStatus()
+    {
+        return auth("sanctum")->user()->truck->delivery;
     }
 
 
