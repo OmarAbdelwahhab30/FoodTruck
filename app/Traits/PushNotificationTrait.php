@@ -54,7 +54,7 @@ trait PushNotificationTrait
         $notification_ar = $this->getArNotification($type);
         $notification_en = $this->getEnNotification($type);
         $notification_en = str_replace("@", $user_name . " ", $notification_en);
-        $notification_ar = $this->rtl(str_replace("@", $user_name . " ", $notification_ar));
+        $notification_ar = $this->rtl(str_replace("@", $this->rtl($user_name . " "),$this->rtl($notification_ar)));
         return [
             'notification_ar' => $notification_ar,
             'notification_en' => $notification_en,
