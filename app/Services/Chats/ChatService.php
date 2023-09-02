@@ -5,9 +5,10 @@ namespace App\Services\Chats;
 use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use App\Models\Message;
+use App\Services\Service;
 use Illuminate\Http\Request;
 
-class ChatService extends Controller
+class ChatService extends Service
 {
     public function IsTherePreviousChat($sender,$receiver)
     {

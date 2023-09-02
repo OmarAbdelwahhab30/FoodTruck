@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Payments\Checkout\CheckoutRequest;
 use App\Http\Requests\Payments\Checkout\ConfirmPaymentRequest;
 use App\Services\Payment\Checkout\PaymentService;
+use App\Traits\PushNotificationTrait;
 use Checkout\CheckoutApiException;
 use Checkout\CheckoutArgumentException;
 
 
 class PaymentController extends Controller
 {
-
 
     private \Checkout\CheckoutApi $api;
 

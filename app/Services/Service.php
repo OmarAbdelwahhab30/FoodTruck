@@ -12,7 +12,7 @@ use Kreait\Firebase\Contract\Messaging;
 class Service
 {
 
-     use ApiResponseHandler,FileUploaderTrait,PushNotificationTrait,WalletTrait,CurrentTimeTrait;
+     use ApiResponseHandler,FileUploaderTrait,WalletTrait,CurrentTimeTrait;
 
     public \Kreait\Firebase\Contract\Messaging $messaging;
 

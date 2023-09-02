@@ -6,6 +6,7 @@ use App\Abstracts\Notification;
 use App\Events\Order\SendOrderStatusEvent;
 use App\Models\Order;
 use App\Services\Service;
+use App\Traits\PushNotificationTrait;
 use Kreait\Firebase\Contract\Messaging;
 use Kreait\Firebase\Exception\FirebaseException;
 use Kreait\Firebase\Exception\MessagingException;
@@ -13,6 +14,8 @@ use Kreait\Firebase\Messaging\CloudMessage;
 
 class UpdateOrderStatusService extends Service
 {
+    use PushNotificationTrait;
+
     /**
      * @throws MessagingException
      * @throws FirebaseException

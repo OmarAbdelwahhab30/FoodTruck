@@ -7,10 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Review;
 use App\Models\User;
 use App\Services\Service;
+use App\Traits\PushNotificationTrait;
 use Illuminate\Http\Request;
 
 class AddCustomerReviewsService extends Service
 {
+    use PushNotificationTrait;
 
     public function AddCustomerReview($request)
     {

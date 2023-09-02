@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Services\Service;
+use App\Traits\PushNotificationTrait;
 use Checkout\CheckoutApiException;
 use Checkout\CheckoutArgumentException;
 use Checkout\CheckoutSdk;
@@ -20,6 +21,7 @@ use Checkout\Payments\Request\Source\RequestTokenSource;
 
 class PaymentService extends Service
 {
+    use PushNotificationTrait;
 
     private \Checkout\CheckoutApi $api;
 

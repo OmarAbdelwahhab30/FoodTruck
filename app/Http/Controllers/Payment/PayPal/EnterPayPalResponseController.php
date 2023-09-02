@@ -8,11 +8,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Payments\Paypal\EnterPayPalResponseRequest;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Traits\PushNotificationTrait;
 use Illuminate\Http\Request;
 
 
 class EnterPayPalResponseController extends Controller
 {
+    use PushNotificationTrait;
 
     public function EnterResponse(EnterPayPalResponseRequest $request)
     {

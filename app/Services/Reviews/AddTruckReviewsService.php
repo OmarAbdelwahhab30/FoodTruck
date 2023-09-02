@@ -9,12 +9,14 @@ use App\Models\Review;
 use App\Models\Truck;
 use App\Models\User;
 use App\Services\Service;
+use App\Traits\PushNotificationTrait;
 use Illuminate\Http\Request;
 use Kreait\Firebase\Exception\FirebaseException;
 use Kreait\Firebase\Exception\MessagingException;
 
 class AddTruckReviewsService extends Service
 {
+    use PushNotificationTrait;
 
 
     /**

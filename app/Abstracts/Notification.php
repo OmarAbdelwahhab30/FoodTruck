@@ -13,4 +13,6 @@ abstract class Notification
     const PAID = 6;
 
     const REVIEW =7;
+
+    const MESSAGE = 8;
 }

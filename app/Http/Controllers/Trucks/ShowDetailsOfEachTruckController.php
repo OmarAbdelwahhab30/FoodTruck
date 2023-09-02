@@ -22,7 +22,7 @@ class ShowDetailsOfEachTruckController extends Controller
         return $this->returnError("responses.There is no details");
     }
 
-    public function GetDeliveryStatus(ShowDetailsOfEachTruckService $service)
+    public function GetDeliveryStatus(ShowDetailsOfEachTruckService $service): \Illuminate\Http\JsonResponse
     {
         if (!Gate::allows("get-truck-by-id")){
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));

@@ -2,6 +2,7 @@
 
 namespace App\Services\Chats;
 
+use App\Abstracts\Notification;
 use App\Events\Chat\SendMessageEvent;
 use App\Http\Requests\Chat\GetChatParticipantsRequest;
 use App\Http\Requests\Chat\SendMesaageRequest;
@@ -10,16 +11,20 @@ use App\Models\Message;
 use App\Models\Truck;
 use App\Models\User;
 use App\Services\Service;
+use App\Traits\PushNotificationTrait;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
+use Kreait\Firebase\Exception\FirebaseException;
+use Kreait\Firebase\Exception\MessagingException;
 use Pusher\ApiErrorException;
 use Pusher\PusherException;
 
 
 class MessageService extends Service
 {
+    use PushNotificationTrait;
 
     /**
      * @throws PusherException
@@ -28,7 +33,12 @@ class MessageService extends Service
      */
 
     private Chat $chat;
-    public function SendMessage($request,$to_user)
+
+    /**
+     * @throws MessagingException
+     * @throws FirebaseException
+     */
+    public function SendMessage($request, $to_user)
     {
 
         $sender = auth("sanctum")->user()->id;
@@ -42,6 +52,16 @@ class MessageService extends Service
         $message = $this->createMessage($request,$collection,$to_user);
 
         broadcast(new SendMessageEvent($message->id))->toOthers();
+
+        $device_token = User::find($to_user)->device_token;
+
+        $this->PushNotification(
+            $device_token,
+            Notification::MESSAGE,
+            $to_user,
+            auth("sanctum")->user()->id,
+            auth("sanctum")->user()->name
+        );
 
         return $message;
     }

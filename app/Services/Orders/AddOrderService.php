@@ -11,12 +11,14 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Notifications\SellerOrderNotification;
 use App\Services\Service;
+use App\Traits\PushNotificationTrait;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\DB;
 
 class AddOrderService extends Service
 {
 
+    use PushNotificationTrait;
 
     public function ExecTransaction($request)
     {
