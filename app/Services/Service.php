@@ -16,8 +16,5 @@ class Service
 
     public \Kreait\Firebase\Contract\Messaging $messaging;
 
-    public function __construct(Messaging $messaging)
-    {
-        $this->messaging = $messaging;
-    }
+
 }

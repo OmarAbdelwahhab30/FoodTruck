@@ -6,12 +6,17 @@ use App\Abstracts\Notification;
 use App\Events\Order\SendOrderStatusEvent;
 use App\Models\Order;
 use App\Services\Service;
+use Kreait\Firebase\Contract\Messaging;
 use Kreait\Firebase\Exception\FirebaseException;
 use Kreait\Firebase\Exception\MessagingException;
+use Kreait\Firebase\Messaging\CloudMessage;
 
 class UpdateOrderStatusService extends Service
 {
-
+    public function __construct(Messaging $messaging)
+    {
+        $this->messaging = $messaging;
+    }
     /**
      * @throws MessagingException
      * @throws FirebaseException
@@ -25,7 +30,17 @@ class UpdateOrderStatusService extends Service
         $time = $this->GetCurrentTime();
         $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
-        $this->PushNotification($OrderUser->device_token,Notification::OrderAccepted,$OrderUser->id,false);
+        $message = CloudMessage::withTarget('token', $OrderUser->deviceToken)
+            ->withNotification([
+                'ww' => 'www'
+            ]) // optional
+            ->withData([
+                'ww' => 'www'
+            ]) // optional
+        ;
+
+        $this->messaging->send($message);
+        //$this->PushNotification($OrderUser->device_token,Notification::OrderAccepted,$OrderUser->id,false);
         return $order;
     }
 
