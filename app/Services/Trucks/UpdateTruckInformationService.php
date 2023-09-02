@@ -25,7 +25,7 @@ class UpdateTruckInformationService
 
     public function ChangeDeliveryStatus($request)
     {
-        $truck = User::find($request->user_id)->truck;
+        $truck = auth("sanctum")->user()->truck;
         $truck_id = $truck->id;
         $current_delivery = $truck->delivery;
         $updated = Truck::where('id',$truck_id)->update([

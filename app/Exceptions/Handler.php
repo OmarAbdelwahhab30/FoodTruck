@@ -40,17 +40,17 @@ class Handler extends ExceptionHandler
     /**
      * Register the exception handling callbacks for the application.
      *
-     * @return void
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function register()
+//    public function register()
+//    {
+//        $this->reportable(function (Throwable $e) {
+//            //
+//        });
+//    }
+
+    public function render($request, Throwable $exception)
     {
-        $this->reportable(function (Throwable $e) {
-            //
-        });
-    }
-    public function render($request, Exception|Throwable $exception){
-        if ($exception) {
-            return response()->view('errors.500');
-        }
+        return view('er');
     }
 }
