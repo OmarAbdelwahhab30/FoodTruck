@@ -31,7 +31,7 @@ class EnterPayPalResponseController extends Controller
 
        if ($created){
            $this->UpdateOrderWithPaymentID($created->id,$request->order_id);
-            $amount_in_Riyal = Currency::convert()
+            $amount_in_Riyal = \AmrShawky\Currency::convert()
                ->from('USD')
                ->to('SAR')
                ->amount($request->amount)
