@@ -13,11 +13,6 @@ use Kreait\Firebase\Messaging\CloudMessage;
 trait PushNotificationTrait
 {
 
-    public function __construct(Messaging $messaging)
-    {
-        $this->messaging = $messaging;
-    }
-
     /**
      * @throws MessagingException
      * @throws FirebaseException
@@ -35,11 +30,10 @@ trait PushNotificationTrait
         if ($device_token  != null){
             $message = CloudMessage::fromArray([
                 'token' => $device_token,
-                'notification' => $notifications, // optional
-                'data' => $notifications, // optional
+                'notification' => json_encode($notifications), // optional
+                'data' => json_encode($notifications), // optional
             ]);
             $this->messaging->send($message);
-
         }
     }
 

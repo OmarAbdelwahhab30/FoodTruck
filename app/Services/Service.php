@@ -7,11 +7,17 @@ use App\Traits\CurrentTimeTrait;
 use App\Traits\FileUploaderTrait;
 use App\Traits\PushNotificationTrait;
 use App\Traits\WalletTrait;
+use Kreait\Firebase\Contract\Messaging;
 
 class Service
 {
 
      use ApiResponseHandler,FileUploaderTrait,PushNotificationTrait,WalletTrait,CurrentTimeTrait;
 
-    private \Kreait\Firebase\Contract\Messaging $messaging;
+    public \Kreait\Firebase\Contract\Messaging $messaging;
+
+    public function __construct(Messaging $messaging)
+    {
+        $this->messaging = $messaging;
+    }
 }
