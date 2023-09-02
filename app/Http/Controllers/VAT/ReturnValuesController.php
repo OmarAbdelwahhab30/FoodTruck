@@ -15,7 +15,7 @@ class ReturnValuesController extends Controller
         if (!Gate::allows("return-vat")){
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
-        return Value::select("vat")->first();
+        return Value::select("vat","kilo_price")->first();
     }
 
     public function returnOwnerPercentage()
@@ -33,4 +33,6 @@ class ReturnValuesController extends Controller
         }
         return Value::select("kilo_price")->first();
     }
+
+
 }
