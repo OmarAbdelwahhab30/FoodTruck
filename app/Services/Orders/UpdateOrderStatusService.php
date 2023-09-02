@@ -13,10 +13,6 @@ use Kreait\Firebase\Messaging\CloudMessage;
 
 class UpdateOrderStatusService extends Service
 {
-    public function __construct(Messaging $messaging)
-    {
-        $this->messaging = $messaging;
-    }
     /**
      * @throws MessagingException
      * @throws FirebaseException
@@ -30,11 +26,7 @@ class UpdateOrderStatusService extends Service
         $time = $this->GetCurrentTime();
         $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
-        $message = CloudMessage::withTarget('token',$OrderUser->device_token)
-            ->withNotification(\Kreait\Firebase\Messaging\Notification::create('dddd', 'asdasdasdsada'))
-            ->withData(['key' => 'value']);
-        $this->messaging->send($message);
-        //$this->PushNotification($OrderUser->device_token,Notification::OrderAccepted,$OrderUser->id,false);
+        $this->PushNotification($OrderUser->device_token,Notification::OrderAccepted,$OrderUser->id,false);
         return $order;
     }
 

@@ -12,7 +12,10 @@ use Kreait\Firebase\Messaging\CloudMessage;
 
 trait PushNotificationTrait
 {
-
+    public function __construct(Messaging $messaging)
+    {
+        $this->messaging = $messaging;
+    }
     /**
      * @throws MessagingException
      * @throws FirebaseException
@@ -28,7 +31,13 @@ trait PushNotificationTrait
         $this->AddNotificationToDB($notifications,$receiver_id);
 
         if ($device_token  != null){
-
+            $message = CloudMessage::withTarget('token',$device_token)
+                ->withNotification(
+                    \Kreait\Firebase\Messaging\Notification::create(
+                        'FoodTruck Notification',
+                        $notifications['notification_ar']." | ".$notifications['notification_en']
+                    ));
+            $this->messaging->send($message);
         }
     }
 
