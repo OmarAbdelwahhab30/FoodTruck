@@ -50,17 +50,17 @@
         margin: 20px auto 30px auto;
         font-family: 'Encode Sans Semi Condensed', Verdana, sans-serif;
         font-size: 1.5rem;
-        font-weight: 200;
+        font-weight: 500;
         text-align: center;
     }
-    h1, h2 {
-        -webkit-transition: opacity 0.5s linear, margin-top 0.5s linear; /* Safari */
-        transition: opacity 0.5s linear, margin-top 0.5s linear;
-    }
-    .loading h1, .loading h2 {
-        margin-top: 0px;
-        opacity: 0;
-    }
+    /*h1, h2 {*/
+    /*    -webkit-transition: opacity 0.5s linear, margin-top 0.5s linear; !* Safari *!*/
+    /*    transition: opacity 0.5s linear, margin-top 0.5s linear;*/
+    /*}*/
+    /*.loading h1, .loading h2 {*/
+    /*    margin-top: 0px;*/
+    /*    opacity: 0;*/
+    /*}*/
     .gears {
         position: relative;
         margin: 0 auto;
@@ -170,9 +170,8 @@
 
 </style>
 <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,300,400" rel="stylesheet">
-<body class="loading">
-<h1>500</h1>
-<h2>Unexpected Error <b>:(</b></h2>
+<body class="loading" style="margin-top: 211px">
+<h2>{{__("admin.er")}}</h2>
 <div class="gears">
     <div class="gear one">
         <div class="bar"></div>

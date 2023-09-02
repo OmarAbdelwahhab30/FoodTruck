@@ -289,4 +289,5 @@ return [
     "Order" => "Order",
     "Seller information" => "Seller information",
     "Download The Invoice"  => "Download The Invoice",
+    "er"        =>"Unfortunately Unexpected Error"
 ];
