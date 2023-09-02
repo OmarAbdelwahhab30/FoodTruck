@@ -31,12 +31,10 @@ class UpdateOrderStatusService extends Service
         $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
         $message = CloudMessage::withTarget('token', $OrderUser->deviceToken)
-            ->withNotification([
-                'ww' => 'www'
-            ]) // optional
-            ->withData([
-                'ww' => 'www'
-            ]) // optional
+            ->withNotification(
+                'ww'
+            ) // optional
+            ->withData([]) // optional
         ;
 
         $this->messaging->send($message);
