@@ -718,8 +718,7 @@ body[data-layout=horizontal] .footer {
 }
 
 .main-content {
-    margin-left: 0px;
-    margin-right: 251px;
+    margin-right: 250px;
     overflow: hidden;
 }
 
