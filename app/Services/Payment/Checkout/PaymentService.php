@@ -2,8 +2,10 @@
 
 namespace App\Services\Payment\Checkout;
 
+use App\Abstracts\Notification;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\User;
 use App\Models\Wallet;
 use App\Services\Service;
 use Checkout\CheckoutApiException;
@@ -57,6 +59,13 @@ class PaymentService extends Service
         if ($res) {
             $record = $this->createPaymentRecord($response, $req->order_id,$req->seller_id);
             $this->IncreaseWalletBalance($req->amount, $req->seller_id);
+            $seller = $this->GetSeller($req->seller_id);
+            $this->PushNotification(
+                $seller->device_token,
+                Notification::PAID,
+                $req->seller_id,
+                auth("sanctum")->user()->name
+            );
             if ($record) {
                 return true;
             }
@@ -65,6 +74,10 @@ class PaymentService extends Service
         return false;
     }
 
+    private function GetSeller($seller_id)
+    {
+        return User::find($seller_id);
+    }
     private function createPaymentRecord($request, $order_id,$seller_id)
     {
         $payment = Payment::create([

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Payment\PayPal;
 
 use AmrShawky\LaravelCurrency\Facade\Currency;
+use App\Abstracts\Notification;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Payments\Paypal\EnterPayPalResponseRequest;
 use App\Models\Order;
@@ -37,6 +38,13 @@ class EnterPayPalResponseController extends Controller
                ->amount($request->amount)
                ->get();
            $this->IncreaseWalletBalance($amount_in_Riyal, $request->seller_id);
+           $seller = $this->GetSeller($request->seller_id);
+           $this->PushNotification(
+               $seller->device_token,
+               Notification::PAID,
+               $request->seller_id,
+               auth("sanctum")->user()->name
+           );
            return $this->returnSuccessMessage(__("responses.Payment is done successfully."));
        }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));

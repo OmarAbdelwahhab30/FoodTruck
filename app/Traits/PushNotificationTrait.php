@@ -24,12 +24,15 @@ trait PushNotificationTrait
         }else{
             $notifications = $this->GetNotificationsWithoutReplacement($type);
         }
-        $message = CloudMessage::fromArray([
-            'token' => $device_token,
-            'notification' => [$notifications],
-        ]);
-        $this->messaging->send($message);
         $this->AddNotificationToDB($notifications,$receiver_id);
+
+        if ($device_token  != null){
+            $message = CloudMessage::fromArray([
+                'token' => $device_token,
+                'notification' => [$notifications],
+            ]);
+            $this->messaging->send($message);
+        }
     }
 
     private function AddNotificationToDB($notifications,$receiver_id): void
