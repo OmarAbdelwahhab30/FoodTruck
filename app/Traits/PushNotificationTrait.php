@@ -34,8 +34,7 @@ trait PushNotificationTrait
 
         if ($device_token  != null){
             $message = CloudMessage::withTarget('token', $device_token)
-                ->withNotification($notifications) // optional
-                ->withData($notifications);
+                ->withNotification($notifications); // optional
             $this->messaging->send($message);
         }
     }
