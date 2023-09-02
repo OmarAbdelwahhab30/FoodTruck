@@ -30,8 +30,8 @@ trait PushNotificationTrait
         if ($device_token  != null){
             $message = CloudMessage::fromArray([
                 'token' => $device_token,
-                'notification' => json_encode($notifications), // optional
-                'data' => json_encode($notifications), // optional
+                'notification' => ["أحلى مسا عليك"], // optional
+                'data' => ["أحلى مسا عليك"], // optional
             ]);
             $this->messaging->send($message);
         }

@@ -29,6 +29,10 @@ class UpdateOrderStatusService extends Service
         return $order;
     }
 
+    /**
+     * @throws MessagingException
+     * @throws FirebaseException
+     */
     public function RejectOrder($request)
     {
         $order = Order::where("id", $request->order_id)->update([
