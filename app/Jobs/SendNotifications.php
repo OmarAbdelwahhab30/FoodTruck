@@ -21,7 +21,6 @@ class SendNotifications implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private Messaging $messaging;
     private array $check;
     private $notification;
 
@@ -42,24 +41,23 @@ class SendNotifications implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(Messaging $messaging)
     {
-//        $topic = "";
-//        if ($this->check && count($this->check) > 1) {
-//            $topic = "both";
-//            $this->SaveNotificationToDBForAll($this->notification);
-//        } elseif ($this->check && count($this->check) == 1) {
-//            if ($this->check[0] == "users") {
-//                $topic = "customers";
-//                $this->SaveNotificationToDBForCustomers($this->notification);
-//            } elseif ($this->check[0] == "sellers") {
-//                $topic = "sellers";
-//                $this->SaveNotificationToDBForSellers($this->notification);
-//            }
-//        }
-//        dd($topic);
+        $topic = "";
+        if ($this->check && count($this->check) > 1) {
+            $topic = "both";
+            $this->SaveNotificationToDBForAll($this->notification);
+        } elseif ($this->check && count($this->check) == 1) {
+            if ($this->check[0] == "users") {
+                $topic = "customers";
+                $this->SaveNotificationToDBForCustomers($this->notification);
+            } elseif ($this->check[0] == "sellers") {
+                $topic = "sellers";
+                $this->SaveNotificationToDBForSellers($this->notification);
+            }
+        }
         $message = CloudMessage::withTarget('topic', "sellers")->withNotification([$this->notification]);
-        $this->messaging->send($message);
+        $messaging->send($message);
     }
 
     private function SaveNotificationToDBForSellers($notification)
