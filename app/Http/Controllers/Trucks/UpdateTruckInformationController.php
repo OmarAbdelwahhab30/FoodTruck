@@ -24,11 +24,11 @@ class UpdateTruckInformationController extends Controller
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
 
-    public function ChangeDeliveryStatus(DeliveryStatusRequest $request,UpdateTruckInformationService $service): \Illuminate\Http\JsonResponse
+    public function ChangeDeliveryStatus(UpdateTruckInformationService $service): \Illuminate\Http\JsonResponse
     {
         if (!Gate::allows("change-delivery-status")){
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
-        return $service->ChangeDeliveryStatus($request);
+        return $service->ChangeDeliveryStatus();
     }
 }

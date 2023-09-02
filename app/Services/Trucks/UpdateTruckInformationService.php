@@ -23,7 +23,7 @@ class UpdateTruckInformationService
         return Truck::where("id", $request->id)->update(Arr::except(array_filter($request->all()), 'truck_images'));
     }
 
-    public function ChangeDeliveryStatus($request)
+    public function ChangeDeliveryStatus()
     {
         $truck = auth("sanctum")->user()->truck;
         $truck_id = $truck->id;
