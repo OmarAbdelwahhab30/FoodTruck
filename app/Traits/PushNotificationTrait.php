@@ -47,7 +47,7 @@ trait PushNotificationTrait
             'notification_ar' => $notifications['notification_ar'],
             'notification_en' => $notifications['notification_en'],
             'user_id'         => $receiver_id,
-            'sender_id'       =>
+            'sender_id'       => $sender_id,
         ]);
     }
     private function GetNotificationsWithReplacement($type, $user_name): array|string
