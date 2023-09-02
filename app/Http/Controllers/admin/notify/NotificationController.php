@@ -36,21 +36,7 @@ class NotificationController
         if (empty($request->check[0])) {
             return redirect()->back()->with("error", __("admin.Please choose at least one of checkboxes!"));
         }
-        $topic = "";
-        if ($request->check && count($request->check) > 1) {
-            $topic = "both";
-            $this->SaveNotificationToDBForAll($request->notification);
-        } elseif ($request->check && count($request->check) == 1) {
-            if ($request->check[0] == "users") {
-                $topic = "customers";
-                $this->SaveNotificationToDBForCustomers($request->notification);
-            } elseif ($request->check[0] == "sellers") {
-                $topic = "sellers";
-                $this->SaveNotificationToDBForSellers($request->notification);
-            }
-        }
-        $message = CloudMessage::withTarget('topic', $topic)->withNotification([$request->notification]);
-        $this-> messaging->send($message);
+        SendNotifications::dispatch($request->check,$request->notification);
         return redirect()->back()->with("success", __("admin.Notification has been sent to the selected users"));
     }
 
