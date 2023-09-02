@@ -123,7 +123,7 @@ return [
     "email" => "البريد الإكتروني",
     "No Previous messages to show" => "لا يوجد رسائل سابقة لعرضها",
     'Here, You can Update Owner Percentage' => "يمكنك تحديث نسبة المالك من هنا",
-    'The entered value must be only number between 1 an 100' => "القيمة المدخلة يجب أن تكون قيمة بين 1 و 100",
+    'The entered value must be only number between 1 and 100' => "القيمة المدخلة يجب أن تكون قيمة بين 1 و 100",
     "ex: 15" => "مثال : 15",
     "Update" => "تحديث",
     "Price Per Kilo" => "السعر لكل كيلو",

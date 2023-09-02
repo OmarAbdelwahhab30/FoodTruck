@@ -19,7 +19,7 @@ $z = " | ".__("admin.Owner Percentage");
                                     <div class="row align-items-center justify-content-center">
                                         <div class="col-sm-6">
                                             <div class="">
-                                                <label for="form-sm-input">{{__("admin.The entered value must be only number between 1 an 100")}}</label>
+                                                <label for="form-sm-input">{{__("admin.The entered value must be only number between 1 and 100")}}</label>
                                                 <input  class="form-control form-control-sm" type="number" step="0.1" min="0.1" max="100.0" name="value"
                                                                                           id="form-sm-input"
                                                                                           placeholder="{{__("admin.ex: 15")}}">

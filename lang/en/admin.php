@@ -125,7 +125,7 @@ return [
     "email" => "email",
     "No Previous messages to show" => "No Previous messages to show",
     'Here, You can Update Owner Percentage' => "Here, You can Update Owner Percentage",
-    'The entered value must be only number between 1 an 100' => "The entered value must be only number between 1 an 100100",
+    'The entered value must be only number between 1 and 100' => "The entered value must be only number between 1 and 100",
     "ex: 15" => "ex: 15",
     "Update" => "Update",
     "Price Per Kilo" => "Price Per Kilo",
