@@ -28,10 +28,15 @@ trait PushNotificationTrait
         $this->AddNotificationToDB($notifications,$receiver_id);
 
         if ($device_token  != null){
+            $message = CloudMessage::withTarget('token', $device_token)
+                ->withNotification(["dasas"]) // optional
+                ->withData(["أحلى مسا عليك"]) // optional
+            ;
+
             $message = CloudMessage::fromArray([
                 'token' => $device_token,
-                'notification' => "أحلى مسا عليك", // optional
-                'data' => ["أحلى مسا عليك"], // optional
+                'notification' => ["asdasd"], // optional
+                'data' => ["asdasdasd"], // optional
             ]);
             $this->messaging->send($message);
         }
