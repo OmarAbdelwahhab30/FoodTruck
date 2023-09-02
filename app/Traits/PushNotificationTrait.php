@@ -6,6 +6,8 @@ use App\Abstracts\Notification;
 
 use App\Models\User_Notification;
 use Kreait\Firebase\Contract\Messaging;
+use Kreait\Firebase\Exception\FirebaseException;
+use Kreait\Firebase\Exception\MessagingException;
 use Kreait\Firebase\Messaging\CloudMessage;
 
 trait PushNotificationTrait
@@ -16,7 +18,11 @@ trait PushNotificationTrait
         $this->messaging = $messaging;
     }
 
-    public function PushNotification($device_token,$type, $receiver_id,$user_name = false): void
+    /**
+     * @throws MessagingException
+     * @throws FirebaseException
+     */
+    public function PushNotification($device_token, $type, $receiver_id, $user_name = false): void
     {
         $notifications = [];
         if ($user_name !== false) {
@@ -27,10 +33,9 @@ trait PushNotificationTrait
         $this->AddNotificationToDB($notifications,$receiver_id);
 
         if ($device_token  != null){
-            $message = CloudMessage::fromArray([
-                'token' => $device_token,
-                'notification' => [$notifications],
-            ]);
+            $message = CloudMessage::withTarget('token', $device_token)
+                ->withNotification($notifications) // optional
+                ->withData("");
             $this->messaging->send($message);
         }
     }

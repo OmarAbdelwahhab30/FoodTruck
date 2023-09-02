@@ -12,4 +12,6 @@ class Service
 {
 
      use ApiResponseHandler,FileUploaderTrait,PushNotificationTrait,WalletTrait,CurrentTimeTrait;
+
+    private \Kreait\Firebase\Contract\Messaging $messaging;
 }
