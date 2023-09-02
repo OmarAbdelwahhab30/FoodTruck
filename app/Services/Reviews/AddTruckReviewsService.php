@@ -10,11 +10,17 @@ use App\Models\Truck;
 use App\Models\User;
 use App\Services\Service;
 use Illuminate\Http\Request;
+use Kreait\Firebase\Exception\FirebaseException;
+use Kreait\Firebase\Exception\MessagingException;
 
 class AddTruckReviewsService extends Service
 {
 
 
+    /**
+     * @throws MessagingException
+     * @throws FirebaseException
+     */
     public function AddTruckReview($request): bool
     {
         $user = auth("sanctum")->user();
@@ -29,7 +35,12 @@ class AddTruckReviewsService extends Service
             ]);
             $this->UpdateTruckRate($request->to,$request->rate);
             $seller = $this->GetSeller($request->to);
-            $this->PushNotification($seller->device_token,Notification::REVIEW,$request->to,$user->name);
+            $this->PushNotification(
+                $seller->device_token,
+                Notification::REVIEW,
+                $request->to,
+                $user->id,
+                $user->name);
             if ($review){
                 return true;
             }

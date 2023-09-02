@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::table('users_notifications', function (Blueprint $table) {
             $table->foreignId("user_id")->references("id")
                 ->on("users")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId("sender_id")
+                ->references("id")->on("users")->cascadeOnUpdate()->cascadeOnUpdate();
         });
     }
 

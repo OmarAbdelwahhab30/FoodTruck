@@ -64,6 +64,7 @@ class PaymentService extends Service
                 $seller->device_token,
                 Notification::PAID,
                 $req->seller_id,
+                auth("sanctum")->user()->id,
                 auth("sanctum")->user()->name
             );
             if ($record) {

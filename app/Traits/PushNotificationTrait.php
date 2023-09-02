@@ -20,7 +20,7 @@ trait PushNotificationTrait
      * @throws MessagingException
      * @throws FirebaseException
      */
-    public function PushNotification($device_token, $type, $receiver_id, $user_name = false): void
+    public function PushNotification($device_token, $type, $receiver_id,$sender_id,$user_name = false): void
     {
         $notifications = [];
         if ($user_name !== false) {

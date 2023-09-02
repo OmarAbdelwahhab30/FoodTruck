@@ -26,7 +26,12 @@ class UpdateOrderStatusService extends Service
         $time = $this->GetCurrentTime();
         $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
-        $this->PushNotification($OrderUser->device_token,Notification::OrderAccepted,$OrderUser->id,false);
+        $this->PushNotification(
+            $OrderUser->device_token,
+            Notification::OrderAccepted,
+            auth("sanctum")->user()->id,
+            $OrderUser->id,
+        );
         return $order;
     }
 
@@ -43,7 +48,12 @@ class UpdateOrderStatusService extends Service
         $time = $this->GetCurrentTime();
         $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
-        $this->PushNotification($OrderUser->device_token,Notification::OrderCancelled,$OrderUser->id,false);
+        $this->PushNotification(
+            $OrderUser->device_token,
+            Notification::OrderCancelled,
+            $OrderUser->id,
+            auth("sanctum")->user()->id
+        );
         return $order;
     }
 
@@ -56,7 +66,12 @@ class UpdateOrderStatusService extends Service
         $time = $this->GetCurrentTime();
         $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
-        $this->PushNotification($OrderUser->device_token,Notification::OrderDelivered,$OrderUser->id,false);
+        $this->PushNotification(
+            $OrderUser->device_token,
+            Notification::OrderDelivered,
+            $OrderUser->id,
+            auth("sanctum")->user()->id
+        );
         return $order;
     }
 
@@ -69,7 +84,12 @@ class UpdateOrderStatusService extends Service
         $time = $this->GetCurrentTime();
         $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
-        $this->PushNotification($OrderUser->player_id,Notification::OrderPickedUp,$OrderUser->id,false);
+        $this->PushNotification(
+            $OrderUser->device_token,
+            Notification::OrderPickedUp,
+            $OrderUser->id,
+            auth("sanctum")->user()->id
+        );
         return $order;
     }
 

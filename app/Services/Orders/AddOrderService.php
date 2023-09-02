@@ -32,6 +32,7 @@ class AddOrderService extends Service
                 $seller->device_token,
                 Notification::OrderAdded,
                 $seller->id,
+                auth("sanctum")->user()->id,
                 auth("sanctum")->user()->name
             );
             return Order::where("id", $order->id)->with("products")->get();

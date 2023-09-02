@@ -43,6 +43,7 @@ class EnterPayPalResponseController extends Controller
                $seller->device_token,
                Notification::PAID,
                $request->seller_id,
+               auth("sanctum")->user()->id,
                auth("sanctum")->user()->name
            );
            return $this->returnSuccessMessage(__("responses.Payment is done successfully."));
