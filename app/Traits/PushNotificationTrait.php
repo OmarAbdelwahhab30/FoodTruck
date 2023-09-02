@@ -35,7 +35,7 @@ trait PushNotificationTrait
                 ->withNotification(
                     \Kreait\Firebase\Messaging\Notification::create(
                         'FoodTruck Notification',
-                        $notifications['notification_ar']." | ".$notifications['notification_en']
+                        $notifications['notification_ar']." \n ".$notifications['notification_en']
                     ));
             $this->messaging->send($message);
         }
@@ -54,7 +54,7 @@ trait PushNotificationTrait
         $notification_ar = $this->getArNotification($type);
         $notification_en = $this->getEnNotification($type);
         $notification_en = str_replace("@", $user_name . " ", $notification_en);
-        $notification_ar = str_replace("@", $user_name . " ", $notification_ar);
+        $notification_ar = utf8_encode(str_replace("@", $user_name . " ", $notification_ar));
         return [
             'notification_ar' => $notification_ar,
             'notification_en' => $notification_en,
