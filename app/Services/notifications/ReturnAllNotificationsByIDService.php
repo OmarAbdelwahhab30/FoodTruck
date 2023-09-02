@@ -7,11 +7,12 @@ use App\Models\User_Notification;
 
 class ReturnAllNotificationsByIDService extends \App\Services\Service
 {
-    public function ReturnNotificationsByUserID(): array
+    public function ReturnNotificationsByUserID()
     {
         $user_id = auth("sanctum")->user()->id;
         return User_Notification::where("user_id",$user_id)
             ->select("id","notification_".app()->getLocale()." as notification")
-            ->OrderBy("created_at","ASC");
+            ->OrderBy("created_at","ASC")
+            ->get();
     }
 }
