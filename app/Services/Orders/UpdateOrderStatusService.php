@@ -6,10 +6,16 @@ use App\Abstracts\Notification;
 use App\Events\Order\SendOrderStatusEvent;
 use App\Models\Order;
 use App\Services\Service;
+use Kreait\Firebase\Exception\FirebaseException;
+use Kreait\Firebase\Exception\MessagingException;
 
 class UpdateOrderStatusService extends Service
 {
 
+    /**
+     * @throws MessagingException
+     * @throws FirebaseException
+     */
     public function AcceptOrder($request)
     {
         $order = Order::where("id", $request->order_id)->update([
