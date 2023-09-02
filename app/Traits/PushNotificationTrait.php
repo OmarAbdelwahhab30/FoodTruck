@@ -28,7 +28,7 @@ trait PushNotificationTrait
         }else{
             $notifications = $this->GetNotificationsWithoutReplacement($type);
         }
-        $this->AddNotificationToDB($notifications,$receiver_id);
+        $this->AddNotificationToDB($notifications,$receiver_id,$sender_id);
 
         if ($device_token  != null){
             $message = CloudMessage::withTarget('token',$device_token)
@@ -41,12 +41,13 @@ trait PushNotificationTrait
         }
     }
 
-    private function AddNotificationToDB($notifications,$receiver_id): void
+    private function AddNotificationToDB($notifications,$receiver_id,$sender_id): void
     {
         User_Notification::create([
             'notification_ar' => $notifications['notification_ar'],
             'notification_en' => $notifications['notification_en'],
             'user_id'         => $receiver_id,
+            'sender_id'       =>
         ]);
     }
     private function GetNotificationsWithReplacement($type, $user_name): array|string
