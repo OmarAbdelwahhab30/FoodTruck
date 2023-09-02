@@ -30,10 +30,6 @@ class SendNotifications implements ShouldQueue
      *
      * @return void
      */
-    public function __invoke(Messaging $messaging)
-    {
-        $this->messaging = $messaging;
-    }
 
     public function __construct($check,$notification)
     {
