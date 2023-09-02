@@ -54,11 +54,7 @@ trait PushNotificationTrait
         $notification_ar = $this->getArNotification($type);
         $notification_en = $this->getEnNotification($type);
         $notification_en = str_replace("@", $user_name . " ", $notification_en);
-       // $notification_ar = str_replace("@", $user_name . " ", $notification_ar);
-        $parts = explode('@', $notification_ar, 2);
-
-        // Reconstruct the sentence with the username in the desired position
-        $notification_ar = trim($parts[1]) . ' ' . $user_name . ' ' . trim($parts[0]);
+        $notification_ar = $this->ExplodeNotificationInArabic($user_name,$notification_ar);
 
         return [
             'notification_ar' => $notification_ar,
@@ -66,6 +62,11 @@ trait PushNotificationTrait
         ];
     }
 
+    private function ExplodeNotificationInArabic($user_name,$notification_ar)
+    {
+        $parts = explode('@', $notification_ar, 2);
+        return trim($parts[1]) . ' ' . $user_name . ' ' . trim($parts[0]);
+    }
 
     private function GetNotificationsWithoutReplacement($type): array
     {
