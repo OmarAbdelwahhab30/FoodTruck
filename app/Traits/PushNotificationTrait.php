@@ -33,9 +33,13 @@ trait PushNotificationTrait
         $this->AddNotificationToDB($notifications,$receiver_id);
 
         if ($device_token  != null){
-            $message = CloudMessage::withTarget('token', $device_token)
-                ->withNotification($notifications); // optional
+            $message = CloudMessage::fromArray([
+                'token' => $device_token,
+                'notification' => $notifications, // optional
+                'data' => $notifications, // optional
+            ]);
             $this->messaging->send($message);
+
         }
     }
 
