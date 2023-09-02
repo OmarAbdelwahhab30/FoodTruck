@@ -15,7 +15,7 @@ class User_Notification extends Model
 
     protected function serializeDate(DateTimeInterface $date): string
     {
-        return $date->format('D, d M  H:i a');
+        return $date->format('D h:i a');
     }
     public function user()
     {
