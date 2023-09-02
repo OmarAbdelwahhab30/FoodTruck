@@ -44,20 +44,21 @@ class SendNotifications implements ShouldQueue
      */
     public function handle()
     {
-        $topic = "";
-        if ($this->check && count($this->check) > 1) {
-            $topic = "both";
-            $this->SaveNotificationToDBForAll($this->notification);
-        } elseif ($this->check && count($this->check) == 1) {
-            if ($this->check[0] == "users") {
-                $topic = "customers";
-                $this->SaveNotificationToDBForCustomers($this->notification);
-            } elseif ($this->check[0] == "sellers") {
-                $topic = "sellers";
-                $this->SaveNotificationToDBForSellers($this->notification);
-            }
-        }
-        $message = CloudMessage::withTarget('topic', $topic)->withNotification([$this->notification]);
+//        $topic = "";
+//        if ($this->check && count($this->check) > 1) {
+//            $topic = "both";
+//            $this->SaveNotificationToDBForAll($this->notification);
+//        } elseif ($this->check && count($this->check) == 1) {
+//            if ($this->check[0] == "users") {
+//                $topic = "customers";
+//                $this->SaveNotificationToDBForCustomers($this->notification);
+//            } elseif ($this->check[0] == "sellers") {
+//                $topic = "sellers";
+//                $this->SaveNotificationToDBForSellers($this->notification);
+//            }
+//        }
+//        dd($topic);
+        $message = CloudMessage::withTarget('topic', "sellers")->withNotification([$this->notification]);
         $this->messaging->send($message);
     }
 
