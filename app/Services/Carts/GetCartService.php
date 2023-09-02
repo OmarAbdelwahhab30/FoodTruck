@@ -22,7 +22,7 @@ class GetCartService extends Service
                 $qq->select("*");
             });
             $q->with("truck", function ($qq) {
-                $qq->select("id", "delivery");
+                $qq->select("id", "delivery","delivery_price");
             });
         }])->where("id", $request->cart_id)->where("user_id", $user->id)->select("id", "truck_id")->get();
     }
