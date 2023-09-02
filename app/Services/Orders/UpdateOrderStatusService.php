@@ -30,13 +30,9 @@ class UpdateOrderStatusService extends Service
         $time = $this->GetCurrentTime();
         $this->broadCastOrderStatus($request->order_id,$time);
         $OrderUser = $this->getOrderUser($request->order_id);
-        $message = CloudMessage::withTarget('token', $OrderUser->device_token)
-            ->withNotification(
-                ['ww'=>'www']
-            ) // optional
-            ->withData(['ww'=>'www']) // optional
-        ;
-
+        $message = CloudMessage::withTarget('token',$OrderUser->device_token)
+            ->withNotification(\Kreait\Firebase\Messaging\Notification::create('dddd', 'asdasdasdsada'))
+            ->withData(['key' => 'value']);
         $this->messaging->send($message);
         //$this->PushNotification($OrderUser->device_token,Notification::OrderAccepted,$OrderUser->id,false);
         return $order;
