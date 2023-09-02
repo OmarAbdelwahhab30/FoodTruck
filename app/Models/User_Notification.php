@@ -9,6 +9,7 @@ class User_Notification extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     protected $table = "users_notifications";
 
     public function user()
