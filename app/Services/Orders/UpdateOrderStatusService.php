@@ -32,9 +32,9 @@ class UpdateOrderStatusService extends Service
         $OrderUser = $this->getOrderUser($request->order_id);
         $message = CloudMessage::withTarget('token', $OrderUser->device_token)
             ->withNotification(
-                'ww'
+                ['ww'=>'www']
             ) // optional
-            ->withData([]) // optional
+            ->withData(['ww'=>'www']) // optional
         ;
 
         $this->messaging->send($message);
