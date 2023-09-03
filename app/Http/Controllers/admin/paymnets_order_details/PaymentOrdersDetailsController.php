@@ -11,6 +11,7 @@ class PaymentOrdersDetailsController extends Controller
     public function index()
     {
         $payments = Payment::paginate(5);
+        dd($payments);
         return view("admin.payments_details.index",compact("payments"));
     }
 

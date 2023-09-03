@@ -12,10 +12,6 @@ class Payment extends Model
 
     protected $hidden = [
         'payment_response',
-        "payment_id",
-        "updated_at",
-        "customer_id",
-        "payer_email"
     ];
     protected $guarded = [];
 
