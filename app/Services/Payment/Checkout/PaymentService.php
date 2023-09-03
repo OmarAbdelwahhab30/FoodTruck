@@ -51,7 +51,7 @@ class PaymentService extends Service
 
         $request->capture = false;
         $request->reference = "reference";
-        $request->amount = $req->amount;
+        $request->amount = $req->amount * 100;  // to convert from halala to riyal
         $request->currency = Currency::$SAR;
         $request->processing_channel_id = getenv("CHECKOUT_PROCESSING_CHANNEL_ID");
         $response = $this->api->getPaymentsClient()->requestPayment($request);
