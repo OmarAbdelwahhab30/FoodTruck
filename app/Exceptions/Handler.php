@@ -49,8 +49,8 @@ class Handler extends ExceptionHandler
         });
     }
 
-    public function render($request, Throwable $exception)
-    {
-        return view('er');
-    }
+//    public function render($request, Throwable $exception)
+//    {
+//        return view('er');
+//    }
 }
