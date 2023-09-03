@@ -11,7 +11,7 @@ trait EnvHandlerTrait
     public function changeEnv($key, $value)
     {
         $path = base_path('.env');
-        $FIRST  = $key."=".env((string)$key);
+        $FIRST  = $key."=".getenv((string)$key);
         $SECOND = $key."=".$value;
         if (file_exists($path))
         {

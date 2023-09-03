@@ -38,10 +38,18 @@ class ChangeEnvController extends Controller
 
     public function change(\Illuminate\Http\Request $request)
     {
-        $return = $this->changeEnv($request->key, $request->value);
-        if ($return) {
-            return redirect()->back()->with("success", __("admin.The value has been changed successfully"));
+
+        $arr = $this->HandleRequest($request);
+        foreach ($arr as $key => $value){
+            $this->changeEnv($key,$value);
         }
-        return redirect()->back()->with("error", __("admin.Something went wrong try again later"));
+        return redirect()->back()->with("success", __("admin.The value has been changed successfully"));
+    }
+
+    private function HandleRequest($request): array
+    {
+        $arr = $request->toArray();
+        unset($arr['_token']);
+        return array_filter($arr);
     }
 }
