@@ -24,7 +24,6 @@ class AddOrderService extends Service
     {
         $seller = Truck::find($request->truck_id)->user;
         return DB::transaction(function () use ($request, $seller) {
-
             $order = $this->addOrder($request);
             $this->attachProduct($request->products, $order);
             broadcast(new OrderHasAdded($order, $order->user))->toOthers();
@@ -50,6 +49,8 @@ class AddOrderService extends Service
             'delivery_type_en' => $request->delivery_type_en,
             'delivery_type_ar' => $request->delivery_type_ar,
             'total_price' => $request->total_price,
+            'status_en' => "pending",
+            'status_ar' => "في قائمة الإنتظار",
             'user_id' => auth("sanctum")->user()->id,
         ]);
     }
