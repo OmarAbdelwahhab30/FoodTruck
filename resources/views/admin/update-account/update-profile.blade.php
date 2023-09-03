@@ -102,7 +102,7 @@ $z = " | ".__("admin.Update Profile");
                                                         <input class="form-control" style="width: 60%;border-radius: 3px" type="tel" name="phone" value="{{old("phone")}}"
                                                                id="phone"
                                                                placeholder="{{auth()->user()->phone}}">
-                                                        <select style="width: 40%;border-radius: 3px" required class="form-control text-lg-end"
+                                                        <select style="width: 40%;border-radius: 3px" class="form-control text-lg-end"
                                                                 name="countryCode" id="">
                                                             <option data-countryCode="GB" value="{{old("countryCode")}}" hidden Selected>
                                                                 Choose Country Code
