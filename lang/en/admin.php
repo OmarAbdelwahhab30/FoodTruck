@@ -134,6 +134,8 @@ return [
     "Click Here to search about certain user" => "Click Here to search about certain user ",
     "Users" => "Users",
     "NO DATE FOUND" => "NO DATE FOUND",
+    "Register again please."    => "Register again please.",
+
     'Customer Search' => "Customer Search",
     'Here, You can Search About Certain Customer' => "Here, You can Search About Certain Customer",
     'Enter the phone of the customer' => "Enter the phone of the customer",

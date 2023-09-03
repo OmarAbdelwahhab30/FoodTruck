@@ -42,15 +42,15 @@ class Handler extends ExceptionHandler
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-//    public function register()
-//    {
-//        $this->reportable(function (Throwable $e) {
-//            //
-//        });
-//    }
-
-    public function render($request, Throwable $exception)
+    public function register()
     {
-        return view('er');
+        $this->reportable(function (Throwable $e) {
+            //
+        });
     }
+
+//    public function render($request, Throwable $exception)
+//    {
+//        return view('er');
+//    }
 }

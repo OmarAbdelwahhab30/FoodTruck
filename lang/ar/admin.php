@@ -287,5 +287,6 @@ return [
     "Payments" => "المدفوعات",
     "Seller information" => "بيانات البائع",
     "Download The Invoice"  => "تحميل الفاتورة",
-    "er"                    => "معذرةً حدث خطأ ما"
+    "er"                    => "معذرةً حدث خطأ ما",
+    "Register again please."    => "أعد إرسال بياناتك"
 ];

@@ -18,8 +18,6 @@ class OrderHasAdded implements ShouldBroadcastNow
 
     public function __construct(private Order $order, private User $user)
     {
-        $this->order = $order;
-        $this->user = $user;
     }
 
 
@@ -40,6 +38,8 @@ class OrderHasAdded implements ShouldBroadcastNow
 
         return [
             'order' => [
+                'delivery_price'    => $this->order->delivery_price,
+                'total_price'    => $this->order->total_price,
                 'created_at' => $this->order->created_at,
                 "delivery_type" => [$this->order->delivery_type_en, $this->order->delivery_type_ar],
                 "status" => [
@@ -51,6 +51,7 @@ class OrderHasAdded implements ShouldBroadcastNow
             ],
             'customer' => [
                 $this->user->name,
+                $this->user->id,
             ],
         ];
     }

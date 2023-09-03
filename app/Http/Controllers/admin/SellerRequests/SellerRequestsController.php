@@ -63,7 +63,7 @@ class SellerRequestsController
         try {
             $response = $client->sms()->send(
                 new \Vonage\SMS\Message\SMS($request->phone, "Food-Truck",
-                    $request->message . " Register again please.")
+                    $request->message . __("admin.Register again please."))
             );
         } catch (Throwable  $exception) {
             return redirect()->to(LaravelLocalization::getCurrentLocale()."/admin/SellersRequests")
