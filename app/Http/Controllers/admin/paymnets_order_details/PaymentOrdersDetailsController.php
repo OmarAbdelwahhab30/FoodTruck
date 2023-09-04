@@ -15,12 +15,19 @@ class PaymentOrdersDetailsController extends Controller
     }
 
 
-    public function display($payment_id)
+    public function display($payment_id,$order_id)
     {
-        $information = Payment::where("id",$payment_id)->with("order",function ($q){
-            $q->with("products");
+        $information = Payment::where("id",$payment_id)->with("order",function ($q) use ($order_id){
+            $q->with("products",function ($q) use ($order_id){
+                $q->with("orderProduct",function ($qq) use ($order_id){
+                    $qq->where("order_id",$order_id);
+                });
+            });
             $q->with("truck");
             $q->with("user");
+            $q->with("orderProduct",function ($qqq){
+                $qqq->with("product");
+            });
         })->get();
         $vat = Value::first()->vat;
         return view("admin.payments_details.details",compact('information','vat'));

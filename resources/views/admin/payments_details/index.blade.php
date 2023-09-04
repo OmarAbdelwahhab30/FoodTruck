@@ -56,7 +56,7 @@ $z = " | ".__("admin.Payment Detail");
                                                         <div class="badge bg-soft-success font-size-12">{{$payment->payment_status}}</div>
                                                     </td>
                                                     <td>
-                                                        <a href="{{route("admin.payments.details.display",$payment->id)}}" class="px-3 text-primary">
+                                                        <a href="{{route("admin.payments.details.display",["payment_id"=>$payment->id,"order_id"=>$payment->order->id])}}" class="px-3 text-primary">
                                                             <i class="uil uil-eye font-size-18">
                                                             </i>
                                                         </a>

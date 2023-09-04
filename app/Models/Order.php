@@ -39,6 +39,9 @@ class Order extends Model
     {
         return $this->hasOne(Payment::class);
     }
-
+    public function orderProduct(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(OrderProduct::class);
+    }
 
 }

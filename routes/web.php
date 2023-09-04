@@ -141,7 +141,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
 
             /*payments details*/
             Route::get("payments_indexing",[PaymentOrdersDetailsController::class,"index"])->name("admin.payments.details.show");
-            Route::get("payments_details_display/{payment_id}",[PaymentOrdersDetailsController::class,"display"])->name("admin.payments.details.display");
+            Route::get("payments_details_display/{payment_id}/{order_id}",[PaymentOrdersDetailsController::class,"display"])->name("admin.payments.details.display");
             Route::get('invoice/{payment_id}', [PaymentOrdersDetailsController::class, 'Invoice'])->name("pdf.download");
         });
 

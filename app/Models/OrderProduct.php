@@ -28,4 +28,9 @@ class OrderProduct extends Pivot
     {
         return $this->belongsTo(Size::class);
     }
+
+    public function product()
+    {
+        return $this->hasOne(Product::class,"id","product_id");
+    }
 }

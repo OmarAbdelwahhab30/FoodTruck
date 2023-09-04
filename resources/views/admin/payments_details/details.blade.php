@@ -21,6 +21,7 @@ $z = " | ".__("admin.Payment Detail");
                     </div>
                 </div>
                 <!-- end page title -->
+{{--                {{dd($information)}}--}}
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
@@ -82,20 +83,18 @@ $z = " | ".__("admin.Payment Detail");
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($information[0]->order->products as $product)
-                                                @foreach($product as $pro)
+                                            @foreach($information[0]->order->orderProduct as $raw)
                                                 <tr>
                                                     <th scope="row">{{$loop->iteration}}</th>
                                                     <td>
-                                                        <h5 class="font-size-15 mb-1">{{$pro->name}}</h5>
+                                                        <h5 class="font-size-15 mb-1">{{$raw->product->name}}</h5>
                                                     </td>
-                                                    <td>{{$pro->orderProduct->size->price}}</td>
-                                                    <td>{{$pro->orderProduct->count}}</td>
-                                                    <td class="text-end">{{$pro->orderProduct->count
+                                                    <td>{{$raw->size->price}}</td>
+                                                    <td>{{$raw->count}}</td>
+                                                    <td class="text-end">{{$raw->count
                                                         *
-                                                        $pro->orderProduct->size->price}}</td>
+                                                        $raw->size->price}}</td>
                                                 </tr>
-                                                @endforeach
                                             @endforeach
                                             <tr>
                                                 <th scope="row" colspan="4" class="border-0 text-end">{{__("admin.Value Added Tax")}} </th>
