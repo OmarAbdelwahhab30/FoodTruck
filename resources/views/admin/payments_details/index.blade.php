@@ -50,7 +50,7 @@ $z = " | ".__("admin.Payment Detail");
                                                     </td>
                                                     <td>{{$payment->user->name}}</td>
                                                     <td>
-                                                        {{$payment->order->total_price == null ? "not-defined":$payment->order->total_price}} S.R
+                                                        {{$payment->order == null ? "not-defined":$payment->order->total_price}} S.R
                                                     </td>
                                                     <td>
                                                         <div class="badge bg-soft-success font-size-12">{{$payment->payment_status}}</div>
