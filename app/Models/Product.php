@@ -53,8 +53,8 @@ class Product extends Model
         return $this->hasMany(Optional::class);
     }
 
-    public function orderProduct(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function orderProduct(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasOne(OrderProduct::class);
+        return $this->hasMany(OrderProduct::class);
     }
 }
