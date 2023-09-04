@@ -15,7 +15,7 @@ $z = " | ".__("admin.Payment Detail");
                     </div>
                 </div>
                 <!-- end page title -->
-                @if(!is_null($payments[0]))
+                @if(!empty($payments[0]))
                     <div class="row">
                     <div class="col-lg-12">
                         <div class="table-responsive mb-4">
@@ -50,7 +50,7 @@ $z = " | ".__("admin.Payment Detail");
                                                     </td>
                                                     <td>{{$payment->user->name}}</td>
                                                     <td>
-                                                        {{$payment->order->total_price}} S.R
+                                                        {{$payment->order->total_price == null ? "not-defined":$payment->order->total_price}} S.R
                                                     </td>
                                                     <td>
                                                         <div class="badge bg-soft-success font-size-12">{{$payment->payment_status}}</div>
