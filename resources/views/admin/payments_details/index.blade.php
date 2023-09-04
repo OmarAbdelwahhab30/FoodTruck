@@ -15,7 +15,7 @@ $z = " | ".__("admin.Payment Detail");
                     </div>
                 </div>
                 <!-- end page title -->
-                @if(!empty($payments[0]))
+                @if(!is_null($payments[0]))
                     <div class="row">
                     <div class="col-lg-12">
                         <div class="table-responsive mb-4">
