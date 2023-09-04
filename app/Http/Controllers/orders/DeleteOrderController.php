@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\orders;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Orders\DeleteOrderRequest;
+use App\Http\Requests\orders\DeleteOrderRequest;
 use App\Services\Orders\DeleteOrderService;
 use Illuminate\Support\Facades\Gate;
 
