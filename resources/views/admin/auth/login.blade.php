@@ -40,11 +40,6 @@
                                 @enderror
                             </div>
 
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" name="remember" id="auth-remember-check">
-                                <label class="form-check-label"  for="auth-remember-check">{{__("admin.Remember me")}}</label>
-                            </div>
-
                             <div class="mt-3 text-end">
                                 <button class="btn btn-primary w-sm waves-effect waves-light" type="submit">{{__("admin.login")}}</button>
                             </div>

@@ -31,3 +31,5 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::post("AddContactUsContent",[ContactUsController::class,'AddContactUsContent']);
 
 });
+
+Route::get("returnLogoPath",[ReturnValuesController::class,"returnLogoPath"]);

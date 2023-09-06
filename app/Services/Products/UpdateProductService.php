@@ -44,7 +44,8 @@ class UpdateProductService extends Service
     public function deleteProductOptionalByOptionalID($request)
     {
         $optional = Optional::find($request->optional_id);
-        if ($optional->delete()) {
+        if ($optional->delete())
+        {
             return true;
         }
         return false;

@@ -37,7 +37,7 @@ $z = " | " . __("admin.Change Configurations");
                                     <h4 class="card-title mb-4">{{$key}}</h4>
                                     <form class="outer-repeater" method="get" action="{{route("env.change")}}">
                                         @csrf
-                                    @foreach($value as $val)
+                                        @foreach($value as $val)
                                             <div data-repeater-list="outer-group" class="outer">
                                                 <div data-repeater-item="" class="outer">
                                                     <div class="mb-3">
@@ -49,10 +49,10 @@ $z = " | " . __("admin.Change Configurations");
                                                 </div>
                                             </div>
 
-                                            @endforeach
+                                        @endforeach
                                         <button type="submit" class="btn btn-primary mb-4 w-25"
                                                 style="height:40px">{{__("admin.Submit")}}</button>
-                                        </form>
+                                    </form>
                                 </div>
 
                             </div>
@@ -62,10 +62,32 @@ $z = " | " . __("admin.Change Configurations");
                     </div>
                     <!-- end row -->
                 @endforeach
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Application logo</h4>
+                                <p class="card-title-desc">
+                                    Upload the logo of the application
+                                </p>
+                                <form method="post" action="{{route("env.logo")}}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div>
+                                        <label class="form-label" for="customFile">Upload</label>
+                                        <input type="file" name="logo" class="form-control" id="customFile"/>
+                                    </div>
+                                    <div class="text-center mt-4">
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light">Upload
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+
             </div> <!-- container-fluid -->
         </div>
         <!-- End Page-content -->
-
-
     </div>
 @endsection

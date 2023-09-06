@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin\ChangeEnv;
 
 use App\Http\Controllers\Controller;
+use App\Models\Logo;
 
 class ChangeEnvController extends Controller
 {
@@ -44,6 +45,17 @@ class ChangeEnvController extends Controller
             $this->changeEnv($key,$value);
         }
         return redirect()->back()->with("success", __("admin.The value has been changed successfully"));
+    }
+
+    public function changeLogo(\Illuminate\Http\Request $request)
+    {
+        $logoName = $this->UploadFile($request->file("logo"));
+        $logo = Logo::find(1);
+        $logo->logo = $logoName;
+        if ($logo->save()){
+            return redirect()->back()->with("success", __("admin.The value has been changed successfully"));
+        }
+        return redirect()->back()->with("error", __("admin.Something went wrong try again later"));
     }
 
     private function HandleRequest($request): array

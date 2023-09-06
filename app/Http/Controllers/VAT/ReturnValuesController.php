@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\VAT;
 
 use App\Http\Controllers\Controller;
+use App\Models\Logo;
 use App\Models\Value;
 use Illuminate\Support\Facades\Gate;
 
@@ -32,6 +33,11 @@ class ReturnValuesController extends Controller
             return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
         return Value::select("kilo_price")->first();
+    }
+
+    public function returnLogoPath()
+    {
+        return $this->returnData("logo",Logo::find(1));
     }
 
 

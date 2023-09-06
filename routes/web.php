@@ -138,6 +138,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
             /*Change Env vars*/
             Route::get("index", [\App\Http\Controllers\admin\ChangeEnv\ChangeEnvController::class, "index"])->name("admin.env.index");
             Route::get("changeEnv", [\App\Http\Controllers\admin\ChangeEnv\ChangeEnvController::class, "change"])->name("env.change");
+            Route::post("logo",[\App\Http\Controllers\admin\ChangeEnv\ChangeEnvController::class,"changeLogo"])->name("env.logo");
+
 
             /*payments details*/
             Route::get("payments_indexing",[PaymentOrdersDetailsController::class,"index"])->name("admin.payments.details.show");

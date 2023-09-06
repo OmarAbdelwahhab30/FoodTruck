@@ -37,8 +37,6 @@ class User extends Authenticatable
         return $date->format('h:i:s a m/d/Y');
     }
 
-
-
     public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Role::class);

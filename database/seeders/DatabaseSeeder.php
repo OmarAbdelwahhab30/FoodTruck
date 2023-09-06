@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\EnNotification;
 use App\Models\Notification;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +19,8 @@ class DatabaseSeeder extends Seeder
        //$this->call(RoleAndPermissionSeeder::class);
         //$this->call(FoodTypeSeeder::class);
         //$this->call(ValuesSeeder::class);
-     //   $this->call(NotificationsSeeder::class);
+     // $this->call(NotificationsSeeder::class);
+        //$this->call(AboutusAndTermsSeeder::class);
+        $this->call(LogoSeeder::class);
     }
 }
