@@ -4,8 +4,7 @@ namespace App\Services\Trucks;
 
 use App\Models\Product;
 use App\Models\Section;
-use App\Models\Truck;
-use Illuminate\Support\Facades\DB;
+
 
 class GetAllProductsService extends \App\Services\Service
 {

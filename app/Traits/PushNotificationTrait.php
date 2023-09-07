@@ -16,46 +16,56 @@ trait PushNotificationTrait
     {
         $this->messaging = $messaging;
     }
+
     /**
      * @throws MessagingException
      * @throws FirebaseException
      */
-    public function PushNotification($device_token, $type, $receiver_id,$sender_id,$user_name = false): void
+    public function PushNotification($device_token, $type, $receiver_id, $sender_id, $user_name = false)
     {
         $notifications = [];
         if ($user_name !== false) {
             $notifications = $this->GetNotificationsWithReplacement($type, $user_name);
-        }else{
+        } else {
             $notifications = $this->GetNotificationsWithoutReplacement($type);
         }
-        $this->AddNotificationToDB($notifications,$receiver_id,$sender_id);
+        $this->AddNotificationToDB($notifications, $receiver_id, $sender_id);
 
-        if ($device_token  != null){
-            $message = CloudMessage::withTarget('token',$device_token)
+        if ($device_token != null) {
+
+            $message = CloudMessage::withTarget('token', $device_token)
                 ->withNotification(
                     \Kreait\Firebase\Messaging\Notification::create(
                         'FoodTruck Notification',
-                        $notifications['notification_ar']." \n ".$notifications['notification_en']
+                        $notifications['notification_ar'] . " \n " . $notifications['notification_en']
                     ));
-            $this->messaging->send($message);
+            try {
+                $this->messaging->send($message);
+            } catch (\Exception $e) {
+                return response()->json([
+                    'status' => $e->getCode(),
+                    'message ' => $e->getMessage(),
+                ]);
+            }
         }
     }
 
-    private function AddNotificationToDB($notifications,$receiver_id,$sender_id): void
+    private function AddNotificationToDB($notifications, $receiver_id, $sender_id): void
     {
         User_Notification::create([
             'notification_ar' => $notifications['notification_ar'],
             'notification_en' => $notifications['notification_en'],
-            'user_id'         => $receiver_id,
-            'sender_id'       => $sender_id,
+            'user_id' => $receiver_id,
+            'sender_id' => $sender_id,
         ]);
     }
+
     private function GetNotificationsWithReplacement($type, $user_name): array|string
     {
         $notification_ar = $this->getArNotification($type);
         $notification_en = $this->getEnNotification($type);
         $notification_en = str_replace("@", $user_name . " ", $notification_en);
-        $notification_ar = $this->ExplodeNotificationInArabic($user_name,$notification_ar);
+        $notification_ar = $this->ExplodeNotificationInArabic($user_name, $notification_ar);
 
         return [
             'notification_ar' => $notification_ar,
@@ -63,7 +73,7 @@ trait PushNotificationTrait
         ];
     }
 
-    private function ExplodeNotificationInArabic($user_name,$notification_ar)
+    private function ExplodeNotificationInArabic($user_name, $notification_ar)
     {
         $parts = explode('@', $notification_ar, 2);
         return trim($parts[1]) . ' ' . $user_name . ' ' . trim($parts[0]);

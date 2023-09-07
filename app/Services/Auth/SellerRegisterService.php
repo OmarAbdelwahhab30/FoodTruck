@@ -23,7 +23,8 @@ class SellerRegisterService extends Service implements RegisterInterface
         return $this->Transaction($request);
     }
 
-    private function createToken(User $user){
+    private function createToken(User $user)
+    {
         return $user->createToken("personal access token")->plainTextToken;
     }
 

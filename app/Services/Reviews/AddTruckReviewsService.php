@@ -66,11 +66,10 @@ class AddTruckReviewsService extends Service
     private function UpdateTruckRate($IdOfTruckOwner,$CurrentRate)
     {
         $truck = Truck::where("user_id",$IdOfTruckOwner)->first();
-        $total_rate = ($truck->rate + $CurrentRate)/5;
+        $total_rate = $truck->rate + $CurrentRate / Review::where("to", $IdOfTruckOwner)->count() + 1;
         $truck->rate = $total_rate;
         $truck->save();
     }
-
 
 }
 
