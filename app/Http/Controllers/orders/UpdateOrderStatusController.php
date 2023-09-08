@@ -42,7 +42,7 @@ class UpdateOrderStatusController extends Controller
     public function OrderDelivered(UpdateOrderStatusRequest $request,UpdateOrderStatusService $service): \Illuminate\Http\JsonResponse
     {
         if (! Gate::allows('order-delivered')) {
-            return $this->notAuthorized(__("responses.responses.You don't have the authorization on this action."));
+            return $this->notAuthorized(__("responses.You don't have the authorization on this action."));
         }
         $Delivered = $service->OrderDelivered($request);
         if ($Delivered)
@@ -61,7 +61,7 @@ class UpdateOrderStatusController extends Controller
         $PickedUp = $service->OrderPickedUp($request);
         if ($PickedUp)
         {
-            return $this->returnSuccessMessage("responses.Order is Picked Up .");
+            return $this->returnSuccessMessage(__("responses.Order is Picked Up ."));
         }
         return $this->returnError(__("responses.Some thing went wrong ,try again later"));
     }
