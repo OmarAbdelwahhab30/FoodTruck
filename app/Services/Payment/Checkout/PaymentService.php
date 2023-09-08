@@ -89,6 +89,7 @@ class PaymentService extends Service
             'payment_method' => $request['source']['card_type'],
             'customer_id' => auth("sanctum")->user()->id,
             'order_id' => $order_id,
+            'currency'  => $request['currency'],
             'payment_response' => json_encode($request),
             'seller_id' => $seller_id,
         ]);
