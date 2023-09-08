@@ -14,7 +14,7 @@ class Service
 
      use ApiResponseHandler,FileUploaderTrait,WalletTrait,CurrentTimeTrait;
 
-    public \Kreait\Firebase\Contract\Messaging $messaging;
+    //public \Kreait\Firebase\Contract\Messaging $messaging;
 
 
 }
