@@ -44,6 +44,10 @@ class NotificationsSeeder extends Seeder
                 'en' => "@posted a review about you.",
                 'ar' => "قام @ بإضافة رأي عنك",
             ],
+            "MESSAGE"   => [
+                'en' => "@sent you a message you.",
+                'ar' => "قام @ بإرسال رسالة إليك",
+            ]
         ];
 
         foreach ($notifications as $key => $value) {
