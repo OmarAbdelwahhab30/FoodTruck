@@ -28,7 +28,7 @@ class AddOrderService extends Service
             $this->attachProduct($request->products, $order);
             broadcast(new OrderHasAdded($order, $order->user))->toOthers();
             $this->DestroyCart(auth("sanctum")->user());
-            $this->addPriceToSellerWallet($request->total_price, $seller->id);
+//            $this->addPriceToSellerWallet($request->total_price, $seller->id);
             $this->PushNotification(
                 $seller->device_token,
                 Notification::OrderAdded,
@@ -75,9 +75,9 @@ class AddOrderService extends Service
         }
     }
 
-    private function addPriceToSellerWallet($price, $seller_id)
-    {
-        Wallet::where('user_id', $seller_id)->increment('balance', $price);
-    }
+//    private function addPriceToSellerWallet($price, $seller_id)
+//    {
+//        Wallet::where('user_id', $seller_id)->increment('balance', $price);
+//    }
 
 }
