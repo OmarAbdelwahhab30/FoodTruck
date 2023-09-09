@@ -85,7 +85,8 @@ class ReturnOrderInformationService extends \App\Services\Service
     public function ReturnAllCurrentSellerOrders(): \Illuminate\Database\Eloquent\Collection|array
     {
         $user = auth("sanctum")->user();
-        return Order::with(["user" => function ($qq){
+        return Order::with(["user" => function ($qq) use ($user){
+            $qq->where("id",$user->id);
             $qq->select("id","name","image","phone");
         }])->with(["truck" => function ($q) use ($user){
             $q->where("id",$user->truck->id);
@@ -94,7 +95,8 @@ class ReturnOrderInformationService extends \App\Services\Service
             $q->select("name","delivery","delivery_price","id");
         }])->whereIn('status_en',['pending','processing'])
             ->select("id","user_id","status_".app()->getLocale()." as status"
-                ,"created_at","delivery_type_".app()->getLocale()." as delivery_type","truck_id","payment_id","total_price")->get();
+                ,"created_at","delivery_type_".app()->getLocale()." as delivery_type","truck_id",
+                "payment_id","total_price")->get();
     }
 
     public function ReturnAllPreviousSellerOrders(): \Illuminate\Database\Eloquent\Collection|array
