@@ -5,6 +5,7 @@ namespace App\Services\Carts;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Cart_Product;
+use App\Models\Value;
 use App\Services\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,8 @@ class GetCartService extends Service
     public function GetCart($request): \Illuminate\Database\Eloquent\Collection|array
     {
         $user = auth("sanctum")->user();
-        return Cart::with(["products" => function ($q) {
+        $vat = Value::all("vat");
+        $cart = Cart::with(["products" => function ($q) {
             $q->select("products.truck_id", "name", "products.id");
             $q->with("images", function ($qq) {
                 $qq->select("*");
@@ -25,5 +27,6 @@ class GetCartService extends Service
                 $qq->select("id", "delivery","delivery_price");
             });
         }])->where("id", $request->cart_id)->where("user_id", $user->id)->select("id", "truck_id")->get();
+        return $cart->merge($vat);
     }
 }
