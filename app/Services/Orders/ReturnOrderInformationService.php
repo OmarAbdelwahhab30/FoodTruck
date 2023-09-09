@@ -85,7 +85,7 @@ class ReturnOrderInformationService extends \App\Services\Service
     public function ReturnAllCurrentSellerOrders(): \Illuminate\Database\Eloquent\Collection|array
     {
         $user = auth("sanctum")->user();
-        return Order::where("user_id",$user->id)->with(["user" => function ($qq) use ($user){
+        return Order::where("truck_id",$user->truck->id)->with(["user" => function ($qq) use ($user){
             $qq->select("id","name","image","phone");
         }])->with(["truck" => function ($q) use ($user){
             $q->where("id",$user->truck->id);
@@ -101,7 +101,7 @@ class ReturnOrderInformationService extends \App\Services\Service
     public function ReturnAllPreviousSellerOrders(): \Illuminate\Database\Eloquent\Collection|array
     {
         $user = auth("sanctum")->user();
-        return Order::where("user_id",$user->id)->with(["user" => function ($qq){
+        return Order::where("truck_id",$user->truck->id)->with(["user" => function ($qq){
             $qq->select("id","name","image","phone");
         }])->with(["truck" => function ($q) use ($user){
             $q->where("id",$user->truck->id);
