@@ -20,7 +20,7 @@ class UpdateTruckInformationService
 
     public function updateTruck($request)
     {
-        return Truck::where("id", $request->id)->update(Arr::except(array_filter($request->all()), 'truck_images'));
+        return Truck::where("id", $request->id)->update(Arr::except(array_filter($request->all()), ['truck_images','lang']));
     }
 
     public function ChangeDeliveryStatus()
