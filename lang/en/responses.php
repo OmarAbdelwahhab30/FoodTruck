@@ -28,7 +28,7 @@ return [
     "Here is payment Info"                             => "Here is payment Info"  ,
     "Payment has been completed successfully."         => "Completed successfully.",
     "Product has been added successfully"              => "Added successfully" ,
-    "Product has been updated successfully"            => "Deleted successfully",
+    "Product has been updated successfully"            => "Updated successfully",
     "Product Image has been deleted successfully"      => "Deleted successfully",
     "Product has been removed successfully."            => "Removed successfully.",
     "Review has been added successfully."              => "Added successfully." ,
