@@ -27,7 +27,7 @@ class UpdateProfileRequest extends FormRequest
         return [
             'name'   => 'nullable|string|unique:users',
             'email'  => 'nullable|email|unique:users',
-            'phone'  => ['nullable',"min:4","unique:users"],
+            'phone'  => ['nullable',"min:4","unique:users","integer"],
             'password' => [
                 'nullable',
                 'min:8',

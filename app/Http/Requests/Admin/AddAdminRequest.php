@@ -27,7 +27,7 @@ class AddAdminRequest extends FormRequest
         return [
             'name'   => 'required|string|unique:users',
             'email'  => 'required|email|unique:users',
-            'phone'  => ['required',"min:4","unique:users"],
+            'phone'  => ['required',"min:4","unique:users","integer"],
             'password' => [
                 'required',
                 'min:8',
