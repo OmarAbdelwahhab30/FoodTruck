@@ -13,6 +13,9 @@ class Order extends Model
     protected $guarded = [];
 
 
+    protected $casts = [
+        'total_price'   => 'decimal:3'
+    ];
     protected function serializeDate(DateTimeInterface $date): string
     {
         return $date->format('h:i:s a');

@@ -12,6 +12,9 @@ class Wallet extends Model
     protected $guarded = [];
     public $timestamps = false;
 
+    protected $casts =[
+        'balance'   => 'decimal:3'
+    ];
     public function user(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(User::class);

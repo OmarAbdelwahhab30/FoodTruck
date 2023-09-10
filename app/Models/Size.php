@@ -14,7 +14,7 @@ class Size extends Model
     public $timestamps = false;
 
     protected $casts = [
-      'price'    => 'decimal:6'
+      'price'    => 'decimal:3'
     ];
     protected function serializeDate(DateTimeInterface $date) : string
     {

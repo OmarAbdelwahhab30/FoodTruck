@@ -12,6 +12,9 @@ class Request extends Model
     protected $table = "requests";
     protected $guarded = [];
 
+    protected $casts =[
+        'amount'   => 'decimal:3'
+    ];
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
