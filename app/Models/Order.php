@@ -14,7 +14,7 @@ class Order extends Model
 
 
     protected $casts = [
-        'total_price'   => 'double:3'
+        'total_price'   => 'decimal:3'
     ];
     protected function serializeDate(DateTimeInterface $date): string
     {
