@@ -29,9 +29,9 @@ class addProductRequest extends FormRequest
             'images' => 'required|array|max:3', // <----
             'images.*' => 'mimes:jpeg,jpg,png',
             'description'   => ['required'],
-            'optionals' => 'required|array',
-            'optionals.*.optional' => 'string',
-            'optionals.*.price' => 'numeric',
+            'optionals' => 'array',
+            'optionals.*.optional' => 'required_with:optionals|string',
+            'optionals.*.price' => 'required_with:optionals|numeric',
             'sizes'     => 'required|array',
             'sizes.*.size'    => 'required|string',
             'sizes.*.price'    => 'required|numeric'
