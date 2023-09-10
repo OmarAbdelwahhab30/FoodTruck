@@ -23,8 +23,8 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'latitude' => 'decimal:6',
-        'longitude' => 'decimal:6'
+        'latitude' => 'double:6',
+        'longitude' => 'double:6'
     ];
 
 

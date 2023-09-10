@@ -13,7 +13,7 @@ class Wallet extends Model
     public $timestamps = false;
 
     protected $casts =[
-        'balance'   => 'decimal:3'
+        'balance'   => 'double:3'
     ];
     public function user(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
