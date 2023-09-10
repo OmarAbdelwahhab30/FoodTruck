@@ -13,7 +13,9 @@ class Optional extends Model
     protected $guarded = [];
 
     public $timestamps = false;
-
+    protected $casts = [
+        'price'   => 'double:3'
+    ];
     protected function serializeDate(DateTimeInterface $date) : string
     {
         return $date->format('h:i:s a m/d/Y');
