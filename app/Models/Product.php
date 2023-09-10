@@ -15,7 +15,10 @@ class Product extends Model
         'updated_at',
         "section_id",
     ];
-
+    protected $casts = [
+        'latitude' => 'decimal:6',
+        'longitude' => 'decimal:6'
+    ];
 
 
     public function truck(): \Illuminate\Database\Eloquent\Relations\BelongsTo

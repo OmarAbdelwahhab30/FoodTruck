@@ -20,7 +20,9 @@ class AddProductService extends Service
 
             $product = $this->addProduct($request);
             $this->addProductImages($request->file('images'),$product->id);
-            $this->addOptionals($request->optionals,$product->id);
+            if (isset($request->optionals) && $request->optionals != null){
+                $this->addOptionals($request->optionals,$product->id);
+            }
             $this->addSizes($request->sizes,$product->id);
             return $product->id;
         });
@@ -51,7 +53,6 @@ class AddProductService extends Service
 
     private function addOptionals($optionals,$product_id)
     {
-
         foreach ($optionals as $optional)
         {
             Optional::create([
