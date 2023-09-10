@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("calories")->nullable();
+            $table->string("calories")->default(0);
             $table->text("description");
             $table->timestamps();
         });
