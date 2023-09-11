@@ -28,7 +28,7 @@ class CustomerRegisterRequest extends FormRequest implements RegisterRequestInte
     {
         return [
             'name'      => 'required|string|unique:users|max:191',
-            'phone'         => 'required|max:20|unique:users|integer',
+            'phone'         => 'required|max:20|unique:users',
             'password' => [
                 'required',
                 'min:8',

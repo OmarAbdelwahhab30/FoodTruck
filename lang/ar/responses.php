@@ -3,7 +3,7 @@
 return [
     "You don't have the authorization on this action." => 'أنت لا تمتلك الصلاحية لتنفيذ هذا الأمر.',
     "Some thing went wrong ,try again later" => "حدث خطأ ما , حاول لاحقًا.",
-    "User Data has been updated successfully" => "تم تحيث بيانات المستخدم بنجاح",
+    "User Data has been updated successfully" => "تم تحديث بيانات المستخدم بنجاح",
     "Current Password is not correct" => "كلمة المرور الحالية غير صحيحة.",
     "Password has been changed successfully" => "تم تغيير كلة المرور بنجاح.",
     "Here is User Data" => "هذه بيانات المستخدم",
