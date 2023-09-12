@@ -23,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post("sms",  [SMSController::class,"send"]);
 
 Route::post("check",[SMSController::class,"check"]);
+
+Route::post("cancel",[SMSController::class,"cancel"]);

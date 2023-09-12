@@ -38,7 +38,7 @@ class VonageService extends Service
     public function check($request)
     {
         try {
-            $result = $this->client->verify()->check($request->request_id, $request->code);
+            $this->client->verify()->check($request->request_id, $request->code);
         }catch (Exception $exception){
             $arr =  [
                 'status' => $exception->getCode(),
@@ -48,5 +48,19 @@ class VonageService extends Service
         }
         return $this->returnSuccessMessage("Verified");
 
+    }
+
+    public function cancel($request)
+    {
+        try {
+            $this->client->verify()->cancel($request->request_id);
+        }catch (Exception $exception){
+            $arr =  [
+                'status' => $exception->getCode(),
+                'message'   => $exception->getMessage(),
+            ];
+            return $this->returnCustomResponse($arr);
+        }
+        return $this->returnSuccessMessage("Cancelled");
     }
 }

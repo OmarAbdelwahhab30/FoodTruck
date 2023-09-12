@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OTP\CancelVonageCodeRequest;
 use App\Http\Requests\OTP\CheckVonageCodeRequest;
 use App\Http\Requests\OTP\SendVonageCodeRequest;
 use App\Services\Auth\OTP\VonageService;
-use Vonage\Client\Exception\Exception;
 
 class SMSController extends Controller
 {
@@ -20,5 +20,10 @@ class SMSController extends Controller
     public function check(CheckVonageCodeRequest $request,VonageService $service): \Illuminate\Http\JsonResponse
     {
         return $service->check($request);
+    }
+
+    public function cancel(CancelVonageCodeRequest $request,VonageService $service): \Illuminate\Http\JsonResponse
+    {
+        return $service->cancel($request);
     }
 }
