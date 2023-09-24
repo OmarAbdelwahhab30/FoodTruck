@@ -48,6 +48,7 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
     <!-- App Css-->
     <link href="{{asset("assets/css/app$x.min.css")}}" id="app-style" rel="stylesheet" type="text/css"/>
 
+
 </head>
 
 <body>
@@ -57,21 +58,21 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
             <div class="d-flex">
                 <!-- LOGO -->
                 <div class="navbar-brand-box">
-                    <a href="#" class="logo logo-dark">
+                    <a href="index.html" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="{{asset("assets/images/logo-light.png")}}" alt="" height="22">
+                                    <img src="assets/images/logo-sm.png" alt="" height="22">
                                 </span>
                         <span class="logo-lg">
-                                    <img src="{{asset("assets/images/logo-light.png")}}" alt="" height="20">
+                                    <img src="assets/images/logo-dark.png" alt="" height="20">
                                 </span>
                     </a>
 
                     <a href="index.html" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="{{asset("assets/images/logo-light.png")}}" alt="" height="22">
+                                    <img src="assets/images/logo-sm.png" alt="" height="22">
                                 </span>
                         <span class="logo-lg">
-                                    <img src="{{asset("assets/images/logo-light.png")}}" alt="" height="20">
+                                    <img src="assets/images/logo-light.png" alt="" height="20">
                                 </span>
                     </a>
                 </div>
@@ -80,78 +81,71 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
                     <i class="fa fa-fw fa-bars"></i>
                 </button>
 
+                <!-- App Search-->
+
             </div>
 
-            <div class="d-flex text-center m-5">
+            <div class="d-flex">
 
-                <div class="dropdown d-inline-block d-lg-none ms-2">
-                    <button type="button" class="btn header-item noti-icon waves-effect"
-                            id="page-header-search-dropdown"
+                <div class="dropdown d-inline-block language-switch">
+
+                    <button type="button" class="btn header-item waves-effect"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="uil-search"></i>
+                        <span>اللغة | Language</span>
                     </button>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
-                         aria-labelledby="page-header-search-dropdown">
+                    <div class="dropdown-menu dropdown-menu-end">
 
-                        <form class="p-3">
-                            <div class="m-0">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search ..."
-                                           aria-label="Recipient's username">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i>
-                                        </button>
-                                    </div>
+                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
 
-                                </div>
-                            </div>
-                        </form>
+                            <a class="mb-1 text-muted dropdown-item notify-item" rel="alternate" hreflang="{{ $localeCode }}"
+                               href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                {{ $properties['native'] }}
+                            </a>
+
+                        @endforeach
                     </div>
                 </div>
-
-                <div class="d-inline-block language-switch mt-4">
-
-
-                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-
-                        <a class="mb-1 text-muted" rel="alternate" hreflang="{{ $localeCode }}"
-                           href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                            | {{ $properties['native'] }}
-                        </a>
-
-                    @endforeach
-
-                </div>
-                <div class="d-inline-block language-switch mt-4">
-                        <a class="m-5" href="{{route("admin.logout")}}">Logout</a>
-                </div>
-                <div>
-                    <span type="button" class="btn header-item waves-effect" aria-haspopup="true"
-                          aria-expanded="false"></span>
-                    <img class="rounded-circle header-profile-user" src="{{auth()->user()->image}}"
-                         alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15">{{auth()->user()->name}}</span>
-
+                <div class="dropdown d-inline-block">
+                    <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded-circle header-profile-user" src="{{auth()->user()->image}}" alt="Header Avatar">
+                        <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15">{{auth()->user()->name}}</span>
+                    </button>
                 </div>
             </div>
         </div>
-    </header>
-    <!-- ========== Left Sidebar Start ========== -->
+    </header>    <!-- ========== Left Sidebar Start ========== -->
     <div class="vertical-menu">
-
         <!-- LOGO -->
         <div class="navbar-brand-box">
-            <?php
-            $x= \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getCurrentLocale() == "ar"? "-right":"-left";
-            ?>
-            <img style="margin-top: 19px;margin{{$x}}: 52px;"
-                 src="{{asset("assets/images/logo-dark.png")}}" alt="" height="70">
+            <a href="index.html" class="logo logo-dark">
+                        <span class="logo-sm">
+                            <img src="assets/images/logo-sm.png" alt="" height="22">
+                        </span>
+                <span class="logo-lg">
+                            <img src="assets/images/logo-dark.png" alt="" height="20">
+                        </span>
+            </a>
+
+            <a href="index.html" class="logo logo-light">
+                        <span class="logo-sm">
+                            <img src="assets/images/logo-sm.png" alt="" height="22">
+                        </span>
+                <span class="logo-lg">
+                            <img src="assets/images/logo-light.png" alt="" height="20">
+                        </span>
+            </a>
         </div>
-        <div style="margin-top:100px " data-simplebar class="sidebar-menu-scroll">
+
+        <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect vertical-menu-btn">
+            <i class="fa fa-fw fa-bars"></i>
+        </button>
+
+        <div data-simplebar class="sidebar-menu-scroll">
+
             <!--- Sidemenu -->
             <div id="sidebar-menu">
                 <!-- Left Menu Start -->
-                <ul class="metismenu list-unstyled">
+                <ul class="metismenu list-unstyled" id="side-menu">
                     <li class="menu-title">{{__("admin.Menu")}}</li>
 
                     <li>
@@ -277,148 +271,11 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
         </div>
     </div>
     <!-- Left Sidebar End -->
-
-    <!-- ============================================================== -->
-    <!-- Start right Content here -->
-    <!-- ============================================================== -->
+    <!-- Left Sidebar End -->
     @yield("content")
-    <!-- end main content-->
+
 </div>
-<!-- END layout-wrapper -->
 
-
-<!-- Right Sidebar -->
-<div class="right-bar">
-    <div data-simplebar class="h-100">
-        <div class="rightbar-title d-flex align-items-center p-3">
-
-            <h5 class="m-0 me-2">Settings</h5>
-
-            <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
-                <i class="mdi mdi-close noti-icon"></i>
-            </a>
-        </div>
-
-        <!-- Settings -->
-        <hr class="m-0"/>
-
-        <div class="p-4">
-            <h6 class="mb-3">Layout</h6>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout"
-                       id="layout-vertical" value="vertical">
-                <label class="form-check-label" for="layout-vertical">Vertical</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout"
-                       id="layout-horizontal" value="horizontal">
-                <label class="form-check-label" for="layout-horizontal">Horizontal</label>
-            </div>
-
-            <h6 class="mt-4 mb-3 pt-2">Layout Mode</h6>
-
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout-mode"
-                       id="layout-mode-light" value="light">
-                <label class="form-check-label" for="layout-mode-light">Light</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout-mode"
-                       id="layout-mode-dark" value="dark">
-                <label class="form-check-label" for="layout-mode-dark">Dark</label>
-            </div>
-
-            <h6 class="mt-4 mb-3 pt-2">Layout Width</h6>
-
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout-width"
-                       id="layout-width-fuild" value="fuild"
-                       onchange="document.body.setAttribute('data-layout-size', 'fluid')">
-                <label class="form-check-label" for="layout-width-fuild">Fluid</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout-width"
-                       id="layout-width-boxed" value="boxed"
-                       onchange="document.body.setAttribute('data-layout-size', 'boxed')">
-                <label class="form-check-label" for="layout-width-boxed">Boxed</label>
-            </div>
-
-            <h6 class="mt-4 mb-3 pt-2">Layout Position</h6>
-
-            <h6 class="mt-4 mb-3 pt-2">Topbar Color</h6>
-
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="topbar-color"
-                       id="topbar-color-light" value="light"
-                       onchange="document.body.setAttribute('data-topbar', 'light')">
-                <label class="form-check-label" for="topbar-color-light">Light</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="topbar-color"
-                       id="topbar-color-dark" value="dark" onchange="document.body.setAttribute('data-topbar', 'dark')">
-                <label class="form-check-label" for="topbar-color-dark">Dark</label>
-            </div>
-
-            <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Size</h6>
-
-            <div class="form-check sidebar-setting">
-                <input class="form-check-input" type="radio" name="sidebar-size"
-                       id="sidebar-size-default" value="default"
-                       onchange="document.body.setAttribute('data-sidebar-size', 'lg')">
-                <label class="form-check-label" for="sidebar-size-default">Default</label>
-            </div>
-            <div class="form-check sidebar-setting">
-                <input class="form-check-input" type="radio" name="sidebar-size"
-                       id="sidebar-size-compact" value="compact"
-                       onchange="document.body.setAttribute('data-sidebar-size', 'small')">
-                <label class="form-check-label" for="sidebar-size-compact">Compact</label>
-            </div>
-            <div class="form-check sidebar-setting">
-                <input class="form-check-input" type="radio" name="sidebar-size"
-                       id="sidebar-size-small" value="small"
-                       onchange="document.body.setAttribute('data-sidebar-size', 'sm')">
-                <label class="form-check-label" for="sidebar-size-small">Small (Icon View)</label>
-            </div>
-
-            <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Color</h6>
-
-            <div class="form-check sidebar-setting">
-                <input class="form-check-input" type="radio" name="sidebar-color"
-                       id="sidebar-color-light" value="light"
-                       onchange="document.body.setAttribute('data-sidebar', 'light')">
-                <label class="form-check-label" for="sidebar-color-light">Light</label>
-            </div>
-            <div class="form-check sidebar-setting">
-                <input class="form-check-input" type="radio" name="sidebar-color"
-                       id="sidebar-color-dark" value="dark"
-                       onchange="document.body.setAttribute('data-sidebar', 'dark')">
-                <label class="form-check-label" for="sidebar-color-dark">Dark</label>
-            </div>
-            <div class="form-check sidebar-setting">
-                <input class="form-check-input" type="radio" name="sidebar-color"
-                       id="sidebar-color-colored" value="colored"
-                       onchange="document.body.setAttribute('data-sidebar', 'colored')">
-                <label class="form-check-label" for="sidebar-color-colored">Colored</label>
-            </div>
-
-            <h6 class="mt-4 mb-3 pt-2">Direction</h6>
-
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout-direction"
-                       id="layout-direction-ltr" value="ltr">
-                <label class="form-check-label" for="layout-direction-ltr">LTR</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout-direction"
-                       id="layout-direction-rtl" value="rtl">
-                <label class="form-check-label" for="layout-direction-rtl">RTL</label>
-            </div>
-
-        </div>
-
-    </div> <!-- end slimscroll-menu-->
-</div>
-<!-- /Right-bar -->
 <footer class="footer">
     <div class="container-fluid">
         <div class="row">
@@ -432,15 +289,6 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
 </div>
 <!-- Right bar overlay-->
 <div class="rightbar-overlay"></div>
-
-<!-- JAVASCRIPT -->
-<script src="{{asset("assets/libs/jquery/jquery.min.js")}}"></script>
-<script src="{{asset("assets/libs/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
-<script src="{{asset("assets/libs/metismenu/metisMenu.min.js")}}"></script>
-<script src="{{asset("assets/libs/simplebar/simplebar.min.js")}}"></script>
-<script src="{{asset("assets/libs/node-waves/waves.min.js")}}"></script>
-<script src="{{asset("assets/libs/waypoints/lib/jquery.waypoints.min.js")}}"></script>
-<script src="{{asset("assets/libs/jquery.counterup/jquery.counterup.min.js")}}"></script>
 <script src="{{asset("assets/libs/jquery/jquery.min.js")}}"></script>
 <script src="{{asset("assets/libs/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
 <script src="{{asset("assets/libs/metismenu/metisMenu.min.js")}}"></script>
@@ -449,19 +297,6 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
 <script src="{{asset("assets/libs/waypoints/lib/jquery.waypoints.min.js")}}"></script>
 <script src="{{asset("assets/libs/jquery.counterup/jquery.counterup.min.js")}}"></script>
 
-<!-- Required datatable js -->
-<script src="{{asset("assets/libs/datatables.net/js/jquery.dataTables.min.js")}}"></script>
-<script src="{{asset("assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js")}}"></script>
-
-<!-- Responsive examples -->
-<script src="{{asset("assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js")}}"></script>
-<script src="{{asset("assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js")}}"></script>
-
-<!-- init js -->
-<script src="{{asset("assets/js/pages/ecommerce-datatables.init.js")}}"></script>
-
-<!-- App js -->
-<script src="{{asset("assets/js/app.js")}}"></script>
 <!-- apexcharts -->
 <script src="{{asset("assets/libs/apexcharts/apexcharts.min.js")}}"></script>
 
@@ -469,6 +304,54 @@ if (LaravelLocalization::getCurrentLocale() == "ar") {
 
 <!-- App js -->
 <script src="{{asset("assets/js/app.js")}}"></script>
+
+<!-- Required datatable js -->
+<script src="{{asset("assets/libs/datatables.net/js/jquery.dataTables.min.js")}}"></script>
+<script src="{{asset("assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js")}}"></script>
+<!-- Responsive examples -->
+<script src="{{asset("assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js")}}"></script>
+<script src="{{asset("assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js")}}"></script>
+<!-- init js -->
+<script src="{{asset("assets/js/pages/ecommerce-datatables.init.js")}}"></script>
+
+<!-- JAVASCRIPT -->
+{{--<script src="{{asset("assets/libs/jquery/jquery.min.js")}}"></script>--}}
+{{--<script src="{{asset("assets/libs/bootstrap/js/bootstrap.bundle.min.js")}}"></script>--}}
+{{--<script src="{{asset("assets/libs/metismenu/metisMenu.min.js")}}"></script>--}}
+{{--<script src="{{asset("assets/libs/simplebar/simplebar.min.js")}}"></script>--}}
+{{--<script src="{{asset("assets/libs/node-waves/waves.min.js")}}"></script>--}}
+{{--<script src="{{asset("assets/libs/waypoints/lib/jquery.waypoints.min.js")}}"></script>--}}
+{{--<script src="{{asset("assets/libs/jquery.counterup/jquery.counterup.min.js")}}"></script>--}}
+
+{{--<!-- apexcharts -->--}}
+{{--<script src="{{asset("assets/libs/apexcharts/apexcharts.min.js")}}"></script>--}}
+
+{{--<script src="{{asset("assets/js/pages/dashboard.init.js")}}"></script>--}}
+
+{{--<!-- App js -->--}}
+{{--<script src="{{asset("assets/js/app.js")}}"></script>--}}
+
+{{--<!-- JAVASCRIPT -->--}}
+{{--<script src="{{asset("assets/libs/jquery/jquery.min.js")}}"></script>--}}
+{{--<script src="{{asset("assets/libs/bootstrap/js/bootstrap.bundle.min.js")}}"></script>--}}
+{{--<script src="{{asset("assets/libs/metismenu/metisMenu.min.js")}}"></script>--}}
+{{--<script src="{{asset("assets/libs/simplebar/simplebar.min.js")}}"></script>--}}
+{{--<script src="{{asset("assets/libs/node-waves/waves.min.js")}}"></script>--}}
+{{--<script src="{{asset("assets/libs/waypoints/lib/jquery.waypoints.min.js")}}"></script>--}}
+{{--<script src="{{asset("assets/libs/jquery.counterup/jquery.counterup.min.js")}}"></script>--}}
+{{--<!-- Required datatable js -->--}}
+{{--<script src="{{asset("assets/libs/datatables.net/js/jquery.dataTables.min.js")}}"></script>--}}
+{{--<script src="{{asset("assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js")}}"></script>--}}
+{{--<!-- Responsive examples -->--}}
+{{--<script src="{{asset("assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js")}}"></script>--}}
+{{--<script src="{{asset("assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js")}}"></script>--}}
+{{--<!-- apexcharts -->--}}
+{{--<script src="{{asset("assets/libs/apexcharts/apexcharts.min.js")}}"></script>--}}
+{{--<script src="{{asset("assets/js/pages/dashboard.init.js")}}"></script>--}}
+{{--<!-- App js -->--}}
+{{--<script src="{{asset("assets/js/app.js")}}"></script>--}}
+{{--<!-- init js -->--}}
+{{--<script src="{{asset("assets/js/pages/ecommerce-datatables.init.js")}}"></script>--}}
 
 </body>
 

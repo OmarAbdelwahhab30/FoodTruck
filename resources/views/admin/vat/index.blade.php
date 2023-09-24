@@ -43,30 +43,30 @@ $z = " | ".__("admin.Value Added Tax");
     </div>
 
 
-    <!-- JAVASCRIPT -->
-    <script src="{{asset("assets/libs/jquery/jquery.min.js")}}"></script>
-    <script src="{{asset("assets/libs/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
-    <script src="{{asset("assets/libs/metismenu/metisMenu.min.js")}}"></script>
-    <script src="{{asset("assets/libs/simplebar/simplebar.min.js")}}"></script>
-    <script src="{{asset("assets/libs/node-waves/waves.min.js")}}"></script>
-    <script src="{{asset("assets/libs/waypoints/lib/jquery.waypoints.min.js")}}"></script>
-    <script src="{{asset("assets/libs/jquery.counterup/jquery.counterup.min.js")}}"></script>
+{{--    <!-- JAVASCRIPT -->--}}
+{{--    <script src="{{asset("assets/libs/jquery/jquery.min.js")}}"></script>--}}
+{{--    <script src="{{asset("assets/libs/bootstrap/js/bootstrap.bundle.min.js")}}"></script>--}}
+{{--    <script src="{{asset("assets/libs/metismenu/metisMenu.min.js")}}"></script>--}}
+{{--    <script src="{{asset("assets/libs/simplebar/simplebar.min.js")}}"></script>--}}
+{{--    <script src="{{asset("assets/libs/node-waves/waves.min.js")}}"></script>--}}
+{{--    <script src="{{asset("assets/libs/waypoints/lib/jquery.waypoints.min.js")}}"></script>--}}
+{{--    <script src="{{asset("assets/libs/jquery.counterup/jquery.counterup.min.js")}}"></script>--}}
 
-    <!-- plugins -->
-    <script src="{{asset("assets/libs/select2/js/select2.min.js")}}"></script>
-    <script src="{{asset("assets/libs/spectrum-colorpicker2/spectrum.min.js")}}"></script>
-    <script src="{{asset("assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js")}}"></script>
-    <script src="{{asset("assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js")}}"></script>
-    <script src="{{asset("assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js")}}"></script>
-    <script src="{{asset("assets/libs/@chenfengyuan/datepicker/datepicker.min.js")}}"></script>
+{{--    <!-- plugins -->--}}
+{{--    <script src="{{asset("assets/libs/select2/js/select2.min.js")}}"></script>--}}
+{{--    <script src="{{asset("assets/libs/spectrum-colorpicker2/spectrum.min.js")}}"></script>--}}
+{{--    <script src="{{asset("assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js")}}"></script>--}}
+{{--    <script src="{{asset("assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js")}}"></script>--}}
+{{--    <script src="{{asset("assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js")}}"></script>--}}
+{{--    <script src="{{asset("assets/libs/@chenfengyuan/datepicker/datepicker.min.js")}}"></script>--}}
 
-    <!-- datepicker js -->
-    <script src="{{asset("assets/libs/flatpickr/flatpickr.min.js")}}"></script>
+{{--    <!-- datepicker js -->--}}
+{{--    <script src="{{asset("assets/libs/flatpickr/flatpickr.min.js")}}"></script>--}}
 
-    <!-- init js -->
-    <script src="{{asset("assets/js/pages/form-advanced.init.js")}}"></script>
+{{--    <!-- init js -->--}}
+{{--    <script src="{{asset("assets/js/pages/form-advanced.init.js")}}"></script>--}}
 
-    <!-- App js -->
-    <script src="{{asset("assets/js/app.js")}}"></script>
+{{--    <!-- App js -->--}}
+{{--    <script src="{{asset("assets/js/app.js")}}"></script>--}}
 
 @endsection

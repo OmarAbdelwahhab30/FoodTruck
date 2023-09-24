@@ -9,7 +9,7 @@
     }
     ?>
     <div class="container" style="{{$st}}">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center style="padding-top: 80px"">
             <div class="col-md-8 col-lg-6 col-xl-5">
                 <div>
                     <div class="card">

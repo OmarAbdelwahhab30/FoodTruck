@@ -8,10 +8,20 @@
         $st="";
     }
     ?>
-    <div class="container" style="{{$st}}">
+
+    <!-- end row -->
+<div class="container" style="{{$st}}">
     <div class="row align-items-center justify-content-center">
         <div class="col-md-8 col-lg-6 col-xl-5">
-            <div class="card">
+            <div class="d-inline-block language-switch mt-4">
+                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                    <a class="mb-1 text-muted" rel="alternate" hreflang="{{ $localeCode }}"
+                       href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                        | {{ $properties['native'] }}
+                    </a>
+                @endforeach
+            </div>
+            <div class="card mt-1">
                 <div class="card-body p-4">
                     <div class="text-center mt-2">
                         @include("admin.bootstrapHelper.alerts")
@@ -28,7 +38,6 @@
                                 <div class="error"> {{$message}} </div>
                                 @enderror
                             </div>
-
                             <div class="mb-3">
                                 <div class="float-end">
                                     <a href="{{route("admin.forget")}}" class="">{{__("admin.Forgot password")}}</a>
@@ -39,7 +48,6 @@
                                 <div class="error"> {{$message}} </div>
                                 @enderror
                             </div>
-
                             <div class="mt-3 text-end">
                                 <button class="btn btn-primary w-sm waves-effect waves-light" type="submit">{{__("admin.login")}}</button>
                             </div>
