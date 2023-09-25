@@ -11,10 +11,10 @@ use App\Services\Auth\OTP\VonageService;
 class SMSController extends Controller
 {
 
-    public function send(SendVonageCodeRequest $request,VonageService $service): \Illuminate\Http\JsonResponse
+    public function send(SendVonageCodeRequest $request,VonageService $service)
     {
         $response = $service->send($request);
-        return $this->returnCustomResponse($response);
+        return response()->json($response);
     }
 
     public function check(CheckVonageCodeRequest $request,VonageService $service): \Illuminate\Http\JsonResponse

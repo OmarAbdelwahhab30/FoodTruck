@@ -27,6 +27,7 @@
         "pusher/pusher-php-server": "^7.2",
         "srmklive/paypal": "~3.0",
         "symfony/http-client": "^6.3",
+        "twilio/sdk": "^7.9",
         "vonage/client": "^4.0"
     },
     "require-dev": {

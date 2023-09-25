@@ -33,3 +33,5 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
 });
 
 Route::get("returnLogoPath",[ReturnValuesController::class,"returnLogoPath"]);
+
+Route::get("createToken",[\App\Http\Controllers\Auth\TokensController::class,"createToken"]);

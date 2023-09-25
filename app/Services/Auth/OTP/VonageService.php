@@ -12,6 +12,7 @@ class VonageService extends Service
     private \Vonage\Client\Credentials\Basic $basic;
     private \Vonage\Client $client;
 
+
     public function __construct()
     {
         $this->basic  = new \Vonage\Client\Credentials\Basic(env("VONAGE_KEY"), env("VONAGE_SECRET"));
@@ -20,18 +21,16 @@ class VonageService extends Service
 
     public function send($request)
     {
-        try {
-            $result = new \Vonage\Verify\Request($request->to, "FoodTruck");
-            $response = $this->client->verify()->start($result);
-        }catch (Exception $exception){
-            return [
-                'status' => $exception->getCode(),
-                'message'   => $exception->getMessage(),
-            ];
-        }
+        $rand = rand(1000,9999);
+        $response = $this->client->sms()->send(
+            new \Vonage\SMS\Message\SMS($request->to, 'FoodTruck'
+                , 'Your Verification Code is '.$rand)
+        );
+
         return [
             'status'    => 200,
-            'request_id'    => $response->getRequestId(),
+            'message'   => "message",
+            'code'      => $rand,
         ];
     }
 
