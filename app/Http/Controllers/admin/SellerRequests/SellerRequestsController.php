@@ -32,9 +32,9 @@ class SellerRequestsController
         $client = new \Vonage\Client($basic);
         try {
             $response = $client->sms()->send(
-                new \Vonage\SMS\Message\SMS("201092253909", "Food-Truck",
-                    __("admin.We are pleased to inform you that your application for food truck has been accepted"))
-            );
+                new \Vonage\SMS\Message\SMS("201555590278",
+                    "Food-Truck",
+                    "We are pleased to inform you that your application for food truck has been accepted"));
         } catch (Throwable  $exception) {
             return redirect()->to("admin/SellersRequests")
                 ->with("error", __("admin.connection was disabled"));
