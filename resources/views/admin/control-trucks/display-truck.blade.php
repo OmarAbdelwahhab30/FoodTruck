@@ -50,11 +50,6 @@ $z = " | ".__("admin.Control Trucks");
                                         <h5 class="font-size-14"><a href="#" class="text-muted">FoodTruck.</a>
                                         </h5>
                                         <h4 class="font-size-20 mb-3">{{$truck->name}}</h4>
-
-                                        <div class="text-muted">
-                                             {{__("admin.Reviews")}}
-                                        </div>
-
                                         <h5 class="mt-4 pt-2">{{__("admin.Delivery Price")}} : <span
                                                 class="text-danger font-size-14 ms-2">{{$truck->delivery_price}} {{__("admin.S.R")}}</span>
                                         </h5>
