@@ -38,7 +38,7 @@ class ControlTrucksController extends Controller
                 ->with("truck", $truck)
                 ->with("reviews", $reviews)
                 ->with("sections", $sections)
-                ->with("reviews_count", $count_reviews)
+                //->with("reviews_count", $count_reviews)
                 ->with("truck_images", $truck_images);
         }else{
             return redirect()->back()->with("error",__("admin.The phone is invalid"));

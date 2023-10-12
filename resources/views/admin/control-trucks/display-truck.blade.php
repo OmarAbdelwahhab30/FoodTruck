@@ -52,7 +52,7 @@ $z = " | ".__("admin.Control Trucks");
                                         <h4 class="font-size-20 mb-3">{{$truck->name}}</h4>
 
                                         <div class="text-muted">
-                                            {{$reviews_count}} {{__("admin.Reviews")}}
+                                             {{__("admin.Reviews")}}
                                         </div>
 
                                         <h5 class="mt-4 pt-2">{{__("admin.Delivery Price")}} : <span
