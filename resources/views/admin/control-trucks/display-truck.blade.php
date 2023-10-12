@@ -184,7 +184,7 @@ $z = " | ".__("admin.Control Trucks");
                             <div class="mt-4">
                                 <h5 class="font-size-14 mb-3">{{__("admin.Reviews")}} : </h5>
                                 <div class="text-muted mb-3">
-                                    {{$reviews_count}} {{__("admin.Reviews")}}
+                                    {{__("admin.Reviews")}}
                                 </div>
                                 <div class="border p-4 rounded">
                                     @foreach($reviews as $review)
