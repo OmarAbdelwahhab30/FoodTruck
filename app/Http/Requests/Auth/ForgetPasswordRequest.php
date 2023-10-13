@@ -25,7 +25,7 @@ class ForgetPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'new_password' => [
+            'password' => [
                 'required',
             ],
         ];

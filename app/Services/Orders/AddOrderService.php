@@ -75,9 +75,5 @@ class AddOrderService extends Service
         }
     }
 
-//    private function addPriceToSellerWallet($price, $seller_id)
-//    {
-//        Wallet::where('user_id', $seller_id)->increment('balance', $price);
-//    }
 
 }
