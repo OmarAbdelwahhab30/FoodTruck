@@ -16,6 +16,9 @@ class DeleteFromCartService extends Service
         $cart = auth("sanctum")->user()->cart;
         if ($cart->products()->wherePivot('id', '=', $request->pivot_id)->detach())
         {
+            if ($cart->products() == null){
+                $cart->truck_id = null;
+            }
             return true;
         }
         return false;
