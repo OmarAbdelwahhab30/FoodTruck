@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AccountState;
+use App\Http\Middleware\ForceJsonResponse;
 use App\Http\Middleware\IsAuthenticated;
 use App\Http\Middleware\Permissions\GateDefineMiddleware;
 use App\Http\Middleware\SellerCanAccess;
@@ -54,7 +55,8 @@ class Kernel extends HttpKernel
             SwitchLanguage::class,
             AccountState::class,
             SellerCanAccess::class,
-            UserCanAccess::class
+            UserCanAccess::class,
+            ForceJsonResponse::class,
         ],
     ];
 
@@ -82,5 +84,6 @@ class Kernel extends HttpKernel
         'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
         'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         'CanAccess'               => IsAuthenticated::class,
+        'json' => \App\Http\Middleware\ForceJsonResponse::class,
     ];
 }

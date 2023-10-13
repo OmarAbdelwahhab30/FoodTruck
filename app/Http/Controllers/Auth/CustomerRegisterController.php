@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\CustomerRegisterRequest;
 use App\Services\Auth\CustomerRegisterService;
+use Illuminate\Http\JsonResponse;
 
 class CustomerRegisterController extends Controller
 {
-    public function register(CustomerRegisterRequest $request, CustomerRegisterService $service)
+    public function register(CustomerRegisterRequest $request, CustomerRegisterService $service):JsonResponse
     {
         $user = $service->register($request);
         if($user) {
